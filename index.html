@@ -3,28 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jim Collinsworth - Out of My Lane</title>
+    <title>Jim Collinsworth | Out of My Lane</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            height: 100vh;
-            font-family: "Arial", sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            text-align: center;
-            box-sizing: border-box;
+        body { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px; 
+            padding: 20px;
+            font-family: Arial, sans-serif;
         }
-
+        @media (max-width: 600px) {
+            body { 
+                grid-template-columns: 1fr; 
+                grid-template-rows: auto auto;
+            }
+        }
         .section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
         }
-
-        h1 {
-            font-size: 6rem;
+        h1 { text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h1>Jim Collinsworth</h1>
+        <p>Out of My Lane</p>
+    </div>
+    <div class="section">
+        <p>Welcome to my personal site. Here you'll find my thoughts, projects, and ideas that stretch beyond my usual expertise.</p>
+    </div>
+</body>
+</html>
