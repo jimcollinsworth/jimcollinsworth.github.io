@@ -28,7 +28,6 @@
             grid-template-columns: 1fr 1fr; 
             height: 100vh;
             width: 100vw;
-            position: relative;
         }
         
         @media (max-width: 768px) {
@@ -39,56 +38,52 @@
             }
         }
         
-        /* Background image containers */
-        .bg-container-left, .bg-container-right {
+        /* Background image container */
+        .bg-container {
             position: absolute;
             top: 0;
-            width: 50%;
+            left: 0;
+            width: 100%;
             height: 100%;
             z-index: -1;
             opacity: 0;
             transition: opacity 0.5s ease;
+            background-image: url('horizon1.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
         
-        .bg-container-left {
-            left: 0;
-            background-image: url('image1.jpg');
-        }
-        
-        .bg-container-right {
-            right: 0;
-            background-image: url('image2.jpg');
-        }
-        
-        /* Show left background when hovering over right text */
-        #right-section:hover ~ .bg-container-left {
+        /* Show background when hovering over body but not text */
+        body:hover .bg-container {
             opacity: 0.8;
         }
         
-        /* Show right background when hovering over left text */
-        #left-section:hover ~ .bg-container-right {
-            opacity: 0.8;
+        /* Hide background when hovering over text */
+        h1:hover ~ .bg-container,
+        .subtitle:hover ~ .bg-container,
+        p:hover ~ .bg-container {
+            opacity: 0;
         }
         
         .section {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 5vw;
             height: 100%;
             transition: all 0.3s ease;
             position: relative;
             z-index: 1;
+            background-color: rgba(255, 255, 255, 0.7);
         }
         
-        #left-section {
-            background-color: #f8f9fa;
+        .section:first-child {
+            background-color: rgba(248, 249, 250, 0.7);
         }
         
-        #right-section {
-            background-color: #ffffff;
+        .section:last-child {
+            background-color: rgba(255, 255, 255, 0.7);
         }
         
         h1 {
@@ -133,46 +128,30 @@
             position: relative;
             z-index: 2;
             background-color: rgba(255, 255, 255, 0.8);
+            padding: 1rem;
+            border-radius: 0.5rem;
             backdrop-filter: blur(5px);
             transition: background-color 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
         
         .text-content:hover {
             background-color: rgba(255, 255, 255, 0.95);
         }
-        
-        /* For mobile view, adjust backgrounds to stack */
-        @media (max-width: 768px) {
-            .bg-container-left, .bg-container-right {
-                width: 100%;
-                height: 50%;
-            }
-            
-            .bg-container-left {
-                top: 0;
-            }
-            
-            .bg-container-right {
-                top: 50%;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Background image containers -->
-    <div class="bg-container-left"></div>
-    <div class="bg-container-right"></div>
+    <!-- Background image container -->
+    <div class="bg-container"></div>
     
-    <div id="left-section" class="section">
+    <div class="section">
         <div class="text-content">
             <h1>Jim Collinsworth</h1>
             <div class="subtitle">Out of My Lane</div>
         </div>
     </div>
-    <div id="right-section" class="section">
+    <div class="section">
         <div class="text-content">
-            <p>Welcome to my personal site. Here you'll find my ideas, projects, and art in computing and technology, and then much more that stretch beyond my expertise.</p>
+            <p>Welcome to my personal site. Here you'll find my thoughts, projects, and arts in computing and technology, and then much more that stretch beyond my expertise.</p>
         </div>
     </div>
 </body>
