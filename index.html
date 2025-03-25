@@ -4,36 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jim Collinsworth | Out of My Lane</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
         body { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
-            gap: 20px; 
-            padding: 20px;
-            font-family: Arial, sans-serif;
+            height: 100vh;
+            width: 100vw;
         }
-        @media (max-width: 600px) {
+        
+        @media (max-width: 768px) {
             body { 
                 grid-template-columns: 1fr; 
-                grid-template-rows: auto auto;
+                grid-template-rows: 1fr 1fr;
+                overflow-y: auto;
             }
         }
+        
         .section {
-            background-color: #f0f0f0;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5vw;
+            height: 100%;
+            transition: all 0.3s ease;
         }
-        h1 { text-align: center; }
+        
+        .section:first-child {
+            background-color: #f8f9fa;
+        }
+        
+        .section:last-child {
+            background-color: #ffffff;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #555;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        
+        p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            max-width: 40ch;
+            letter-spacing: 0.01em;
+        }
+        
+        /* Add light hover effect */
+        .section:hover {
+            transform: scale(1.01);
+        }
     </style>
 </head>
 <body>
     <div class="section">
         <h1>Jim Collinsworth</h1>
-        <p>Out of My Lane</p>
+        <div class="subtitle">Out of My Lane</div>
     </div>
     <div class="section">
-        <p>Welcome to my personal site. Here you'll find my thoughts, projects, and ideas that stretch beyond my usual expertise.</p>
+        <p>Welcome to my personal site. Here you'll find my thoughts, projects, and ideas in computing and technology, and then much more that stretch beyond my expertise.</p>
     </div>
 </body>
 </html>
