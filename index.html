@@ -20,6 +20,7 @@
             font-family: 'Inter', sans-serif;
             color: #333;
             line-height: 1.6;
+            position: relative;
         }
         
         body { 
@@ -37,6 +38,40 @@
             }
         }
         
+        /* Background image containers */
+        .bg-container-left, .bg-container-right {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .bg-container-left {
+            left: 0;
+            background-image: url('image1.png');
+        }
+        
+        .bg-container-right {
+            right: 0;
+            background-image: url('image2.png');
+        }
+        
+        /* Show left background when hovering over right text */
+        #right-section:hover ~ .bg-container-left {
+            opacity: 0.8;
+        }
+        
+        /* Show right background when hovering over left text */
+        #left-section:hover ~ .bg-container-right {
+            opacity: 0.8;
+        }
+        
         .section {
             display: flex;
             flex-direction: column;
@@ -44,14 +79,17 @@
             padding: 5vw;
             height: 100%;
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.7);
         }
         
         .section:first-child {
-            background-color: #f8f9fa;
+            background-color: rgba(248, 249, 250, 0.7);
         }
         
         .section:last-child {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.7);
         }
         
         h1 {
@@ -61,6 +99,8 @@
             margin-bottom: 0.5rem;
             line-height: 1.2;
             letter-spacing: -0.02em;
+            position: relative;
+            z-index: 2;
         }
         
         .subtitle {
@@ -71,6 +111,8 @@
             color: #555;
             line-height: 1.2;
             letter-spacing: -0.02em;
+            position: relative;
+            z-index: 2;
         }
         
         p {
@@ -78,21 +120,62 @@
             font-weight: 300;
             max-width: 40ch;
             letter-spacing: 0.01em;
+            position: relative;
+            z-index: 2;
         }
         
         /* Add light hover effect */
         .section:hover {
             transform: scale(1.01);
         }
+        
+        /* Text content container to ensure text stays above background */
+        .text-content {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            backdrop-filter: blur(5px);
+            transition: background-color 0.3s ease;
+        }
+        
+        .text-content:hover {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        /* For mobile view, adjust backgrounds to stack */
+        @media (max-width: 768px) {
+            .bg-container-left, .bg-container-right {
+                width: 100%;
+                height: 50%;
+            }
+            
+            .bg-container-left {
+                top: 0;
+            }
+            
+            .bg-container-right {
+                top: 50%;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="section">
-        <h1>Jim Collinsworth</h1>
-        <div class="subtitle">Out of My Lane</div>
+    <!-- Background image containers -->
+    <div class="bg-container-left"></div>
+    <div class="bg-container-right"></div>
+    
+    <div id="left-section" class="section">
+        <div class="text-content">
+            <h1>Jim Collinsworth</h1>
+            <div class="subtitle">Out of My Lane</div>
+        </div>
     </div>
-    <div class="section">
-        <p>Welcome to my personal site. Here you'll find my thoughts, projects, and ideas in computing and technology, and then much more that stretch beyond my expertise.</p>
+    <div id="right-section" class="section">
+        <div class="text-content">
+            <p>Welcome to my personal site. Here you'll find my thoughts, projects, and ideas in computing and technology, and then much more that stretch beyond my expertise.</p>
+        </div>
     </div>
 </body>
 </html>
