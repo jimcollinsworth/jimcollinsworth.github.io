@@ -38,34 +38,6 @@
             }
         }
         
-        /* Background image container */
-        .bg-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            background-image: url('horizon1.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        
-        /* Show background when hovering over body but not text */
-        body:hover .bg-container {
-            opacity: 0.8;
-        }
-        
-        /* Hide background when hovering over text */
-        h1:hover ~ .bg-container,
-        .subtitle:hover ~ .bg-container,
-        p:hover ~ .bg-container {
-            opacity: 0;
-        }
-        
         .section {
             display: flex;
             flex-direction: column;
@@ -81,7 +53,7 @@
             background-color: rgba(255, 255, 255, 0.7);
         }
         
-        .section:last-child {
+        .section:nth-child(2) {
             background-color: rgba(245, 245, 245, 0.7);
         }
         
@@ -137,19 +109,40 @@
             background-color: rgba(255, 255, 255, 0.95);
         }
 
-        .section:first-child {
-            background-color: rgba(255, 255, 255, 0.7);
+        /* Fullscreen overlay styles */
+        .fullscreen-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            width: 50vw;
+            height: 100vh;
+            z-index: 1000;
+            cursor: pointer;
+            transition: left 0.3s ease;
         }
-        
-        .section:last-child {
-            background-color: rgba(245, 245, 245, 0.7);
+
+        .fullscreen-overlay.left {
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .fullscreen-overlay.right {
+            left: 50vw;
+            background-color: rgba(1, 0, 0, 0.9);
+        }
+
+        .fullscreen-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1001;
         }
     </style>
 </head>
 <body>
-    <!-- Background image container -->
-    <div class="bg-container"></div>
-    
     <div class="section">
         <div class="text-content">
             <h1>Jim Collinsworth</h1>
@@ -161,5 +154,45 @@
             <p>Welcome to my personal site. Here you'll find my thoughts, projects, and art in computing and technology, and then much more that stretch beyond my expertise.</p>
         </div>
     </div>
+
+    <!-- Fullscreen overlay -->
+    <div class="fullscreen-overlay" id="overlay">
+        <img id="overlay-image" src="" alt="Fullscreen image">
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('.section');
+        const overlay = document.getElementById('overlay');
+        const overlayImage = document.getElementById('overlay-image');
+
+        sections.forEach((section, index) => {
+            section.addEventListener('click', () => {
+                // If overlay is already visible, hide it
+                if (overlay.style.display === 'block') {
+                    overlay.style.display = 'none';
+                    return;
+                }
+
+                // Otherwise, show the image
+                const imagePath = index === 0 ? 'image1.jpg' : 'image2.jpg';
+                overlayImage.src = imagePath;
+                
+                // Position overlay on the opposite side of the clicked section
+                if (index === 0) {
+                    overlay.classList.remove('left');
+                    overlay.classList.add('right');
+                } else {
+                    overlay.classList.remove('right');
+                    overlay.classList.add('left');
+                }
+                
+                overlay.style.display = 'block';
+            });
+        });
+
+        overlay.addEventListener('click', () => {
+            overlay.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
