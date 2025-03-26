@@ -8,6 +8,12 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-W201KDB3LS');
+          // Add these additional settings to fix cookie issues
+        gtag('config', 'G-W201KDB3LS', {
+            'cookie_flags': 'SameSite=None;Secure;Partitioned',
+            'cookie_domain': 'auto',
+            'cookie_expires': 63072000 // 2 years in seconds
+        });
     </script>
 
     <meta charset="UTF-8">
@@ -118,6 +124,20 @@
             background-color: rgba(255, 255, 255, 0.95);
         }
 
+        .nav-link {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            font-size: 1rem;
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #333;
+        }
+
         /* Fullscreen overlay styles */
         .fullscreen-overlay {
             display: none;
@@ -157,6 +177,7 @@
             <h1>Jim Collinsworth</h1>
             <div class="subtitle">Out of My Lane</div>
         </div>
+        <a href="meta.html" class="nav-link">meta</a>
     </div>
     <div class="section">
         <div class="text-content">
