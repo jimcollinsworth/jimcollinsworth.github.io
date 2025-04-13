@@ -142,9 +142,13 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
+        ("/categories/", "Lanes"),
+        ("/galleries/", "Photography"),
         ("/archive.html", "Archive"),
-        ("/categories/", "Tags"),
+        # contact
         ("/rss.xml", "RSS feed"),
+        # site reference
+        ("/pages/meta", "Meta")
     ),
 }
 
@@ -156,7 +160,7 @@ NAVIGATION_ALT_LINKS = {
 }
 
 # Name of the theme to use.
-THEME = "bootblog4"
+THEME = "monospace"
 
 # A theme color. In default themes, it might be displayed by some browsers as
 # the browser UI color (eg. Chrome on Android). Other themes might also use it
@@ -188,6 +192,9 @@ THEME_CONFIG = {
         'sidebar': ''
     }
 }
+# Disable image pop-ups and lightbox
+USE_LIGHTBOX = False
+
 # Config for bootstrap4:
 # THEME_CONFIG = {
 #     DEFAULT_LANG: {
@@ -236,16 +243,33 @@ THEME_CONFIG = {
 #     )
 
 POSTS = (
-    ("posts/*.rst", "posts", "post.tmpl"),
-    ("posts/*.md", "posts", "post.tmpl"),
-    ("posts/*.txt", "posts", "post.tmpl"),
-    ("posts/*.html", "posts", "post.tmpl"),
+    ("posts/projects/*.md", "posts/projects", "project.tmpl"),  # Evolving goals/projects
+    ("posts/articles/*.md", "posts/articles", "article.tmpl"),          # Full articles
+    ("posts/notes/*.md", "posts/notes", "note.tmpl"),          # Short-form content
 )
+
+# Set default template for new projects
+NEW_POST_METADATA = {
+    'posts/projects/*.md': {
+        'type': 'project',
+        'status': 'draft',
+        'template': 'project.tmpl.md'
+    },
+    'posts/artices/*.md': {
+        'type': 'article',
+        'status': 'draft',
+        'template': 'article.tmpl.md'
+    },
+    'posts/notes/*.md': {
+        'type': 'note',
+        'status': 'draft',
+        'template': 'note.tmpl.md'
+    }
+}
+
 PAGES = (
     ("pages/*.rst", "pages", "page.tmpl"),
     ("pages/*.md", "pages", "page.tmpl"),
-    ("pages/*.txt", "pages", "page.tmpl"),
-    ("pages/*.html", "pages", "page.tmpl"),
 )
 
 
@@ -268,7 +292,7 @@ TIMEZONE = "America/Chicago"
 # Date format used to display post dates. (translatable)
 # Used by babel.dates, CLDR style: http://cldr.unicode.org/translation/date-time-1/date-time
 # You can also use 'full', 'long', 'medium', or 'short'
-# DATE_FORMAT = 'yyyy-MM-dd HH:mm'
+# DATE_FORMAT = 'short'
 
 # Date format used to display post dates, if local dates are used. (translatable)
 # Used by Luxon: https://moment.github.io/luxon/docs/manual/formatting
@@ -425,7 +449,7 @@ COMPILERS = {
 # If you do not want to display a tag publicly, you can mark it as hidden.
 # The tag will not be displayed on the tag list page and posts.
 # Tag pages will still be generated.
-HIDDEN_TAGS = ['mathjax']
+HIDDEN_TAGS = ['draft','private']
 
 # Only include tags on the tag list/overview page if there are at least
 # TAGLIST_MINIMUM_POSTS number of posts or more with every tag. Every tag
@@ -475,7 +499,7 @@ CATEGORY_OUTPUT_FLAT_HIERARCHY = False
 
 # If CATEGORY_PAGES_ARE_INDEXES is set to True, each category's page will contain
 # the posts themselves. If set to False, it will be just a list of links.
-# CATEGORY_PAGES_ARE_INDEXES = False
+CATEGORY_PAGES_ARE_INDEXES = True
 
 # Set descriptions for category pages to make them more interesting. The
 # default is no description. The value is used in the meta description
@@ -591,7 +615,8 @@ FRONT_INDEX_HEADER = {
 # Create per-month archives instead of per-year
 # CREATE_MONTHLY_ARCHIVE = False
 # Create one large archive instead of per-year
-# CREATE_SINGLE_ARCHIVE = False
+CREATE_SINGLE_ARCHIVE = True
+
 # Create year, month, and day archives each with a (long) list of posts
 # (overrides both CREATE_MONTHLY_ARCHIVE and CREATE_SINGLE_ARCHIVE)
 # CREATE_FULL_ARCHIVES = False
@@ -983,7 +1008,7 @@ LICENSE = ""
 
 # A small copyright notice for the page footer (in HTML).
 # (translatable)
-CONTENT_FOOTER = 'Contents &copy; {date}         <a href="mailto:{email}">{author}</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         {license}'
+CONTENT_FOOTER = 'Contents &copy; {date} <a href="mailto:{email}">{author}</a> -'
 
 # Things that will be passed to CONTENT_FOOTER.format().  This is done
 # for translatability, as dicts are not formattable.  Nikola will
