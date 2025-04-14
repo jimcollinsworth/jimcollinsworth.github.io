@@ -3,7 +3,7 @@
 title: ${title}
 slug: ${slug}
 type: project
-status: active
+status: draft
 description: ${description}
 date_started: ${date}
 date_updated: ${date}
