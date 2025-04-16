@@ -17,7 +17,7 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Jim Collinsworth"  # (translatable)
-BLOG_TITLE = "Jim Collinsworth Out of My Lane"  # (translatable)
+BLOG_TITLE = "Out of My Lane"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
 SITE_URL = "https://jimcollinsworth.com/"
