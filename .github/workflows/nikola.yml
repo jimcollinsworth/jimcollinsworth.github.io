@@ -1,0 +1,33 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'  # or your preferred version
+
+      - name: Install dependencies
+        run: |
+          pip install Nikola
+
+      - name: Build the site
+        run: |
+          nikola build
+
+      - name: Deploy to GitHub Pages
+        run: |
+          nikola github_deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
