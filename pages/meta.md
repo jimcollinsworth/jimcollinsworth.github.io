@@ -9,6 +9,8 @@
 
 [Google Analytics](https://analytics.google.com)
 
+[Godaddy Dashboard](https://dashboard.godaddy.com/)
+
 
 ##Tools/Docs - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>
 [Theming](https://jimcollinsworth.github.io/pages/theming/)
