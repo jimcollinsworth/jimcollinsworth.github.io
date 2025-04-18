@@ -23,6 +23,8 @@ jobs:
           pip install Nikola
           pip install ruamel.yaml
           pip install ghp-import
+          pip install pygal
+          pip install micawber
 
       - name: Build the site
         run: |
