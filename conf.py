@@ -148,7 +148,17 @@ NAVIGATION_LINKS = {
         # contact
         ("/rss.xml", "RSS feed"),
         # site reference
-        ("/pages/meta", "Meta")
+        ("/pages/meta", "Meta"),
+        # examples
+        ("/pages/bootstrap-demo.rst", "Bootstrap Demo"),
+        ("/pages/charts.rst", "Charts"),
+        ("/pages/internals.rst", "Nikola Internals"),
+        ("/pages/creating-a-theme.rst", "Creating a Theme"),
+        ("/pages/manual.rst", "Manual"),
+        ("/pages/path_handlers.rst", "Path Handlers"),
+        ("/pages/quickref.rst", "Quick Reference"),
+        ("/pages/quickstart.rst", "Quickstart"),
+        ("/pages/theming.rst", "Theming")
     ),
 }
 
