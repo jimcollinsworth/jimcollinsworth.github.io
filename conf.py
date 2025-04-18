@@ -1106,7 +1106,7 @@ PRETTY_URLS = False
 # Generally, you want FUTURE_IS_NOW and DEPLOY_FUTURE to be the same value.
 # DEPLOY_FUTURE = False
 # If False, draft posts will not be deployed
-# DEPLOY_DRAFTS = True
+DEPLOY_DRAFTS = True
 
 # Allows scheduling of posts using the rule specified here (new_post -s)
 # Specify an iCal Recurrence Rule: https://www.kanzaki.com/docs/ical/rrule.html
@@ -1447,4 +1447,4 @@ GLOBAL_CONTEXT = {}
 # Add functions here and they will be called with template
 # GLOBAL_CONTEXT as parameter when the template is about to be
 # rendered
-GLOBAL_CONTEXT_FILLER = []
+GLOBAL_CONTEXT_FILLER = [] 
