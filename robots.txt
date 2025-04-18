@@ -1,0 +1,4 @@
+Sitemap: https://jimcollinsworth.com/sitemapindex.xml
+
+User-Agent: *
+Host: jimcollinsworth.com
