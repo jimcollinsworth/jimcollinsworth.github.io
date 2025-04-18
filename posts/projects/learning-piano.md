@@ -31,3 +31,20 @@ next_steps:
 ---
 
 Project overview and current status here...
+
+
+{{% chart Bar title='Browser usage evolution (in %)'
+x_labels='["2002","2003","2004","2005","2006","2007"]' %}}
+        'Firefox', [None, None, 0, 16.6, 25, 31]
+        'Chrome',  [None, None, None, None, None, None]
+        'IE',      [85.8, 84.6, 84.7, 74.5, 66, 58.6]
+        'Others',  [14.2, 15.4, 15.3, 8.9, 9, 10.4]
+        {{% /chart %}}
+
+{{% emoji crying_face %}}
+
+{{% gist 2395294 %}} 
+
+{{% media url=https://www.youtube.com/watch?v=Nck6BZga7TQ %}}
+
+{{% post-list stop=5 %}}{{% /post-list %}}
