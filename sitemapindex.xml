@@ -7,27 +7,23 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://jimcollinsworth.com/categories/cat_projects-music.xml</loc>
-  <lastmod>2025-04-23T04:04:00Z</lastmod>
+  <lastmod>2025-04-23T04:29:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/categories/cat_projects.xml</loc>
-  <lastmod>2025-04-23T04:04:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://jimcollinsworth.com/categories/cat_projects/music.xml</loc>
-  <lastmod>2025-04-18T13:25:00Z</lastmod>
+  <lastmod>2025-04-23T04:29:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/categories/learning.xml</loc>
-  <lastmod>2025-04-23T04:04:00Z</lastmod>
+  <lastmod>2025-04-23T04:29:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/categories/music.xml</loc>
-  <lastmod>2025-04-23T04:04:00Z</lastmod>
+  <lastmod>2025-04-23T04:29:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/categories/piano.xml</loc>
-  <lastmod>2025-04-23T04:04:00Z</lastmod>
+  <lastmod>2025-04-23T04:29:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/galleries/demo/rss.xml</loc>
@@ -39,10 +35,10 @@
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/rss.xml</loc>
-  <lastmod>2025-04-23T04:04:00Z</lastmod>
+  <lastmod>2025-04-23T04:29:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/sitemap.xml</loc>
-  <lastmod>2025-04-23T04:04:00Z</lastmod>
+  <lastmod>2025-04-23T04:29:00Z</lastmod>
  </sitemap>
 </sitemapindex>
