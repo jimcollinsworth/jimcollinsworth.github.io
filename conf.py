@@ -256,6 +256,7 @@ POSTS = (
     ("posts/projects/*.md", "posts/projects", "project.tmpl"),  # Evolving goals/projects
     ("posts/articles/*.md", "posts/articles", "article.tmpl"),          # Full articles
     ("posts/notes/*.md", "posts/notes", "note.tmpl"),          # Short-form content
+    ("posts/*.rst", "posts", "post.tmpl"),
 )
 
 # Set default template for new projects
