@@ -170,7 +170,7 @@ NAVIGATION_ALT_LINKS = {
 }
 
 # Name of the theme to use.
-THEME = "monospace"
+THEME = "hyde"
 
 # A theme color. In default themes, it might be displayed by some browsers as
 # the browser UI color (eg. Chrome on Android). Other themes might also use it
@@ -253,10 +253,9 @@ USE_LIGHTBOX = False
 #     )
 
 POSTS = (
-    ("posts/projects/*.md", "posts/projects", "project.tmpl"),  # Evolving goals/projects
-    ("posts/articles/*.md", "posts/articles", "article.tmpl"),          # Full articles
-    ("posts/notes/*.md", "posts/notes", "note.tmpl"),          # Short-form content
-    ("posts/*.rst", "posts", "post.tmpl"),
+    ("posts/projects/*.md", "posts/projects", "post.tmpl"),          # Evolving goals/projects
+    ("posts/articles/*.md", "posts/articles", "post.tmpl"),          # Full articles
+    ("posts/notes/*.md", "posts/notes", "post.tmpl"),                   # Short-form content
 )
 
 # Set default template for new projects
@@ -264,17 +263,17 @@ NEW_POST_METADATA = {
     'posts/projects/*.md': {
         'type': 'project',
         'status': 'draft',
-        'template': 'project.tmpl.md'
+        'template': 'post.tmpl.md'
     },
     'posts/artices/*.md': {
         'type': 'article',
         'status': 'draft',
-        'template': 'article.tmpl.md'
+        'template': 'post.tmpl.md'
     },
     'posts/notes/*.md': {
         'type': 'note',
         'status': 'draft',
-        'template': 'note.tmpl.md'
+        'template': 'post.tmpl.md'
     }
 }
 
@@ -1107,7 +1106,7 @@ PRETTY_URLS = False
 # Generally, you want FUTURE_IS_NOW and DEPLOY_FUTURE to be the same value.
 # DEPLOY_FUTURE = False
 # If False, draft posts will not be deployed
-DEPLOY_DRAFTS = True
+DEPLOY_DRAFTS = False
 
 # Allows scheduling of posts using the rule specified here (new_post -s)
 # Specify an iCal Recurrence Rule: https://www.kanzaki.com/docs/ical/rrule.html
