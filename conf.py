@@ -17,7 +17,7 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Jim Collinsworth"  # (translatable)
-BLOG_TITLE = "Out of My Lane"  # (translatable)
+BLOG_TITLE = "Out of my lane"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
 SITE_URL = "https://jimcollinsworth.com/"
@@ -25,7 +25,7 @@ SITE_URL = "https://jimcollinsworth.com/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://jimcollinsworth.com/"
 BLOG_EMAIL = "jimcollinsworth@gmail.com"
-BLOG_DESCRIPTION = "Out of My Lane"  # (translatable)
+BLOG_DESCRIPTION = "Somewhat random thoughts on software, technology, and other topics."  # (translatable)
 
 # Nikola is multilingual!
 #
@@ -136,9 +136,9 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 #          may present issues if the menu is too large.
 #          (in Bootstrap, the navbar can grow too large and cover contents.)
 # WARNING: If you link to directories, make sure to follow
-#          ``STRIP_INDEXES``.  If it’s set to ``True``, end your links
+#          ``STRIP_INDEXES``.  If it's set to ``True``, end your links
 #          with a ``/``, otherwise end them with ``/index.html`` — or
-#          else they won’t be highlighted when active.
+#          else they won't be highlighted when active.
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
@@ -148,17 +148,7 @@ NAVIGATION_LINKS = {
         # contact
         ("/rss.xml", "RSS feed"),
         # site reference
-        ("/pages/meta", "Meta"),
-        # examples
-        ("/pages/bootstrap-demo.rst", "Bootstrap Demo"),
-        ("/pages/charts.rst", "Charts"),
-        ("/pages/internals.rst", "Nikola Internals"),
-        ("/pages/creating-a-theme.rst", "Creating a Theme"),
-        ("/pages/manual.rst", "Manual"),
-        ("/pages/path_handlers.rst", "Path Handlers"),
-        ("/pages/quickref.rst", "Quick Reference"),
-        ("/pages/quickstart.rst", "Quickstart"),
-        ("/pages/theming.rst", "Theming")
+        ("/pages/meta.html", "Meta")
     ),
 }
 
@@ -174,7 +164,7 @@ THEME = "hyde"
 
 # A theme color. In default themes, it might be displayed by some browsers as
 # the browser UI color (eg. Chrome on Android). Other themes might also use it
-# as an accent color (the default ones don’t). Must be a HEX value.
+# as an accent color (the default ones don't). Must be a HEX value.
 THEME_COLOR = '#5670d4'
 
 # Theme configuration. Fully theme-dependent. (translatable)
@@ -184,39 +174,6 @@ THEME_COLOR = '#5670d4'
 # bootstrap4 supports: navbar_light (defaults to False)
 #                      navbar_custom_bg (defaults to '')
 
-# Config for bootblog4:
-THEME_CONFIG = {
-    DEFAULT_LANG: {
-        # Show the latest featured post in a large box, with the previewimage as its background.
-        'featured_large': False,
-        # Show the first (remaining) two featured posts in small boxes.
-        'featured_small': False,
-        # Show featured posts on mobile.
-        'featured_on_mobile': True,
-        # Show image in `featured_large` on mobile.
-        # `featured_small` displays them only on desktop.
-        'featured_large_image_on_mobile': True,
-        # Strip HTML from featured post text.
-        'featured_strip_html': False,
-        # Contents of the sidebar, If empty, the sidebar is not displayed.
-        'sidebar': ''
-    }
-}
-# Disable image pop-ups and lightbox
-USE_LIGHTBOX = False
-
-# Config for bootstrap4:
-# THEME_CONFIG = {
-#     DEFAULT_LANG: {
-#         # Use a light navbar with dark text. Defaults to False.
-#         'navbar_light': False,
-#         # Use a custom navbar color. If unset, 'navbar_light' sets text +
-#         # background color. If set, navbar_light controls only background
-#         # color. Supported values: bg-dark, bg-light, bg-primary, bg-secondary,
-#         # bg-success, bg-danger, bg-warning, bg-info, bg-white, bg-transparent.
-#         'navbar_custom_bg': '',
-#     }
-# }
 
 # POSTS and PAGES contains (wildcard, destination, template) tuples.
 # (translatable)
@@ -253,32 +210,10 @@ USE_LIGHTBOX = False
 #     )
 
 POSTS = (
-    ("posts/projects/*.md", "posts/projects", "post.tmpl"),          # Evolving goals/projects
-    ("posts/articles/*.md", "posts/articles", "post.tmpl"),          # Full articles
-    ("posts/notes/*.md", "posts/notes", "post.tmpl"),                   # Short-form content
+    ("posts/*.md", "posts", "post.tmpl"),          # posts
 )
 
-# Set default template for new projects
-NEW_POST_METADATA = {
-    'posts/projects/*.md': {
-        'type': 'project',
-        'status': 'draft',
-        'template': 'post.tmpl.md'
-    },
-    'posts/artices/*.md': {
-        'type': 'article',
-        'status': 'draft',
-        'template': 'post.tmpl.md'
-    },
-    'posts/notes/*.md': {
-        'type': 'note',
-        'status': 'draft',
-        'template': 'post.tmpl.md'
-    }
-}
-
 PAGES = (
-    ("pages/*.rst", "pages", "page.tmpl"),
     ("pages/*.md", "pages", "page.tmpl"),
 )
 
@@ -315,7 +250,7 @@ TIMEZONE = "America/Chicago"
 #
 # 0 = using DATE_FORMAT and TIMEZONE (without JS)
 # 1 = using LUXON_DATE_FORMAT and local user time (JS, using Luxon)
-# 2 = using a string like “2 days ago” (JS, using Luxon)
+# 2 = using a string like "2 days ago" (JS, using Luxon)
 #
 # Your theme must support it, Bootstrap already does.
 # DATE_FANCINESS = 0
@@ -438,7 +373,7 @@ COMPILERS = {
 
 # Set descriptions for tag pages to make them more interesting. The
 # default is no description. The value is used in the meta description
-# and displayed underneath the tag list or index page’s title.
+# and displayed underneath the tag list or index page's title.
 # (translatable)
 # TAG_DESCRIPTIONS = {
 #    DEFAULT_LANG: {
@@ -513,7 +448,7 @@ CATEGORY_PAGES_ARE_INDEXES = True
 
 # Set descriptions for category pages to make them more interesting. The
 # default is no description. The value is used in the meta description
-# and displayed underneath the category list or index page’s title.
+# and displayed underneath the category list or index page's title.
 # (translatable)
 # CATEGORY_DESCRIPTIONS = {
 #    DEFAULT_LANG: {
@@ -594,7 +529,7 @@ HIDDEN_CATEGORIES = []
 
 # Set descriptions for author pages to make them more interesting. The
 # default is no description. The value is used in the meta description
-# and displayed underneath the author list or index page’s title.
+# and displayed underneath the author list or index page's title.
 # AUTHOR_PAGES_DESCRIPTIONS = {
 #    DEFAULT_LANG: {
 #        "Juanjo Conti": "Python coder and writer.",
@@ -616,7 +551,7 @@ HIDDEN_AUTHORS = ['Guest']
 # (translatable)
 # INDEX_PATH = ""
 
-# Optional HTML that displayed on “main” blog index.html files.
+# Optional HTML that displayed on "main" blog index.html files.
 # May be used for a greeting. (translatable)
 FRONT_INDEX_HEADER = {
     DEFAULT_LANG: ''
@@ -752,7 +687,7 @@ CACHE_FOLDER = 'cache'
 # argument.
 #
 # By default, only .php files uses filters to inject PHP into
-# Nikola’s templates. All other filters must be enabled through FILTERS.
+# Nikola's templates. All other filters must be enabled through FILTERS.
 #
 # Many filters are shipped with Nikola. A list is available in the manual:
 # <https://getnikola.com/handbook.html#post-processing-filters>
@@ -885,8 +820,8 @@ GALLERIES_DEFAULT_THUMBNAIL = None
 #
 #   .. image:: /images/tesla.jpg
 #
-# See the Nikola Handbook for details (in the “Embedding Images” and
-# “Thumbnails” sections)
+# See the Nikola Handbook for details (in the "Embedding Images" and
+# "Thumbnails" sections)
 
 # Images will be scaled down according to IMAGE_THUMBNAIL_SIZE and MAX_IMAGE_SIZE
 # options, but will have to be referenced manually to be visible on the site
@@ -980,10 +915,10 @@ IMAGE_FOLDERS = {'images': 'images'}
 # HTML fragments with the Read more... links.
 # The following tags exist and are replaced for you:
 # {link}                        A link to the full post page.
-# {read_more}                   The string “Read more” in the current language.
+# {read_more}                   The string "Read more" in the current language.
 # {reading_time}                An estimate of how long it will take to read the post.
 # {remaining_reading_time}      An estimate of how long it will take to read the post, sans the teaser.
-# {min_remaining_read}          The string “{remaining_reading_time} min remaining to read” in the current language.
+# {min_remaining_read}          The string "{remaining_reading_time} min remaining to read" in the current language.
 # {paragraph_count}             The amount of paragraphs in the post.
 # {remaining_paragraph_count}   The amount of paragraphs in the post, sans the teaser.
 # {post_title}                  The title of the post.
@@ -1420,7 +1355,7 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 # (defaults to 1.)
 # DEMOTE_HEADERS = 1
 
-# If you don’t like slugified file names ([a-z0-9] and a literal dash),
+# If you don't like slugified file names ([a-z0-9] and a literal dash),
 # and would prefer to use all the characters your file system allows.
 # USE WITH CARE!  This is also not guaranteed to be perfect, and may
 # sometimes crash Nikola, your web server, or eat your cat.
@@ -1442,7 +1377,8 @@ WARN_ABOUT_TAG_METADATA = False
 
 # Put in global_context things you want available on all your templates.
 # It can be anything, data, functions, modules, etc.
-GLOBAL_CONTEXT = {}
+GLOBAL_CONTEXT = {
+    }   
 
 # Add functions here and they will be called with template
 # GLOBAL_CONTEXT as parameter when the template is about to be
