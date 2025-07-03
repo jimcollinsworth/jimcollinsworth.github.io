@@ -25,6 +25,7 @@ jobs:
           pip install ghp-import
           pip install pygal
           pip install micawber
+          pip install jinja2
 
       - name: Build the site
         run: |
