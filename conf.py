@@ -25,7 +25,7 @@ SITE_URL = "https://jimcollinsworth.com/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://jimcollinsworth.com/"
 BLOG_EMAIL = "jimcollinsworth@gmail.com"
-BLOG_DESCRIPTION = "Somewhat random thoughts on software, technology, and other topics."  # (translatable)
+BLOG_DESCRIPTION = "Somewhat random thoughts on software, technology and other topics."  # (translatable)
 
 # Nikola is multilingual!
 #
@@ -1384,3 +1384,6 @@ GLOBAL_CONTEXT = {
 # GLOBAL_CONTEXT as parameter when the template is about to be
 # rendered
 GLOBAL_CONTEXT_FILLER = [] 
+
+# ignore files on watching for changes, to possibly address windows auto build issue.
+IGNORE_FILES = {'.#*', '*~', '*.tmp', '*.swp', '.DS_Store'}
