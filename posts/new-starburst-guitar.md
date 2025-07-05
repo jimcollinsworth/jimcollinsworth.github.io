@@ -10,3 +10,4 @@ type: post
 ---
 
 Write your post here.
+[buy](stringsbymail.com/cordoba-stage-nylon-electric-guitar-with-gigbag-edge-burst-26957.html)
