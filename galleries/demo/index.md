@@ -1,4 +1,3 @@
-.. title: Nikola Tesla
+.. title: Jim's photos
 
-Some public domain pictures of Nikola Tesla
-(copied from `here <https://kerryr.net/pioneers/gallery/tesla.htm>`_)
+Some test photos. More galeries to come.
