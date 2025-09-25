@@ -1,2 +1,2 @@
-galleries/demo/dunes1.png filter=lfs diff=lfs merge=lfs -text
 galleries/demo/* filter=lfs diff=lfs merge=lfs -text
+galleries filter=lfs diff=lfs merge=lfs -text
