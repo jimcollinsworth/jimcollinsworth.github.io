@@ -29,6 +29,14 @@ jobs:
           pip install micawber
           pip install jinja2
 
+      - name: Install Git LFS
+        run: git lfs install
+      
+      - name: LFS Fetch and Checkout
+        run: |
+          git lfs fetch
+          git lfs checkout
+
       - name: Build the site
         run: |
           nikola build
