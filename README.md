@@ -74,6 +74,7 @@ nikola new_post -t "Learn Python Testing" -f markdown -1 --template=note.tmpl.md
 - Meta information page with site management links
 - A Mosaic/Bricks approach could be great, simply self adjusting blocks for everything - nav, structure, lists, documents...
 - A pure text only view too - accessible view that anyone can use.
+- Google Photos for all photo assets, anything from the [OutOfMyLane](https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8) photos album
 
 
 ## Management & Development
