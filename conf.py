@@ -210,11 +210,13 @@ THEME_COLOR = '#5670d4'
 #     )
 
 POSTS = (
-    ("posts/*.md", "posts", "post.tmpl"),          # posts
+    ("posts/*.md", "posts", "post.tmpl"),          
+    ("posts/*.rst", "posts", "post.tmpl")
 )
 
 PAGES = (
     ("pages/*.md", "pages", "page.tmpl"),
+    ("pages/*.rst", "pages", "page.tmpl")
 )
 
 
@@ -752,9 +754,9 @@ CACHE_FOLDER = 'cache'
 # Default is:
 # GALLERY_FOLDERS = {"galleries": "galleries"}
 # More gallery options:
-# THUMBNAIL_SIZE = 180
+THUMBNAIL_SIZE = 280
 # MAX_IMAGE_SIZE = 1280
-# USE_FILENAME_AS_TITLE = True
+USE_FILENAME_AS_TITLE = False
 # EXTRA_IMAGE_EXTENSIONS = []
 
 # Use a thumbnail (defined by ".. previewimage:" in the gallery's index) in
@@ -771,7 +773,7 @@ GALLERIES_DEFAULT_THUMBNAIL = None
 
 # If set to True, EXIF data will be copied when an image is thumbnailed or
 # resized. (See also EXIF_WHITELIST)
-# PRESERVE_EXIF_DATA = False
+PRESERVE_EXIF_DATA = True
 
 # If you have enabled PRESERVE_EXIF_DATA, this option lets you choose EXIF
 # fields you want to keep in images. (See also PRESERVE_EXIF_DATA)
@@ -788,16 +790,16 @@ GALLERIES_DEFAULT_THUMBNAIL = None
 # PRESERVE_EXIF_DATA is set to True
 # To preserve ALL EXIF data, set EXIF_WHITELIST to {"*": "*"}
 
-# EXIF_WHITELIST = {}
+EXIF_WHITELIST = {}
 
 # Some examples of EXIF_WHITELIST settings:
 
 # Basic image information:
-# EXIF_WHITELIST['0th'] = [
-#    "Orientation",
-#    "XResolution",
-#    "YResolution",
-# ]
+EXIF_WHITELIST['0th'] = [
+    "Orientation",
+    "XResolution",
+    "YResolution",
+]
 
 # If you want to keep GPS data in the images:
 # EXIF_WHITELIST['GPS'] = ["*"]

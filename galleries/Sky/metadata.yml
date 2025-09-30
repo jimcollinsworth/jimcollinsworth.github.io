@@ -1,0 +1,32 @@
+- name: DSC07118.JPG
+  title: Towering cumulus over the neighborhood
+  caption: Late afternoon build-up with crisp contours and deep blue sky.
+  order: 1
+- name: DSC07126.JPG
+  title: Sunset gradient
+  caption: Warm orange fading to purple as the sun dips below the horizon.
+  order: 2
+- name: DSC07127.JPG
+  title: Storm shelf approaching
+  caption: Low, dramatic leading edge of a summer thunderstorm rolling in.
+  order: 3
+- name: DSC07129.JPG
+  title: Moon through thin clouds
+  caption: A hazy moon peeks between wisps of cirrus in the evening.
+  order: 4
+- name: image1.jpg
+  title: Image1
+  caption: 
+  order: 5
+- name: image2.jpg
+  title: Image2
+  caption: 
+  order: 6
+- name: image3.jpg
+  title: Image3
+  caption: 
+  order: 7
+- name: image4.jpg
+  title: Image4
+  caption: 
+  order: 8

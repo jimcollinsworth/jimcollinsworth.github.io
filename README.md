@@ -74,8 +74,11 @@ nikola new_post -t "Learn Python Testing" -f markdown -1 --template=note.tmpl.md
 - Meta information page with site management links
 - A Mosaic/Bricks approach could be great, simply self adjusting blocks for everything - nav, structure, lists, documents...
 - A pure text only view too - accessible view that anyone can use
-- Google Photos for all photo assets, anything from the [OutOfMyLane](https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8) photos album. could have a build steps that create metadata and summaries for all the photos, stored as --photo-name.md files in a directory, maybe added as a long description in google photos as allowed. This meta data can be searched by the galleries to find photos and used for descriptions. 
-
+### photo/video management
+ Google Photos is the source for all photo assets, anything from the [OutOfMyLane](https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8) photos album. could have a build steps that create metadata and summaries for all the photos, stored as --photo-name.md files in a directory, maybe added as a long description in google photos as allowed. This meta data can be searched by the galleries to find photos and used for descriptions. Turns out google photos is hard to integrate, it is possible to get an image url but they don't seem to work embedded. Photos can be downloaded in a zip, and served other ways too. I think I'll have a few topic related galleries like sunrise, flowers, art that could be large, can't do those just in Nikola. Using LLM would be nice too for automatic categorzation and avoid file names, but second step. 
+ - Use native Nikola to create some galleries, copy some images into repo and then provide link to public google photos galleries for users to see more.
+ - Plugins or custom code to use better gallery/lightbox
+ - File management/LLM utilities to scan images, discover links from google photos
 
 ## Management & Development
 The site is automatically built and deployed via GitHub Actions.
