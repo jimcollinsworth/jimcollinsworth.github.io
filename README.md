@@ -19,7 +19,13 @@ nikola new_post -t "Thoughts on Static Sites" -f markdown -1 --template=note.tmp
 nikola new_post -t "Learn Python Testing" -f markdown -1 --template=note.tmpl.md --meta="note_type=goal" posts/notes/goal-python-testing.md
 
 
-## Content Structure
+## UX
+
+Simple 2 pane focus for navigation/browsing, left/right or up/down depending on orientation. Could be for metadata/photo, article/comments, article/image. image/image 
+
+Full screen for content reading/viewing, with a color frame but otherwise text and images should always appropriatly fill up the screen. The color frame should match to a photo, like sunsets, or other nature. Maybe a color theme change would allow configuration.
+
+Small menu button on all screens. Would be great to have a zoom in/out, drill down/up.. button on every page. Can't we have pinch zoom text size? or maybe just a text 'density' button. 
 
 ### Categories
 
@@ -35,11 +41,12 @@ nikola new_post -t "Learn Python Testing" -f markdown -1 --template=note.tmpl.md
         - Photography
         - Drawing
 
-2. Lanes (Areas/Interests)
+2. Lanes (Areas/Interests) - each lane is a post, with links to everything about that lane - TILs, links, photos, comments. more like a personal wiki.
     - Finance
     - Politics
     - Health
         - Tai Chi
+        - Anatomy (Said, M. Alexander..)
     - Family
     - STEM
         - Anatomy
@@ -59,7 +66,7 @@ nikola new_post -t "Learn Python Testing" -f markdown -1 --template=note.tmpl.md
    - Quotes
 
 ### Content Types
-- Posts: Blog entries, observation, TIL (thing i learned).. with metadata-based categorization and taging.
+- Posts: Blog entries, observation, TIL (thing i learned).. with metadata-based categorization and taging. Maybe TIL is like a daily journal of the things I did, learned, saw, improved, learned about, anything, text, knowledge, visual, physical
 - Pages: Static content (About, Meta, Documentation)
 - Images: my photos
 
@@ -73,12 +80,17 @@ nikola new_post -t "Learn Python Testing" -f markdown -1 --template=note.tmpl.md
 - Simple, inline Javascript as much as possible.
 - Meta information page with site management links
 - A Mosaic/Bricks approach could be great, simply self adjusting blocks for everything - nav, structure, lists, documents...
-- A pure text only view too - accessible view that anyone can use
+- A pure text only view too - accessible view that anyone can use.
+- How about pure image option too, no text at all, just LLM generated images from the blog text (and images)
+- Everything is in github so we have great versioning. Ideally we can see this in the output, so users see what is new (maybe just color/highlight it based on age, newest is clearest/darkest) ?any nikola git github plugins?
+
 ### photo/video management
  Google Photos is the source for all photo assets, anything from the [OutOfMyLane](https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8) photos album. could have a build steps that create metadata and summaries for all the photos, stored as --photo-name.md files in a directory, maybe added as a long description in google photos as allowed. This meta data can be searched by the galleries to find photos and used for descriptions. Turns out google photos is hard to integrate, it is possible to get an image url but they don't seem to work embedded. Photos can be downloaded in a zip, and served other ways too. I think I'll have a few topic related galleries like sunrise, flowers, art that could be large, can't do those just in Nikola. Using LLM would be nice too for automatic categorzation and avoid file names, but second step. 
- - Use native Nikola to create some galleries, copy some images into repo and then provide link to public google photos galleries for users to see more.
- - Plugins or custom code to use better gallery/lightbox
- - File management/LLM utilities to scan images, discover links from google photos
+ [x] Use native Nikola to create some galleries, copy some images into repo 
+ [] Provide link to public google photos galleries for users to see more.
+ [] Update template to for nice 2 pane view
+ [] Plugins or custom code to use better gallery/lightbox
+ [] File management/LLM utilities to scan images, discover links from google photos
 
 ## Management & Development
 The site is automatically built and deployed via GitHub Actions.

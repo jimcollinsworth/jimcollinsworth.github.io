@@ -25,7 +25,7 @@ SITE_URL = "https://jimcollinsworth.com/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://jimcollinsworth.com/"
 BLOG_EMAIL = "jimcollinsworth@gmail.com"
-BLOG_DESCRIPTION = "Somewhat random thoughts on software, technology and other topics."  # (translatable)
+BLOG_DESCRIPTION = "My blog/wiki of generally random thoughts on software, technology, nature, society, art and other topics. Hoping at some point to make sense of it all."  # (translatable)
 
 # Nikola is multilingual!
 #
