@@ -73,8 +73,8 @@ nikola new_post -t "Learn Python Testing" -f markdown -1 --template=note.tmpl.md
 - Simple, inline Javascript as much as possible.
 - Meta information page with site management links
 - A Mosaic/Bricks approach could be great, simply self adjusting blocks for everything - nav, structure, lists, documents...
-- A pure text only view too - accessible view that anyone can use.
-- Google Photos for all photo assets, anything from the [OutOfMyLane](https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8) photos album
+- A pure text only view too - accessible view that anyone can use
+- Google Photos for all photo assets, anything from the [OutOfMyLane](https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8) photos album. could have a build steps that create metadata and summaries for all the photos, stored as --photo-name.md files in a directory, maybe added as a long description in google photos as allowed. This meta data can be searched by the galleries to find photos and used for descriptions. 
 
 
 ## Management & Development
