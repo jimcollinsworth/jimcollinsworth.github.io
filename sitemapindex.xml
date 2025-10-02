@@ -6,75 +6,83 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
-  <loc>https://jimcollinsworth.com/categories/cat_goal-project.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://jimcollinsworth.com/categories/cat_music.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
- </sitemap>
- <sitemap>
   <loc>https://jimcollinsworth.com/categories/craft.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/categories/diy.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/categories/guitar.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/categories/journal.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/categories/music.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/categories/piano.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/galleries/Art/rss.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/galleries/Flowers/rss.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/galleries/Maps/rss.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/galleries/Projects/rss.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:58:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/galleries/Sky/rss.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/galleries/Water/rss.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/galleries/demo/rss.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/galleries/rss.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:58:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://jimcollinsworth.com/lanes/cat_journal.xml</loc>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://jimcollinsworth.com/lanes/cat_music.xml</loc>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://jimcollinsworth.com/lanes/cat_posts.xml</loc>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://jimcollinsworth.com/lanes/cat_pursuit.xml</loc>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/rss.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://jimcollinsworth.com/sitemap.xml</loc>
-  <lastmod>2025-10-02T01:42:00Z</lastmod>
+  <lastmod>2025-10-02T19:59:00Z</lastmod>
  </sitemap>
 </sitemapindex>
