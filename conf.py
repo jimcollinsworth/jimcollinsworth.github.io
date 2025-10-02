@@ -147,6 +147,7 @@ NAVIGATION_LINKS = {
         ("/archive.html", "Archive"),
         # contact
         ("/rss.xml", "RSS feed"),
+        ("/pages/blogroll.html", "Blogroll"),
         # site reference
         ("/pages/meta.html", "Meta")
     ),

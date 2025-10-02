@@ -18,6 +18,7 @@ nikola new_post -t "Thoughts on Static Sites" -f markdown -1 --template=note.tmp
 # Goal
 nikola new_post -t "Learn Python Testing" -f markdown -1 --template=note.tmpl.md --meta="note_type=goal" posts/notes/goal-python-testing.md
 
+<<<<<<< Updated upstream
 
 ## UX
 
@@ -26,9 +27,13 @@ Simple 2 pane focus for navigation/browsing, left/right or up/down depending on 
 Full screen for content reading/viewing, with a color frame but otherwise text and images should always appropriatly fill up the screen. The color frame should match to a photo, like sunsets, or other nature. Maybe a color theme change would allow configuration.
 
 Small menu button on all screens. Would be great to have a zoom in/out, drill down/up.. button on every page. Can't we have pinch zoom text size? or maybe just a text 'density' button. 
+=======
+## Content Structure
+>>>>>>> Stashed changes
+
+Blog posts vs lists? onetime vs adding. But could all be blog posts in the end, right? just ones that change/update
 
 ### Categories
-
 
 1. Projects
     - Data Analysis & Visualization
