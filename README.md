@@ -67,7 +67,8 @@ Blog posts vs lists? onetime vs adding. But could all be blog posts in the end, 
    - Quotes
 
 ### Content Types
-- Posts: Blog entries, observation, TIL (thing i learned).. with metadata-based categorization and taging. Maybe TIL is like a daily journal of the things I did, learned, saw, improved, learned about, anything, text, knowledge, visual, physical
+- Short: blog entries, observation, TIL (thing i learned).. with metadata-based categorization and taging. Maybe TIL is like a daily journal of the things I did, learned, saw, improved, book review, thoughtof/realized, learned about, anything, text, knowledge, visual, physical (all good tag possibilities). Short text, maybe daily, static they dont change.
+- Long: Ideas, Interests (guitar, photography), focus area (arthritis, anatomy), code/diy/household project - ie piano, M. Alexander Tech, earthquake viz, Tai Chi. These all have a main page with overview, photos, text (or anything else), and then links to sub pages or related ones. These also change over time, just going to edit them randomly and continuously unless explicitely closed/finalized.
 - Pages: Static content (About, Meta, Documentation)
 - Images: my photos
 
@@ -107,6 +108,10 @@ The site is automatically built and deployed via GitHub Actions.
 2. Clone this repository
 3. Run `nikola build` to generate the site
 4. Run `nikola serve` to preview locally
+
+Create a new post:
+
+nikola new_post -f markdown -t "Your Post Title" --tags="journal" -d short
 
 ## License
 Content is licensed under [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).

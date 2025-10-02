@@ -142,16 +142,12 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ("/short/", "Journal"),
-        ("/long/", "Explorations"),
+        ("/posts/", "Posts"),
         ("/galleries/", "Photos"),
-        ("/rss.xml", "RSS feed"),
-<<<<<<< HEAD
-        ("/pages/blogroll.html", "Blogroll"),
-        # site reference
-=======
->>>>>>> 11d2ab3f6bc21bb56fafe03482103af996a3ec6b
-        ("/pages/meta.html", "Meta")
+        # ("/rss.xml", "RSS feed"),
+        ("/pages/meta.html", "Meta"),
+        ("/pages/about.html", "About"),
+        ("/pages/blogroll.html", "Blogroll")
     ),
 }
 
@@ -213,10 +209,8 @@ THEME_COLOR = '#5670d4'
 #     )
 
 POSTS = (
-    ("posts/short/*.md", "short", "post.tmpl"),
-    ("posts/short/*.rst", "short", "post.tmpl"),
-    ("posts/long/*.md", "long", "post.tmpl"),
-    ("posts/long/*.rst", "long", "post.tmpl")
+    ("posts/*.md", "posts", "post.tmpl"),
+    ("posts/*.rst", "posts", "post.tmpl")
 )
 
 PAGES = (
@@ -277,6 +271,7 @@ TIMEZONE = "America/Chicago"
 # Default is:
 # LISTINGS_FOLDERS = {'listings': 'listings'}
 # Which means process listings from 'listings' into 'output/listings'
+LISTINGS_FOLDERS = {}
 
 # A mapping of languages to file-extensions that represent that language.
 # Feel free to add or delete extensions to any list, but don't add any new
@@ -382,21 +377,21 @@ METADATA_FORMAT = "YAML"
 # default is no description. The value is used in the meta description
 # and displayed underneath the tag list or index page's title.
 # (translatable)
-# TAG_DESCRIPTIONS = {
-#    DEFAULT_LANG: {
-#        "blogging": "Meta-blog posts about blogging.",
-#        "open source": "My contributions to my many, varied, ever-changing, and eternal libre software projects."
-#    },
-# }
+TAG_DESCRIPTIONS = {
+    DEFAULT_LANG: {
+        "guitar": "Posts on guitar",
+        "piano": "Posts on learning to play piano"
+    },
+ }
 
 # Set special titles for tag pages. The default is "Posts about TAG".
 # (translatable)
-# TAG_TITLES = {
-#    DEFAULT_LANG: {
-#        "blogging": "Meta-posts about blogging",
-#        "open source": "Posts about open source software"
-#    },
-# }
+TAG_TITLES = {
+    DEFAULT_LANG: {
+        "guitar": "Guitar playing, instruments",
+        "piano": "Learning piano, loving piano"
+    },
+ }
 
 # If you do not want to display a tag publicly, you can mark it as hidden.
 # The tag will not be displayed on the tag list page and posts.
@@ -428,7 +423,7 @@ HIDDEN_TAGS = ['draft','private']
 # output / TRANSLATION[lang] / CATEGORY_PATH / CATEGORY_PREFIX category.html (list of posts for a category)
 # output / TRANSLATION[lang] / CATEGORY_PATH / CATEGORY_PREFIX category RSS_EXTENSION (RSS feed for a category)
 # (translatable)
-# CATEGORY_PATH = "categories"
+CATEGORY_PATH = "lanes"
 # CATEGORY_PREFIX = "cat_"
 
 # By default, the list of categories is stored in
@@ -444,39 +439,44 @@ HIDDEN_TAGS = ['draft','private']
 # using a forward slash ('/') to separate paths. Use a backslash ('\') to escape
 # a forward slash or a backslash (i.e. '\//\\' is a path specifying the
 # subcategory called '\' of the top-level category called '/').
-CATEGORY_ALLOW_HIERARCHIES = False
+CATEGORY_ALLOW_HIERARCHIES = True
 # If CATEGORY_OUTPUT_FLAT_HIERARCHY is set to True, the output written to output
 # contains only the name of the leaf category and not the whole path.
 CATEGORY_OUTPUT_FLAT_HIERARCHY = False
 
 # If CATEGORY_PAGES_ARE_INDEXES is set to True, each category's page will contain
 # the posts themselves. If set to False, it will be just a list of links.
-CATEGORY_PAGES_ARE_INDEXES = True
+CATEGORY_PAGES_ARE_INDEXES = False
 
 # Set descriptions for category pages to make them more interesting. The
 # default is no description. The value is used in the meta description
 # and displayed underneath the category list or index page's title.
 # (translatable)
-# CATEGORY_DESCRIPTIONS = {
-#    DEFAULT_LANG: {
-#        "blogging": "Meta-blog posts about blogging.",
-#        "open source": "My contributions to my many, varied, ever-changing, and eternal libre software projects."
-#    },
-# }
+CATEGORY_DESCRIPTIONS = {
+    DEFAULT_LANG: {
+        "music": "Learning, playing, enjoying music. Drummed and played guitar all my life, learning piano now.",
+        "art": "Mostly just enjoying art, but also some dabbling",
+        "software": "Have worked in software for 50 years, assembly code in the 80s, PCs in 90s, internet in OOs, smartphones in 10s, AI in 20s.",
+        "science": "Reading and thinking about science all my life, what exiting times now!"
+    },
+ }
 
 # Set special titles for category pages. The default is "Posts about CATEGORY".
 # (translatable)
-# CATEGORY_TITLES = {
-#    DEFAULT_LANG: {
-#        "blogging": "Meta-posts about blogging",
-#        "open source": "Posts about open source software"
-#    },
-# }
+CATEGORY_TITLES = {
+    DEFAULT_LANG: {
+        "music": "Learning, playing, enjoying music",
+        "art": "Viewing and enjoying art",
+        "software": "Software development, computers, internet, AI",
+        "science": "Reading and thinking about science all my life",
+        "law": "Reading and thinking about law and policy, but maybe not as much as science"
+    },
+ }
 
 # If you do not want to display a category publicly, you can mark it as hidden.
 # The category will not be displayed on the category list page.
 # Category pages will still be generated.
-HIDDEN_CATEGORIES = []
+HIDDEN_CATEGORIES = ['draft','private']
 
 # A list of dictionaries specifying categories which translate to each other.
 # Format: a list of dicts {language: translation, language2: translation2, …}
@@ -491,7 +491,7 @@ HIDDEN_CATEGORIES = []
 # If no category is specified in a post, the destination path of the post
 # can be used in its place. This replaces the sections feature. Using
 # category hierarchies is recommended.
-# CATEGORY_DESTPATH_AS_DEFAULT = False
+CATEGORY_DESTPATH_AS_DEFAULT = True
 
 # If True, the prefix will be trimmed from the category name, eg. if the
 # POSTS destination is "foo/bar", and the path is "foo/bar/baz/quux",
@@ -517,7 +517,7 @@ HIDDEN_CATEGORIES = []
 # 'foo' might appear in 'posts/foo'). If the category does not come from a
 # destpath, first entry in POSTS followed by the category name will be used.
 # For this setting, category hierarchies are required and cannot be flattened.
-# CATEGORY_PAGES_FOLLOW_DESTPATH = False
+CATEGORY_PAGES_FOLLOW_DESTPATH = False
 
 # If ENABLE_AUTHOR_PAGES is set to True and there is more than one
 # author, author pages are generated.
@@ -917,7 +917,7 @@ IMAGE_FOLDERS = {'images': 'images'}
 # )
 
 # Show teasers (instead of full posts) in indexes? Defaults to False.
-# INDEX_TEASERS = False
+INDEX_TEASERS = True
 
 # HTML fragments with the Read more... links.
 # The following tags exist and are replaced for you:

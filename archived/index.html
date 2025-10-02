@@ -7,18 +7,29 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-W201KDB3LS');
-          // Add these additional settings to fix cookie issues
-        gtag('config', 'G-W201KDB3LS', {
-            'cookie_flags': 'SameSite=None;Secure;Partitioned',
-            'cookie_domain': 'auto',
-            'cookie_expires': 63072000 // 2 years in seconds
-        });
+        // Configure GA4 with cross-domain linking and environment-aware cookie flags
+        const gaConfig = {
+            linker: {
+                domains: [
+                    'jimcollinsworth.github.io',
+                    'jimcollinsworth.com', 'www.jimcollinsworth.com',
+                    'outofmylane.com', 'www.outofmylane.com'
+                ]
+            }
+        };
+        if (location.hostname !== 'localhost') {
+            gaConfig.cookie_flags = 'SameSite=None;Secure;Partitioned';
+            gaConfig.cookie_domain = 'auto';
+            gaConfig.cookie_expires = 63072000; // 2 years in seconds
+        }
+        gtag('config', 'G-W201KDB3LS', gaConfig);
     </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jim Collinsworth | Out of My Lane">
     <title>Jim Collinsworth | Out of My Lane</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
