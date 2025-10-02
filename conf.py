@@ -25,7 +25,7 @@ SITE_URL = "https://jimcollinsworth.com/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://jimcollinsworth.com/"
 BLOG_EMAIL = "jimcollinsworth@gmail.com"
-BLOG_DESCRIPTION = "My blog/wiki of generally random thoughts on software, technology, nature, society, art and other topics. Hoping at some point to make sense of it all."  # (translatable)
+BLOG_DESCRIPTION = "Generally random thoughts on software, technology, nature, society, art and other topics. Hoping at some point to make sense of it all."  # (translatable)
 
 # Nikola is multilingual!
 #
@@ -142,12 +142,10 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ("/categories/", "Lanes"),
-        ("/galleries/", "Photography"),
-        ("/archive.html", "Archive"),
-        # contact
+        ("/short/", "Journal"),
+        ("/long/", "Explorations"),
+        ("/galleries/", "Photos"),
         ("/rss.xml", "RSS feed"),
-        # site reference
         ("/pages/meta.html", "Meta")
     ),
 }
@@ -210,8 +208,10 @@ THEME_COLOR = '#5670d4'
 #     )
 
 POSTS = (
-    ("posts/*.md", "posts", "post.tmpl"),          
-    ("posts/*.rst", "posts", "post.tmpl")
+    ("posts/short/*.md", "short", "post.tmpl"),
+    ("posts/short/*.rst", "short", "post.tmpl"),
+    ("posts/long/*.md", "long", "post.tmpl"),
+    ("posts/long/*.rst", "long", "post.tmpl")
 )
 
 PAGES = (
@@ -315,7 +315,7 @@ COMPILERS = {
 # "YAML": YAML wrapped in "---"
 # "TOML": TOML wrapped in "+++"
 # "Pelican": Native markdown metadata or reST docinfo fields. Nikola style for other formats.
-# METADATA_FORMAT = "Nikola"
+METADATA_FORMAT = "YAML"
 
 # Use date-based path when creating posts?
 # Can be enabled on a per-post basis with `nikola new_post -d`.

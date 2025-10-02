@@ -38,7 +38,7 @@ Small menu button on all screens. Would be great to have a zoom in/out, drill do
     - Music & Art - My studies, work, and others work.
         - Piano
         - Guitar
-        - Photography
+        - Photos
         - Drawing
 
 2. Lanes (Areas/Interests) - each lane is a post, with links to everything about that lane - TILs, links, photos, comments. more like a personal wiki.
@@ -56,7 +56,7 @@ Small menu button on all screens. Would be great to have a zoom in/out, drill do
         - Guitar
         - Piano
     - Art 
-        - Photography
+        - Photos
         - Drawing
 
 3. References (data file, with optional annotation). References can be linked to from posts, like a review. 
@@ -66,14 +66,16 @@ Small menu button on all screens. Would be great to have a zoom in/out, drill do
    - Quotes
 
 ### Content Types
-- Posts: Blog entries, observation, TIL (thing i learned).. with metadata-based categorization and taging. Maybe TIL is like a daily journal of the things I did, learned, saw, improved, learned about, anything, text, knowledge, visual, physical
+- short: blog entries, observation, TIL (thing i learned).. with metadata-based categorization and taging. Maybe TIL is like a daily journal of the things I did, learned, saw, improved, book review, thoughtof/realized, learned about, anything, text, knowledge, visual, physical (all good tag possibilities). Short text, maybe daily, static they dont change.
+- Explorations: Ideas, Interests (guitar, photography), focus area (arthritis, anatomy), code/diy/household project - ie piano, M. Alexander Tech, earthquake viz, Tai Chi. These all have a main page with overview, photos, text (or anything else), and then links to sub pages or related ones. These also change over time, just going to edit them randomly and continuously unless explicitely closed/finalized.
 - Pages: Static content (About, Meta, Documentation)
 - Images: my photos
 
 ## Technical Features
 - Responsive design with fullscreen image overlays
-- Hierarchical category system
-- Tag-based content organization
+- Hierarchical category system, post can only have one category but it can be hierarchical. Use for lanes: computer science, music, music/guitar, music/piano, music/drum, photography, science, woodworking, art, history, DIY, all-else 
+- Tag-based content organization (TIL, book review, idea, python utility....spark,venture, endeavor, exploration, jouney, pursuits - journal, note, spark, bits, glipses, message), biochemistry, nosql
+- blog metadata for draft/publish and such
 - Image galleries with EXIF data preservation
 - RSS feed support
 - No React, No node/npm for building or serving. 
@@ -83,14 +85,16 @@ Small menu button on all screens. Would be great to have a zoom in/out, drill do
 - A pure text only view too - accessible view that anyone can use.
 - How about pure image option too, no text at all, just LLM generated images from the blog text (and images)
 - Everything is in github so we have great versioning. Ideally we can see this in the output, so users see what is new (maybe just color/highlight it based on age, newest is clearest/darkest) ?any nikola git github plugins?
+- External discussion system if any, open source discourse?, X, Instagram
 
 ### photo/video management
  Google Photos is the source for all photo assets, anything from the [OutOfMyLane](https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8) photos album. could have a build steps that create metadata and summaries for all the photos, stored as --photo-name.md files in a directory, maybe added as a long description in google photos as allowed. This meta data can be searched by the galleries to find photos and used for descriptions. Turns out google photos is hard to integrate, it is possible to get an image url but they don't seem to work embedded. Photos can be downloaded in a zip, and served other ways too. I think I'll have a few topic related galleries like sunrise, flowers, art that could be large, can't do those just in Nikola. Using LLM would be nice too for automatic categorzation and avoid file names, but second step. 
+
  [x] Use native Nikola to create some galleries, copy some images into repo 
  [] Provide link to public google photos galleries for users to see more.
  [] Update template to for nice 2 pane view
  [] Plugins or custom code to use better gallery/lightbox
- [] File management/LLM utilities to scan images, discover links from google photos
+ [] File management/LLM utilities to scan images, discover links from google photos. Takeout might be best source, don't bother with google apis at all, maybe takeout will provide the url to images.
 
 ## Management & Development
 The site is automatically built and deployed via GitHub Actions.
@@ -106,6 +110,13 @@ The site is automatically built and deployed via GitHub Actions.
 2. Clone this repository
 3. Run `nikola build` to generate the site
 4. Run `nikola serve` to preview locally
+
+
+
+Create a new post:
+
+nikola new_post -f markdown -t "Your Post Title" --tags="journal" -d short
+
 
 ## License
 Content is licensed under [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
