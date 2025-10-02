@@ -27,9 +27,11 @@ Full screen for content reading/viewing, with a color frame but otherwise text a
 
 Small menu button on all screens. Would be great to have a zoom in/out, drill down/up.. button on every page. Can't we have pinch zoom text size? or maybe just a text 'density' button. 
 
-Blog posts vs lists? onetime vs adding. But could all be blog posts in the end, right? just ones that change/update
+site organization should be based entirely on tags and categories. need the ability to index combinations of tags in possibly categories. really just need an in memory browser index of the site pages and posts tags & lanes. give user real time word cloud multi select, put on home page top combos like 'exploration anatomy' 'newest diy'. could this be done in Python on the browser?
 
-### Categories
+Blog posts vs lists? onetime vs adding. But could all be blog posts in the end, right? just ones that change/update. Yes everything are just posts, to be differentiated by tags and categories.
+
+### Categories and tags
 
 1. Projects
     - Data Analysis & Visualization
@@ -67,8 +69,8 @@ Blog posts vs lists? onetime vs adding. But could all be blog posts in the end, 
    - Quotes
 
 ### Content Types
-- Short: blog entries, observation, TIL (thing i learned).. with metadata-based categorization and taging. Maybe TIL is like a daily journal of the things I did, learned, saw, improved, book review, thoughtof/realized, learned about, anything, text, knowledge, visual, physical (all good tag possibilities). Short text, maybe daily, static they dont change.
-- Long: Ideas, Interests (guitar, photography), focus area (arthritis, anatomy), code/diy/household project - ie piano, M. Alexander Tech, earthquake viz, Tai Chi. These all have a main page with overview, photos, text (or anything else), and then links to sub pages or related ones. These also change over time, just going to edit them randomly and continuously unless explicitely closed/finalized.
+- posts: blog entries, observation, TIL (thing i learned).. with metadata-based categorization and taging. Maybe TIL is like a daily journal of the things I did, learned, saw, improved, book review, thoughtof/realized, learned about, anything, text, knowledge, visual, physical (all good tag possibilities). Short text, maybe daily, static they dont change.
+- more posts:  Ideas, Interests (guitar, photography), focus area (arthritis, anatomy), code/diy/household project - ie piano, M. Alexander Tech, earthquake viz, Tai Chi. These all have a main page with overview, photos, text (or anything else), and then links to sub pages or related ones. These also change over time, just going to edit them randomly and continuously unless explicitely closed/finalized.
 - Pages: Static content (About, Meta, Documentation)
 - Images: my photos
 
