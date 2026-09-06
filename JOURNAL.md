@@ -32,9 +32,10 @@ The site previously relied on Nikola, a Python-based static site generator with 
    - `lanes.html`: Structured index of active pursuit lanes (Music, STEM, Health/Tai Chi, Craft).
    - `journal.html`: Chronological journal index container ready for Jim's entries.
    - `gallery.html`: Photographic showcase with Chicago sky, storm front, twilight, and botanical studies.
-   - `.github/workflows/pages.yml`: Direct static GitHub Pages deployment with zero build steps.
+   - `.github/workflows/deploy.yml`: Automated Zero-JS audit, link integrity test, and direct GitHub Pages deployment.
 
-5. **Automated Verification**:
+5. **Automated Verification & CI Guardrails**:
+   - Integrated `.github/workflows/deploy.yml` to run automated PowerShell quality audits on every push before publishing.
    - Verified that all HTML files contain 0 `<script>` tags.
    - Verified that all internal page and image links resolve cleanly to existing local files.
    - Validated standard `<!DOCTYPE html>` structure and closed tags.

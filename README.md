@@ -36,7 +36,7 @@ jimcollinsworth.github.io/
 │   └── agent_rules.md            # LLM agent governance, 3-doc rule & content boundary
 ├── .github/
 │   └── workflows/
-│       └── pages.yml             # Direct static GitHub Pages deployment
+│       └── deploy.yml            # Automated audit (Zero-JS & link check) + GitHub Pages deployment
 ├── archive/
 │   ├── content/                  # Extracted legacy notes, drafts, and taxonomy
 │   ├── original_photos/          # Full-resolution photographic archives
@@ -73,9 +73,9 @@ Per `.agents/agent_rules.md`:
 
 ## Quality & Verification Standards
 
-All pages are verified against automated criteria:
-- **Pure HTML5**: Zero `<script>` tags on any content page.
-- **Link & Asset Integrity**: All relative `href` and `src` links resolve to valid, existing local files.
+All pages are verified via automated GitHub Actions auditing on every push (`.github/workflows/deploy.yml`):
+- **Zero-JS Enforcement**: Fails the build if any unauthorized `<script>` tag is detected in content files.
+- **Link & Asset Integrity**: Fails the build if any internal `href` link or image `src` fails to resolve.
 - **Accessibility & Contrast**: Legible typography (Charter/Sitka Text serif body, system sans headers), compliant contrast ratios in both light and dark modes.
 
 ---
@@ -83,8 +83,8 @@ All pages are verified against automated criteria:
 ## Publishing & Deployment
 
 Deploying is as simple as pushing standard static files to GitHub:
-1. The site is hosted on GitHub Pages from the `main` branch.
-2. The GitHub Actions workflow (`.github/workflows/pages.yml`) uploads the repository root as static web assets directly to Pages with zero compilation steps.
+1. The GitHub Actions workflow (`.github/workflows/deploy.yml`) runs the audit suite on every push to `main`.
+2. Upon passing, it deploys the raw static assets directly to GitHub Pages with zero dynamic compilation.
 3. Custom domain mapping is maintained via GitHub Pages DNS.
 
 ---
