@@ -7,24 +7,37 @@
 ## Active Status & Milestones
 
 - [x] **Milestone 1: Clean Foundation (Completed)**
-  - Safely archived legacy Nikola compiler assets, drafts, notes, and high-resolution photo galleries into `archive/`.
-  - Established `.agents/agent_rules.md` with the mandatory 3-document rule and strict content ownership policy (agent never drafts content).
-  - Implemented zero-JavaScript, pure HTML5 + modern CSS design system inspired by Bear Blog and Mark Boulton.
-  - Established core 3 documents: `README.md`, `PLANNING.md`, `JOURNAL.md`.
-  - Built core structural pages: `index.html`, `about.html`, `lanes.html`, `journal.html`, and `gallery.html`.
-  - Automated verification: 0 scripts detected, all internal links and images resolved.
-  - Configured zero-build GitHub Pages deployment workflow (`.github/workflows/pages.yml`).
+  - Safely archived legacy Nikola compiler assets, drafts, notes, and photo galleries into `archive/`.
+  - Established `.agents/agent_rules.md` with the mandatory 3-document rule and strict content boundary (agent never drafts content).
+  - Implemented zero-JavaScript, pure HTML5 + modern CSS design system.
+  - Reverted all page content strictly to original archive text with zero additions.
+  - Configured the 12 lanes: Music making, Software, Life sciences, Engineering, Photography, Making, Law, Art, Politics, Data, Exercise, Anatomy.
+  - Added dummy `Lorem ipsum` journal entries to preview layout.
+  - Verified 0 scripts, all links and images valid.
+  - Integrated `.github/workflows/deploy.yml` with automated Zero-JS audit and direct Pages deployment.
+
+---
+
+## The 12 Lanes
+
+1. Music making
+2. Software
+3. Life sciences
+4. Engineering
+5. Photography
+6. Making
+7. Law
+8. Art
+9. Politics
+10. Data
+11. Exercise
+12. Anatomy
 
 ---
 
 ## Content Notes in Archive (For Jim's Writing)
 
-The following subject areas have research notes and ideas safely stored in `archive/content/ideas_and_drafts.md` for when Jim chooses to write:
-- **M.E. (Mental Entity / My Essence)**: Personal offline AI companion concept.
-- **Sleep Movement Evaluation**: Standardized rating scales (RLSRS, PSQI, ESS, GAD-7) and lifestyle factors.
-- **Instrument Studies**: Kawai ES-8 piano modifications and Cordoba Stage nylon guitar notes.
-- **Craft**: Handcrafting custom Ulu knife handles.
-- **Bookmarks Analysis**: Parsing browser bookmarks into a structured internet directory.
+Research notes and raw materials are preserved in `archive/content/` for Jim's reference when authoring posts.
 
 ---
 
@@ -33,4 +46,3 @@ The following subject areas have research notes and ideas safely stored in `arch
 - [ ] **Pure CSS Tag Filtering**: Explore CSS `:target` or radio-state filtering for journal entries without JavaScript.
 - [ ] **Pure CSS Image Modal**: Lightweight lightbox using CSS `:target` for high-res photo inspection.
 - [ ] **Print Stylesheet**: Add `@media print` rules for clean hard-copy printing.
-- [ ] **Additional Photo Showcases**: Prepare web-optimized selections from `archive/original_photos/` (Lakefront Twilight and Macro Garden series).

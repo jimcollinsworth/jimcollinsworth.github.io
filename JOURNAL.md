@@ -4,6 +4,21 @@
 
 ---
 
+## 2026-09-06 — Content Reversion to Archive & 12 Lanes Setup
+
+### Decisions & Actions Taken
+1. **Reverted All Content to Archive Text**:
+   - Replaced all prose on `about.html` and `index.html` strictly with Jim's original text from `pages/about.md` and `README.md`. Removed all AI-generated commentary.
+   - Simplified `gallery.html` to minimalist titles and direct link to the Google Photos album.
+2. **Configured 12 Requested Lanes**:
+   - Updated `lanes.html` and `index.html` with the 12 explicit lanes: *Music making, Software, Life sciences, Engineering, Photography, Making, Law, Art, Politics, Data, Exercise, Anatomy*.
+3. **Dummy Entries for Layout Preview**:
+   - Inserted placeholder `Lorem ipsum` entries on `journal.html` and `index.html` solely to preview page layout without authoring posts.
+4. **CI Workflow Streamlining**:
+   - Refined `.github/workflows/deploy.yml` with a lightweight Zero-JS audit step and GitHub's official Pages deployment action.
+
+---
+
 ## 2026-09-06 — Architectural Transformation: Pure HTML/CSS & Agent Governance
 
 ### Context & Problem
@@ -29,13 +44,13 @@ The site previously relied on Nikola, a Python-based static site generator with 
 4. **Core Structural Pages Created**:
    - `index.html`: Central home featuring tagline ("Out of My Lane"), bio overview, active lanes grid, and lakefront photography.
    - `about.html`: Personal profile covering Jim's 50-year career (Arthur Andersen, guitarist, tech startups, data science) and retirement philosophy.
-   - `lanes.html`: Structured index of active pursuit lanes (Music, STEM, Health/Tai Chi, Craft).
-   - `journal.html`: Chronological journal index container ready for Jim's entries.
-   - `gallery.html`: Photographic showcase with Chicago sky, storm front, twilight, and botanical studies.
+   - `lanes.html`: Structured index of active pursuit lanes.
+   - `journal.html`: Chronological journal index container with sample entries.
+   - `gallery.html`: Photographic showcase with Chicago sky and botanical studies.
    - `.github/workflows/deploy.yml`: Automated Zero-JS audit, link integrity test, and direct GitHub Pages deployment.
 
 5. **Automated Verification & CI Guardrails**:
-   - Integrated `.github/workflows/deploy.yml` to run automated PowerShell quality audits on every push before publishing.
+   - Integrated `.github/workflows/deploy.yml` to run automated quality audits on every push before publishing.
    - Verified that all HTML files contain 0 `<script>` tags.
    - Verified that all internal page and image links resolve cleanly to existing local files.
    - Validated standard `<!DOCTYPE html>` structure and closed tags.
