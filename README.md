@@ -1,119 +1,94 @@
 # jimcollinsworth.github.io
-Jim Collinsworth - Out of My Lane website/blog
 
-## Overview
-This repository contains my personal website and blog built using Nikola, a static site generator. The site features a clean, modern design with a focus on sharing thoughts, projects, and art related to computing and technology, along with other interests that extend beyond my core expertise.
+> Personal website, journal, and exploration lanes of **Jim Collinsworth** — *Out of My Lane*.
 
-The front page should have tagline/id, then some highlighted posts and my current 'lanes', like 'learning piano', 'photography', this list changing on activity/priority. Then links/tag/category clouds.
+---
 
+## Overview & Philosophy
 
-To create a new post with template
+This site is an intentionally simple, durable personal web space. It has been built with an uncompromising commitment to long-term digital sustainability, reading comfort, and zero maintenance overhead:
 
-# TIL
-nikola new_post -t "TIL: Git Rebase" -f markdown -1 --template=note.tmpl.md --meta="note_type=TIL" posts/notes/til-git-rebase.md
+- **99.9% Pure Semantic HTML5**: No dynamic web compilers, static site generators, complex build toolchains, or node/npm pipelines.
+- **Zero Client-Side JavaScript**: Fast, private, and durable. Navigation and structure rely solely on native web standards and semantic markup.
+- **Modern Responsive CSS**: Clean typography, fluid layouts, and automatic dark/light theme switching via `@media (prefers-color-scheme: dark)`.
+- **Content-Out Editorial Design**: Inspired by [Pine Wind (Bear Blog)](https://pinewind.bearblog.dev/) and [Mark Boulton](https://markboulton.co.uk/journal/anewcanon/).
+- **Maintained by an LLM-Based Coding Agent**: Kept lightweight, disciplined, and consistent over time with strict agent governance.
 
-# Opinion
-nikola new_post -t "Thoughts on Static Sites" -f markdown -1 --template=note.tmpl.md --meta="note_type=opinion" posts/notes/static-sites-opinion.md
+---
 
-# Goal
-nikola new_post -t "Learn Python Testing" -f markdown -1 --template=note.tmpl.md --meta="note_type=goal" posts/notes/goal-python-testing.md
+## The Concept: "Out of My Lane"
 
+After a 50-year career spanning Arthur Andersen, professional guitar playing, software startups, and data science, retirement is an invitation to explore without professional boundaries. *"How does that work?"* is the core question guiding this site across various interest lanes:
 
-## UX
+- **Music**: Classical and fingerstyle guitar, piano studies (Kawai ES-8), music theory.
+- **STEM & Computing**: Local offline AI (M.E.), Python tools, data analysis, weather observation, electronics.
+- **Health & Somatics**: Tai Chi, Alexander Technique, sleep health & periodic limb movement analysis.
+- **Craft & Physical Making**: Woodworking, Ulu knife crafting, instrument maintenance.
+- **Photography**: Chicago skies, lakefront weather, sunsets, and botanical studies.
 
-Simple 2 pane focus for navigation/browsing, left/right or up/down depending on orientation. Could be for metadata/photo, article/comments, article/image. image/image 
+---
 
-Full screen for content reading/viewing, with a color frame but otherwise text and images should always appropriatly fill up the screen. The color frame should match to a photo, like sunsets, or other nature. Maybe a color theme change would allow configuration.
+## Repository Structure
 
-Small menu button on all screens. Would be great to have a zoom in/out, drill down/up.. button on every page. Can't we have pinch zoom text size? or maybe just a text 'density' button. 
+```
+jimcollinsworth.github.io/
+├── .agents/
+│   └── agent_rules.md            # LLM agent governance, 3-doc rule & content boundary
+├── .github/
+│   └── workflows/
+│       └── pages.yml             # Direct static GitHub Pages deployment
+├── archive/
+│   ├── content/                  # Extracted legacy notes, drafts, and taxonomy
+│   ├── original_photos/          # Full-resolution photographic archives
+│   └── legacy_split_screen_experiment.html
+├── assets/
+│   ├── css/
+│   │   └── style.css             # Unified modern stylesheet (light/dark mode)
+│   └── images/                   # Curated web-optimized imagery
+├── index.html                    # Homepage (tagline, intro, active lanes, recent posts)
+├── about.html                    # Biography, career background, and personal ethos
+├── lanes.html                    # Overview of active areas of interest and projects
+├── journal.html                  # Chronological journal index
+├── gallery.html                  # Photographic study & sky series showcase
+├── favicon.ico                   # Browser favicon
+├── googledaf3f946832f8abf.html   # Google Search Console verification token
+├── README.md                     # Core document 1: Site overview & guide
+├── PLANNING.md                   # Core document 2: Active roadmap & backlog
+└── JOURNAL.md                    # Core document 3: Chronological changelog
+```
 
-site organization should be based entirely on tags and categories. need the ability to index combinations of tags in possibly categories. really just need an in memory browser index of the site pages and posts tags & lanes. give user real time word cloud multi select, put on home page top combos like 'exploration anatomy' 'newest diy'. could this be done in Python on the browser?
+---
 
-Blog posts vs lists? onetime vs adding. But could all be blog posts in the end, right? just ones that change/update. Yes everything are just posts, to be differentiated by tags and categories.
+## Agent Governance: The 3-Document & Content Rules
 
-### Categories and tags
+Per `.agents/agent_rules.md`:
+1. **Mandatory 3-Document Rule**: The agent may maintain **only three** root system design documents:
+   - `README.md` (System overview, architecture, and instructions)
+   - `PLANNING.md` (Active roadmap and technical backlog)
+   - `JOURNAL.md` (Chronological decision log and change records)
+   *Walkthroughs or additional meta documents are strictly unauthorized without prior proposal and approval.*
+2. **Content Ownership**: The agent must **never draft content documents, create content files, or write articles** for Jim. All content authoring belongs exclusively to Jim.
 
-1. Projects
-    - Data Analysis & Visualization
-    - Site Development & Operations
-    - Home Automation
-    - No Commercials
-    - Music & Art - My studies, work, and others work.
-        - Piano
-        - Guitar
-        - Photography
-        - Drawing
+---
 
-2. Lanes (Areas/Interests) - each lane is a post, with links to everything about that lane - TILs, links, photos, comments. more like a personal wiki.
-    - Finance
-    - Politics
-    - Health
-        - Tai Chi
-        - Anatomy (Said, M. Alexander..)
-    - Family
-    - STEM
-        - Anatomy
-        - Weather (can post observations)
+## Quality & Verification Standards
 
-   - Music
-        - Guitar
-        - Piano
-    - Art 
-        - Photography
-        - Drawing
+All pages are verified against automated criteria:
+- **Pure HTML5**: Zero `<script>` tags on any content page.
+- **Link & Asset Integrity**: All relative `href` and `src` links resolve to valid, existing local files.
+- **Accessibility & Contrast**: Legible typography (Charter/Sitka Text serif body, system sans headers), compliant contrast ratios in both light and dark modes.
 
-3. References (data file, with optional annotation). References can be linked to from posts, like a review. 
-   - Books: refs/books/nanotechnology-godsell.md
-   - Research Papers:
-   - Urls
-   - Quotes
+---
 
-### Content Types
-- posts: blog entries, observation, TIL (thing i learned).. with metadata-based categorization and taging. Maybe TIL is like a daily journal of the things I did, learned, saw, improved, book review, thoughtof/realized, learned about, anything, text, knowledge, visual, physical (all good tag possibilities). Short text, maybe daily, static they dont change.
-- more posts:  Ideas, Interests (guitar, photography), focus area (arthritis, anatomy), code/diy/household project - ie piano, M. Alexander Tech, earthquake viz, Tai Chi. These all have a main page with overview, photos, text (or anything else), and then links to sub pages or related ones. These also change over time, just going to edit them randomly and continuously unless explicitely closed/finalized.
-- Pages: Static content (About, Meta, Documentation)
-- Images: my photos
+## Publishing & Deployment
 
-## Technical Features
-- Responsive design with fullscreen image overlays
-- Hierarchical category system
-- Tag-based content organization
-- Image galleries with EXIF data preservation
-- RSS feed support
-- No React, No node/npm for building or serving. 
-- Simple, inline Javascript as much as possible.
-- Meta information page with site management links
-- A Mosaic/Bricks approach could be great, simply self adjusting blocks for everything - nav, structure, lists, documents...
-- A pure text only view too - accessible view that anyone can use.
-- How about pure image option too, no text at all, just LLM generated images from the blog text (and images)
-- Everything is in github so we have great versioning. Ideally we can see this in the output, so users see what is new (maybe just color/highlight it based on age, newest is clearest/darkest) ?any nikola git github plugins?
+Deploying is as simple as pushing standard static files to GitHub:
+1. The site is hosted on GitHub Pages from the `main` branch.
+2. The GitHub Actions workflow (`.github/workflows/pages.yml`) uploads the repository root as static web assets directly to Pages with zero compilation steps.
+3. Custom domain mapping is maintained via GitHub Pages DNS.
 
-### photo/video management
- Google Photos is the source for all photo assets, anything from the [OutOfMyLane](https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8) photos album. could have a build steps that create metadata and summaries for all the photos, stored as --photo-name.md files in a directory, maybe added as a long description in google photos as allowed. This meta data can be searched by the galleries to find photos and used for descriptions. Turns out google photos is hard to integrate, it is possible to get an image url but they don't seem to work embedded. Photos can be downloaded in a zip, and served other ways too. I think I'll have a few topic related galleries like sunrise, flowers, art that could be large, can't do those just in Nikola. Using LLM would be nice too for automatic categorzation and avoid file names, but second step. 
- [x] Use native Nikola to create some galleries, copy some images into repo 
- [] Provide link to public google photos galleries for users to see more.
- [] Update template to for nice 2 pane view
- [] Plugins or custom code to use better gallery/lightbox
- [] File management/LLM utilities to scan images, discover links from google photos
-
-## Management & Development
-The site is automatically built and deployed via GitHub Actions.
-
-### Key Management Links
-- [GitHub Pages Status](https://github.com/jimcollinsworth/jimcollinsworth.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
-- [Google Search Console](https://search.google.com/search-console)
-- [Google Analytics](https://analytics.google.com)
-- [GoDaddy](https://godaddy.com)
-
-### Local Development
-1. Install Nikola
-2. Clone this repository
-3. Run `nikola build` to generate the site
-4. Run `nikola serve` to preview locally
-
-Create a new post:
-
-nikola new_post -f markdown -t "Your Post Title" --tags="journal" -d short
+---
 
 ## License
-Content is licensed under [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+
+Content and essays © Jim Collinsworth, licensed under [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
