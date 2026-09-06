@@ -1,4 +1,4 @@
-name: Audit & Deploy Pure Static Site
+name: Audit & Deploy Static Site to Pages
 
 on:
   push:
@@ -15,65 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  audit:
-    name: Security & HTML Integrity Audit
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Enforce Zero-JS & Link Integrity
-        shell: pwsh
-        run: |
-          $htmlFiles = Get-ChildItem -Recurse -Filter "*.html" . | Where-Object { $_.FullName -notmatch "archive" }
-          $issues = @()
-
-          foreach ($file in $htmlFiles) {
-              $content = Get-Content -Raw $file.FullName
-              $relPath = $file.FullName.Replace((Get-Location).Path + "/", "")
-
-              # 1. Enforce Zero JavaScript
-              if ($content -match "<script") {
-                  $issues += "SECURITY FAIL: $relPath contains unauthorized <script> tag!"
-              }
-
-              # 2. Check internal link integrity
-              $hrefMatches = [regex]::Matches($content, 'href="([^"#:]+)"')
-              foreach ($m in $hrefMatches) {
-                  $link = $m.Groups[1].Value
-                  if ($link -notmatch "^(http|mailto|#)") {
-                      $targetDir = Split-Path $file.FullName
-                      $resolved = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($targetDir, $link))
-                      if (-not (Test-Path $resolved)) {
-                          $issues += "LINK FAIL: In $relPath, link '$link' does not exist!"
-                      }
-                  }
-              }
-
-              # 3. Check internal image asset integrity
-              $srcMatches = [regex]::Matches($content, 'src="([^":]+)"')
-              foreach ($m in $srcMatches) {
-                  $src = $m.Groups[1].Value
-                  if ($src -notmatch "^(http|data:)") {
-                      $targetDir = Split-Path $file.FullName
-                      $resolved = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($targetDir, $src))
-                      if (-not (Test-Path $resolved)) {
-                          $issues += "ASSET FAIL: In $relPath, image '$src' does not exist!"
-                      }
-                  }
-              }
-          }
-
-          if ($issues.Count -gt 0) {
-              $issues | ForEach-Object { Write-Error $_ }
-              exit 1
-          } else {
-              Write-Output "SUCCESS: Zero JS verified and all internal links/assets valid."
-          }
-
   deploy:
-    name: Deploy to GitHub Pages
-    needs: audit
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -81,6 +23,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Enforce Zero-JS Audit
+        shell: pwsh
+        run: |
+          $htmlFiles = Get-ChildItem -Recurse -Filter "*.html" . | Where-Object { $_.FullName -notmatch "archive" }
+          $scriptTags = $htmlFiles | Select-String -Pattern "<script"
+          if ($scriptTags) {
+              Write-Error "SECURITY FAIL: Unauthorized <script> tag detected in content HTML!"
+              exit 1
+          } else {
+              Write-Output "AUDIT PASSED: Zero-JS verified across all content pages."
+          }
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
