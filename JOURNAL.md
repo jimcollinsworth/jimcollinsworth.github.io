@@ -4,6 +4,16 @@
 
 ---
 
+## 2026-09-07 — Header Branding Single-Line Alignment
+
+### Decisions & Actions Taken
+1. **Unified Title and Tagline Row**:
+   - Updated header structure to place "Jim Collinsworth" and "Out of My Lane" on the same horizontal row using `.site-branding` with flex `justify-content: space-between`.
+   - Set matching font size (`1.35rem`) and font family (`var(--font-sans)`) across title and tagline while maintaining subtle text mute for the tagline.
+   - Updated across all 5 site pages (`index.html`, `about.html`, `lanes.html`, `journal.html`, `gallery.html`) and `assets/css/style.css`.
+
+---
+
 ## 2026-09-06 — Content Reversion to Archive & 12 Lanes Setup
 
 ### Decisions & Actions Taken
