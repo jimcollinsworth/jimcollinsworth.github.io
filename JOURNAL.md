@@ -4,6 +4,16 @@
 
 ---
 
+## 2026-09-07 — Custom "JC" Favicon Update
+
+### Decisions & Actions Taken
+1. **Designed Minimalist "JC" Favicon**:
+   - Created vector [`favicon.svg`](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/favicon.svg) featuring "JC" monogram with rounded geometry and built-in CSS `@media (prefers-color-scheme: dark)` color-switching (rust in light mode, amber in dark mode).
+   - Generated multi-resolution [`favicon.ico`](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/favicon.ico) (16x16, 32x32, 48x48, 64x64) with matching warm rust background and white lettering.
+   - Linked both SVG and ICO fallback across all 11 site and post pages.
+
+---
+
 ## 2026-09-07 — Content Boundary Remediation & Post Page Linking
 
 ### Decisions & Actions Taken
