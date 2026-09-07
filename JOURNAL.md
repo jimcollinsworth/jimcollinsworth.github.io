@@ -4,6 +4,25 @@
 
 ---
 
+## 2026-09-07 — Calvin & MacWright UI Overhaul, Bookshelf, & Content Pipeline
+
+### Decisions & Actions Taken
+1. **Adopted Calvin French-Owen Typography & Listing Rhythm**:
+   - Implemented post listings with prominent rust titles (`var(--link)`), right-aligned uppercase dates, category pill badges, and concise takeaway descriptions.
+   - Created secondary level filter pill navigation bar on `posts.html`.
+2. **Added Bookshelf / Reads (`reads.html`)**:
+   - Dedicated reading synthesis page inspired by Calvin's bookshelf with titles, authors, dates read, favorite indicators (`*`), and mental model notes.
+3. **MacWright-Style Photo Stream (`gallery.html`)**:
+   - Replaced boxed card grid with a clean, full-width photo stream with left-aligned captions and zero distracting card borders.
+4. **Streamlined Navigation & Page Roles**:
+   - Primary navigation streamlined to: `Home`, `About`, `Posts`, `Reads`, `Gallery`.
+   - Retired `lanes.html`; integrated the Lanes taxonomy into `about.html` and as single-category badges across posts.
+   - Removed duplicated biography text on `index.html`, refocusing the home page on current activity, recent posts, bookshelf highlights, and photo spotlight.
+5. **New Content Drop Directory (`content/`)**:
+   - Established `content/posts/`, `content/notes/`, and `content/reads/` for dropping Markdown source files with clean YAML front-matter (`title`, `date`, `category`, `description`).
+
+---
+
 ## 2026-09-07 — Header Branding Single-Line Alignment
 
 ### Decisions & Actions Taken

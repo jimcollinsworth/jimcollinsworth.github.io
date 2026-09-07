@@ -45,11 +45,15 @@ jimcollinsworth.github.io/
 │   ├── css/
 │   │   └── style.css             # Unified modern stylesheet (light/dark mode)
 │   └── images/                   # Curated web-optimized imagery
-├── index.html                    # Homepage (tagline, intro, active lanes, recent posts)
-├── about.html                    # Biography, career background, and personal ethos
-├── lanes.html                    # Overview of active areas of interest and projects
-├── journal.html                  # Chronological journal index
-├── gallery.html                  # Photographic study & sky series showcase
+├── content/                      # Source drop directory for new markdown drafts
+│   ├── posts/                    # Long-form posts (Health, Projects, Software, Ideas, Music)
+│   ├── notes/                    # Short observations and TIL notes
+│   └── reads/                    # Reading notes and synthesis
+├── index.html                    # Homepage (dashboard of recent posts, reads, photo spotlight)
+├── about.html                    # Biography, career background, and "Lanes" taxonomy
+├── posts.html                    # Master posts archive with category filter pills
+├── reads.html                    # Bookshelf of favorite reads and key mental models
+├── gallery.html                  # Photographic study & sky series showcase (MacWright style)
 ├── favicon.ico                   # Browser favicon
 ├── googledaf3f946832f8abf.html   # Google Search Console verification token
 ├── README.md                     # Core document 1: Site overview & guide

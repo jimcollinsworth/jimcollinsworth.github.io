@@ -249,7 +249,7 @@ hr {
   margin: 2.5rem 0;
 }
 
-/* Metadata & Date Tags */
+/* Metadata & Pills */
 .meta {
   font-family: var(--font-sans);
   font-size: 0.85rem;
@@ -261,155 +261,161 @@ hr {
   margin-bottom: 1.25rem;
 }
 
-.tag {
+.pill, .tag {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   background-color: var(--tag-bg);
   color: var(--tag-text);
-  padding: 0.15rem 0.5rem;
-  border-radius: 3px;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
   text-decoration: none;
   font-weight: 500;
+  display: inline-block;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.tag:hover {
+.pill:hover, .tag:hover {
+  background-color: var(--link);
+  color: #ffffff;
   text-decoration: none;
-  opacity: 0.85;
 }
 
-/* Journal / Entry Lists */
-.entry-list {
+/* Secondary Filter / Pill Navigation */
+.pill-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 1.5rem 0 2.25rem;
+}
+
+.pill-nav .pill {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.75rem;
+}
+
+.pill-nav .pill.active {
+  background-color: var(--link);
+  color: #ffffff;
+}
+
+/* Calvin-Style Post Listings */
+.post-list, .book-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.entry-item {
-  margin-bottom: 1.75rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border-subtle);
+.post-item, .book-item {
+  margin-bottom: 2.25rem;
 }
 
-.entry-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.post-header, .book-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
-.entry-title {
+.post-title, .book-title {
   font-family: var(--font-sans);
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0 0 0.35rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 0;
+  line-height: 1.25;
 }
 
-.entry-title a {
-  color: var(--text);
+.post-title a, .book-title {
+  color: var(--link);
   text-decoration: none;
 }
 
-.entry-title a:hover {
-  color: var(--link);
+.post-title a:hover {
+  color: var(--link-hover);
   text-decoration: underline;
 }
 
-.entry-excerpt {
+.post-meta, .book-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.post-meta time, .book-meta time {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.post-desc, .book-notes {
   color: var(--text);
   font-size: 0.95rem;
-  margin: 0 0 0.5rem 0;
+  line-height: 1.55;
+  margin: 0;
 }
 
-/* Lanes / Cards Grid */
-.lanes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-  margin: 1.5rem 0 2rem;
+/* Page Intro Block */
+.page-intro {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 2rem;
 }
 
-.lane-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 1.25rem;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+/* Lanes List & Cards */
+.lanes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
 }
 
-.lane-card:hover {
-  border-color: var(--link);
+.lane-entry {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.lane-card h3 {
-  font-size: 1.1rem;
+.lane-entry:last-child {
+  border-bottom: none;
+}
+
+.lane-entry h3 {
   margin-top: 0;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
+  font-size: 1.15rem;
 }
 
-.lane-card p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 0;
-  line-height: 1.5;
-}
-
-/* Figures & Photographic Presentation */
-figure {
+/* MacWright-Style Photo Stream */
+.photo-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
   margin: 2rem 0;
 }
 
-figure img {
-  display: block;
+.photo-stream figure {
+  margin: 0;
+}
+
+.photo-stream img {
   width: 100%;
   height: auto;
   border-radius: 4px;
-  border: 1px solid var(--border);
-}
-
-figcaption {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-top: 0.6rem;
-  text-align: center;
-  line-height: 1.4;
-}
-
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.photo-card {
-  border: 1px solid var(--border);
-  background-color: var(--bg-card);
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.photo-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
   display: block;
+  border: 1px solid var(--border-subtle);
 }
 
-.photo-card-body {
-  padding: 1rem;
-}
-
-.photo-card-title {
+.photo-stream figcaption {
   font-family: var(--font-sans);
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin: 0 0 0.25rem 0;
-}
-
-.photo-card-desc {
   font-size: 0.85rem;
   color: var(--text-muted);
-  margin: 0;
-  line-height: 1.4;
+  margin-top: 0.5rem;
+  text-align: left;
 }
 
 /* Callout / Aside */

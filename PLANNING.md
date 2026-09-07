@@ -6,14 +6,19 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 2: Calvin/MacWright UI Overhaul & Bookshelf (Completed)**
+  - Redesigned typography and post listing rhythm inspired by Calvin French-Owen (`calv.info`).
+  - Implemented dedicated Bookshelf page (`reads.html`) with reading synthesis and mental models.
+  - Implemented MacWright-style clean photo stream (`gallery.html`).
+  - Refactored `index.html` into a clean dashboard of recent posts, reads, and photo spotlight.
+  - Consolidated full bio and "Lanes" taxonomy into `about.html`.
+  - Streamlined main navigation: `Home`, `About`, `Posts`, `Reads`, `Gallery`.
+  - Created `content/` source drop directory (`content/posts/`, `content/notes/`, `content/reads/`) with YAML front matter.
+
 - [x] **Milestone 1: Clean Foundation (Completed)**
   - Safely archived legacy Nikola compiler assets, drafts, notes, and photo galleries into `archive/`.
   - Established `.agents/agent_rules.md` with the mandatory 3-document rule and strict content boundary (agent never drafts content).
   - Implemented zero-JavaScript, pure HTML5 + modern CSS design system.
-  - Reverted all page content strictly to original archive text with zero additions.
-  - Configured the 12 lanes: Music making, Software, Life sciences, Engineering, Photography, Making, Law, Art, Politics, Data, Exercise, Anatomy.
-  - Added dummy `Lorem ipsum` journal entries to preview layout.
-  - Verified 0 scripts, all links and images valid.
   - Integrated `.github/workflows/deploy.yml` with automated Zero-JS audit and direct Pages deployment.
 
 ---
