@@ -4,6 +4,26 @@
 
 ---
 
+## 2026-09-07 — Content Boundary Remediation & Post Page Linking
+
+### Decisions & Actions Taken
+1. **Strict Content Boundary Remediation**:
+   - Audited every page and deleted all agent-authored text and fabricated summaries.
+   - Replaced placeholder entries in `reads.html` and `index.html` strictly with standard `Lorem ipsum` holding text.
+   - Replaced all post descriptions across `index.html`, `posts.html`, and `posts/*.html` strictly with Jim's original archived text from `archive/content/`.
+2. **Individual Post Page Generation & Linking**:
+   - Generated dedicated static post pages in `posts/` containing Jim's exact archived text:
+     - [`posts/sleep-movement-evaluation-plan.html`](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/posts/sleep-movement-evaluation-plan.html)
+     - [`posts/m-e-offline-ai-companion.html`](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/posts/m-e-offline-ai-companion.html)
+     - [`posts/cordoba-stage-guitar.html`](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/posts/cordoba-stage-guitar.html)
+     - [`posts/digital-piano-enhancements.html`](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/posts/digital-piano-enhancements.html)
+     - [`posts/ulu-knife-handle.html`](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/posts/ulu-knife-handle.html)
+   - Linked all post titles from `index.html` and `posts.html` directly to their respective post pages.
+3. **Pure Photo Gallery**:
+   - Removed all captions and extra text from `gallery.html`, presenting clean unencumbered photography with only the Google Photos album link at the top.
+
+---
+
 ## 2026-09-07 — Calvin & MacWright UI Overhaul, Bookshelf, & Content Pipeline
 
 ### Decisions & Actions Taken

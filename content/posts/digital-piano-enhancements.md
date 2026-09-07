@@ -2,9 +2,9 @@
 title: "Digital Piano Enhancements"
 date: "2026-09-04"
 category: "Projects"
-description: "Ergonomic and tactile modifications to the Kawai-ES8 digital piano action."
+description: "Hardware and ergonomic modifications to Kawai-ES8 digital piano."
 ---
 
 # Digital Piano Enhancements
 
-Hardware and ergonomic modifications to Kawai-ES8 digital piano for extended practice comfort and key feel.
+Hardware and ergonomic modifications to Kawai-ES8 digital piano.
