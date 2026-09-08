@@ -4,6 +4,26 @@
 
 ---
 
+## 2026-09-08 — GitHub Pages Deployment Alignment & Root HTML Synchronization
+
+### Problem & Analysis
+- When viewing the live site on mobile, legacy pill navigation (`.pill`, `.pill-nav`) and duplicate titles (`<h1>Posts & Notes</h1>`, `<h1>About Jim Collinsworth</h1>`) were still appearing.
+- Root Cause: GitHub Pages was configured to build and deploy from the `main` branch root (`/`), which still contained pre-Pelican static HTML files from Milestone 2. Pelican's build output in `output/` was gitignored, causing branch deployment to serve the obsolete root files.
+
+### Decisions & Actions Taken
+1. **Bypassed Jekyll**:
+   - Added `.nojekyll` to `content/extra/` and registered it in `pelicanconf.py` (`EXTRA_PATH_METADATA`).
+2. **Synchronized Root HTML with Pelican Build**:
+   - Replaced root `index.html`, `about.html`, `posts.html`, `reads.html`, `gallery.html`, `lanes.html`, `posts/`, and `lanes/` with Pelican's compiled output.
+   - Synchronized `theme/css/style.css` and updated `assets/css/style.css` so legacy or cached CSS references also render without pills.
+3. **Hardened Automated Tests (`tests/test_pelican_e2e.py`)**:
+   - Updated `test_zero_pills_lane_formatting` to scan both `output/` and repository root HTML files, ensuring neither ever contains `.pill` or `.pill-nav`.
+   - Updated `test_no_duplicate_page_titles` to verify `posts.html` contains no redundant `<h1>Posts` header.
+4. **Verified Build & Tests**:
+   - All 8 end-to-end tests passing (`uv run pytest -v`).
+
+---
+
 ## 2026-09-08 — Pelican SSG Integration, Manual Image Workflow, & UI Refinements
 
 ### Decisions & Actions Taken

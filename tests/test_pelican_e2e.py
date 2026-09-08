@@ -114,15 +114,24 @@ def test_no_duplicate_page_titles():
     assert '<h1>Gallery' not in gallery_html
     assert 'class="active">Gallery</a>' in gallery_html
 
+    posts_html = (OUTPUT_DIR / "posts.html").read_text(encoding="utf-8")
+    assert '<h1>Posts' not in posts_html
+    assert 'class="active">Posts</a>' in posts_html
+
 
 def test_zero_pills_lane_formatting():
     """
     Verify that pill badge styling is removed and lanes are simple text links.
     """
     html_files = list(OUTPUT_DIR.rglob("*.html"))
+    # Also check root-level html files to ensure branch deployments never serve pills
+    for root_f in REPO_ROOT.glob("*.html"):
+        if root_f.name not in ["googledaf3f946832f8abf.html"]:
+            html_files.append(root_f)
+
     for f in html_files:
         content = f.read_text(encoding="utf-8")
-        rel_path = f.relative_to(OUTPUT_DIR).as_posix()
+        rel_path = f.as_posix()
         assert 'class="pill"' not in content, f"Found pill class in {rel_path}"
         assert 'class="pill ' not in content, f"Found pill class in {rel_path}"
         assert 'pill-nav' not in content, f"Found pill-nav class in {rel_path}"
