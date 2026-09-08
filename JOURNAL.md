@@ -4,6 +4,48 @@
 
 ---
 
+## 2026-09-08 — Pelican SSG Integration, Manual Image Workflow, & UI Refinements
+
+### Decisions & Actions Taken
+1. **Configured Pelican Static Site Generator**:
+   - Created `pyproject.toml` and `pelicanconf.py` configured for zero-JS, pure HTML5, and relative URLs.
+   - Implemented `ObsidianMarkdownReader` in `pelicanconf.py` to seamlessly parse YAML frontmatter headers (`---`).
+2. **Content Reorganization**:
+   - Migrated markdown files to `content/posts/` (`cordoba-stage-guitar.md`, `digital-piano-enhancements.md`, `m-e-offline-ai-companion.md`, `sleep-movement-evaluation-plan.md`, `ulu-knife-handle.md`).
+   - Created `content/pages/` for standalone pages (`about.md`, `reads.md`, `gallery.md`).
+   - Created `content/images/` for manually curated photo assets and `content/extra/` for root metadata files.
+3. **Custom Pelican Theme (`theme/`) & UI Cleanup**:
+   - Recreated site templates in Jinja2 (`base.html`, `index.html`, `article.html`, `page.html`, `archives.html`, `category.html`, `categories.html`).
+   - **Title Deduplication**: Removed redundant `<h1>` headings from standalone pages (`About`, `Reads`, `Gallery`); the active menu tab serves as the title.
+   - **Lane Styling**: Removed pill/badge formatting (`.pill`, `.pill-nav`); pursuit lanes are styled as clean, simple text links (`.post-lane`, `.lane-link`).
+4. **Manual Image Transfer & Zero-AI Content Policy**:
+   - Formalized policy: Jim manually selects and transfers all photos to `content/images/`. AI is strictly restricted to content management, never content generation.
+   - External gallery integration: Posts include selected photo figures and link to full albums on Google Photos.
+5. **End-to-End Test Suite (`tests/test_pelican_e2e.py`)**:
+   - Implemented automated E2E tests validating build execution, page generation, title deduplication, zero-pills styling, content flow from Markdown, zero-JS policy, and link/asset integrity (all 8 tests passing).
+6. **Automated CI/CD**:
+   - Updated `.github/workflows/deploy.yml` to install dependencies via `uv`, run tests, build with Pelican, and deploy `output/` to GitHub Pages.
+
+---
+
+## 2026-09-08 — Scope Realignment: Rollback Custom Tools & Focus on Obsidian Flow
+
+### Decisions & Actions Taken
+1. **Rolled Back Custom Build & Tool Pipeline**:
+   - Reverted all working tree modifications and cleaned untracked directories (`tools/`, `tests/`, `projects/`, virtual environment, etc.) to return repository to clean `origin/main` state.
+   - Preserved pure static site structure and strict content boundaries.
+2. **Backlog Realignment in `PLANNING.md`**:
+   - Transferred custom static site builder, MCP server, Pytest suite, and interactive tools (`circle-of-fifths`, `earthquakes`) to the backlog as optional "nice to have" enhancements.
+3. **Refocused Active Priority**:
+   - Established primary exploration: clarifying how Markdown authored in Obsidian is placed into a directory and flows into published HTML.
+   - Selected Pelican as the preferred static site generator foundation.
+4. **Installed Project Skills in `.agents/skills/`**:
+   - Created [`pelican-site-manager`](file:///d:/projects/jimcollinsworth.github.io/.agents/skills/pelican-site-manager/SKILL.md): Complete runbook for Pelican configuration, development server, zero-JS preservation, and build verification.
+   - Created [`pelican-obsidian-bridge`](file:///d:/projects/jimcollinsworth.github.io/.agents/skills/pelican-obsidian-bridge/SKILL.md): Guidelines for mapping an Obsidian vault to Pelican's content folder, handling YAML frontmatter, wikilinks, image embeds, and callouts.
+   - Added Rule 7 (Command Line Standards & Reproducibility) to [`.agents/agent_rules.md`](file:///d:/projects/jimcollinsworth.github.io/.agents/agent_rules.md).
+
+---
+
 ## 2026-09-07 — Custom "JC" Favicon Update
 
 ### Decisions & Actions Taken

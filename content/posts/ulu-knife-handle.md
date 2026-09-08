@@ -1,10 +1,9 @@
 ---
-title: "Ulu Knife Handle Roughcut"
-date: "2026-09-02"
+title: "Ulu Knife Handle"
+date: "2026-09-03"
 category: "Making"
-description: "Handcrafting and shaping a custom wooden handle for an Alaskan-style Ulu blade."
+slug: "ulu-knife-handle"
+summary: "Hand-carved hardwood replacement handle for traditional Alaskan ulu knife."
 ---
 
-# Ulu Knife Handle Roughcut
-
-Handcrafting and shaping a custom wooden handle for an Alaskan-style Ulu blade.
+Hand-carved hardwood replacement handle for traditional Alaskan ulu knife.

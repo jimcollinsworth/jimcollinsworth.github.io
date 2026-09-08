@@ -80,3 +80,14 @@ Whenever technical changes, layout updates, or infrastructure features are imple
 1. **`JOURNAL.md`**: Append a concise entry under the current date detailing what technical changes were made and why.
 2. **`PLANNING.md`**: Update technical task statuses, roadmap milestones, and capture ideas discussed with Jim.
 3. **`README.md`**: Keep directory structures, stats, and high-level descriptions accurate as the site evolves.
+
+---
+
+## 7. Command Line Standards & Reproducibility
+
+> [!IMPORTANT]
+> - Always use clean, standard command-line invocations (e.g., `git status`, `pelican content -s pelicanconf.py`, `pytest`) that Jim can easily inspect, copy, and run manually in his own terminal.
+> - Avoid opaque subshell wrappers, nested execution scripts, or obscure one-liners when standard commands exist.
+> - Use standard command-line tools unless not possible.
+> - If an operation cannot be run via standard, easily reproducible command-line syntax, stop and ask Jim before proceeding.
+

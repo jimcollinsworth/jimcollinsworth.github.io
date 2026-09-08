@@ -1,4 +1,4 @@
-name: Audit & Deploy Static Site to Pages
+name: Test & Deploy Static Site with Pelican
 
 on:
   push:
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -24,17 +24,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Enforce Zero-JS Audit
-        shell: pwsh
-        run: |
-          $htmlFiles = Get-ChildItem -Recurse -Filter "*.html" . | Where-Object { $_.FullName -notmatch "archive" }
-          $scriptTags = $htmlFiles | Select-String -Pattern "<script"
-          if ($scriptTags) {
-              Write-Error "SECURITY FAIL: Unauthorized <script> tag detected in content HTML!"
-              exit 1
-          } else {
-              Write-Output "AUDIT PASSED: Zero-JS verified across all content pages."
-          }
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Build site with Pelican
+        run: uv run pelican content -s pelicanconf.py -o output -d
+
+      - name: Run End-to-End Test Suite
+        run: uv run pytest -v
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
@@ -42,7 +47,7 @@ jobs:
       - name: Upload static artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: 'output'
 
       - name: Deploy to GitHub Pages
         id: deployment

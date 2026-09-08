@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Pursuit Lanes &mdash; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<div class="page-intro">
+  <p>
+    My active pursuits and project domains.
+  </p>
+</div>
+
+<div class="lanes-list">
+  {% for cat, articles in categories %}
+  <div class="lane-entry">
+    <h3><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></h3>
+    <p>{{ articles|length }} post{% if articles|length != 1 %}s{% endif %}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

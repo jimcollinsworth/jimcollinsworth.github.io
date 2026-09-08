@@ -249,7 +249,7 @@ hr {
   margin: 2.5rem 0;
 }
 
-/* Metadata & Pills */
+/* Metadata & Details */
 .meta {
   font-family: var(--font-sans);
   font-size: 0.85rem;
@@ -474,6 +474,13 @@ footer.site-footer {
 .footer-nav a:hover {
   color: var(--link);
   text-decoration: underline;
+}
+
+/* Back navigation */
+.back-nav {
+  margin-bottom: 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
 }
 
 /* Responsive adjustments */

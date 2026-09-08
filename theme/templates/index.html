@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-intro">
+  <p>
+    Welcome to <em>Out of My Lane</em>. Sharing thoughts, projects, and art related to computing and technology, along with other interests that extend beyond my core expertise.
+  </p>
+  <p>
+    Learn more about my background and pursuit lanes on the <a href="{{ SITEURL }}/about.html">About page</a>.
+  </p>
+</section>
+
+<hr>
+
+<section>
+  <h2>Recent Posts</h2>
+  {% if articles %}
+  <ul class="post-list">
+    {% for article in articles[:3] %}
+    <li class="post-item">
+      <div class="post-header">
+        <h3 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+        <div class="post-meta">
+          <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
+          {% if article.category %}
+          &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-lane">{{ article.category }}</a>
+          {% endif %}
+        </div>
+      </div>
+      {% if article.summary %}
+      <p class="post-desc">
+        {{ article.summary|striptags }}
+      </p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  <p>
+    <a href="{{ SITEURL }}/posts.html">View all posts &rarr;</a>
+  </p>
+  {% else %}
+  <p>No posts published yet.</p>
+  {% endif %}
+</section>
+
+<hr>
+
+<section>
+  <h2>Recent Reads</h2>
+  <ul class="book-list">
+    <li class="book-item">
+      <div class="book-header">
+        <h3 class="book-title"><a href="{{ SITEURL }}/reads.html">Lorem Ipsum Dolor Sit Amet *</a></h3>
+        <div class="book-meta">
+          <span>Author Name</span> &bull; <time datetime="2026-09">Sep 2026</time>
+        </div>
+      </div>
+      <p class="book-notes">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </li>
+    <li class="book-item">
+      <div class="book-header">
+        <h3 class="book-title"><a href="{{ SITEURL }}/reads.html">Consectetur Adipiscing Elit</a></h3>
+        <div class="book-meta">
+          <span>Author Name</span> &bull; <time datetime="2026-08">Aug 2026</time>
+        </div>
+      </div>
+      <p class="book-notes">
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+    </li>
+  </ul>
+  <p>
+    <a href="{{ SITEURL }}/reads.html">Browse the complete bookshelf &rarr;</a>
+  </p>
+</section>
+
+<hr>
+
+<section>
+  <h2>Photo Spotlight</h2>
+  <div class="photo-stream">
+    <figure>
+      <img src="{{ SITEURL }}/images/sky-lakefront.jpg" alt="Lake Michigan horizon study" loading="lazy">
+      <figcaption>Lake Michigan horizon &mdash; Chicago lakefront morning study</figcaption>
+    </figure>
+  </div>
+  <p>
+    <a href="{{ SITEURL }}/gallery.html">Explore the full photo gallery &rarr;</a>
+  </p>
+</section>
+{% endblock %}

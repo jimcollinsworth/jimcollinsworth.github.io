@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Posts &mdash; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<div class="page-intro">
+  <p>
+    Notes, technical deep dives, project logs, and observations across my pursuit lanes.
+  </p>
+</div>
+
+{% if categories %}
+<nav class="lane-nav" aria-label="Filter posts by lane">
+  <a href="{{ SITEURL }}/posts.html" class="lane-link active">All</a>
+  {% for cat, cat_articles in categories %}
+  &bull; <a href="{{ SITEURL }}/{{ cat.url }}" class="lane-link">{{ cat }}</a>
+  {% endfor %}
+</nav>
+{% endif %}
+
+<ul class="post-list">
+  {% for article in dates %}
+  <li class="post-item">
+    <div class="post-header">
+      <h2 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+      <div class="post-meta">
+        <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
+        {% if article.category %}
+        &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-lane">{{ article.category }}</a>
+        {% endif %}
+      </div>
+    </div>
+    {% if article.summary %}
+    <p class="post-desc">
+      {{ article.summary|striptags }}
+    </p>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

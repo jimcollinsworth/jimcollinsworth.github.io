@@ -6,13 +6,13 @@
 
 ## Overview & Philosophy
 
-This site is an intentionally simple, durable personal web space. It has been built with an uncompromising commitment to long-term digital sustainability, reading comfort, and zero maintenance overhead:
+This site is an intentionally simple, durable personal web space. It has been built with an uncompromising commitment to long-term digital sustainability, reading comfort, and clean engineering:
 
-- **99.9% Pure Semantic HTML5**: No dynamic web compilers, static site generators, complex build toolchains, or node/npm pipelines.
-- **Zero Client-Side JavaScript**: Fast, private, and durable. Navigation and structure rely solely on native web standards and semantic markup.
+- **Static Site Generation via Pelican**: Fast, clean Python-based static site compilation from Markdown notes.
+- **Zero Client-Side JavaScript**: 100% pure semantic HTML5 and modern CSS on content pages. Zero `<script>` tags, tracking, or runtime dependencies.
 - **Modern Responsive CSS**: Clean typography, fluid layouts, and automatic dark/light theme switching via `@media (prefers-color-scheme: dark)`.
 - **Content-Out Editorial Design**: Inspired by [Pine Wind (Bear Blog)](https://pinewind.bearblog.dev/) and [Mark Boulton](https://markboulton.co.uk/journal/anewcanon/).
-- **Maintained by an LLM-Based Coding Agent**: Kept lightweight, disciplined, and consistent over time with strict agent governance.
+- **Human-Curated Content & Images**: Jim explicitly and manually authors every post in Obsidian and manually transfers every photo shown on the site. AI agents are strictly restricted to content management (infrastructure, build configuration, layout styling, and link validation).
 
 ---
 
@@ -30,35 +30,58 @@ After a 50-year career spanning Arthur Andersen, professional guitar playing, so
 
 ## Repository Structure
 
-```
+```text
 jimcollinsworth.github.io/
 ├── .agents/
-│   └── agent_rules.md            # LLM agent governance, 3-doc rule & content boundary
+│   ├── agent_rules.md            # LLM agent governance, 3-doc rule & CLI reproducibility
+│   └── skills/                   # Project skills (pelican-site-manager, pelican-obsidian-bridge)
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml            # Automated audit (Zero-JS & link check) + GitHub Pages deployment
-├── archive/
-│   ├── content/                  # Extracted legacy notes, drafts, and taxonomy
-│   ├── original_photos/          # Full-resolution photographic archives
-│   └── legacy_split_screen_experiment.html
-├── assets/
-│   ├── css/
-│   │   └── style.css             # Unified modern stylesheet (light/dark mode)
-│   └── images/                   # Curated web-optimized imagery
-├── content/                      # Source drop directory for new markdown drafts
+│       └── deploy.yml            # Automated CI/CD (pytest audit + Pelican build + Pages deployment)
+├── content/                      # Source Markdown (Obsidian Vault drop folder)
 │   ├── posts/                    # Long-form posts (Health, Projects, Software, Ideas, Music)
-│   ├── notes/                    # Short observations and TIL notes
-│   └── reads/                    # Reading notes and synthesis
-├── index.html                    # Homepage (dashboard of recent posts, reads, photo spotlight)
-├── about.html                    # Biography, career background, and "Lanes" taxonomy
-├── posts.html                    # Master posts archive with category filter pills
-├── reads.html                    # Bookshelf of favorite reads and key mental models
-├── gallery.html                  # Photographic study & sky series showcase (MacWright style)
-├── favicon.ico                   # Browser favicon
-├── googledaf3f946832f8abf.html   # Google Search Console verification token
+│   ├── pages/                    # Standalone pages (about.md, reads.md, gallery.md)
+│   ├── images/                   # Manually curated photos referenced by posts
+│   └── extra/                    # Favicons and verification tokens
+├── theme/                        # Custom Pelican Jinja2 theme
+│   ├── templates/                # base.html, index.html, article.html, page.html, etc.
+│   └── static/css/style.css      # Central stylesheet (zero pills, dark/light mode)
+├── tests/
+│   └── test_pelican_e2e.py       # End-to-end test suite (build, links, zero-JS, formatting)
+├── pelicanconf.py                # Pelican configuration (with Obsidian YAML frontmatter reader)
+├── pyproject.toml                # Project dependencies (pelican, markdown, pyyaml, pytest)
+├── output/                       # Generated static HTML (deployed to GitHub Pages)
 ├── README.md                     # Core document 1: Site overview & guide
 ├── PLANNING.md                   # Core document 2: Active roadmap & backlog
 └── JOURNAL.md                    # Core document 3: Chronological changelog
+```
+
+---
+
+## Standard CLI Commands
+
+All operations use clean, standard commands that can be run directly in any terminal:
+
+### Install Dependencies
+```bash
+uv sync
+```
+
+### Build Static Site
+```bash
+uv run pelican content -s pelicanconf.py -o output -d
+```
+
+### Local Development Preview
+Start Pelican's local web server:
+```bash
+uv run pelican --listen -p 8000
+```
+Open `http://localhost:8000` in your browser.
+
+### Run End-to-End Test Suite
+```bash
+uv run pytest -v
 ```
 
 ---
@@ -70,29 +93,11 @@ Per `.agents/agent_rules.md`:
    - `README.md` (System overview, architecture, and instructions)
    - `PLANNING.md` (Active roadmap and technical backlog)
    - `JOURNAL.md` (Chronological decision log and change records)
-   *Walkthroughs or additional meta documents are strictly unauthorized without prior proposal and approval.*
-2. **Content Ownership**: The agent must **never draft content documents, create content files, or write articles** for Jim. All content authoring belongs exclusively to Jim.
-
----
-
-## Quality & Verification Standards
-
-All pages are verified via automated GitHub Actions auditing on every push (`.github/workflows/deploy.yml`):
-- **Zero-JS Enforcement**: Fails the build if any unauthorized `<script>` tag is detected in content files.
-- **Link & Asset Integrity**: Fails the build if any internal `href` link or image `src` fails to resolve.
-- **Accessibility & Contrast**: Legible typography (Charter/Sitka Text serif body, system sans headers), compliant contrast ratios in both light and dark modes.
-
----
-
-## Publishing & Deployment
-
-Deploying is as simple as pushing standard static files to GitHub:
-1. The GitHub Actions workflow (`.github/workflows/deploy.yml`) runs the audit suite on every push to `main`.
-2. Upon passing, it deploys the raw static assets directly to GitHub Pages with zero dynamic compilation.
-3. Custom domain mapping is maintained via GitHub Pages DNS.
+2. **Content Ownership**: The agent must **never draft content documents, create content files, or write articles** for Jim. All content authoring and image curation belongs exclusively to Jim.
+3. **Command Line Standards**: All agent commands must be standard, clean, reproducible CLI invocations that Jim can run manually.
 
 ---
 
 ## License
 
-Content and essays © Jim Collinsworth, licensed under [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
+Content and essays &copy; Jim Collinsworth, licensed under [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).

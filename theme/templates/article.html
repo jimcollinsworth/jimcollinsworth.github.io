@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} &mdash; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<div class="back-nav">
+  <a href="{{ SITEURL }}/posts.html">&larr; Back to Posts</a>
+</div>
+
+<article class="post">
+  <header class="post-header-full">
+    <h1 class="post-title">{{ article.title }}</h1>
+    <div class="meta">
+      <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%B %d, %Y') }}</time>
+      {% if article.category %}
+      &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-lane">{{ article.category }}</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post-content">
+    {{ article.content }}
+  </div>
+</article>
+{% endblock %}

@@ -2,10 +2,9 @@
 title: "Sleep Health & Movement Evaluation Plan"
 date: "2026-09-07"
 category: "Health"
-description: "Addressing sleep movement issues, limb twitching, and non-pharmaceutical clinical assessment pathways."
+slug: "sleep-movement-evaluation-plan"
+summary: "Addressing sleep movement issues, limb twitching, and non-pharmaceutical clinical assessment pathways."
 ---
-
-# Sleep Health & Movement Evaluation Plan
 
 Addressing sleep movement issues (periodic limb twitching, vocalization during sleep) and their impact on partner Sheryl. Avoiding pharmaceutical dependence; prioritizing lifestyle, nutrition, physical alignment, and integrative approaches.
 
