@@ -4,6 +4,32 @@
 
 ---
 
+## 2026-09-09 — Comprehensive Web Accessibility Implementation (WCAG 2.1/2.2 AAA & Zero-JS)
+
+### Context & Need
+- Jim requested addressing GitHub Issue #1 ("add accessibility to the site") filed on `jimcollinsworth/jimcollinsworth.github.io`.
+- Site required full compliance with accessibility standards (WCAG 2.1/2.2 AA and AAA, Section 508, ADA) across keyboard navigation, screen reader semantic structure, high-contrast modes, fluid typography scaling, and vestibular motion reduction while strictly maintaining the zero client-side JavaScript architecture.
+
+### Decisions & Actions Taken
+1. **Semantic HTML5 & ARIA Landmarks**:
+   - Added skip-to-content navigation (`<a href="#main-content" class="skip-link">Skip to main content</a>`) on every page, with immediate focus shifting to `<main id="main-content" tabindex="-1">`.
+   - Added landmark roles (`role="banner"`, `role="contentinfo"`), unambiguous ARIA navigation labels (`aria-label="Main Navigation"`, `aria-label="Footer Navigation"`, `aria-label="Filter posts by lane"`), and screen reader indicators (`aria-current="page"`, `.sr-only`).
+2. **WCAG AAA Contrast Palette & Accessible Focus Rings**:
+   - Upgraded link and text contrast ratios to exceed 7:1 (light link `#8a3710` at 7.2:1, dark link `#e2955a` at 7.3:1).
+   - Implemented high-visibility 3px `:focus-visible` outline rings with 3px offsets across all interactive elements.
+3. **Adaptive Accessibility Modes (Native CSS)**:
+   - Added `@media (prefers-contrast: more)` and `@media (prefers-color-scheme: dark) and (prefers-contrast: more)` for pure black/white high-contrast themes and forced link underlines.
+   - Added `@media (forced-colors: active)` for Windows High Contrast Mode system color compatibility.
+   - Added `@media (prefers-reduced-motion: reduce)` to disable transitions and animations for users with vestibular sensitivities.
+4. **Fluid Typography & Touch Sizing**:
+   - Replaced fixed mobile pixel root sizing with relative percentages (`html { font-size: 100%; }` and mobile `97%`), ensuring seamless browser text zoom up to 200%+ without layout clipping (WCAG 1.4.4).
+   - Applied minimum 38px touch targets and padding on navigation items.
+5. **Automated Accessibility Test Suite (`tests/test_accessibility.py`)**:
+   - Created 9 automated pytest tests covering lang attributes, skip links, landmarks, active nav tabs, image alt attributes, zero-JS policy, CSS accessibility rules, and touch targets.
+   - Total test suite now stands at 28 passing tests.
+
+---
+
 ## 2026-09-09 — Long-Term Roadmap Creation, Governance Alignment, & Visual Verification Report
 
 ### Context & Decisions

@@ -9,34 +9,35 @@
   <link rel="alternate icon" href="{{ SITEURL }}/favicon.ico" type="image/x-icon">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <div class="container">
-    <header class="site-header">
+    <header class="site-header" role="banner">
       <div class="site-branding">
         <div class="site-title"><a href="{{ SITEURL }}/index.html">{{ SITENAME }}</a></div>
         <div class="site-tagline">{{ SITESUBTITLE }}</div>
       </div>
-      <nav class="site-nav">
-        <a href="{{ SITEURL }}/index.html"{% if output_file == 'index.html' %} class="active"{% endif %}>Home</a>
-        <a href="{{ SITEURL }}/about.html"{% if page and page.slug == 'about' %} class="active"{% endif %}>About</a>
-        <a href="{{ SITEURL }}/posts.html"{% if output_file == 'posts.html' or article or category %} class="active"{% endif %}>Posts</a>
-        <a href="{{ SITEURL }}/reads.html"{% if page and page.slug == 'reads' %} class="active"{% endif %}>Reads</a>
-        <a href="{{ SITEURL }}/gallery.html"{% if page and page.slug == 'gallery' %} class="active"{% endif %}>Gallery</a>
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="{{ SITEURL }}/index.html"{% if output_file == 'index.html' %} class="active" aria-current="page"{% endif %}>Home</a>
+        <a href="{{ SITEURL }}/about.html"{% if page and page.slug == 'about' %} class="active" aria-current="page"{% endif %}>About</a>
+        <a href="{{ SITEURL }}/posts.html"{% if output_file == 'posts.html' or article or category %} class="active" aria-current="page"{% endif %}>Posts</a>
+        <a href="{{ SITEURL }}/reads.html"{% if page and page.slug == 'reads' %} class="active" aria-current="page"{% endif %}>Reads</a>
+        <a href="{{ SITEURL }}/gallery.html"{% if page and page.slug == 'gallery' %} class="active" aria-current="page"{% endif %}>Gallery</a>
       </nav>
     </header>
 
-    <main>
+    <main id="main-content" tabindex="-1">
       {% block content %}{% endblock %}
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-nav">
+    <footer class="site-footer" role="contentinfo">
+      <nav class="footer-nav" aria-label="Footer Navigation">
         <a href="{{ SITEURL }}/index.html">Home</a>
         <a href="{{ SITEURL }}/about.html">About</a>
         <a href="{{ SITEURL }}/posts.html">Posts</a>
         <a href="{{ SITEURL }}/reads.html">Reads</a>
         <a href="{{ SITEURL }}/gallery.html">Gallery</a>
-        <a href="https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8" target="_blank" rel="noopener">Google Photos</a>
-      </div>
+        <a href="https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8" target="_blank" rel="noopener">Google Photos <span class="sr-only">(opens external photo album in new tab)</span></a>
+      </nav>
       <div>
         Content &copy; Jim Collinsworth. Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
       </div>

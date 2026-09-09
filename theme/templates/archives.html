@@ -11,7 +11,7 @@
 
 {% if categories %}
 <nav class="lane-nav" aria-label="Filter posts by lane">
-  <a href="{{ SITEURL }}/posts.html" class="lane-link active">All</a>
+  <a href="{{ SITEURL }}/posts.html" class="lane-link active" aria-current="page">All</a>
   {% for cat, cat_articles in categories %}
   &bull; <a href="{{ SITEURL }}/{{ cat.url }}" class="lane-link">{{ cat }}</a>
   {% endfor %}

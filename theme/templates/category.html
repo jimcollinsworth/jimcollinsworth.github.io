@@ -13,7 +13,7 @@
 <nav class="lane-nav" aria-label="Filter posts by lane">
   <a href="{{ SITEURL }}/posts.html" class="lane-link">All</a>
   {% for cat, cat_articles in categories %}
-  &bull; <a href="{{ SITEURL }}/{{ cat.url }}" class="lane-link{% if cat == category %} active{% endif %}">{{ cat }}</a>
+  &bull; <a href="{{ SITEURL }}/{{ cat.url }}" class="lane-link{% if cat == category %} active{% endif %}"{% if cat == category %} aria-current="page"{% endif %}>{{ cat }}</a>
   {% endfor %}
 </nav>
 {% endif %}

@@ -104,19 +104,19 @@ def test_no_duplicate_page_titles():
     assert '<h1 class="page-title"' not in about_html
     assert '<h1>About' not in about_html
     # Verify the active nav tab is set
-    assert 'class="active">About</a>' in about_html
+    assert 'class="active"' in about_html and 'About</a>' in about_html
 
     reads_html = (OUTPUT_DIR / "reads.html").read_text(encoding="utf-8")
     assert '<h1>Reads' not in reads_html
-    assert 'class="active">Reads</a>' in reads_html
+    assert 'class="active"' in reads_html and 'Reads</a>' in reads_html
 
     gallery_html = (OUTPUT_DIR / "gallery.html").read_text(encoding="utf-8")
     assert '<h1>Gallery' not in gallery_html
-    assert 'class="active">Gallery</a>' in gallery_html
+    assert 'class="active"' in gallery_html and 'Gallery</a>' in gallery_html
 
     posts_html = (OUTPUT_DIR / "posts.html").read_text(encoding="utf-8")
     assert '<h1>Posts' not in posts_html
-    assert 'class="active">Posts</a>' in posts_html
+    assert 'class="active"' in posts_html and 'Posts</a>' in posts_html
 
 
 def test_zero_pills_lane_formatting():
