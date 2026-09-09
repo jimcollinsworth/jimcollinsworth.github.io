@@ -4,6 +4,54 @@
 
 ---
 
+## 2026-09-09 — Long-Term Roadmap Creation, Governance Alignment, & Visual Verification Report
+
+### Context & Decisions
+1. **Created `ROADMAP.md`**:
+   - Established a dedicated long-term vision, brainstorming, and creative sandbox document.
+   - Synthesized Jim's foundational tenets with creative concepts (Circle of Fifths music visualizer, USGS live earthquake tracker, high-volume photo archive navigation mini-app, M.E. local AI companion, and sleep/somatic movement tracking).
+   - Added speculative technical wishlists (zero-JS search index, pure SVG fretboard charts, Lake Michigan weather chronicles, offline PWA archive, micro-zines).
+2. **Strict Agent Governance Rule in `.agents/agent_rules.md`**:
+   - **Removed 8-viewport rule** from agent guidelines; confirmed it is a specific tool option on `tools/screenshots.py`.
+   - **Added strict rule**: The agent must **never add, modify, or append rules or files in `.agents/` without explicit permission from Jim**. Jim will explicitly request specific rules to be added.
+   - **Added strict Node/npm rule**: No Node.js or npm ever for applications or toolchains; the only current exception is `npx skills`.
+   - Updated governance docs to recognize `ROADMAP.md` alongside `README.md`, `PLANNING.md`, and `JOURNAL.md`.
+3. **Generated Visual Verification Report (`reports/responsive_screenshots_report.md`)**:
+   - Embedded 24 multi-resolution screenshot captures across 3 core pages (`index.html`, `about.html`, `posts.html`) covering all 8 viewports in light and dark modes.
+   - Staged all assets and submitted to GitHub for Jim's review.
+
+---
+
+## 2026-09-09 — Playwright Testing & Multi-Resolution Responsive Tooling
+
+### Context & Need
+- Jim requested visual verification across all display sizes and orientations: Phone, Tablet, Laptop, and Large Desktop / TV, in both Portrait and Landscape (8 viewports total).
+- Jim mandated 100% Python-based tooling (via `uv`) and strictly **no Node.js / npm**.
+- Formalized testing standards to ensure continuous multi-resolution visual sanity, zero-JS policy enforcement, and CLI command transparency.
+
+### Decisions & Actions Taken
+1. **Installed Python Playwright & Pytest Suite**:
+   - Added `playwright>=1.62.0` and `pytest-playwright>=0.9.0` to `pyproject.toml` dev group using `uv`.
+   - Installed headless Chromium browser binary (`uv run playwright install chromium`).
+2. **Built Multi-Resolution Screenshot Utility (`tools/screenshots.py`)**:
+   - Automated 4 device form factors x 2 orientations (8 viewports):
+     - **Phone**: 390x844 (portrait) / 844x390 (landscape)
+     - **Tablet**: 820x1180 (portrait) / 1180x820 (landscape)
+     - **Laptop**: 768x1366 (portrait) / 1366x768 (landscape)
+     - **Large Desktop / TV**: 1080x1920 (portrait) / 1920x1080 (landscape)
+   - Added CLI support for `--page` (defaults to `index.html`), `--color-scheme` (`light`, `dark`, `both`), `--viewport-only`, `--device`, and `--orientation`.
+   - Generates an interactive visual inspection HTML gallery (`screenshots/<page>/preview.html`).
+3. **Automated Playwright Responsive Tests (`tests/test_playwright_responsive.py`)**:
+   - Created headless Chromium tests verifying that core pages (`index.html`, `about.html`, `posts.html`, `reads.html`, `gallery.html`) render cleanly across mobile and desktop without uncaught console errors, 404 assets, or layout exceptions.
+   - Verified that `tools/screenshots.py` executes successfully in automated testing.
+   - Full test suite now contains 19 passing tests (`uv run pytest -v`).
+4. **CI/CD Alignment (`.github/workflows/deploy.yml`)**:
+   - Added Playwright Chromium installation step (`uv run playwright install --with-deps chromium`) to GitHub Actions workflow so full browser audits run automatically on every push.
+5. **Documentation & Utilities Inventory**:
+   - Added "Developer Utilities & Command Reference" to `README.md` and updated `PLANNING.md`.
+
+---
+
 ## 2026-09-08 — Magazine Multi-Column Desktop Grid, Orientation Adaptation & Progressive Density
 
 ### Decisions & Actions Taken

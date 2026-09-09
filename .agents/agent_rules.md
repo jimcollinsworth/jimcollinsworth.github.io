@@ -4,13 +4,14 @@ This document outlines the strict operational principles, technical constraints,
 
 ---
 
-## 1. Mandatory 3-Document Rule
+## 1. Mandatory Governance Documents
 
 > [!IMPORTANT]
-> The agent is authorized and permitted to maintain **only three** system design / meta documents in the root directory:
-> 1. `README.md` – Site overview, architecture, publishing instructions, and directory map.
-> 2. `PLANNING.md` – Active backlog, upcoming lanes, and technical roadmap.
-> 3. `JOURNAL.md` – Chronological project log recording milestones, technical decisions, and changes.
+> The agent is authorized and permitted to maintain **only four** core system and planning documents in the root directory:
+> 1. `README.md` – Site overview, architecture, developer utilities, publishing instructions, and directory map.
+> 2. `PLANNING.md` – Active backlog, sprint tasks, and near-term milestones.
+> 3. `ROADMAP.md` – Long-term discussion of features, brainstorming, creative ideas, and future possibilities.
+> 4. `JOURNAL.md` – Chronological project log recording milestones, technical decisions, and changes.
 >
 > **NO other system design, architecture, walkthrough, or meta documents may be created anywhere in this repository or workspace without first explicitly proposing them to Jim and receiving approval.**
 
@@ -23,21 +24,23 @@ This document outlines the strict operational principles, technical constraints,
 > - The agent must **NEVER draft content documents, essays, articles, posts, or personal notes** for Jim.
 > - The agent must **NEVER create new content files** on its own initiative.
 > - The agent must **NEVER assist with or write content** unless Jim explicitly and directly asks for that specific assistance.
-> - The agent's role is strictly technical stewardship: maintaining clean HTML/CSS infrastructure, ensuring responsive layouts, verifying link integrity, managing assets, and maintaining the three governance documents.
+> - The agent's role is strictly technical stewardship: maintaining clean HTML/CSS infrastructure, ensuring responsive layouts, verifying link integrity, managing assets, and maintaining the governance documents.
 
 ---
 
 ## 3. Technical Philosophy & Constraints
 
-1. **99.9% Pure HTML5 & Modern CSS**:
-   - Zero dynamic web page compilers (no Nikola, Jekyll, Hugo, Astro, Next.js).
-   - Zero Node.js / npm dependencies.
-   - Zero Python build dependencies.
-   - Pages are published directly by pushing standard static files to GitHub Pages (`main` branch).
-2. **Zero JavaScript**:
-   - The site operates completely with zero client-side JavaScript (`<script>` tags are strictly disallowed on content pages).
+1. **Pure Static Generation via Pelican**:
+   - Built with Pelican Python static site generator from clean Markdown sources in `content/`.
+   - Pure Python ecosystem managed via `uv` (`.venv/`).
+   - Output compiled to `output/` and deployed to GitHub Pages.
+2. **Zero Node.js / npm Policy**:
+   - Strictly **no Node.js or npm ever** for applications, site features, or development toolchains.
+   - The **only current exception** at this time is `npx skills` (for installing or managing agent skills).
+3. **Zero JavaScript Policy**:
+   - The site operates completely with zero client-side JavaScript (`<script>` tags are strictly disallowed on published content pages).
    - Interactivity is achieved through semantic HTML (e.g., `<details>`, `<summary>`, anchor links) and modern CSS.
-3. **Responsive & Accessible by Default**:
+4. **Responsive & Accessible by Default**:
    - Mobile-first, fluid responsive layout.
    - High color contrast and legible type scaling.
    - Built-in automatic light and dark mode via CSS media query:
@@ -74,12 +77,13 @@ Inspired by:
 
 ---
 
-## 6. Maintenance Procedures for the 3 Core Documents
+## 6. Maintenance Procedures for the 4 Core Documents
 
 Whenever technical changes, layout updates, or infrastructure features are implemented:
 1. **`JOURNAL.md`**: Append a concise entry under the current date detailing what technical changes were made and why.
-2. **`PLANNING.md`**: Update technical task statuses, roadmap milestones, and capture ideas discussed with Jim.
-3. **`README.md`**: Keep directory structures, stats, and high-level descriptions accurate as the site evolves.
+2. **`PLANNING.md`**: Update active technical task statuses, sprint items, and near-term milestones.
+3. **`ROADMAP.md`**: Update long-term vision, capture brainstormed concepts, and refine technical exploration proposals.
+4. **`README.md`**: Keep directory structures, stats, developer utility references, and high-level descriptions accurate as the site evolves.
 
 ---
 
@@ -90,4 +94,16 @@ Whenever technical changes, layout updates, or infrastructure features are imple
 > - Avoid opaque subshell wrappers, nested execution scripts, or obscure one-liners when standard commands exist.
 > - Use standard command-line tools unless not possible.
 > - If an operation cannot be run via standard, easily reproducible command-line syntax, stop and ask Jim before proceeding.
+
+---
+
+## 8. Agent Permissions & Rule Authorization (Strict)
+
+> [!CAUTION]
+> **Strict Boundary on Agent Rules & Permissions**:
+> - The agent must **NEVER add, modify, or append rules or files in `.agents/` without explicit permission from Jim**.
+> - Jim will explicitly request specific rules to be added.
+> - The agent must never unilaterally codify tool options, personal habits, or arbitrary constraints into `.agents/`.
+
+
 

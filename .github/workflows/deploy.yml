@@ -35,6 +35,9 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
+      - name: Install Playwright Chromium
+        run: uv run playwright install --with-deps chromium
+
       - name: Build site with Pelican
         run: uv run pelican content -s pelicanconf.py -o output -d
 

@@ -47,14 +47,72 @@ jimcollinsworth.github.io/
 │   ├── templates/                # base.html, index.html, article.html, page.html, etc.
 │   └── static/css/style.css      # Central stylesheet (zero pills, dark/light mode)
 ├── tests/
-│   └── test_pelican_e2e.py       # End-to-end test suite (build, links, zero-JS, formatting)
+│   ├── test_pelican_e2e.py       # End-to-end test suite (build, links, zero-JS, formatting)
+│   └── test_playwright_responsive.py # Playwright headless browser & responsive audit
+├── tools/
+│   └── screenshots.py            # Multi-resolution screenshot generator (4 devices x 2 orientations)
 ├── pelicanconf.py                # Pelican configuration (with Obsidian YAML frontmatter reader)
-├── pyproject.toml                # Project dependencies (pelican, markdown, pyyaml, pytest)
+├── pyproject.toml                # Project dependencies (pelican, markdown, playwright, pytest)
 ├── output/                       # Generated static HTML (deployed to GitHub Pages)
 ├── README.md                     # Core document 1: Site overview & guide
 ├── PLANNING.md                   # Core document 2: Active roadmap & backlog
-└── JOURNAL.md                    # Core document 3: Chronological changelog
+├── ROADMAP.md                    # Core document 3: Long-term vision & brainstormed ideas
+└── JOURNAL.md                    # Core document 4: Chronological changelog
 ```
+
+---
+
+## Developer Utilities & Command Reference
+
+All developer tools and test suites are 100% pure Python managed cleanly via `uv`. Strictly **no Node.js or npm** ever for applications or toolchains (sole exception: `npx skills` for agent skills).
+
+| Utility / Command | Purpose | Example CLI Invocations |
+| :--- | :--- | :--- |
+| `tools/screenshots.py` | Multi-resolution responsive capture across 4 devices & 2 orientations (8 viewports) | `uv run python tools/screenshots.py --page index.html`<br>`uv run python tools/screenshots.py --page about.html --color-scheme dark` |
+| `pytest` | End-to-end audit (Pelican build, zero-JS policy, link validation, Playwright browser test) | `uv run pytest -v` |
+| `pelican` (build) | Static site compiler | `uv run pelican content -s pelicanconf.py -o output -d` |
+| `pelican --listen` | Local live development web server | `uv run pelican --listen -p 8000` |
+| `playwright install` | Install headless Chromium browser binary | `uv run playwright install chromium` |
+
+---
+
+## Multi-Resolution Screenshot Utility (`tools/screenshots.py`)
+
+A pure-Python Playwright utility that captures any site page across **4 device form factors** in both **Portrait and Landscape** orientations (8 viewports total):
+
+| Device Form Factor | Portrait Viewport | Landscape Viewport | Target Device Class |
+| :--- | :--- | :--- | :--- |
+| **Phone** | 390 × 844 | 844 × 390 | iPhone 12–16 / Modern Mobile |
+| **Tablet** | 820 × 1180 | 1180 × 820 | iPad / Tablet |
+| **Laptop** | 768 × 1366 | 1366 × 768 | 13–15" Laptop Display |
+| **Large Desktop / TV** | 1080 × 1920 | 1920 × 1080 | 1080p Desktop Monitor or TV |
+
+### Usage & Examples
+
+```bash
+# Capture home page (output/index.html) across all 8 viewports in light mode
+uv run python tools/screenshots.py
+
+# Capture any specific page
+uv run python tools/screenshots.py --page about.html
+uv run python tools/screenshots.py --page posts.html
+uv run python tools/screenshots.py --page posts/sleep-movement-evaluation-plan.html
+
+# Emulate dark mode
+uv run python tools/screenshots.py --page about.html --color-scheme dark
+
+# Emulate both light and dark modes (16 screenshots total)
+uv run python tools/screenshots.py --page index.html --color-scheme both
+
+# Capture above-the-fold viewport only (instead of full page)
+uv run python tools/screenshots.py --viewport-only
+
+# Filter to a specific device or orientation
+uv run python tools/screenshots.py --device phone --orientation portrait
+```
+
+> [!TIP]
+> The script automatically creates an interactive visual gallery at `screenshots/<page>/preview.html` where you can inspect all viewports side-by-side or open high-resolution captures in separate tabs.
 
 ---
 
@@ -65,6 +123,11 @@ All operations use clean, standard commands that can be run directly in any term
 ### Install Dependencies
 ```bash
 uv sync
+```
+
+### Install Playwright Browser Binary
+```bash
+uv run playwright install chromium
 ```
 
 ### Build Static Site
@@ -84,17 +147,21 @@ Open `http://localhost:8000` in your browser.
 uv run pytest -v
 ```
 
+
 ---
 
-## Agent Governance: The 3-Document & Content Rules
+## Agent Governance: Core Documents & Content Rules
 
 Per `.agents/agent_rules.md`:
-1. **Mandatory 3-Document Rule**: The agent may maintain **only three** root system design documents:
-   - `README.md` (System overview, architecture, and instructions)
-   - `PLANNING.md` (Active roadmap and technical backlog)
-   - `JOURNAL.md` (Chronological decision log and change records)
+1. **Mandatory 4 Governance Documents**: The agent may maintain **only four** root system and planning documents:
+   - `README.md` (System overview, architecture, developer utilities, and instructions)
+   - `PLANNING.md` (Active backlog, sprint tasks, and near-term milestones)
+   - `ROADMAP.md` (Long-term vision, brainstorming, creative ideas, and future possibilities)
+   - `JOURNAL.md` (Chronological decision log and technical change records)
 2. **Content Ownership**: The agent must **never draft content documents, create content files, or write articles** for Jim. All content authoring and image curation belongs exclusively to Jim.
-3. **Command Line Standards**: All agent commands must be standard, clean, reproducible CLI invocations that Jim can run manually.
+3. **Agent Rule Authorization**: The agent must **never add or modify rules in `.agents/`** without explicit permission from Jim.
+4. **Command Line Standards**: All agent commands must be standard, clean, reproducible CLI invocations that Jim can run manually.
+5. **Toolchain Constraints**: Strictly **no Node.js or npm** ever for applications or toolchains (only exception: `npx skills`).
 
 ---
 
