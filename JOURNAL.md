@@ -4,6 +4,14 @@
 
 ---
 
+## 2026-09-09 — Governance Rule: Remote Push Confirmation Requirement
+
+### Context & Decision
+- Jim established a strict operational rule prohibiting automated or autonomous `git push` commands.
+- **Decision**: Added Section 9 to `.agents/agent_rules.md`. Pushes to remote mutate shared repository state, trigger GitHub Actions CI/CD workflows, and deploy live artifacts to GitHub Pages. The agent may build, test, and commit locally, but must always pause and request explicit confirmation from Jim before executing any `git push`.
+
+---
+
 ## 2026-09-09 — Comprehensive Web Accessibility Implementation (WCAG 2.1/2.2 AAA & Zero-JS)
 
 ### Context & Need

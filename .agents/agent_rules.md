@@ -105,5 +105,12 @@ Whenever technical changes, layout updates, or infrastructure features are imple
 > - Jim will explicitly request specific rules to be added.
 > - The agent must never unilaterally codify tool options, personal habits, or arbitrary constraints into `.agents/`.
 
+---
 
+## 9. Git Remote Operations (Strict)
 
+> [!CAUTION]
+> **No Remote Pushes Without Explicit Confirmation**:
+> - The agent must **NEVER push commits to any remote repository (`git push`) without Jim's explicit request or confirmation**.
+> - Push is considered too large an action to take autonomously because pushing triggers automated CI/CD builds, deploys to GitHub Pages, and mutates public/shared repository state.
+> - The agent may stage and commit changes locally for verification, but must always stop and wait for Jim to confirm before pushing.
