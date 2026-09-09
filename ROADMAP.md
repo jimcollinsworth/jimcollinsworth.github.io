@@ -101,9 +101,8 @@ These are high-potential concepts, experiments, and passion projects raised in d
   - *Local Cockpit (Zero-Cost / Native Disk Access)*: The Python backend runs locally on Jim's machine (`uv run gradio app.py` at `127.0.0.1:7860`), maintaining fast access to local folders (`d:\projects\...`), local Ollama models, and self-healing embedded PostgreSQL locks without network overhead or storage fees.
   - *Hosted Hugging Face Space (Cloud Access)*: Deploy the Gradio application to a public or private Hugging Face Space.
   - *PostgreSQL on Hugging Face Considerations*:
-    - **Ephemeral Disk Trap**: Free-tier Hugging Face Spaces reset their local filesystem when sleeping or restarting; embedded PostgreSQL tables in `~/.pixeltable/` are lost on restart unless persistent volume storage ($5/mo) is attached.
-    - **Serverless PostgreSQL Alternative**: Pair a free Hugging Face Space with a free-tier external managed serverless PostgreSQL instance (**Neon.tech** or **Supabase**). This provides persistent tabular storage, versioned Pixeltable schema, and continuous availability across restarts with zero monthly cost.
-    - **Docker SDK Space**: Alternatively, run a custom Docker container on Hugging Face with an embedded PostgreSQL service managed via `supervisord`.
+    - **Ephemeral Storage as a Demo Sandbox Feature**: For a public-facing demo or interactive playground, ephemeral container storage is an intentional architectural advantage. Every visitor or session gets an isolated, self-cleaning sandbox. Visitors can upload sample documents, run prompt tests, and inspect tables without data leakage, privacy concerns between visitors, or disk bloat. The embedded PostgreSQL instance spins up automatically on Space boot, operates in-container, and cleanly resets on sleep/restart.
+    - **Persistent Options (If Long-Term Retention Needed)**: If production data retention is desired, pair with external serverless PostgreSQL (Neon / Supabase free tier) or attach a Hugging Face persistent SSD volume ($5/mo).
 
 ---
 
