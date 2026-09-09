@@ -206,3 +206,18 @@ def test_touch_target_sizes_in_css():
     assert "min-height: 38px" in css, (
         "Interactive navigation links must specify minimum touch target size (min-height: 38px)."
     )
+
+
+def test_mode_switchers_present_and_accessible():
+    """Verify all pages provide zero-JS theme, contrast, and text-size switchers."""
+    pages = get_html_pages()
+    for page in pages:
+        html = page.read_text(encoding="utf-8")
+        assert 'id="theme-toggle"' in html, f"Missing #theme-toggle in {page.name}"
+        assert 'id="contrast-toggle"' in html, f"Missing #contrast-toggle in {page.name}"
+        assert 'id="text-size-toggle"' in html, f"Missing #text-size-toggle in {page.name}"
+        assert 'class="site-controls"' in html, f"Missing .site-controls in {page.name}"
+        assert 'for="theme-toggle"' in html, f"Missing label for #theme-toggle in {page.name}"
+        assert 'for="contrast-toggle"' in html, f"Missing label for #contrast-toggle in {page.name}"
+        assert 'for="text-size-toggle"' in html, f"Missing label for #text-size-toggle in {page.name}"
+

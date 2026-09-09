@@ -4,6 +4,28 @@
 
 ---
 
+## 2026-09-09 — In-Page Accessibility & Theme Switchers (Zero-JS CSS :has)
+
+### Context & Need
+- Jim requested in-page, icon-based switchers to toggle light/dark theme, high-contrast mode, and text size directly on the site, while clarifying how dark-mode screenshots had been generated previously.
+- Previous dark mode operated via OS media queries (`prefers-color-scheme: dark`) emulated by Playwright. Adding manual on-page controls required a solution that strictly preserved the Zero-JS architecture without requiring client-side `<script>` tags.
+
+### Decisions & Actions Taken
+1. **Pure CSS `:has()` Switcher Architecture**:
+   - Added semantic `<input type="checkbox">` toggles at the top of `<body>` (`#theme-toggle`, `#contrast-toggle`, `#text-size-toggle`) with `.sr-only` accessibility styling.
+   - Built a `.site-controls` button group in the header with 3 accessible icon labels:
+     - **Theme Switcher** (`for="theme-toggle"`): Displays SVG Moon in light mode (to trigger dark) and SVG Sun in dark mode (to trigger light). Flips `--bg`, `--text`, `--link`, and cards via `body:has(#theme-toggle:checked)`.
+     - **High-Contrast Switcher** (`for="contrast-toggle"`): SVG Contrast symbol (`◐`). Triggers pure black/white high-contrast palettes, forced link underlines, and heavy borders.
+     - **Text Size Switcher** (`for="text-size-toggle"`): SVG Typography symbol (`aA`). Scales font sizing up to `1.32rem` with comfortable line height across body and headings.
+2. **Accessible Interaction & Visual Feedback**:
+   - Each button has minimum 38x38px touch targets, hover transitions, active pressed background states when toggled, and keyboard `:focus-visible` rings.
+3. **Automated Testing & Interactive Verification**:
+   - Added `test_mode_switchers_present_and_accessible` to `tests/test_accessibility.py`.
+   - Added `test_in_page_mode_switchers_interactive` to `tests/test_playwright_responsive.py` verifying real browser clicks on the toggles successfully transition colors and font sizes.
+   - Total test suite now stands at 30 passing tests.
+
+---
+
 ## 2026-09-09 — Governance Rule: Remote Push Confirmation Requirement
 
 ### Context & Decision

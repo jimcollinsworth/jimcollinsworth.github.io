@@ -96,3 +96,40 @@ def test_screenshot_script_execution(tmp_path):
     screenshots = list(index_dir.glob("*.png"))
     assert len(screenshots) == 1
     assert (index_dir / "preview.html").exists()
+
+
+def test_in_page_mode_switchers_interactive(browser_context):
+    """Verify clicking theme, contrast, and text size switchers changes visual state in browser."""
+    index_file = OUTPUT_DIR / "index.html"
+    assert index_file.exists()
+
+    page = browser_context.new_page()
+    try:
+        page.goto(f"file:///{index_file.as_posix()}")
+
+        # Initial Light Theme
+        initial_bg = page.evaluate("() => window.getComputedStyle(document.body).backgroundColor")
+        assert "250, 248, 245" in initial_bg  # #faf8f5
+
+        # Click Theme Toggle -> switches to Dark
+        page.click('label[for="theme-toggle"]')
+        is_checked = page.evaluate("() => document.getElementById('theme-toggle').checked")
+        assert is_checked is True, f"theme-toggle was not checked: {is_checked}"
+        page.wait_for_function("() => window.getComputedStyle(document.body).backgroundColor.includes('20, 22, 23')")
+        dark_bg = page.evaluate("() => window.getComputedStyle(document.body).backgroundColor")
+        assert "20, 22, 23" in dark_bg, f"dark_bg was {dark_bg}"
+
+        # Click Contrast Toggle -> switches to High Contrast Dark
+        page.click('label[for="contrast-toggle"]')
+        page.wait_for_function("() => window.getComputedStyle(document.body).backgroundColor.includes('0, 0, 0')")
+        contrast_bg = page.evaluate("() => window.getComputedStyle(document.body).backgroundColor")
+        assert "0, 0, 0" in contrast_bg  # #000000
+
+        # Click Text Size Toggle -> increases body font size
+        initial_font_size = page.evaluate("() => parseFloat(window.getComputedStyle(document.body).fontSize)")
+        page.click('label[for="text-size-toggle"]')
+        enlarged_font_size = page.evaluate("() => parseFloat(window.getComputedStyle(document.body).fontSize)")
+        assert enlarged_font_size > initial_font_size
+    finally:
+        page.close()
+

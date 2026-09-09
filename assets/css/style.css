@@ -29,6 +29,23 @@
   --line-height-body: 1.7;
 }
 
+/* Manual Theme Toggle (Pure CSS :has) */
+/* When in default Light mode, checking #theme-toggle switches to Dark */
+body:has(#theme-toggle:checked) {
+  --bg: #141617;
+  --bg-card: #1c1e20;
+  --bg-subtle: #232628;
+  --text: #eae8e3;
+  --text-muted: #a6a9ac;
+  --border: #2e3235;
+  --border-subtle: #25282a;
+  --link: #e2955a;
+  --link-hover: #f5bb8c;
+  --tag-bg: #292d30;
+  --tag-text: #d0cecd;
+  --code-bg: #222527;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     /* Deep slate & warm charcoal dark palette (WCAG AAA compliant) */
@@ -44,6 +61,22 @@
     --tag-bg: #292d30;
     --tag-text: #d0cecd;
     --code-bg: #222527;
+  }
+
+  /* In OS dark mode, checking #theme-toggle flips back to Light */
+  body:has(#theme-toggle:checked) {
+    --bg: #faf8f5;
+    --bg-card: #ffffff;
+    --bg-subtle: #f2eee6;
+    --text: #1f2022;
+    --text-muted: #55575a;
+    --border: #dfd9ce;
+    --border-subtle: #eae4d8;
+    --link: #8a3710;
+    --link-hover: #501e06;
+    --tag-bg: #eae5d9;
+    --tag-text: #454744;
+    --code-bg: #ebe6db;
   }
 }
 
@@ -154,10 +187,17 @@ body {
     padding: 1.25rem 1rem 2.5rem;
   }
   .site-branding {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .site-identity {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.2rem;
-    margin-bottom: 1rem;
   }
   .site-title {
     font-size: 1.25rem;
@@ -178,10 +218,17 @@ header.site-header {
 .site-branding {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.site-identity {
+  display: flex;
   align-items: baseline;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 1.25rem;
 }
 
 .site-title,
@@ -205,6 +252,90 @@ header.site-header {
 
 .site-tagline {
   color: var(--text-muted);
+}
+
+/* Display & Accessibility Mode Switchers (Zero-JS) */
+.site-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.control-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-card);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  user-select: none;
+}
+
+.control-btn:hover {
+  color: var(--link);
+  border-color: var(--link);
+  background-color: var(--bg-subtle);
+}
+
+.control-icon {
+  display: block;
+}
+
+/* Sun / Moon visibility state */
+.control-icon.icon-sun {
+  display: none;
+}
+.control-icon.icon-moon {
+  display: block;
+}
+
+body:has(#theme-toggle:checked) .control-icon.icon-sun {
+  display: block;
+}
+body:has(#theme-toggle:checked) .control-icon.icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .control-icon.icon-sun {
+    display: block;
+  }
+  .control-icon.icon-moon {
+    display: none;
+  }
+
+  body:has(#theme-toggle:checked) .control-icon.icon-sun {
+    display: none;
+  }
+  body:has(#theme-toggle:checked) .control-icon.icon-moon {
+    display: block;
+  }
+}
+
+/* Active pressed button state indicators */
+body:has(#theme-toggle:checked) label[for="theme-toggle"],
+body:has(#contrast-toggle:checked) label[for="contrast-toggle"],
+body:has(#text-size-toggle:checked) label[for="text-size-toggle"] {
+  background-color: var(--tag-bg);
+  border-color: var(--link);
+  color: var(--link);
+}
+
+/* Keyboard focus indicators for toggles */
+body:has(#theme-toggle:focus-visible) label[for="theme-toggle"],
+body:has(#contrast-toggle:focus-visible) label[for="contrast-toggle"],
+body:has(#text-size-toggle:focus-visible) label[for="text-size-toggle"] {
+  outline: 3px solid var(--link);
+  outline-offset: 2px;
 }
 
 nav.site-nav {
@@ -846,3 +977,139 @@ footer.site-footer {
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   Manual Accessibility Toggle Triggers (Zero-JS CSS :has)
+   ========================================================================== */
+
+/* Manual High-Contrast Mode Toggle (Light) */
+body:has(#contrast-toggle:checked) {
+  --bg: #ffffff !important;
+  --bg-card: #ffffff !important;
+  --bg-subtle: #f0ede6 !important;
+  --text: #000000 !important;
+  --text-muted: #1a1a1a !important;
+  --border: #000000 !important;
+  --border-subtle: #333333 !important;
+  --link: #702600 !important;
+  --link-hover: #3d1400 !important;
+  --tag-bg: #e6e0d4 !important;
+  --tag-text: #000000 !important;
+  --code-bg: #e8e3d8 !important;
+}
+
+body:has(#contrast-toggle:checked) a {
+  text-decoration: underline !important;
+}
+
+body:has(#contrast-toggle:checked) header.site-header,
+body:has(#contrast-toggle:checked) footer.site-footer,
+body:has(#contrast-toggle:checked) th,
+body:has(#contrast-toggle:checked) td,
+body:has(#contrast-toggle:checked) hr,
+body:has(#contrast-toggle:checked) .post-item {
+  border-color: #000000 !important;
+}
+
+/* Manual High-Contrast Mode Toggle (Dark Base) */
+body:has(#theme-toggle:checked):has(#contrast-toggle:checked) {
+  --bg: #000000 !important;
+  --bg-card: #080808 !important;
+  --bg-subtle: #141414 !important;
+  --text: #ffffff !important;
+  --text-muted: #e6e6e6 !important;
+  --border: #ffffff !important;
+  --border-subtle: #cccccc !important;
+  --link: #ffb070 !important;
+  --link-hover: #ffd4a8 !important;
+  --tag-bg: #1c1f21 !important;
+  --tag-text: #ffffff !important;
+  --code-bg: #181a1b !important;
+}
+
+body:has(#theme-toggle:checked):has(#contrast-toggle:checked) header.site-header,
+body:has(#theme-toggle:checked):has(#contrast-toggle:checked) footer.site-footer,
+body:has(#theme-toggle:checked):has(#contrast-toggle:checked) th,
+body:has(#theme-toggle:checked):has(#contrast-toggle:checked) td,
+body:has(#theme-toggle:checked):has(#contrast-toggle:checked) hr,
+body:has(#theme-toggle:checked):has(#contrast-toggle:checked) .post-item {
+  border-color: #ffffff !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) {
+    --bg: #000000 !important;
+    --bg-card: #080808 !important;
+    --bg-subtle: #141414 !important;
+    --text: #ffffff !important;
+    --text-muted: #e6e6e6 !important;
+    --border: #ffffff !important;
+    --border-subtle: #cccccc !important;
+    --link: #ffb070 !important;
+    --link-hover: #ffd4a8 !important;
+    --tag-bg: #1c1f21 !important;
+    --tag-text: #ffffff !important;
+    --code-bg: #181a1b !important;
+  }
+
+  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) header.site-header,
+  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) footer.site-footer,
+  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) th,
+  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) td,
+  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) hr,
+  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) .post-item {
+    border-color: #ffffff !important;
+  }
+
+  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) {
+    --bg: #ffffff !important;
+    --bg-card: #ffffff !important;
+    --bg-subtle: #f0ede6 !important;
+    --text: #000000 !important;
+    --text-muted: #1a1a1a !important;
+    --border: #000000 !important;
+    --border-subtle: #333333 !important;
+    --link: #702600 !important;
+    --link-hover: #3d1400 !important;
+    --tag-bg: #e6e0d4 !important;
+    --tag-text: #000000 !important;
+    --code-bg: #e8e3d8 !important;
+  }
+
+  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) header.site-header,
+  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) footer.site-footer,
+  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) th,
+  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) td,
+  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) hr,
+  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) .post-item {
+    border-color: #000000 !important;
+  }
+}
+
+/* Manual Text Size Scaling Toggle */
+body:has(#text-size-toggle:checked) {
+  font-size: 1.32rem;
+  line-height: 1.8;
+}
+
+body:has(#text-size-toggle:checked) .site-title {
+  font-size: 1.55rem;
+}
+
+body:has(#text-size-toggle:checked) h1 {
+  font-size: 2.15rem;
+}
+
+body:has(#text-size-toggle:checked) h2 {
+  font-size: 1.65rem;
+}
+
+body:has(#text-size-toggle:checked) h3 {
+  font-size: 1.35rem;
+}
+
+body:has(#text-size-toggle:checked) .post-title,
+body:has(#text-size-toggle:checked) .book-title {
+  font-size: 1.45rem;
+}
+
