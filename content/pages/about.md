@@ -17,7 +17,7 @@ slug: "about"
 
 The name of this site reflects my habit of venturing into domains well outside my core training. Rather than siloing myself into a single specialty, I organize my active pursuits and projects into thematic **Lanes**:
 
-<div class="lanes-list">
+<div class="lanes-list grid-view">
   <div class="lane-entry">
     <h3><a href="posts.html#music">Music &amp; Art</a></h3>
     <p>Guitar, piano, music studies, drawing, and photography.</p>

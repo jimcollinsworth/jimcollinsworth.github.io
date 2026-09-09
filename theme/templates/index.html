@@ -12,82 +12,115 @@
 
 <hr>
 
-<section>
-  <h2>Recent Posts</h2>
-  {% if articles %}
-  <ul class="post-list">
-    {% for article in articles[:3] %}
-    <li class="post-item">
-      <div class="post-header">
-        <h3 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
-        <div class="post-meta">
-          <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
-          {% if article.category %}
-          &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-lane">{{ article.category }}</a>
-          {% endif %}
+<div class="desktop-two-col">
+  <!-- Main Column: Featured Starred Post + Recent Reads -->
+  <div class="main-column">
+    <section>
+      <h2>Featured Post</h2>
+      {% if articles %}
+      {% set featured = articles[0] %}
+      <article class="post-item featured">
+        <div class="post-header">
+          <h3 class="post-title"><a href="{{ SITEURL }}/{{ featured.url }}">{{ featured.title }}</a></h3>
+          <div class="post-meta">
+            <time datetime="{{ featured.date.strftime('%Y-%m-%d') }}">{{ featured.date.strftime('%b %d, %Y') }}</time>
+            {% if featured.category %}
+            &bull; <a href="{{ SITEURL }}/{{ featured.category.url }}" class="post-lane">{{ featured.category }}</a>
+            {% endif %}
+          </div>
         </div>
-      </div>
-      {% if article.summary %}
-      <p class="post-desc">
-        {{ article.summary|striptags }}
+        <div class="post-desc">
+          <p class="post-teaser">
+            Movement during sleep is the problem: leg/body twitching and vocalization. A structured plan focusing on nutrition, exercise, somatic alignment (Alexander Technique, Tai Chi), and standardized self-evaluations.
+          </p>
+          <p class="post-detail">
+            Standardized baseline clinical assessments tracked over time include the Restless Legs Syndrome Rating Scale (RLSRS &amp; IRLSSG), Pittsburgh Sleep Quality Index (PSQI), and Epworth Sleepiness Scale (ESS) alongside daily sleep diary notes.
+          </p>
+        </div>
+        <p><a href="{{ SITEURL }}/{{ featured.url }}">Read full post &rarr;</a></p>
+      </article>
+      {% endif %}
+    </section>
+
+    <section>
+      <h2>Recent Reads</h2>
+      <ul class="book-list">
+        <li class="book-item">
+          <div class="book-header">
+            <h3 class="book-title"><a href="{{ SITEURL }}/reads.html">Lorem Ipsum Dolor Sit Amet *</a></h3>
+            <div class="book-meta">
+              <span>Author Name</span> &bull; <time datetime="2026-09">Sep 2026</time>
+            </div>
+          </div>
+          <p class="book-notes">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </li>
+        <li class="book-item">
+          <div class="book-header">
+            <h3 class="book-title"><a href="{{ SITEURL }}/reads.html">Consectetur Adipiscing Elit</a></h3>
+            <div class="book-meta">
+              <span>Author Name</span> &bull; <time datetime="2026-08">Aug 2026</time>
+            </div>
+          </div>
+          <p class="book-notes">
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </li>
+      </ul>
+      <p>
+        <a href="{{ SITEURL }}/reads.html">Browse the complete bookshelf &rarr;</a>
+      </p>
+    </section>
+  </div>
+
+  <!-- Sidebar Column: Recent Stream & Photo Spotlight -->
+  <div class="sidebar-column">
+    <section>
+      <h2>Recent Stream</h2>
+      {% if articles and articles|length > 1 %}
+      <ul class="post-list">
+        {% for article in articles[1:4] %}
+        <li class="post-item">
+          <div class="post-header">
+            <h3 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+            <div class="post-meta">
+              <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
+              {% if article.category %}
+              &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-lane">{{ article.category }}</a>
+              {% endif %}
+            </div>
+          </div>
+          {% if article.summary %}
+          <div class="post-desc">
+            <p class="post-teaser">
+              {{ article.summary|striptags }}
+            </p>
+          </div>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      <p>
+        <a href="{{ SITEURL }}/posts.html">View all posts &rarr;</a>
       </p>
       {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
-  <p>
-    <a href="{{ SITEURL }}/posts.html">View all posts &rarr;</a>
-  </p>
-  {% else %}
-  <p>No posts published yet.</p>
-  {% endif %}
-</section>
+    </section>
 
-<hr>
+    <hr>
 
-<section>
-  <h2>Recent Reads</h2>
-  <ul class="book-list">
-    <li class="book-item">
-      <div class="book-header">
-        <h3 class="book-title"><a href="{{ SITEURL }}/reads.html">Lorem Ipsum Dolor Sit Amet *</a></h3>
-        <div class="book-meta">
-          <span>Author Name</span> &bull; <time datetime="2026-09">Sep 2026</time>
-        </div>
+    <section>
+      <h2>Photo Spotlight</h2>
+      <div class="photo-stream">
+        <figure>
+          <img src="{{ SITEURL }}/images/sky-lakefront.jpg" alt="Lake Michigan horizon study" loading="lazy">
+          <figcaption>Lake Michigan horizon &mdash; Chicago lakefront morning study</figcaption>
+        </figure>
       </div>
-      <p class="book-notes">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      <p>
+        <a href="{{ SITEURL }}/gallery.html">Explore the full photo gallery &rarr;</a>
       </p>
-    </li>
-    <li class="book-item">
-      <div class="book-header">
-        <h3 class="book-title"><a href="{{ SITEURL }}/reads.html">Consectetur Adipiscing Elit</a></h3>
-        <div class="book-meta">
-          <span>Author Name</span> &bull; <time datetime="2026-08">Aug 2026</time>
-        </div>
-      </div>
-      <p class="book-notes">
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </p>
-    </li>
-  </ul>
-  <p>
-    <a href="{{ SITEURL }}/reads.html">Browse the complete bookshelf &rarr;</a>
-  </p>
-</section>
-
-<hr>
-
-<section>
-  <h2>Photo Spotlight</h2>
-  <div class="photo-stream">
-    <figure>
-      <img src="{{ SITEURL }}/images/sky-lakefront.jpg" alt="Lake Michigan horizon study" loading="lazy">
-      <figcaption>Lake Michigan horizon &mdash; Chicago lakefront morning study</figcaption>
-    </figure>
+    </section>
   </div>
-  <p>
-    <a href="{{ SITEURL }}/gallery.html">Explore the full photo gallery &rarr;</a>
-  </p>
-</section>
+</div>
 {% endblock %}

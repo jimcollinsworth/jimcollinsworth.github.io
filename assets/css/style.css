@@ -25,7 +25,7 @@
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "JetBrains Mono", "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
   
-  --max-width: 720px;
+  --max-width: 1080px;
   --line-height-body: 1.7;
 }
 
@@ -60,19 +60,61 @@ html {
 
 body {
   margin: 0;
-  padding: 2.5rem 1.25rem 4rem;
+  padding: 2.5rem 2rem 4rem;
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-serif);
   line-height: var(--line-height-body);
   transition: background-color 0.2s ease, color 0.2s ease;
+  overflow-wrap: break-word;
 }
 
 /* Layout Container */
 .container {
+  width: 100%;
   max-width: var(--max-width);
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Supersize Desktop (> 1360px) */
+@media (min-width: 1360px) {
+  :root {
+    --max-width: 1380px;
+  }
+  body {
+    padding: 3rem 3rem 5rem;
+  }
+}
+
+/* Tablets (640px - 1024px) */
+@media (max-width: 1024px) {
+  body {
+    padding: 2rem 1.75rem 3.5rem;
+  }
+}
+
+/* Mobile (< 640px) */
+@media (max-width: 640px) {
+  html {
+    font-size: 15.5px;
+  }
+  body {
+    padding: 1.25rem 1rem 2.5rem;
+  }
+  .site-branding {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    margin-bottom: 1rem;
+  }
+  .site-title {
+    font-size: 1.25rem;
+  }
+  .site-tagline {
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
 }
 
 /* Header & Navigation */
@@ -293,7 +335,33 @@ hr {
   text-decoration: underline;
 }
 
-/* Calvin-Style Post Listings */
+/* Prose Reading Measure */
+article p, .page-intro p, .post-desc, .book-notes {
+  max-width: 76ch;
+}
+
+/* Multi-Column Magazine Layouts */
+.desktop-two-col {
+  display: block;
+}
+
+@media (min-width: 960px), (min-width: 720px) and (orientation: landscape) {
+  .desktop-two-col {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+}
+
+@media (min-width: 1360px) {
+  .desktop-two-col {
+    grid-template-columns: 1.3fr 1fr;
+    gap: 4.5rem;
+  }
+}
+
+/* Post Listings & Adaptive Density */
 .post-list, .book-list {
   list-style: none;
   padding: 0;
@@ -302,6 +370,21 @@ hr {
 
 .post-item, .book-item {
   margin-bottom: 2.25rem;
+}
+
+.post-item.featured {
+  padding-bottom: 2rem;
+  margin-bottom: 2.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.post-item.featured .post-title {
+  font-size: 1.45rem;
+  line-height: 1.25;
+}
+
+.post-item.featured .post-desc {
+  font-size: 1rem;
 }
 
 .post-header, .book-header {
@@ -320,6 +403,7 @@ hr {
   letter-spacing: -0.015em;
   margin: 0;
   line-height: 1.25;
+  overflow-wrap: break-word;
 }
 
 .post-title a, .book-title {
@@ -353,6 +437,32 @@ hr {
   margin: 0;
 }
 
+.post-teaser {
+  display: block;
+}
+
+.post-detail {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* Density Adaptations for Small Screens / Mobile */
+@media (max-width: 640px) {
+  .post-item {
+    margin-bottom: 1.75rem;
+  }
+  .post-title, .book-title {
+    font-size: 1.15rem;
+  }
+  .post-detail {
+    display: none; /* Keep phone feeds concise and easily scannable */
+  }
+  .post-meta, .book-meta {
+    font-size: 0.76rem;
+    gap: 0.4rem;
+  }
+}
+
 /* Page Intro Block */
 .page-intro {
   font-size: 1.05rem;
@@ -367,6 +477,14 @@ hr {
   flex-direction: column;
   gap: 1.5rem;
   margin: 1.5rem 0;
+}
+
+@media (min-width: 1024px) {
+  .lanes-list.grid-view {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
 }
 
 .lane-entry {
@@ -384,12 +502,26 @@ hr {
   font-size: 1.15rem;
 }
 
-/* MacWright-Style Photo Stream */
+/* MacWright-Style Photo Stream & Adaptive Grid */
 .photo-stream {
   display: flex;
   flex-direction: column;
   gap: 2.75rem;
   margin: 2rem 0;
+}
+
+.photo-stream.gallery-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .photo-stream.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
 }
 
 .photo-stream figure {
@@ -402,6 +534,13 @@ hr {
   border-radius: 4px;
   display: block;
   border: 1px solid var(--border-subtle);
+}
+
+@media (orientation: portrait) {
+  .photo-stream img {
+    max-height: 72vh;
+    object-fit: cover;
+  }
 }
 
 .photo-stream figcaption {
@@ -481,20 +620,4 @@ footer.site-footer {
   margin-bottom: 1.5rem;
   font-family: var(--font-sans);
   font-size: 0.9rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  html {
-    font-size: 16px;
-  }
-  body {
-    padding: 1.5rem 1rem 3rem;
-  }
-  h1 {
-    font-size: 1.65rem;
-  }
-  .lanes-grid, .photo-grid {
-    grid-template-columns: 1fr;
-  }
 }

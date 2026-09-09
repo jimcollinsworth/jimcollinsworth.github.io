@@ -4,6 +4,27 @@
 
 ---
 
+## 2026-09-08 — Magazine Multi-Column Desktop Grid, Orientation Adaptation & Progressive Density
+
+### Decisions & Actions Taken
+1. **Container Scale Expansion & Ultra-Wide Magazine Grid**:
+   - Expanded container width scale from narrow `720px` to fluid `1080px` (standard desktop/laptop) and `1380px` (supersize desktop `>= 1360px`).
+   - Implemented `.desktop-two-col` CSS grid (1.25fr/1fr on laptops/landscape, 1.3fr/1fr on wide desktop) structuring `index.html` with Featured Post + Recent Reads in the primary column and Recent Posts stream + Photo spotlight in the secondary column.
+   - Constrained all body paragraphs to `max-width: 76ch` to guarantee optimal reading measure and typographic rhythm regardless of viewport width.
+2. **Orientation-Driven Adaptations**:
+   - Built pure CSS media queries combining width and orientation: `@media (min-width: 960px), (min-width: 720px) and (orientation: landscape)`.
+   - Portrait orientation displays as a focused single-column reading mode, while landscape orientation leverages screen width with side-by-side reading and spotlight streams.
+3. **Progressive Information Density**:
+   - Added semantic markup classes `.post-teaser` and `.post-detail`.
+   - On desktops/laptops, full excerpts and metadata are displayed; on mobile viewports (`< 640px`), secondary detail blocks are automatically hidden to keep feeds concise and scannable without requiring client-side JavaScript.
+4. **Visual, Pelican SSG, & Zero-JS Verification**:
+   - Integrated changes into Pelican theme templates (`theme/templates/index.html`) and static CSS (`theme/static/css/style.css`).
+   - Verified 100% Zero-JS compliance (0 `<script>` tags across compiled output).
+   - Validated all 8 end-to-end automated tests with `uv run pytest -v`.
+   - Captured and verified multi-viewport visual screenshots (1600x1000 ultra-wide, 1200x800 laptop, 1024x768 tablet landscape, 768x1024 tablet portrait, 500x880 mobile portrait).
+
+---
+
 ## 2026-09-08 — GitHub Pages Deployment Alignment & Root HTML Synchronization
 
 ### Problem & Analysis

@@ -9,7 +9,7 @@ slug: "gallery"
   </p>
 </div>
 
-<div class="photo-stream">
+<div class="photo-stream gallery-grid">
   <figure>
     <img src="images/sky-lakefront.jpg" alt="Lake Michigan sky" loading="lazy">
   </figure>
