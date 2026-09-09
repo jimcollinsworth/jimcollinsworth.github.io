@@ -4,6 +4,25 @@
 
 ---
 
+## 2026-09-09 — Embedded Applications & Pipeline Tools Workbench Integration
+
+### Context & Need
+- Jim directed adding the embedded application architecture to `PLANNING.md`, `ROADMAP.md`, and automated test suites, connecting the personal static site with the local `pipeline-tools` multimodal workbench (`d:\projects\pipeline-tools`).
+- Evaluated options for running embedded PostgreSQL on hosted Hugging Face Spaces vs. local embedded instances vs. external serverless PostgreSQL.
+
+### Decisions & Actions Taken
+1. **Dedicated Cockpit Page (`content/pages/pipeline-tools.md` -> `pipeline-tools.html`)**:
+   - Created clean, responsive page embedding the local Gradio workbench (`http://127.0.0.1:7860`) inside an `<iframe>` styled with site borders, card background, and status bar.
+   - Built a clear offline fallback card documenting the PowerShell command (`cd d:\projects\pipeline-tools; uv run gradio app.py`) and direct link.
+   - Linked in the site footer navigation (`theme/templates/base.html`).
+2. **PostgreSQL & Hugging Face Spaces Architectural Analysis**:
+   - Documented in `ROADMAP.md`: Free-tier Hugging Face Spaces have ephemeral storage, causing embedded PostgreSQL databases to wipe on container sleep/restart unless persistent SSD storage ($5/mo) is provisioned.
+   - Recommended pairing Hugging Face with free-tier serverless PostgreSQL (**Neon.tech** or **Supabase**) to persist Pixeltable tables indefinitely across container restarts at zero cost.
+3. **Automated E2E Tests**:
+   - Added `test_pipeline_tools_page_structure` to `tests/test_pelican_e2e.py` validating output existence, iframe URL, fallback commands, and footer link integrity. Total test suite expanded to 31 passing tests.
+
+---
+
 ## 2026-09-09 — In-Page Accessibility & Theme Switchers (Zero-JS CSS :has)
 
 ### Context & Need

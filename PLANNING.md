@@ -6,6 +6,12 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 7: Embedded Applications & Pipeline Tools Workbench Integration (Completed)**
+  - **Dedicated Embedded Page (`pipeline-tools.html`)**: Created clean, responsive wrapper embedding the local Gradio + Pixeltable workbench (`http://127.0.0.1:7860`) within the site design system.
+  - **Status Header & Resilient Fallbacks**: Integrated target status indicators and helpful fallback launch instructions (`cd d:\projects\pipeline-tools; uv run gradio app.py`) for visitors or when the local daemon is offline.
+  - **Footer Navigation**: Added unobtrusive navigation entry linking directly to the embedded app cockpit.
+  - **Automated Test Coverage**: Added `test_pipeline_tools_page_structure` to `tests/test_pelican_e2e.py` validating page output, iframe target, fallback card, and footer links. Full test suite expanded to 31 passing tests.
+
 - [x] **Milestone 6: Comprehensive Web Accessibility (WCAG 2.1/2.2 AA & AAA, Section 508, ADA) (Completed)**
   - **Skip-to-Content Navigation**: Added `<a href="#main-content" class="skip-link">Skip to main content</a>` that becomes visible on keyboard focus, navigating directly to `<main id="main-content" tabindex="-1">`.
   - **Semantic Landmarks & ARIA**: Implemented standard landmark roles (`role="banner"`, `role="contentinfo"`), unambiguous navigation labels (`aria-label="Main Navigation"`, `aria-label="Footer Navigation"`, `aria-label="Filter posts by lane"`), and screen reader indicators (`aria-current="page"`, `.sr-only`).

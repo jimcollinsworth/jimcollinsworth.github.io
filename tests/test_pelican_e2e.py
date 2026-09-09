@@ -59,12 +59,24 @@ def test_core_pages_exist():
         "reads.html",
         "gallery.html",
         "lanes.html",
+        "pipeline-tools.html",
         "favicon.svg",
         "favicon.ico",
     ]
     for page in expected_pages:
         target = OUTPUT_DIR / page
         assert target.exists(), f"Expected {page} to exist in output/"
+
+
+def test_pipeline_tools_page_structure():
+    """Verify that pipeline-tools.html contains the iframe workbench and fallback guidance."""
+    target = OUTPUT_DIR / "pipeline-tools.html"
+    assert target.exists(), "pipeline-tools.html does not exist in output/"
+    html = target.read_text(encoding="utf-8")
+    assert '<iframe' in html, "Missing <iframe> tag on pipeline-tools.html"
+    assert 'http://127.0.0.1:7860' in html, "Missing default local Gradio target URL"
+    assert 'uv run gradio app.py' in html, "Missing launch instructions in fallback card"
+    assert 'pipeline-tools.html' in (OUTPUT_DIR / "index.html").read_text(encoding="utf-8")
 
 
 def test_post_pages_exist():

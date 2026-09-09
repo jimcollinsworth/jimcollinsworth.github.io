@@ -95,6 +95,16 @@ These are high-potential concepts, experiments, and passion projects raised in d
   - Pelican build execution and test status reporting.
   - Visual regression inspection via Playwright screenshots.
 
+### G. Pipeline Tools Embedded Cockpit & Hugging Face Hosting
+- **Concept**: Integrate Jim's multimodal ETL and prompt workbench (`pipeline-tools`) as an interactive application reachable directly within the site (`pipeline-tools.html`).
+- **Deployment & PostgreSQL Architectures**:
+  - *Local Cockpit (Zero-Cost / Native Disk Access)*: The Python backend runs locally on Jim's machine (`uv run gradio app.py` at `127.0.0.1:7860`), maintaining fast access to local folders (`d:\projects\...`), local Ollama models, and self-healing embedded PostgreSQL locks without network overhead or storage fees.
+  - *Hosted Hugging Face Space (Cloud Access)*: Deploy the Gradio application to a public or private Hugging Face Space.
+  - *PostgreSQL on Hugging Face Considerations*:
+    - **Ephemeral Disk Trap**: Free-tier Hugging Face Spaces reset their local filesystem when sleeping or restarting; embedded PostgreSQL tables in `~/.pixeltable/` are lost on restart unless persistent volume storage ($5/mo) is attached.
+    - **Serverless PostgreSQL Alternative**: Pair a free Hugging Face Space with a free-tier external managed serverless PostgreSQL instance (**Neon.tech** or **Supabase**). This provides persistent tabular storage, versioned Pixeltable schema, and continuous availability across restarts with zero monthly cost.
+    - **Docker SDK Space**: Alternatively, run a custom Docker container on Hugging Face with an embedded PostgreSQL service managed via `supervisord`.
+
 ---
 
 ## 4. Medium-Term Possibilities & Technical Enhancements
