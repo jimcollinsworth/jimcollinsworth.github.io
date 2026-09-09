@@ -68,11 +68,13 @@ All developer tools and test suites are 100% pure Python managed cleanly via `uv
 
 | Utility / Command | Purpose | Example CLI Invocations |
 | :--- | :--- | :--- |
+| `gh` | Official GitHub CLI for issues, PRs, and native agent skills (`gh skill`) | `gh issue list`<br>`gh issue create --title "..." --body "..."`<br>`gh skill list` |
 | `tools/screenshots.py` | Multi-resolution responsive capture across 4 devices & 2 orientations (8 viewports) | `uv run python tools/screenshots.py --page index.html`<br>`uv run python tools/screenshots.py --page about.html --color-scheme dark` |
 | `pytest` | End-to-end audit (Pelican build, zero-JS policy, link validation, Playwright browser test) | `uv run pytest -v` |
 | `pelican` (build) | Static site compiler | `uv run pelican content -s pelicanconf.py -o output -d` |
 | `pelican --listen` | Local live development web server | `uv run pelican --listen -p 8000` |
 | `playwright install` | Install headless Chromium browser binary | `uv run playwright install chromium` |
+
 
 ---
 
@@ -116,7 +118,42 @@ uv run python tools/screenshots.py --device phone --orientation portrait
 
 ---
 
+## GitHub CLI (`gh`)
+
+The portable official GitHub CLI is installed at `C:\Users\jimco\bin\gh.exe` and configured in the User `PATH` (no administrator privileges required).
+
+### One-Time Authentication
+Run this once from PowerShell or any terminal:
+```powershell
+gh auth login
+```
+Select:
+1. **GitHub.com**
+2. **HTTPS**
+3. **Login with a web browser** (opens a one-click confirmation in your browser).
+
+### Common Workflows
+
+```powershell
+# List open issues for this repository
+gh issue list
+
+# Create a new issue / plan proposal
+gh issue create --title "Feature Title" --body "Issue description..."
+
+# View an issue and discussion comments
+gh issue view <issue-number>
+
+# Manage agent skills natively (no Node / npm needed)
+gh skill list
+gh skill search <topic>
+gh skill install <repo/skill>
+```
+
+---
+
 ## Standard CLI Commands
+
 
 All operations use clean, standard commands that can be run directly in any terminal:
 
