@@ -147,3 +147,11 @@ After running a build:
 2. **Link Verification**: Ensure relative links between `index.html`, `about.html`, `posts.html`, and `reads.html` resolve correctly.
 3. **Asset Verification**: Ensure all images referenced in `<figure>` tags exist in `output/assets/` or `output/images/`.
 4. **Clean Git State**: Verify only intended HTML/markdown files are modified.
+
+---
+
+## 6. Official References & Authoring Specification
+
+- **Content Authoring Guide**: [`docs/content_authoring.md`](file:///d:/projects/jimcollinsworth.github.io/docs/content_authoring.md) — Canonical rules for Articles vs. Pages, metadata keywords, `{filename}`/`{static}` link directives, and syntax highlighting.
+- **Technical Specification**: [`references/pelican_content_spec.md`](file:///d:/projects/jimcollinsworth.github.io/.agents/skills/pelican-site-manager/references/pelican_content_spec.md) — Generator lifecycle, directive parsing, and `ObsidianMarkdownReader` architecture.
+

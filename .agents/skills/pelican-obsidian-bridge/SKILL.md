@@ -109,9 +109,21 @@ This renders semantic HTML blockquotes with appropriate CSS classes that match `
    - Verify link integrity and confirm zero `<script>` tags were introduced.
 
 4. **Publish**:
-   - Git commit and push to `main`:
+   - Git commit locally:
      ```bash
      git add content/ output/
      git commit -m "Publish new post from Obsidian"
+     ```
+   - **Push to Remote**: Per Agent Rule 9, **never push without Jim's explicit request or confirmation**:
+     ```bash
      git push origin main
      ```
+
+---
+
+## 4. Official Authoring Baseline Reference
+
+For complete metadata schema specifications, intra-site linking syntax (`{filename}`, `{static}`, `{category}`), and Pygments syntax highlighting conventions, consult:
+- [`docs/content_authoring.md`](file:///d:/projects/jimcollinsworth.github.io/docs/content_authoring.md)
+- [`references/pelican_content_spec.md`](file:///d:/projects/jimcollinsworth.github.io/.agents/skills/pelican-site-manager/references/pelican_content_spec.md)
+

@@ -46,6 +46,8 @@ jimcollinsworth.github.io/
 ├── theme/                        # Custom Pelican Jinja2 theme
 │   ├── templates/                # base.html, index.html, article.html, page.html, etc.
 │   └── static/css/style.css      # Central stylesheet (zero pills, dark/light mode)
+├── docs/
+│   └── content_authoring.md      # Canonical Pelican 4.12.0 content authoring & metadata guide
 ├── tests/
 │   ├── test_pelican_e2e.py       # End-to-end test suite (build, links, zero-JS, formatting)
 │   └── test_playwright_responsive.py # Playwright headless browser & responsive audit
@@ -59,6 +61,22 @@ jimcollinsworth.github.io/
 ├── ROADMAP.md                    # Core document 3: Long-term vision & brainstormed ideas
 └── JOURNAL.md                    # Core document 4: Chronological changelog
 ```
+
+---
+
+## Content Authoring & Pelican Metadata (Official 4.12.0 Baseline)
+
+All site content adheres strictly to official **Pelican 4.12.0** conventions combined with Jim's Obsidian workflow. See the full specification in [`docs/content_authoring.md`](docs/content_authoring.md).
+
+- **Articles vs. Pages**:
+  - **Articles** (`content/posts/*.md`): Temporal, chronological posts with publication dates, organized into Pursuit Lanes (`Category: Music`, `Health`, etc.), and syndicated into RSS feeds.
+  - **Pages** (`content/pages/*.md`): Non-temporal standalone documents (`about.md`, `reads.md`, `gallery.md`, `pipeline-tools.md`).
+- **YAML Frontmatter**: In-file metadata uses clean standard YAML headers (`---` delimiters) parsed by `ObsidianMarkdownReader`. Standard fields include `Title:`, `Date:`, `Category:`, `Summary:`, `Tags:`, and `Slug:`.
+- **Intra-Site Link Directives (Compile-Time Resolution)**:
+  - `{filename}`: Cross-references internal articles or pages (e.g., `[Sleep Plan]({filename}/posts/sleep-movement-evaluation-plan.md)`).
+  - `{static}`: Links directly to static assets/images (e.g., `![Photo]({static}/images/lakefront.jpg)`).
+  - `{category}`: Links to Pursuit Lane archive indexes (e.g., `[Music Lane]({category}music)`).
+- **Code Highlighting**: Pure Markdown fenced blocks (`python`, `bash`, etc.) with Pygments syntax highlighting via Pelican's `codehilite` extension.
 
 ---
 

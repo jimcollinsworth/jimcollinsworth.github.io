@@ -4,6 +4,27 @@
 
 ---
 
+## 2026-09-09 — Adoption of Pelican 4.12.0 Official Content Authoring & Metadata Standards
+
+### Context & Need
+- Jim established official Pelican 4.12.0 documentation as the project-wide baseline standard for content authoring, metadata keywords, intra-site linking syntax, and reader behavior.
+- Clear alignment was needed between Jim's Obsidian note-taking environment and Pelican's compiler model, along with agent skills and references to maintain consistency.
+
+### Decisions & Actions Taken
+1. **Canonical Content Authoring Guide (`docs/content_authoring.md`)**:
+   - Codified the distinction between **Articles** (`content/posts/*.md`), **Pages** (`content/pages/*.md`), and **Static Files** (`content/images/`, `content/extra/`).
+   - Documented the full metadata keyword specification (`Title`, `Date`, `Category`, `Tags`, `Slug`, `Authors`, `Summary`, `Modified`, `Status`).
+   - Defined intra-site compile-time linking directives: `{filename}` for articles/pages, `{static}` for unmanaged assets, `{attach}` for article-attached media, and `{category}` for Pursuit Lane archives.
+   - Documented Pygments code highlighting via Pelican's `codehilite` extension.
+2. **Technical Reference Specification (`.agents/skills/pelican-site-manager/references/pelican_content_spec.md`)**:
+   - Documented the generator lifecycle pipeline, metadata precedence rules, URL rewrite behavior, and the `ObsidianMarkdownReader` architecture.
+3. **Agent Skills & Governance Updates**:
+   - Updated `.agents/skills/pelican-site-manager/SKILL.md` with Section 6 referencing the canonical specifications.
+   - Updated `.agents/skills/pelican-obsidian-bridge/SKILL.md` with Section 4 linking to authoring guides and reinforcing Rule #9 (no push without explicit confirmation).
+   - Documented the authoring baseline in `README.md` and added Milestone 8 to `PLANNING.md`.
+
+---
+
 ## 2026-09-09 — Embedded Applications & Pipeline Tools Workbench Integration
 
 ### Context & Need

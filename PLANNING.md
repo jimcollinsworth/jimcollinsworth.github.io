@@ -6,6 +6,12 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 8: Pelican 4.12.0 Official Content Authoring Baseline & Specification (Completed)**
+  - **Canonical Authoring Guide (`docs/content_authoring.md`)**: Codified official Pelican 4.12.0 rules for Articles (`content/posts/`) vs. Pages (`content/pages/`) vs. Static files (`content/images/`), complete YAML frontmatter metadata keywords (`Title`, `Date`, `Category`, `Tags`, `Slug`, `Summary`, `Modified`, `Authors`, `Status`), and internal linking syntax (`{filename}`, `{static}`, `{category}`).
+  - **Technical Reference Specification (`.agents/skills/pelican-site-manager/references/pelican_content_spec.md`)**: Authored technical reference covering generator lifecycles, metadata precedence, directive translation, and `ObsidianMarkdownReader` architecture.
+  - **Agent Skills Alignment**: Updated `.agents/skills/pelican-site-manager/SKILL.md` and `.agents/skills/pelican-obsidian-bridge/SKILL.md` to reference the canonical guide and reinforced Rule #9 (no push without explicit confirmation).
+  - **Repository Documentation**: Linked authoring guidelines directly in `README.md`.
+
 - [x] **Milestone 7: Embedded Applications & Pipeline Tools Workbench Integration (Completed)**
   - **Dedicated Embedded Page (`pipeline-tools.html`)**: Created clean, responsive wrapper embedding the local Gradio + Pixeltable workbench (`http://127.0.0.1:7860`) within the site design system.
   - **Status Header & Resilient Fallbacks**: Integrated target status indicators and helpful fallback launch instructions (`cd d:\projects\pipeline-tools; uv run gradio app.py`) for visitors or when the local daemon is offline.
