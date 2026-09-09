@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About This Site &mdash; Jim Collinsworth</title>
+  <link rel="stylesheet" href="./theme/css/style.css">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="./favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <div class="site-branding">
+        <div class="site-title"><a href="./index.html">Jim Collinsworth</a></div>
+        <div class="site-tagline">Out of My Lane</div>
+      </div>
+      <nav class="site-nav">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./posts.html">Posts</a>
+        <a href="./reads.html">Reads</a>
+        <a href="./gallery.html">Gallery</a>
+      </nav>
+    </header>
+
+    <main>
+<article class="page-body">
+  <div class="page-intro">
+  <p>
+    <strong>About This Site</strong> outlines the technical architecture, infrastructure, tooling, and design principles behind <code>jimcollinsworth.github.io</code>. It is built as a fast, durable, zero-JavaScript static site designed for long-term reading comfort and low-maintenance longevity.
+  </p>
+</div>
+
+<h2>DevOps &amp; Infrastructure Dashboard</h2>
+<div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+  <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
+    <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">CI/CD Pipeline</div>
+    <div style="font-size: 1.1rem; font-weight: 600; margin-top: 0.4rem;">
+      <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/actions" target="_blank" rel="noopener">
+        <img src="https://github.com/jimcollinsworth/jimcollinsworth.github.io/actions/workflows/deploy.yml/badge.svg" alt="Deploy Status" style="vertical-align: middle; display: inline-block;">
+      </a>
+    </div>
+    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">GitHub Actions (Tests + Build)</div>
+  </div>
+
+  <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
+    <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Site Version</div>
+    <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem;">v0.5.5</div>
+    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Active Pre-Release (Targeting v1.0)</div>
+  </div>
+
+  <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
+    <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">JavaScript Payload</div>
+    <div style="font-size: 1.2rem; font-weight: 600; margin-top: 0.4rem;">0 KB (Zero-JS)</div>
+    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">0 scripts, 0 cookies, 0 trackers</div>
+  </div>
+
+  <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
+    <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Hosting &amp; Delivery</div>
+    <div style="font-size: 1.1rem; font-weight: 600; margin-top: 0.4rem;">GitHub Pages</div>
+    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Global CDN + HTTPS</div>
+  </div>
+</div>
+
+<hr>
+<h2>The Technology Stack</h2>
+<ul>
+<li><strong>Static Site Generator</strong>: <a href="https://getpelican.com/">Pelican</a> (Python static generator) compiling Markdown into clean HTML5.</li>
+<li><strong>Python Environment &amp; Package Manager</strong>: <a href="https://astral.sh/uv">uv</a> fast Python package resolver and runner with Python 3.13.</li>
+<li><strong>Templating</strong>: Jinja2 semantic templates in <code>theme/templates/</code>.</li>
+<li><strong>Styling</strong>: Single pure CSS stylesheet (<code>theme/static/css/style.css</code>) featuring modern CSS Grid, fluid container scaling (1080px / 1380px), orientation adaptation, and automatic dark/light mode switching (<code>@media (prefers-color-scheme: dark)</code>).</li>
+<li><strong>Test Automation</strong>: <a href="https://docs.pytest.org/">pytest</a> automated end-to-end test suite (<code>tests/test_pelican_e2e.py</code>) validating build output, zero-JS compliance, title deduplication, and link/asset integrity on every push.</li>
+</ul>
+<hr>
+<h2>Antigravity AI &amp; Pair Programming Model</h2>
+<p>Site development and infrastructure management are conducted through collaborative pair programming with <strong>Google Antigravity</strong> (agentic AI coding assistant).</p>
+<h3>Roles &amp; Boundaries</h3>
+<ul>
+<li><strong>Content Authorship (100% Jim)</strong>: Jim authors all notes, essays, book reflections, and personal thoughts in Obsidian. Jim personally selects and transfers all photos. The AI agent is strictly prohibited from ghostwriting or fabricating personal opinions, articles, or prose.</li>
+<li><strong>Infrastructure &amp; Maintenance (Antigravity Agent)</strong>: Antigravity manages static site generator configuration (<code>pelicanconf.py</code>), Jinja2 theme blueprints, CSS grid layouts, test suite maintenance (<code>test_pelican_e2e.py</code>), CI/CD workflows, and link auditing.</li>
+<li><strong>Governance (The 3-Document Rule)</strong>: Project context is strictly bounded to three root files:</li>
+<li><code>README.md</code> &mdash; System architecture, setup instructions, and standard commands.</li>
+<li><code>PLANNING.md</code> &mdash; Active milestones, backlog, and technical roadmap.</li>
+<li><code>JOURNAL.md</code> &mdash; Chronological decision log and change records.</li>
+</ul>
+<hr>
+<h2>Authoring &amp; Publishing Workflow</h2>
+<div class="highlight"><pre><span></span><code>[ Obsidian Vault (Jim&#39;s Notes &amp; Frontmatter) ]
+                    │
+                    ▼
+[ Content Drop: content/posts/ &amp; content/pages/ ]
+                    │
+                    ▼
+[ Pelican + ObsidianMarkdownReader (pelicanconf.py) ]
+                    │
+                    ▼
+[ Automated Validation (pytest -v) ]
+                    │
+                    ▼
+[ Git Push -&gt; GitHub Actions CI/CD -&gt; GitHub Pages CDN ]
+</code></pre></div>
+
+<p>All commands use standard CLI tools executable on any machine:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Sync dependencies</span>
+uv<span class="w"> </span>sync
+
+<span class="c1"># Build static site</span>
+uv<span class="w"> </span>run<span class="w"> </span>pelican<span class="w"> </span>content<span class="w"> </span>-s<span class="w"> </span>pelicanconf.py<span class="w"> </span>-o<span class="w"> </span>output<span class="w"> </span>-d
+
+<span class="c1"># Run local preview server</span>
+uv<span class="w"> </span>run<span class="w"> </span>pelican<span class="w"> </span>--listen<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>
+
+<span class="c1"># Execute end-to-end test suite</span>
+uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-v
+</code></pre></div>
+</article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-nav">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./posts.html">Posts</a>
+        <a href="./reads.html">Reads</a>
+        <a href="./gallery.html">Gallery</a>
+        <a href="./about-this-site.html">About This Site</a>
+        <a href="https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8" target="_blank" rel="noopener">Google Photos</a>
+      </div>
+      <div>
+        Content &copy; Jim Collinsworth. Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -58,6 +58,7 @@ def test_core_pages_exist():
         "posts.html",
         "reads.html",
         "gallery.html",
+        "about-this-site.html",
         "lanes.html",
         "favicon.svg",
         "favicon.ico",

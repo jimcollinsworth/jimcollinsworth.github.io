@@ -77,27 +77,54 @@ Inspired by:
 
 ---
 
-## 6. Maintenance Procedures for the 4 Core Documents
+## 6. Maintenance Procedures for the 4 Core Documents & Continuous Learning
 
-Whenever technical changes, layout updates, or infrastructure features are implemented:
-1. **`JOURNAL.md`**: Append a concise entry under the current date detailing what technical changes were made and why.
-2. **`PLANNING.md`**: Update active technical task statuses, sprint items, and near-term milestones.
+Whenever technical changes, troubleshooting resolutions, layout updates, or user corrections occur:
+1. **`JOURNAL.md`**: Append a structured chronological entry detailing:
+   - **Problem & Diagnosis**: What issue or requirement occurred.
+   - **Root Cause & Technical Analysis**: The underlying architectural or system reason.
+   - **Solution & Standard Procedure**: The exact commands or steps taken to resolve it.
+2. **`PLANNING.md`**: Update active task checkboxes, current milestone status, and sprint backlog items.
 3. **`ROADMAP.md`**: Update long-term vision, capture brainstormed concepts, and refine technical exploration proposals.
-4. **`README.md`**: Keep directory structures, stats, developer utility references, and high-level descriptions accurate as the site evolves.
+4. **`README.md`**: Keep directory structures, stats, CLI commands, component guides, and developer utility references accurate.
+5. **Persistent Agent Learning**: When a durable pattern, debugging fix, or user preference is established (e.g. via `/learn`), update persistent documentation and skills when explicitly approved by Jim.
 
 ---
 
 ## 7. Command Line Standards & Reproducibility
 
 > [!IMPORTANT]
-> - Always use clean, standard command-line invocations (e.g., `git status`, `pelican content -s pelicanconf.py`, `pytest`) that Jim can easily inspect, copy, and run manually in his own terminal.
+> - Always use clean, standard command-line invocations (e.g., `uv run pytest -v`, `uv run pelican content -s pelicanconf.py -o output -d`, `taskkill`, `rmdir`) that Jim can easily inspect, copy, and run manually in Windows Command Prompt (`cmd.exe`) or terminal.
+> - Avoid requiring PowerShell when standard Command Prompt commands work cleanly.
 > - Avoid opaque subshell wrappers, nested execution scripts, or obscure one-liners when standard commands exist.
-> - Use standard command-line tools unless not possible.
-> - If an operation cannot be run via standard, easily reproducible command-line syntax, stop and ask Jim before proceeding.
+> - If an operation cannot be run via standard, easily reproducible CLI syntax, stop and clarify with Jim before proceeding.
 
 ---
 
-## 8. Agent Permissions & Rule Authorization (Strict)
+## 8. Continuous Commit-Level Versioning Protocol
+
+Every commit and meaningful change set must increment the project version:
+- **Major/Feature Changes (`0.5.01` $\rightarrow$ `0.5.02`)**: New pages, layout restructurings, architectural updates.
+- **Incremental Refinements (`0.5.01.01` $\rightarrow$ `0.5.01.02`)**: Style tweaks, documentation updates, bugfixes, rule adjustments.
+- **Synchronization**: Always keep `pyproject.toml` and the DevOps dashboard on `about-this-site.md` synchronized to the current version.
+
+---
+
+## 9. Content Taxonomy & Semantic Authoring Rules
+
+- Follow the definitions documented directly in `README.md`.
+- **Content Types**:
+  - **Post / Essay**: Long-form structured narrative (`content/posts/`).
+  - **Project**: Active, multi-step engineering or fabrication build with milestones.
+  - **TIL ("Today I Learned") / Quick Note**: Short 1–3 paragraph insight or CLI fix.
+  - **Idea / Seedling**: Unexecuted hypothesis or prompt (`Ideas` lane or backlog).
+  - **Read / Book Synthesis**: Curated book reflections (`reads.md`).
+  - **Comment / Annotation**: Inline callout or marginalia.
+- **No Newspaper Jargon**: Use clean, standard Web & Markdown terminology (*Site Header, Document Title, Lead Intro, Section Headings, Body Paragraphs, Quotes/Callouts, Figures/Captions, Data Tables, Code Blocks, Footer*).
+
+---
+
+## 10. Agent Permissions & Rule Authorization (Strict)
 
 > [!CAUTION]
 > **Strict Boundary on Agent Rules & Permissions**:

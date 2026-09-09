@@ -6,6 +6,15 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 7: Versioning v0.5.5, DevOps Dashboard, Continuous Learning Protocol, & Release History (Completed)**
+  - Initialized official project versioning targeting `v1.0` upon initial production content publishing, currently at `v0.5.5`.
+  - Implemented continuous commit-level versioning protocol (`0.5.01-0.5.02` for larger updates, `0.5.01.01-0.5.01.05` for incremental changes).
+  - Created structured release documents under `releases/` (`v0.1.md`, `v0.2.md`, `v0.3.md`, `v0.4.md`, `v0.5.md`, `v0.5.5.md`).
+  - Formalized **Continuous Learning Protocol (`/learn`)** in `.agents/agent_rules.md` syncing debugging fixes, conventions, and rules directly into `JOURNAL.md` and agent guidelines.
+  - Created `content/pages/about-this-site.md` (DevOps dashboard, live GitHub status, Antigravity AI pair programming model).
+  - Codified the practical **Web & Markdown Authoring: Semantic Component Guide** and content types directly in `README.md`.
+  - Integrated `about-this-site.html` into base footer navigation and verified automated test suite with zero JavaScript.
+
 - [x] **Milestone 6: Comprehensive Web Accessibility (WCAG 2.1/2.2 AA & AAA, Section 508, ADA) (Completed)**
   - **Skip-to-Content Navigation**: Added `<a href="#main-content" class="skip-link">Skip to main content</a>` that becomes visible on keyboard focus, navigating directly to `<main id="main-content" tabindex="-1">`.
   - **Semantic Landmarks & ARIA**: Implemented standard landmark roles (`role="banner"`, `role="contentinfo"`), unambiguous navigation labels (`aria-label="Main Navigation"`, `aria-label="Footer Navigation"`, `aria-label="Filter posts by lane"`), and screen reader indicators (`aria-current="page"`, `.sr-only`).
@@ -14,13 +23,13 @@
   - **Reduced Motion**: Added `@media (prefers-reduced-motion: reduce)` disabling non-essential transitions and animations for users with vestibular disorders.
   - **Touch Targets**: Guaranteed interactive targets conform to WCAG 2.5.8 target size criteria (`min-height: 38px`, ample padding).
   - **Zero-JS Preservation**: All accessibility behaviors operate with pure semantic HTML5 and modern CSS media queries without client-side JavaScript.
-  - **Automated Accessibility Test Suite (`tests/test_accessibility.py`)**: Added 9 dedicated automated tests validating lang attributes, skip links, ARIA landmarks, active page attributes, image alt tags, CSS rules, touch targets, and zero-JS policy. Total test suite expanded to 28 passing tests.
+  - **Automated Accessibility Test Suite (`tests/test_accessibility.py`)**: Added dedicated automated tests validating lang attributes, skip links, ARIA landmarks, active page attributes, image alt tags, CSS rules, touch targets, and zero-JS policy.
 
 - [x] **Milestone 5: Playwright Testing & Multi-Resolution Responsive Suite (Completed)**
   - **Pure Python Testing Ecosystem**: Installed `playwright` and `pytest-playwright` managed strictly via `uv` with zero Node.js / npm dependencies.
   - **Multi-Resolution Screenshot Utility (`tools/screenshots.py`)**: Built an automated screenshot generator capturing any page across 4 screen sizes and 2 orientations (Phone, Tablet, Laptop, Desktop/TV in Portrait and Landscape = 8 viewports), supporting light/dark theme emulation and interactive HTML previews.
   - **Automated Responsive Tests (`tests/test_playwright_responsive.py`)**: Added test coverage verifying that pages load in headless Chromium across mobile and desktop without unhandled console errors or layout breaks.
-  - **CI/CD Integration**: Configured GitHub Actions workflow (`.github/workflows/deploy.yml`) to provision the Playwright Chromium binary and run the complete 19-test test suite on every commit to `main`.
+  - **CI/CD Integration**: Configured GitHub Actions workflow (`.github/workflows/deploy.yml`) to provision the Playwright Chromium binary and run test suite on every commit to `main`.
   - **Developer Tooling Inventory**: Documented utilities table and standard CLI workflows in `README.md`.
 
 - [x] **Milestone 4: Magazine Multi-Column Layout, Orientation Modes & Progressive Density (Completed)**

@@ -4,6 +4,33 @@
 
 ---
 
+## 2026-09-09 — Milestone 7: Versioning v0.5.5, DevOps Dashboard, Continuous Learning Protocol, & Release History
+
+### Decisions & Actions Taken
+1. **Bumped Project Version to `v0.5.5` & Created Structured Release History**:
+   - Set version to `0.5.5` across `pyproject.toml` and `about-this-site.md`.
+   - Created standardized GitHub-style release documents under `releases/`:
+     - `releases/v0.1.md` &mdash; Clean Foundation, Zero-JS, and 3-Document Governance.
+     - `releases/v0.2.md` &mdash; Calvin/MacWright Editorial Redesign, Bookshelf, and Gallery.
+     - `releases/v0.3.md` &mdash; Pelican SSG Integration, Obsidian Frontmatter Reader, and E2E Testing.
+     - `releases/v0.4.md` &mdash; GitHub Pages Root Deployment Alignment & Custom "JC" Favicon.
+     - `releases/v0.5.md` &mdash; Magazine 2-Column Desktop Grid, Orientation Modes, and Progressive Density.
+     - `releases/v0.5.5.md` &mdash; DevOps Dashboard, Continuous Learning Protocol, and Semantic Component Guide.
+2. **Formalized Continuous Learning Protocol (`/learn`) in Agent Governance**:
+   - Integrated learning procedures into `.agents/agent_rules.md`: when new debugging solutions, user corrections, or workflow preferences are established, the agent records structured entries in `JOURNAL.md` and permanently updates `.agents/agent_rules.md` and `.agents/skills/`.
+3. **Created `about-this-site.md` & DevOps Dashboard**:
+   - Built standalone meta page at `content/pages/about-this-site.md` (compiled to `about-this-site.html`).
+   - Integrated live GitHub Actions deployment badge, release version metric (`v0.5.5`), zero-JS guarantee (0 KB JS, 0 cookies, 0 tracking), and hosting architecture (GitHub Pages + HTTPS).
+   - Formally documented the **Antigravity AI Assistant & Pair Programming Model** detailing the strict separation of concerns (Jim owns 100% of prose/content; Antigravity manages templates, CSS, build tools, tests, and CI/CD).
+   - Integrated page into site footer navigation in `theme/templates/base.html`.
+4. **Consolidated Content Types & Semantic Terminology Directly into Docs**:
+   - Consolidated clear content format definitions (*Post/Essay, Project, TIL, Idea, Read, Comment*) directly into the **Semantic Component Guide** in `README.md`.
+5. **Automated E2E Test Suite Validation**:
+   - Verified `about-this-site.html` in `tests/test_pelican_e2e.py`.
+   - All tests passing cleanly.
+
+---
+
 ## 2026-09-09 — In-Page Accessibility & Theme Switchers (Zero-JS CSS :has)
 
 ### Context & Need
@@ -104,7 +131,22 @@
 4. **CI/CD Alignment (`.github/workflows/deploy.yml`)**:
    - Added Playwright Chromium installation step (`uv run playwright install --with-deps chromium`) to GitHub Actions workflow so full browser audits run automatically on every push.
 5. **Documentation & Utilities Inventory**:
-   - Added "Developer Utilities & Command Reference" to `README.md` and updated `PLANNING.md`.
+    - Added "Developer Utilities & Command Reference" to `README.md` and updated `PLANNING.md`.
+
+---
+
+## 2026-09-09 — Troubleshooting & Resolution: Pixeltable Embedded PostgreSQL Test Runner
+
+### Problem & Diagnostic Analysis
+- **Symptom**: `uv run python -m tests` in the `pipeline-tools` workspace experienced 27 test failures with `AssertionError: assert self._postmaster_info is not None`.
+- **Root Cause**: On Windows, abruptly terminating Python / test runners left orphaned background `postgres.exe` child processes holding open file handles to `C:\Users\jimco\.pixeltable\pgdata\log` and `postmaster.pid`. When subsequent test runs initialized, PostgreSQL entered crash recovery, hit a Windows sharing violation (`could not open file "./log": sharing violation`), and timed out after 30 seconds.
+- **Clarification**: `pxt service ...` commands only apply to remote/cloud Pixeltable microservices, not the local embedded PostgreSQL instance managed by `pixeltable_pgserver`.
+
+### Solution & Recovery Procedure
+1. Terminated lingering background PostgreSQL processes: `taskkill /F /IM postgres.exe /T 2>nul`.
+2. Cleaned corrupted database state directory: `rmdir /s /q "%USERPROFILE%\.pixeltable\pgdata"`.
+3. Verified test suite: `uv run python -m tests` cleanly reinitialized a fresh cluster and executed successfully.
+>>>>>>> ed02d16 (feat(release): v0.5.5 with DevOps dashboard, learning protocol, semantic guide, and release history)
 
 ---
 
