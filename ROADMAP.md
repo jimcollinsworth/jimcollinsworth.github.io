@@ -14,7 +14,8 @@ After a 50-year career spanning Arthur Andersen, professional guitar performance
 ### Foundational Tenets (Non-Negotiable)
 1. **100% Human-Authored Content & Image Curation**:
    - Jim explicitly authors every essay in Obsidian and manually transfers every photo into the site repository.
-   - AI agents are strictly restricted to technical infrastructure, build maintenance, layout styling, and validation tools.
+   - AI agents are strictly restricted to technical infrastructure, build maintenance, layout styling, and validation tools. Have to workon ensuring this. Also want to visually mark any AI content in the site, for example the journal.me is mostly ai generated, except for my prompts in it, use clear markdown formatting to distinguish them.
+   - 
 2. **Zero Client-Side JavaScript on Content Pages**:
    - The published reading experience is built entirely on semantic HTML5 and modern CSS. Zero `<script>` tags, zero trackers, zero runtime bloat.
 3. **Pure Python Tooling Ecosystem**:
@@ -152,12 +153,45 @@ These are high-potential concepts, experiments, and passion projects raised in d
 
 ---
 
-## 6. How Ideas Move from Roadmap to Production
+## 6. Content Taxonomy & Mental Model: "Me, Mine, Ours, Others"
+
+Jim conceptualized a foundational mental model for categorizing thoughts, projects, and media across the site:
+
+| Boundary Domain | Scope & Characteristics | Site Expression |
+| :--- | :--- | :--- |
+| **Me** | Personal background, identity, bio, contact, current focus ("Now"), and setup. | `About` bio, `Contact`, homepage personal blurb. |
+| **Mine** | 100% original creative output: original essays, software inventions, interactive mini-apps, personal photography (excluding art documentation). | `Posts` (original essays), `Apps`, `Photos` (Chicago skies, lakefront). |
+| **Ours** | Shared public, cultural, and environmental encounters: nature observations, hikes, museum visits, architecture, and shared public art. | Museum write-ups (e.g. Art Institute post), outdoor notes, botanical studies. |
+| **Others** | Engagement with external works: books, curated URLs, blogs, academic papers, along with personal commentary, syntheses, and reflections. | `Links` (`links.html`), book reflections, reading notes. |
+
+*Note on Art Photography*: Photos of visual art naturally straddle **Ours** (encountering shared public culture in galleries and museums) and **Others** (documenting and reflecting on someone else's artistic expression). Rather than forcing a rigid public navigation scheme, this framework serves as Jim's internal guide for deciding where new thoughts, essays, and media naturally fit.
+
+---
+
+## 7. Editorial Layout Inspirations: Tom MacWright (`macwright.com`) & The 20-Lane Architecture
+
+Jim highlighted [Tom MacWright's personal website (`macwright.com`)](https://macwright.com/) and minimal blogs (such as Shubham's) as archetypal references for content layout and typography:
+
+### Key Principles from `macwright.com`
+1. **Direct, Unpretentious Navigation**: Using clear, direct nouns (`Writing`, `Reading`, `Photos`, `Projects`, `About`) rather than overly clever labels.
+2. **Tabular Post Listings**: Clean horizontal scanning with post title on the left and ISO date right-aligned in monospace (`Title ................. YYYY-MM-DD`).
+3. **Split Homepage Streams**: Segmenting the homepage into distinct, scannable editorial sections (e.g. `Writing →` for essays, `Micro →` for quick notes) rather than an undifferentiated chronological feed.
+4. **Header Restraint**: Extreme minimalism, subtle inline circular mode toggles, and immediate access to prose.
+
+### The 20-Lane Architecture & Promoted Top-Level Lanes
+As Jim's investigations expand across retirement, the site can support up to ~20 pursuit lanes (Music, AI, Health, Making, STEM, Art, Finance, Politics, Weather, etc.):
+- **The Lane Index (`/lanes.html`)**: Serves as the complete directory and descriptive guide to all active lanes, accessible via the top-level tagline link ("*Out of My Lane*") and the footer.
+- **Top-Level Promoted Lanes**: Select lanes of high ongoing priority (such as **`AI`**) are promoted directly into the top-level header navigation for instant access.
+- **Footer Lane Navigator**: The footer acts as a persistent, global directory linking every active pursuit lane across the entire site.
+
+---
+
+## 8. How Ideas Move from Roadmap to Production
 
 ```text
 [ROADMAP.md]                  [PLANNING.md]                 [BUILD & TEST]              [JOURNAL.md]
 Creative Brainstorming   -->  Active Sprint Backlog    -->  Pelican + Playwright   -->  Documented Milestones
-Ideas & Possibilities         Near-Term Milestones          19 Automated Tests          Permanent Decision Log
+Ideas & Possibilities         Near-Term Milestones          42 Automated Tests          Permanent Decision Log
 ```
 
 1. **Ideation**: Discussed freely in `ROADMAP.md`.

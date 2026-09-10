@@ -295,6 +295,17 @@ header.site-header {
   margin-left: auto;
 }
 
+.site-tagline a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.site-tagline a:hover {
+  color: var(--link);
+  text-decoration: underline;
+}
+
 .site-nav-row {
   display: flex;
   justify-content: space-between;
@@ -833,6 +844,41 @@ footer.site-footer {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+}
+
+.footer-lanes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.65rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.footer-lanes-title {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.78rem;
+  color: var(--text);
+  margin-right: 0.25rem;
+}
+
+.footer-lanes a {
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0.15rem 0.2rem;
+}
+
+.footer-lanes a:hover {
+  color: var(--link);
+  text-decoration: underline;
 }
 
 .footer-nav {

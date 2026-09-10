@@ -4,6 +4,57 @@
 
 ---
 
+## 2026-09-10 — Tagline Lanes Link, Footer Lane Navigator, AI Promoted Lane, Links Rename & Homepage Bio (v0.5.8)
+
+### Problem & Diagnosis
+Jim requested a refined navigation structure and content organization:
+1. **Tagline as Lanes Link**: Make the header tagline *"Out of My Lane"* a direct link to `/lanes.html` rather than keeping a separate `Lanes` item in the menu row.
+2. **Footer Lane Navigator**: Display all active pursuit lanes in the footer navigator (`Art`, `Health`, `Ideas`, `Making`, `Music`, `Projects`), making the entire lane taxonomy discoverable across every page.
+3. **Header Menu Optimization**:
+   - Remove `About` link from header menu; replace with a conversational personal bio blurb on the homepage (`index.html`) with a "More about me &rarr;" link to `about.html`.
+   - Add `Site` link to the header menu pointing to `about-this-site.html`.
+   - Remove `Events` page/menu item (`events.md` / `events.html`).
+   - Rename `Shelf` &rarr; `Links` (`links.md` / `links.html`).
+   - Add **`AI`** as a promoted top-level lane page (`content/pages/ai.md` &rarr; `ai.html`).
+4. **Roadmap & Mental Model**: Document Jim's "Me, Mine, Ours, Others" taxonomy boundary and the `macwright.com` layout inspirations in `ROADMAP.md`.
+
+### Root Cause & Technical Analysis
+- Linking the tagline to `/lanes.html` creates a natural semantic anchor: the site philosophy (*Out of My Lane*) points directly to the directory of all pursuit lanes.
+- Removing `About` from the top nav and placing a conversational intro on `index.html` creates a warmer, more human entrance inspired by minimal personal blogs like `macwright.com` and Shubham's site.
+- Adding `Site` to the header gives prominent visibility to the architecture and DevOps dashboard.
+- Displaying all lanes in the footer ensures full discoverability without overcrowding the primary 7-item header menu (`Home`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`).
+
+### Solution & Standard Procedure
+1. **Templates & HTML Structure**:
+   - `theme/templates/base.html`:
+     - Linked `.site-tagline` to `{{ SITEURL }}/lanes.html`.
+     - Configured main nav: `Home`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`.
+     - Added `.footer-lanes` to the footer displaying all categories with bullet separators.
+     - Added `All Lanes` and `About Jim` to footer secondary navigation.
+   - `theme/templates/index.html`:
+     - Authored conversational personal intro blurb linking to `about.html`.
+     - Renamed "From the Shelf" to "Recent Links" linking to `links.html`.
+   - `theme/templates/categories.html`:
+     - Enhanced `/lanes.html` with a descriptive overview of the "Out of My Lane" philosophy and a grid directory of all lanes.
+2. **Content & Pages**:
+   - Created `content/pages/ai.md` (`slug: ai`, `title: AI`).
+   - Renamed `content/pages/shelf.md` &rarr; `content/pages/links.md` (`slug: links`, `title: Links`).
+   - Deleted `content/pages/events.md`, `events.html`, and obsolete `shelf.html`.
+   - Updated cross-references in `about.md` and `apps.md`.
+3. **Styling (`style.css`)**:
+   - Added `.site-tagline a` subtle color and hover underline styles.
+   - Added `.footer-lanes` flex row styling with subtle divider and hover states.
+   - Synchronized CSS across `theme/static/css/`, `theme/css/`, and `assets/css/`.
+4. **Governance & Roadmap**:
+   - Updated `ROADMAP.md` with Section 6 ("Me, Mine, Ours, Others" taxonomy) and Section 7 (`macwright.com` layout cues and 20-lane architecture).
+   - Updated `README.md` directory map.
+   - Bumped version to `v0.5.8` across `pyproject.toml` and `about-this-site.md`.
+5. **Testing & Verification**:
+   - Updated `tests/test_pelican_e2e.py`, `tests/test_accessibility.py`, and `tests/test_playwright_responsive.py`.
+   - All 42/42 tests passing (`uv run pytest -v`).
+
+---
+
 ## 2026-09-10 — Contact Page, Footer Links Enhancement & UI Walkthrough Visual Protocol (v0.5.7)
 
 ### Problem & Diagnosis

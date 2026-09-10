@@ -39,7 +39,7 @@ The name of this site reflects my habit of venturing into domains well outside m
   </div>
 
   <div class="lane-entry">
-    <h3><a href="shelf.html">References &amp; Shelf</a></h3>
+    <h3><a href="links.html">References &amp; Links</a></h3>
     <p>Curated books, research papers, essential URLs, and key quotes.</p>
   </div>
 </div>
