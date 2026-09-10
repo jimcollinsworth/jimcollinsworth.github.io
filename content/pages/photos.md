@@ -1,6 +1,6 @@
 ---
-title: "Gallery"
-slug: "gallery"
+title: "Photos"
+slug: "photos"
 ---
 
 <div class="page-intro">

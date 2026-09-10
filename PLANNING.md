@@ -6,6 +6,18 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 11: Section Taxonomy Refinement (Reads &rarr; Shelf, Gallery &rarr; Photos, Views &rarr; Events) & Header Layout Optimization (Completed)**
+  - Renamed content sections across Markdown sources, slugs, templates, navigation, and tests:
+    - Reads &rarr; Shelf (`shelf.md` / `shelf.html`)
+    - Gallery &rarr; Photos (`photos.md` / `photos.html`)
+    - Views &rarr; Events (`events.md` / `events.html`)
+  - Restructured site header layout into two clean, balanced rows:
+    - Line 1: `Jim Collinsworth` on far left, `Out of My Lane` right-aligned on far right.
+    - Line 2: Navigation menu left-aligned, theme and accessibility toggles right-aligned.
+  - Refined theme/contrast/text-size control buttons: compact `28x28px` borderless transparent styling with `15px` SVG icons, eliminating white card boxes to visually harmonize with menu typography.
+  - Updated homepage "Recent Reads" section to "From the Shelf" and updated all internal reference links.
+  - Synchronized test suite (40/40 tests passing), bumped version to `v0.5.6`.
+
 - [x] **Milestone 10: Accessibility Toggles Overhaul: High-Contrast Low-Complexity Mode & Large Text Scaling (Completed)**
   - Dramatically enlarged text sizes across all pages when `#text-size-toggle` is checked (`font-size: 1.65rem`, headings to `2.85rem`, expanded line-height to `2.0`, and expanded margins/padding).
   - Overhauled `#contrast-toggle` into a low-complexity assistive reading mode:

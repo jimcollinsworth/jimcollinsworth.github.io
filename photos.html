@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ DEFAULT_LANG }}">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}{{ SITENAME }}{% if SITESUBTITLE %} &mdash; {{ SITESUBTITLE }}{% endif %}{% endblock %}</title>
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css">
-  <link rel="icon" href="{{ SITEURL }}/favicon.svg" type="image/svg+xml">
-  <link rel="alternate icon" href="{{ SITEURL }}/favicon.ico" type="image/x-icon">
+  <title>Photos &mdash; Jim Collinsworth</title>
+  <link rel="stylesheet" href="./theme/css/style.css">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="./favicon.ico" type="image/x-icon">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -16,18 +16,18 @@
   <div class="container">
     <header class="site-header" role="banner">
       <div class="site-branding">
-        <div class="site-title"><a href="{{ SITEURL }}/index.html">{{ SITENAME }}</a></div>
-        <div class="site-tagline">{{ SITESUBTITLE }}</div>
+        <div class="site-title"><a href="./index.html">Jim Collinsworth</a></div>
+        <div class="site-tagline">Out of My Lane</div>
       </div>
       <div class="site-nav-row">
         <nav class="site-nav" aria-label="Main Navigation">
-          <a href="{{ SITEURL }}/index.html"{% if output_file == 'index.html' %} class="active" aria-current="page"{% endif %}>Home</a>
-          <a href="{{ SITEURL }}/about.html"{% if page and page.slug == 'about' %} class="active" aria-current="page"{% endif %}>About</a>
-          <a href="{{ SITEURL }}/posts.html"{% if output_file == 'posts.html' or article or category %} class="active" aria-current="page"{% endif %}>Posts</a>
-          <a href="{{ SITEURL }}/shelf.html"{% if page and page.slug == 'shelf' %} class="active" aria-current="page"{% endif %}>Shelf</a>
-          <a href="{{ SITEURL }}/events.html"{% if page and page.slug == 'events' %} class="active" aria-current="page"{% endif %}>Events</a>
-          <a href="{{ SITEURL }}/photos.html"{% if page and page.slug == 'photos' %} class="active" aria-current="page"{% endif %}>Photos</a>
-          <a href="{{ SITEURL }}/apps.html"{% if page and page.slug == 'apps' %} class="active" aria-current="page"{% endif %}>Apps</a>
+          <a href="./index.html">Home</a>
+          <a href="./about.html">About</a>
+          <a href="./posts.html">Posts</a>
+          <a href="./shelf.html">Shelf</a>
+          <a href="./events.html">Events</a>
+          <a href="./photos.html" class="active" aria-current="page">Photos</a>
+          <a href="./apps.html">Apps</a>
         </nav>
         <div class="site-controls" role="group" aria-label="Display and accessibility preferences">
           <label for="theme-toggle" class="control-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme (Light / Dark)">
@@ -66,19 +66,52 @@
     </header>
 
     <main id="main-content" tabindex="-1">
-      {% block content %}{% endblock %}
+<article class="page-body">
+  <div class="page-intro">
+  <p>
+    <a href="https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8" target="_blank" rel="noopener">OutOfMyLane Google Photos album &rarr;</a>
+  </p>
+</div>
+
+<div class="photo-stream gallery-grid">
+  <figure>
+    <img src="images/sky-lakefront.jpg" alt="Lake Michigan sky" loading="lazy">
+    <figcaption>Lake Michigan sky &mdash; Chicago lakefront morning study</figcaption>
+  </figure>
+
+  <figure>
+    <img src="images/sky-twilight.jpg" alt="Evening twilight" loading="lazy">
+    <figcaption>Evening twilight &mdash; Deep gradient over the city skyline</figcaption>
+  </figure>
+
+  <figure>
+    <img src="images/sky-formation.jpg" alt="Cloud formation" loading="lazy">
+    <figcaption>Cloud formation &mdash; Afternoon cumulus and atmospheric texture</figcaption>
+  </figure>
+
+  <figure>
+    <img src="images/sky-clouds.jpg" alt="Cumulus clouds" loading="lazy">
+    <figcaption>Cumulus clouds &mdash; High-contrast overcast study</figcaption>
+  </figure>
+
+  <figure>
+    <img src="images/flower-macro.jpg" alt="Flower macro" loading="lazy">
+    <figcaption>Flower macro &mdash; Close-up petal geometry and botanic details</figcaption>
+  </figure>
+</div>
+</article>
     </main>
 
     <footer class="site-footer" role="contentinfo">
       <nav class="footer-nav" aria-label="Footer Navigation">
-        <a href="{{ SITEURL }}/index.html">Home</a>
-        <a href="{{ SITEURL }}/about.html">About</a>
-        <a href="{{ SITEURL }}/posts.html">Posts</a>
-        <a href="{{ SITEURL }}/shelf.html">Shelf</a>
-        <a href="{{ SITEURL }}/events.html">Events</a>
-        <a href="{{ SITEURL }}/photos.html">Photos</a>
-        <a href="{{ SITEURL }}/apps.html">Apps</a>
-        <a href="{{ SITEURL }}/about-this-site.html">About This Site</a>
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./posts.html">Posts</a>
+        <a href="./shelf.html">Shelf</a>
+        <a href="./events.html">Events</a>
+        <a href="./photos.html">Photos</a>
+        <a href="./apps.html">Apps</a>
+        <a href="./about-this-site.html">About This Site</a>
         <a href="https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8" target="_blank" rel="noopener">Google Photos <span class="sr-only">(opens external photo album in new tab)</span></a>
       </nav>
       <div>

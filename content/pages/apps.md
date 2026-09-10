@@ -5,7 +5,7 @@ slug: "apps"
 
 <div class="page-intro">
   <p>
-    <strong>Apps</strong> is the interactive laboratory of <code>jimcollinsworth.github.io</code>. While all essays, reads, and visual critique pages adhere to a strict 100% Zero-JavaScript guarantee for durable reading longevity, these standalone mini-applications use modern browser standards to query local static datasets (from <code>content/data/</code>) and provide rich visual interaction.
+    <strong>Apps</strong> is the interactive laboratory of <code>jimcollinsworth.github.io</code>. While all essays, shelf entries, and event pages adhere to a strict 100% Zero-JavaScript guarantee for durable reading longevity, these standalone mini-applications use modern browser standards to query local static datasets (from <code>content/data/</code>) and provide rich visual interaction.
   </p>
 </div>
 

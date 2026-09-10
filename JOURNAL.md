@@ -4,6 +4,43 @@
 
 ---
 
+## 2026-09-09 — Section Taxonomy Refinement (Reads &rarr; Shelf, Gallery &rarr; Photos, Views &rarr; Events) & Header Layout Optimization
+
+### Context & Need
+Jim requested several coordinated layout and terminology refinements:
+1. **Header Layout**:
+   - Line 1: `Jim Collinsworth` on the far left, `Out of My Lane` right-aligned on the far right.
+   - Line 2: Navigation menu links left-aligned, and theme/accessibility control toggles right-aligned on the same row.
+   - Controls Styling: Tighten icons with less/no white border box so they visually harmonize with the `0.92rem` menu typography.
+2. **Content Section Terminology**:
+   - Rename **Reads** &rarr; **Shelf** (`content/pages/shelf.md`, URL `/shelf.html`).
+   - Rename **Gallery** &rarr; **Photos** (`content/pages/photos.md`, URL `/photos.html`).
+   - Rename **Views** &rarr; **Events** (`content/pages/events.md`, URL `/events.html`).
+
+### Decisions & Actions Taken
+1. **Header Layout & Compact Control Icons**:
+   - Restructured `theme/templates/base.html`: Line 1 `.site-branding` with `space-between` and `align-items: baseline`, right-aligning `.site-tagline`; Line 2 `.site-nav-row` wrapping `.site-nav` (left) and `.site-controls` (right).
+   - Replaced bulky `38x38px` white card box buttons with compact `28x28px` borderless transparent buttons (`border: 1px solid transparent; background: transparent;`) and scaled SVG icons from `18px` to `15px`.
+2. **Markdown Sources & Slug Renaming**:
+   - `content/pages/reads.md` &rarr; `content/pages/shelf.md` (`slug: "shelf"`, `title: "Shelf"`).
+   - `content/pages/gallery.md` &rarr; `content/pages/photos.md` (`slug: "photos"`, `title: "Photos"`).
+   - `content/pages/views.md` &rarr; `content/pages/events.md` (`slug: "events"`, `title: "Events"`).
+   - Updated `content/pages/about.md` reference link to `shelf.html` ("References & Shelf").
+   - Updated `content/pages/apps.md` lead text to reference shelf entries and events.
+3. **Template Navigation & Homepage Updates**:
+   - `theme/templates/base.html`: Updated navigation links and active conditions to `shelf.html`, `events.html`, and `photos.html`; updated footer links accordingly.
+   - `theme/templates/index.html`: Renamed "Recent Reads" section to "From the Shelf", updated links to `shelf.html` ("Browse the complete shelf &rarr;"), and updated photo spotlight link to `photos.html` ("Explore all photos &rarr;").
+4. **Automated Test Suite Synchronization**:
+   - Updated `tests/test_pelican_e2e.py`: `test_core_pages_exist` and `test_no_duplicate_page_titles` now assert `shelf.html`, `events.html`, and `photos.html`.
+   - Updated `tests/test_accessibility.py`: `test_active_nav_aria_current` tests `shelf.html`, `events.html`, and `photos.html`.
+   - Updated `tests/test_playwright_responsive.py`: parameterized pages list updated.
+   - Verified 40/40 tests pass with zero errors.
+5. **Versioning & Root Synchronization**:
+   - Bumped project version to `0.5.6` in `pyproject.toml` and `content/pages/about-this-site.md`.
+   - Rebuilt Pelican static output and synchronized root HTML files, cleanly removing obsolete `reads.html`, `gallery.html`, and `views.html`.
+
+---
+
 ## 2026-09-09 — Accessibility Toggles Overhaul: High-Contrast Low-Complexity Mode & Large Text Scaling
 
 ### Context & Need
