@@ -1,0 +1,204 @@
+---
+title: "Prompt History & Instruction Timeline"
+slug: "prompt-history"
+---
+
+<div class="page-intro">
+  <p>
+    <strong>Prompt History &amp; Instruction Timeline</strong> is a chronological companion to <em>About This Site</em>. It documents how <code>jimcollinsworth.github.io</code> was architected through collaborative pair programming with Google DeepMind’s Antigravity AI assistant, focusing specifically on <strong>Jim's direct instructions, architectural guidance, and critical error corrections</strong> synced directly to each version milestone.
+  </p>
+</div>
+
+<div class="timeline-container" style="margin: 2rem 0;">
+
+  <!-- Milestone 8 -->
+  <section class="timeline-milestone" style="border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 3rem; position: relative;">
+    <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700;">
+      Milestone 8 &bull; Current Development (Towards v0.6.0) &bull; September 2026
+    </div>
+    <h2 style="font-size: 1.4rem; margin: 0.3rem 0 0.75rem;">
+      Apps Hub, Static Data Directory &amp; "Views" Visual Exhibits Lane
+    </h2>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem;">
+      <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.4rem;">
+        Jim's Direct Guidance
+      </h3>
+      <blockquote style="margin: 0; padding-left: 1rem; border-left: 2px solid var(--border-color); font-style: italic; color: var(--text);">
+        "looking at about-this-site, good start, remove install/run section, add LLM/agentharness to technology stack in prominent position. add link to release notes, git hub repo, add an apps category to the main menu, and some term for art exhibits/tours, and such they are posts, but with all emphasis on photos, so more like reads, or views... we will have a data directory for any tabular, info type static data sources."
+      </blockquote>
+    </div>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem;">
+      <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: #b84318; margin-bottom: 0.4rem;">
+        Critical Course Corrections &amp; Remediation
+      </h3>
+      <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.6;">
+        <li>
+          <strong>The "Views" Concept</strong>: Rather than generic photo galleries or standard blog posts, Jim established a dedicated stream parallel to <em>Reads</em>: photo-heavy visits to art museums, exhibitions, and architectural spaces with curatorial critique and personal opinions.
+        </li>
+        <li>
+          <strong>Static Data Directory (<code>content/data/</code>)</strong>: Centralized all tabular, info-type datasets (JSON, CSV, markdown manifests) in <code>content/data/</code> to decouple raw data accumulation from presentation.
+        </li>
+        <li>
+          <strong>The Zero-JS App Boundary</strong>: Clarified the strict separation of concerns: editorial reading pages remain 100% Zero-JS, while interactive applications operate in isolated standalone subpaths (<code>output/apps/**</code>).
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Milestone 7 -->
+  <section class="timeline-milestone" style="border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 3rem; position: relative;">
+    <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700;">
+      Release v0.5.5 &bull; September 2026
+    </div>
+    <h2 style="font-size: 1.4rem; margin: 0.3rem 0 0.75rem;">
+      DevOps Dashboard, Continuous Learning Protocol &amp; Glossary Decision
+    </h2>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem;">
+      <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.4rem;">
+        Jim's Direct Guidance
+      </h3>
+      <blockquote style="margin: 0; padding-left: 1rem; border-left: 2px solid var(--border-color); font-style: italic; color: var(--text);">
+        "we've done a lot lets bump version to .5.5 and create a release note, using github capabilities/reporting/best practices, before creating .5.5, create release documents for .1, .2, .3, .4 and .5. not lots of detail, just good initial overview then concise lists of features/changes/bugs fixed... remove the site glossary, changed my mind, we will just document terminology in docs as needed."
+      </blockquote>
+    </div>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem;">
+      <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: #b84318; margin-bottom: 0.4rem;">
+        Critical Course Corrections &amp; Remediation
+      </h3>
+      <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.6;">
+        <li>
+          <strong>Glossary Removal (Changed Mind)</strong>: Abandoned planned standalone glossary page. Jim recognized that isolated terminology dictionaries become stale; technical terms are now defined contextually in documentation and <code>README.md</code>.
+        </li>
+        <li>
+          <strong>Continuous Learning (<code>/learn</code>) Persistence</strong>: Mandated that when solutions, user preferences, or error fixes are identified, the agent must update <code>JOURNAL.md</code> and permanently amend <code>.agents/agent_rules.md</code>.
+        </li>
+        <li>
+          <strong>Mermaid Diagram Syntax Fix</strong>: Raw angle brackets (<code>&lt; 960px</code>) broke Mermaid v10.9 rendering in generated PDFs. Escaped syntax and added automated SVG verification to <code>tools/generate_cheatsheet_pdfs.py</code>.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Milestone 6 & 5 -->
+  <section class="timeline-milestone" style="border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 3rem; position: relative;">
+    <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700;">
+      Releases v0.5 &amp; Accessibility &bull; August &ndash; September 2026
+    </div>
+    <h2 style="font-size: 1.4rem; margin: 0.3rem 0 0.75rem;">
+      In-Page Switchers, Orientation Adapting &amp; Progressive Density
+    </h2>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem;">
+      <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.4rem;">
+        Jim's Direct Guidance
+      </h3>
+      <blockquote style="margin: 0; padding-left: 1rem; border-left: 2px solid var(--border-color); font-style: italic; color: var(--text);">
+        "can we add in page controls to switch between dark and light, high contrast, and larger text? ... on desktop the single column leaves too much empty space, but in portrait we want pure single-column reading flow. on mobile make sure the list isn't cluttered with giant excerpts."
+      </blockquote>
+    </div>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem;">
+      <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: #b84318; margin-bottom: 0.4rem;">
+        Critical Course Corrections &amp; Remediation
+      </h3>
+      <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.6;">
+        <li>
+          <strong>Pure CSS <code>:has</code> Switchers (Zero-JS Constraint)</strong>: Adding interactive theme and text-size switchers typically invites JavaScript. Jim held the line on Zero-JS. Implemented semantic <code>&lt;input type="checkbox"&gt;</code> toggles in HTML paired with CSS <code>:has()</code> pseudo-classes.
+        </li>
+        <li>
+          <strong>Orientation-First Layout</strong>: Discarded naive screen-width-only breakpoints. Implemented dual-axis layout logic: Portrait viewports always render single-column flow; Landscape viewports (<code>&gt;= 960px</code>) render the 2-column magazine grid.
+        </li>
+        <li>
+          <strong>Progressive Density</strong>: Replaced static excerpts with <code>.post-detail</code> (full excerpt on desktop) and <code>.post-teaser</code> (concise one-line title feed on mobile) with pure CSS media queries.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Milestone 3 & 4 -->
+  <section class="timeline-milestone" style="border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 3rem; position: relative;">
+    <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700;">
+      Releases v0.3 &amp; v0.4 &bull; July &ndash; August 2026
+    </div>
+    <h2 style="font-size: 1.4rem; margin: 0.3rem 0 0.75rem;">
+      Pelican Migration, Title Deduplication &amp; Zero-Pills Mandate
+    </h2>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem;">
+      <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.4rem;">
+        Jim's Direct Guidance
+      </h3>
+      <blockquote style="margin: 0; padding-left: 1rem; border-left: 2px solid var(--border-color); font-style: italic; color: var(--text);">
+        "the lane tags look like loud web buttons or pills, get rid of them. and on pages like About or Reads, why is there an h1 saying About right under the active About menu link? get rid of the duplicate titles."
+      </blockquote>
+    </div>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem;">
+      <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: #b84318; margin-bottom: 0.4rem;">
+        Critical Course Corrections &amp; Remediation
+      </h3>
+      <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.6;">
+        <li>
+          <strong>Zero Pills Mandate</strong>: Scrapped heavy button badges. Category lanes were converted to quiet, elegant text links (<code>.lane-link</code>) with inline bullet separators.
+        </li>
+        <li>
+          <strong>Title Deduplication</strong>: Eliminated redundant <code>&lt;h1&gt;</code> headers on standalone pages (<code>about.html</code>, <code>reads.html</code>, <code>gallery.html</code>). The active navigation tab itself designates page context.
+        </li>
+        <li>
+          <strong>Obsidian Frontmatter Reader</strong>: Built custom reader in <code>pelicanconf.py</code> to seamlessly parse standard YAML frontmatter blocks (<code>---</code>) authored directly inside Jim's Obsidian vault.
+        </li>
+        <li>
+          <strong>GitHub Pages Jekyll Trap</strong>: Bypassed default Jekyll processing using <code>.nojekyll</code> to preserve folder structures and raw assets.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Milestone 1 & 2 -->
+  <section class="timeline-milestone" style="border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 1.5rem; position: relative;">
+    <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700;">
+      Releases v0.1 &amp; v0.2 &bull; Initial Architecture &bull; May &ndash; June 2026
+    </div>
+    <h2 style="font-size: 1.4rem; margin: 0.3rem 0 0.75rem;">
+      Foundational Reset: Human Authorship Boundary &amp; The 3-Document Rule
+    </h2>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem;">
+      <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.4rem;">
+        Jim's Direct Guidance
+      </h3>
+      <blockquote style="margin: 0; padding-left: 1rem; border-left: 2px solid var(--border-color); font-style: italic; color: var(--text);">
+        "retire the old Nikola setup... this is my personal site, not an AI playground. I write all my posts, notes, book reflections, and select all my photos in Obsidian. You are here to manage the build system, templates, CSS, and automated testing. Keep documentation to 3 files: README, PLANNING, JOURNAL."
+      </blockquote>
+    </div>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem;">
+      <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; color: #b84318; margin-bottom: 0.4rem;">
+        Critical Course Corrections &amp; Remediation
+      </h3>
+      <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.6;">
+        <li>
+          <strong>Human Authorship Boundary</strong>: Codified Rule 1 in <code>.agents/agent_rules.md</code>: Agent is strictly prohibited from generating, ghostwriting, or synthesizing personal opinions, memories, or essays. Jim owns 100% of prose and curated media.
+        </li>
+        <li>
+          <strong>Placeholder Purge</strong>: Removed all synthetic AI copy from initial prototypes; only Jim's authentic writing from his Obsidian vault is published.
+        </li>
+        <li>
+          <strong>The 3-Document Governance Rule</strong>: Context is strictly consolidated into <code>README.md</code>, <code>PLANNING.md</code>, and <code>JOURNAL.md</code>, ending sprawling documentation and unmaintained notes.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+---
+
+<div style="margin-top: 1.5rem;">
+  <a href="about-this-site.html">&larr; Return to About This Site</a> &bull;
+  <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases" target="_blank" rel="noopener">View GitHub Releases History &rarr;</a>
+</div>

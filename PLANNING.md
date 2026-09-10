@@ -6,6 +6,13 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 9: Prompt History & Instruction Timeline Subpage (Completed)**
+  - Created `content/pages/prompt-history.md` compiling to `output/prompt-history.html`.
+  - Chronicled Jim's summarized instructions and critical course corrections synced across each release milestone (`v0.1` through `Milestone 8`).
+  - Linked directly from `content/pages/about-this-site.md`.
+  - Expanded test coverage across Pelican E2E and Playwright responsive suites (40/40 tests passing).
+  - Maintained 100% Zero-JS guarantee on reading pages.
+
 - [x] **Milestone 8: About-This-Site Overhaul, Visual Exhibits ("Views") Lane, Apps Hub & Example Interactive Tools (Completed)**
   - Overhauled `about-this-site.md`: removed local install/run commands, positioned Google Antigravity & LLM Agent Harness prominently at the top of the Technology Stack, added direct links and dashboard cards for the GitHub Repository and Release Notes.
   - Added **`Apps`** and **`Views`** to main navigation and footer navigation in `theme/templates/base.html`.

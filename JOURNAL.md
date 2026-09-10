@@ -4,6 +4,25 @@
 
 ---
 
+## 2026-09-09 — Prompt History & Instruction Timeline Subpage
+
+### Context & Need
+Jim requested a dedicated timeline subpage under *About This Site* focusing entirely on his direct instructions (summarized in his voice) and especially critical course corrections, error remediations, and design decisions, synced directly to the release milestones (`v0.1` through current development).
+
+### Decisions & Actions Taken
+1. **Created Prompt History Page (`content/pages/prompt-history.md` &rarr; `output/prompt-history.html`)**:
+   - Structured chronologically across all milestones: Milestone 8 (Apps Hub, Views lane, static data directory), v0.5.5 (DevOps dashboard, Continuous Learning protocol, glossary cancellation, Mermaid syntax fixes), v0.5 & Accessibility (CSS `:has` switchers, orientation layout, progressive density), v0.3 & v0.4 (Pelican SSG migration, title deduplication, zero-pills mandate, Jekyll trap bypass), and v0.1 & v0.2 (human authorship boundary Rule 1, AI placeholder purge, 3-document governance rule).
+   - Clean, high-contrast timeline layout using site CSS variables (`--accent`, `--border-color`, `--card-bg`, `--text-muted`), blockquotes of Jim's guidance, and bullet points of error remediations.
+   - Strictly 100% Zero-JS with semantic HTML5 elements.
+2. **Linked Prominently from `about-this-site.md`**:
+   - Added dedicated section "Prompt & Instruction Timeline" with a direct link to `prompt-history.html`.
+3. **Automated Testing & Browser Verification**:
+   - Added `prompt-history.html` and `about-this-site.html` to both `tests/test_pelican_e2e.py` and `tests/test_playwright_responsive.py`.
+   - Verified 40/40 tests pass cleanly with zero console errors or accessibility violations.
+   - Captured multi-viewport screenshots via `tools/screenshots.py` and visually verified rendering quality.
+
+---
+
 ## 2026-09-09 — Milestone 8: About-This-Site Overhaul, Visual Exhibits ("Views") Lane, Apps Hub & Example Interactive Tools
 
 ### Decisions & Actions Taken

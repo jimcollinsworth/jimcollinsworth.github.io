@@ -61,6 +61,7 @@ def test_core_pages_exist():
         "gallery.html",
         "apps.html",
         "about-this-site.html",
+        "prompt-history.html",
         "lanes.html",
         "favicon.svg",
         "favicon.ico",

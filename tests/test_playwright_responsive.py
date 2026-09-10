@@ -39,6 +39,8 @@ def browser_context():
         "views.html",
         "gallery.html",
         "apps.html",
+        "about-this-site.html",
+        "prompt-history.html",
     ],
 )
 @pytest.mark.parametrize(

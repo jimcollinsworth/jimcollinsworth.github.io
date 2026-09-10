@@ -78,6 +78,10 @@ Site development and infrastructure management are conducted through collaborati
   2. `PLANNING.md` &mdash; Active milestones, backlog, and technical roadmap.
   3. `JOURNAL.md` &mdash; Chronological decision log and change records.
 
+### Prompt &amp; Instruction Timeline
+Every architectural transition, design system rule, and convention on this site was directed through human instructions and critical course corrections from Jim.
+- [**Explore the Prompt History &amp; Instruction Timeline &rarr;**](prompt-history.html) &mdash; Detailed timeline of Jim's instructions, error remediations, and resulting architectural pivots synced to each version release.
+
 ---
 
 ## Authoring &amp; Publishing Workflow
