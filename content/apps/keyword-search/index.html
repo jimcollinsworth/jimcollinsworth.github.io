@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taxonomy &amp; Keyword Explorer — Jim Collinsworth</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --bg: #fbf9f4;
+      --surface: #ffffff;
+      --border: #dcd4c5;
+      --text: #1d1c1a;
+      --text-muted: #6e6b65;
+      --accent: #9a431c;
+      --accent-hover: #7d3514;
+      --accent-subtle: #f4ede2;
+      --tag-bg: #ece6da;
+      --font-serif: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #141413;
+      --surface: #1e1d1b;
+      --border: #383632;
+      --text: #ede9e0;
+      --text-muted: #9c978e;
+      --accent: #e07a4b;
+      --accent-hover: #f09265;
+      --accent-subtle: #2b231d;
+      --tag-bg: #2b2926;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header.app-bar {
+      height: 60px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .brand a.back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .brand a.back-link:hover {
+      text-decoration: underline;
+    }
+
+    .brand h1 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .app-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    button.btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    button.btn:hover {
+      background: var(--accent-subtle);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Main Container */
+    main.app-content {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+    }
+
+    /* Sidebar Filters */
+    aside.filter-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .filter-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem;
+    }
+
+    .filter-group h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .search-box input:focus {
+      outline: 2px solid var(--accent);
+      border-color: transparent;
+    }
+
+    .chips-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .filter-chip {
+      font-size: 0.8rem;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: var(--tag-bg);
+      color: var(--text);
+      border: 1px solid transparent;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+
+    .filter-chip:hover {
+      border-color: var(--accent);
+    }
+
+    .filter-chip.active {
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Results Column */
+    section.results-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .results-count {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .results-count strong {
+      color: var(--text);
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    }
+
+    .card-top {
+      margin-bottom: 1rem;
+    }
+
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+    }
+
+    .badge-category {
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-stage {
+      background: var(--accent-subtle);
+      color: var(--accent);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      line-height: 1.35;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .card-summary {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .tag-link {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: var(--tag-bg);
+      padding: 2px 6px;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .tag-link:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      main.app-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="app-bar">
+    <div class="brand">
+      <a href="../../apps.html" class="back-link">&larr; Back to Apps</a>
+      <h1>Content Taxonomy &amp; Keyword Explorer</h1>
+    </div>
+    <div class="app-actions">
+      <button class="btn" id="btn-reset">Reset Filters</button>
+      <button class="btn" id="btn-theme">Theme</button>
+    </div>
+  </header>
+
+  <main class="app-content">
+    <aside class="filter-column">
+      <div class="filter-group search-box">
+        <h3>Search Everything</h3>
+        <input type="text" id="input-search" placeholder="Type title, summary, tag, stage...">
+      </div>
+
+      <div class="filter-group">
+        <h3>Filter by Category</h3>
+        <div class="chips-wrap" id="category-pills">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h3>Filter by Thought Stage</h3>
+        <div class="chips-wrap" id="stage-pills">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h3>Filter by Authorship Origin</h3>
+        <div class="chips-wrap" id="origin-pills">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h3>Popular Keywords / Tags</h3>
+        <div class="chips-wrap" id="tag-pills">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </aside>
+
+    <section class="results-column">
+      <div class="results-header">
+        <div class="results-count" id="results-count">Showing <strong>0</strong> posts</div>
+      </div>
+      <div class="results-grid" id="results-grid">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const DEFAULT_INDEX = [
+      {
+        title: "Cordoba Stage Classical Guitar Setup",
+        slug: "cordoba-stage-guitar",
+        url: "../../posts/cordoba-stage-guitar.html",
+        category: "Music",
+        tags: ["guitar", "classical", "pickups", "acoustic-resonance", "nylon-strings"],
+        stage: "project",
+        origin: "original",
+        date: "2026-03-24",
+        summary: "Evaluation and setup adjustments for nylon string tone, body resonance, and undersaddle pickup output balance."
+      },
+      {
+        title: "Digital Piano Enhancements: Weighted Action & Resonance Modeling",
+        slug: "digital-piano-enhancements",
+        url: "../../posts/digital-piano-enhancements.html",
+        category: "Music",
+        tags: ["piano", "midi", "sound-design", "acoustics", "keybed"],
+        stage: "inquiry",
+        origin: "original",
+        date: "2026-04-12",
+        summary: "Exploring sympathetic resonance modeling, velocity curves, and tactile feedback in hybrid digital-acoustic keybeds."
+      },
+      {
+        title: "Sculptural Form in Utility: Ulu Ergonomics & Grain Alignment",
+        slug: "ulu-knife-handle",
+        url: "../../posts/ulu-knife-handle.html",
+        category: "Making",
+        tags: ["woodworking", "cutlery", "ergonomics", "sculpture", "grain-alignment"],
+        stage: "project",
+        origin: "original",
+        date: "2026-03-24",
+        summary: "Crafting custom walnut and maple handles for traditional ulu crescent blades with attention to hand contours."
+      },
+      {
+        title: "Sleep Movement & Nocturnal Position Evaluation Plan",
+        slug: "sleep-movement-evaluation-plan",
+        url: "../../posts/sleep-movement-evaluation-plan.html",
+        category: "Health",
+        tags: ["sleep", "biomechanics", "posture", "sensors", "analytics"],
+        stage: "inquiry",
+        origin: "study",
+        date: "2026-05-18",
+        summary: "Investigating non-invasive triaxial accelerometers and pressure mats to profile spine alignment during sleep cycles."
+      },
+      {
+        title: "M.E.: Offline AI Companion System Architecture",
+        slug: "m-e-offline-ai-companion",
+        url: "../../posts/m-e-offline-ai-companion.html",
+        category: "Software",
+        tags: ["offline-ai", "local-llm", "privacy", "agentic-coding", "systems-architecture"],
+        stage: "app",
+        origin: "original",
+        date: "2026-06-02",
+        summary: "Architectural design for a zero-cloud, fully offline AI assistant operating on local hardware with zero data telemetry."
+      },
+      {
+        title: "Modern Wing Encounters: Renzo Piano's Light & Mid-Century Linearity",
+        slug: "art-institute-chicago-modern-wing",
+        url: "../../posts/art-institute-chicago-modern-wing.html",
+        category: "Art",
+        tags: ["museums", "chicago", "sculpture", "architecture", "lighting", "curation"],
+        stage: "inquiry",
+        origin: "review",
+        date: "2026-08-14",
+        summary: "Field impressions from an afternoon inside the Modern Wing at the Art Institute of Chicago examining daylighting and spatial rhythm."
+      }
+    ];
+
+    let items = [...DEFAULT_INDEX];
+    let activeCategory = null;
+    let activeStage = null;
+    let activeOrigin = null;
+    let activeTag = null;
+    let searchQuery = "";
+
+    async function loadSiteIndex() {
+      try {
+        const res = await fetch("../../data/site-index.json");
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) items = data;
+        }
+      } catch (e) {
+        console.warn("Using bundled index fallback:", e);
+      }
+      initFilters();
+      render();
+    }
+
+    function initFilters() {
+      const categories = Array.from(new Set(items.map(i => i.category))).sort();
+      const stages = Array.from(new Set(items.map(i => i.stage))).sort();
+      const origins = Array.from(new Set(items.map(i => i.origin))).sort();
+      const allTags = items.flatMap(i => i.tags || []);
+      const tagCounts = {};
+      allTags.forEach(t => tagCounts[t] = (tagCounts[t] || 0) + 1);
+      const topTags = Object.keys(tagCounts).sort((a,b) => tagCounts[b] - tagCounts[a]);
+
+      renderPills("category-pills", categories, (val) => {
+        activeCategory = activeCategory === val ? null : val;
+        render();
+      }, () => activeCategory);
+
+      renderPills("stage-pills", stages, (val) => {
+        activeStage = activeStage === val ? null : val;
+        render();
+      }, () => activeStage);
+
+      renderPills("origin-pills", origins, (val) => {
+        activeOrigin = activeOrigin === val ? null : val;
+        render();
+      }, () => activeOrigin);
+
+      renderPills("tag-pills", topTags, (val) => {
+        activeTag = activeTag === val ? null : val;
+        render();
+      }, () => activeTag);
+    }
+
+    function renderPills(containerId, values, onSelect, getActive) {
+      const el = document.getElementById(containerId);
+      el.innerHTML = "";
+      values.forEach(v => {
+        const span = document.createElement("span");
+        span.className = `filter-chip ${getActive() === v ? 'active' : ''}`;
+        span.textContent = v;
+        span.addEventListener("click", () => {
+          onSelect(v);
+          renderPills(containerId, values, onSelect, getActive);
+        });
+        el.appendChild(span);
+      });
+    }
+
+    function render() {
+      const filtered = items.filter(item => {
+        if (activeCategory && item.category !== activeCategory) return false;
+        if (activeStage && item.stage !== activeStage) return false;
+        if (activeOrigin && item.origin !== activeOrigin) return false;
+        if (activeTag && !(item.tags || []).includes(activeTag)) return false;
+        if (searchQuery) {
+          const hay = `${item.title} ${item.summary} ${(item.tags||[]).join(' ')} ${item.category} ${item.stage} ${item.origin}`.toLowerCase();
+          if (!hay.includes(searchQuery)) return false;
+        }
+        return true;
+      });
+
+      document.getElementById("results-count").innerHTML = `Showing <strong>${filtered.length}</strong> of ${items.length} items`;
+      const grid = document.getElementById("results-grid");
+      grid.innerHTML = "";
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; padding: 3rem; text-align: center; color: var(--text-muted);">No matching content found for the selected filters.</div>`;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "card";
+        const tagsHtml = (item.tags || []).map(t => `<span class="tag-link">#${t}</span>`).join(" ");
+        card.innerHTML = `
+          <div class="card-top">
+            <div class="card-meta-row">
+              <span class="badge-category">${item.category}</span>
+              <span class="badge-stage">${item.stage}</span>
+            </div>
+            <h2 class="card-title">
+              <a href="${item.url}">${item.title}</a>
+            </h2>
+            <p class="card-summary">${item.summary}</p>
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">${item.date} &bull; origin: ${item.origin}</div>
+            <div class="card-tags">${tagsHtml}</div>
+          </div>
+        `;
+        card.querySelectorAll(".tag-link").forEach(tl => {
+          tl.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const tag = tl.textContent.replace("#", "");
+            activeTag = activeTag === tag ? null : tag;
+            initFilters();
+            render();
+          });
+        });
+        grid.appendChild(card);
+      });
+    }
+
+    document.getElementById("input-search").addEventListener("input", (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      render();
+    });
+
+    document.getElementById("btn-reset").addEventListener("click", () => {
+      activeCategory = null;
+      activeStage = null;
+      activeOrigin = null;
+      activeTag = null;
+      searchQuery = "";
+      document.getElementById("input-search").value = "";
+      initFilters();
+      render();
+    });
+
+    document.getElementById("btn-theme").addEventListener("click", () => {
+      const cur = document.documentElement.getAttribute("data-theme");
+      document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+    });
+
+    loadSiteIndex();
+  </script>
+</body>
+</html>

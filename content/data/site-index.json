@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Cordoba Stage Classical Guitar Setup",
+    "slug": "cordoba-stage-guitar",
+    "url": "../../posts/cordoba-stage-guitar.html",
+    "category": "Music",
+    "tags": ["guitar", "classical", "pickups", "acoustic-resonance", "nylon-strings"],
+    "stage": "project",
+    "origin": "original",
+    "date": "2026-03-24",
+    "summary": "Evaluation and setup adjustments for nylon string tone, body resonance, and undersaddle pickup output balance."
+  },
+  {
+    "title": "Digital Piano Enhancements: Weighted Action & Resonance Modeling",
+    "slug": "digital-piano-enhancements",
+    "url": "../../posts/digital-piano-enhancements.html",
+    "category": "Music",
+    "tags": ["piano", "midi", "sound-design", "acoustics", "keybed"],
+    "stage": "inquiry",
+    "origin": "original",
+    "date": "2026-04-12",
+    "summary": "Exploring sympathetic resonance modeling, velocity curves, and tactile feedback in hybrid digital-acoustic keybeds."
+  },
+  {
+    "title": "Sculptural Form in Utility: Ulu Ergonomics & Grain Alignment",
+    "slug": "ulu-knife-handle",
+    "url": "../../posts/ulu-knife-handle.html",
+    "category": "Making",
+    "tags": ["woodworking", "cutlery", "ergonomics", "sculpture", "grain-alignment"],
+    "stage": "project",
+    "origin": "original",
+    "date": "2026-03-24",
+    "summary": "Crafting custom walnut and maple handles for traditional ulu crescent blades with attention to hand contours."
+  },
+  {
+    "title": "Sleep Movement & Nocturnal Position Evaluation Plan",
+    "slug": "sleep-movement-evaluation-plan",
+    "url": "../../posts/sleep-movement-evaluation-plan.html",
+    "category": "Health",
+    "tags": ["sleep", "biomechanics", "posture", "sensors", "analytics"],
+    "stage": "inquiry",
+    "origin": "study",
+    "date": "2026-05-18",
+    "summary": "Investigating non-invasive triaxial accelerometers and pressure mats to profile spine alignment during sleep cycles."
+  },
+  {
+    "title": "M.E.: Offline AI Companion System Architecture",
+    "slug": "m-e-offline-ai-companion",
+    "url": "../../posts/m-e-offline-ai-companion.html",
+    "category": "Software",
+    "tags": ["offline-ai", "local-llm", "privacy", "agentic-coding", "systems-architecture"],
+    "stage": "app",
+    "origin": "original",
+    "date": "2026-06-02",
+    "summary": "Architectural design for a zero-cloud, fully offline AI assistant operating on local hardware with zero data telemetry."
+  },
+  {
+    "title": "Modern Wing Encounters: Renzo Piano's Light & Mid-Century Linearity",
+    "slug": "art-institute-chicago-modern-wing",
+    "url": "../../posts/art-institute-chicago-modern-wing.html",
+    "category": "Art",
+    "tags": ["museums", "chicago", "sculpture", "architecture", "lighting", "curation"],
+    "stage": "inquiry",
+    "origin": "review",
+    "date": "2026-08-14",
+    "summary": "Field impressions from an afternoon inside the Modern Wing at the Art Institute of Chicago examining daylighting and spatial rhythm."
+  }
+]

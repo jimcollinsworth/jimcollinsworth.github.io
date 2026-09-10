@@ -39,18 +39,29 @@ jimcollinsworth.github.io/
 │   └── workflows/
 │       └── deploy.yml            # Automated CI/CD (pytest audit + Pelican build + Pages deployment)
 ├── content/                      # Source Markdown (Obsidian Vault drop folder)
-│   ├── posts/                    # Long-form posts (Health, Projects, Software, Ideas, Music)
-│   ├── pages/                    # Standalone pages (about.md, reads.md, gallery.md)
+│   ├── posts/                    # Long-form posts (Health, Projects, Software, Ideas, Music, Art)
+│   ├── pages/                    # Standalone pages (about, reads, views, gallery, apps, about-this-site)
+│   ├── apps/                     # Standalone interactive mini-apps (photo-viewer, keyword-search)
+│   ├── data/                     # Tabular & info static datasets (JSON, CSV, markdown manifests)
 │   ├── images/                   # Manually curated photos referenced by posts
 │   └── extra/                    # Favicons and verification tokens
 ├── theme/                        # Custom Pelican Jinja2 theme
 │   ├── templates/                # base.html, index.html, article.html, page.html, etc.
 │   └── static/css/style.css      # Central stylesheet (zero pills, dark/light mode)
+├── docs/
+│   └── cheatsheets/              # Architecture & Content Authoring Cheat Sheets (PDF & Markdown)
+│       ├── architecture_flow.pdf # Printable PDF: Publishing pipeline & data flows
+│       ├── architecture_flow.md  # Markdown: Architecture diagrams & governance
+│       ├── content_authoring.pdf # Printable PDF: Frontmatter & thought evolution
+│       └── content_authoring.md  # Markdown: Semantic layout & component mapping
+├── releases/                     # Historical release documents (v0.1 to v0.5.5)
 ├── tests/
 │   ├── test_pelican_e2e.py       # End-to-end test suite (build, links, zero-JS, formatting)
+│   ├── test_accessibility.py     # WCAG AAA / ARIA / high-contrast audit
 │   └── test_playwright_responsive.py # Playwright headless browser & responsive audit
 ├── tools/
-│   └── screenshots.py            # Multi-resolution screenshot generator (4 devices x 2 orientations)
+│   ├── screenshots.py            # Multi-resolution screenshot generator (8 viewports)
+│   └── generate_cheatsheet_pdfs.py # PDF compiler for cheat sheets via Playwright
 ├── pelicanconf.py                # Pelican configuration (with Obsidian YAML frontmatter reader)
 ├── pyproject.toml                # Project dependencies (pelican, markdown, playwright, pytest)
 ├── output/                       # Generated static HTML (deployed to GitHub Pages)
@@ -59,6 +70,19 @@ jimcollinsworth.github.io/
 ├── ROADMAP.md                    # Core document 3: Long-term vision & brainstormed ideas
 └── JOURNAL.md                    # Core document 4: Chronological changelog
 ```
+
+---
+
+## Architecture & Authoring Cheat Sheets (Printable PDFs)
+
+Quick-reference visual cheat sheets with Mermaid diagrams are located in [`docs/cheatsheets/`](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/docs/cheatsheets/):
+
+| Cheat Sheet | Format | Highlights & Contents |
+| :--- | :--- | :--- |
+| **Site Architecture & Publishing Flow** | [**PDF**](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/docs/cheatsheets/architecture_flow.pdf) &bull; [Markdown](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/docs/cheatsheets/architecture_flow.md) | End-to-end publishing pipeline, repository map, interactive apps & static data architecture, Antigravity AI pair programming governance, and CLI reference. |
+| **Content Authoring & Layout Relationship** | [**PDF**](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/docs/cheatsheets/content_authoring.pdf) &bull; [Markdown](file:///c:/Users/jimco/Projects/jimcollinsworth.github.io/docs/cheatsheets/content_authoring.md) | Thought evolution lifecycle, origin/authorship boundary (Jim's original vs. external works), Pelican YAML frontmatter template, Markdown-to-CSS component mapping, and responsive orientation modes. |
+
+*To regenerate the PDFs at any time: `uv run python tools/generate_cheatsheet_pdfs.py`.*
 
 ---
 

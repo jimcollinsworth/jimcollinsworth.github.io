@@ -6,14 +6,30 @@
 
 ## Active Status & Milestones
 
-- [x] **Milestone 7: Versioning v0.5.5, DevOps Dashboard, Continuous Learning Protocol, & Release History (Completed)**
+- [x] **Milestone 8: About-This-Site Overhaul, Visual Exhibits ("Views") Lane, Apps Hub & Example Interactive Tools (Completed)**
+  - Overhauled `about-this-site.md`: removed local install/run commands, positioned Google Antigravity & LLM Agent Harness prominently at the top of the Technology Stack, added direct links and dashboard cards for the GitHub Repository and Release Notes.
+  - Added **`Apps`** and **`Views`** to main navigation and footer navigation in `theme/templates/base.html`.
+  - Created **Views** (`content/pages/views.md`) dedicated to museum visits, art exhibits, gallery tours, and opinionated visual critiques with photo figures and observations.
+  - Added sample art museum post `content/posts/art-institute-chicago-modern-wing.md` (`origin: review`, `stage: inquiry`).
+  - Established centralized static tabular and info data directory (`content/data/`) with `photos.json`, `photos.md`, and `site-index.json`.
+  - Built two full-screen, responsive, styled interactive applications in `content/apps/`:
+    - `content/apps/photo-viewer/index.html` (Responsive photo viewer parsing manifest, camera telemetry, notes, and Google Drive RAW links).
+    - `content/apps/keyword-search/index.html` (Full-screen interactive taxonomy, keyword, category, and thought stage visual explorer).
+  - Created Apps Hub page (`content/pages/apps.md` -> `apps.html`).
+  - Maintained strict 100% Zero-JS guarantee for all editorial reading content while configuring the standalone app sandbox in `output/apps/`.
+  - Expanded automated test suite from 30 to 36 tests across Pelican E2E, accessibility, and Playwright responsive rendering (all 36 passing).
+
+- [x] **Milestone 7: Versioning v0.5.5, DevOps Dashboard, Cheat Sheet PDFs & Release History (Completed)**
   - Initialized official project versioning targeting `v1.0` upon initial production content publishing, currently at `v0.5.5`.
-  - Implemented continuous commit-level versioning protocol (`0.5.01-0.5.02` for larger updates, `0.5.01.01-0.5.01.05` for incremental changes).
-  - Created structured release documents under `releases/` (`v0.1.md`, `v0.2.md`, `v0.3.md`, `v0.4.md`, `v0.5.md`, `v0.5.5.md`).
-  - Formalized **Continuous Learning Protocol (`/learn`)** in `.agents/agent_rules.md` syncing debugging fixes, conventions, and rules directly into `JOURNAL.md` and agent guidelines.
+  - Created high-resolution printable PDF & Markdown cheat sheets with creative Mermaid diagrams:
+    - `docs/cheatsheets/architecture_flow.pdf` (Publishing pipeline, apps/data architecture, Antigravity pair programming sequence, governance matrix).
+    - `docs/cheatsheets/content_authoring.pdf` (Thought evolution lifecycle, origin/authorship boundary, Pelican YAML frontmatter template, semantic CSS mapping).
+    - `tools/generate_cheatsheet_pdfs.py` (Automated PDF generator via Playwright).
+  - Created structured release documents under `releases/` (`v0.1.md` through `v0.5.5.md`) and published Git tags & GitHub Releases.
+  - Formalized **Continuous Learning Protocol (`/learn`)** in `.agents/agent_rules.md` syncing debugging fixes, conventions, and rules directly into `JOURNAL.md`.
   - Created `content/pages/about-this-site.md` (DevOps dashboard, live GitHub status, Antigravity AI pair programming model).
   - Codified the practical **Web & Markdown Authoring: Semantic Component Guide** and content types directly in `README.md`.
-  - Integrated `about-this-site.html` into base footer navigation and verified automated test suite with zero JavaScript.
+  - Integrated `about-this-site.html` into base footer navigation and verified 30/30 automated tests with zero JavaScript.
 
 - [x] **Milestone 6: Comprehensive Web Accessibility (WCAG 2.1/2.2 AA & AAA, Section 508, ADA) (Completed)**
   - **Skip-to-Content Navigation**: Added `<a href="#main-content" class="skip-link">Skip to main content</a>` that becomes visible on keyboard focus, navigating directly to `<main id="main-content" tabindex="-1">`.

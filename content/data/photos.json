@@ -1,0 +1,57 @@
+[
+  {
+    "id": "photo-01",
+    "title": "Lakefront Morning Light",
+    "date": "2026-08-14",
+    "location": "Lake Michigan Shoreline, Chicago",
+    "category": "Atmosphere",
+    "url": "../../images/sky-lakefront.jpg",
+    "drive_url": "https://drive.google.com/open?id=example-lakefront-raw",
+    "camera": "Sony A7 IV &bull; 35mm f/1.8",
+    "notes": "Low-angle dawn glow breaking across the lake horizon. Soft wave texture with high dynamic range."
+  },
+  {
+    "id": "photo-02",
+    "title": "Evening Twilight Horizon",
+    "date": "2026-07-22",
+    "location": "Montrose Harbor, Chicago",
+    "category": "Atmosphere",
+    "url": "../../images/sky-twilight.jpg",
+    "drive_url": "https://drive.google.com/open?id=example-twilight-raw",
+    "camera": "Sony A7 IV &bull; 50mm f/1.4",
+    "notes": "Deep gradient transition from indigo zenith down to warm ember orange over western horizon line."
+  },
+  {
+    "id": "photo-03",
+    "title": "Structural Cloud Formation",
+    "date": "2026-06-30",
+    "location": "Grant Park, Chicago",
+    "category": "Geometry",
+    "url": "../../images/sky-formation.jpg",
+    "drive_url": "https://drive.google.com/open?id=example-formation-raw",
+    "camera": "Sony A7 IV &bull; 24-70mm f/2.8",
+    "notes": "High contrast cumulus cloud edge catching afternoon summer sun against deep azure blue."
+  },
+  {
+    "id": "photo-04",
+    "title": "Midsummer Cumulus Swell",
+    "date": "2026-06-18",
+    "location": "Lakeshore Trail",
+    "category": "Atmosphere",
+    "url": "../../images/sky-clouds.jpg",
+    "drive_url": "https://drive.google.com/open?id=example-clouds-raw",
+    "camera": "Sony A7 IV &bull; 85mm f/1.8",
+    "notes": "Pillow cloud textures showing micro-shadowing along atmospheric boundary layer."
+  },
+  {
+    "id": "photo-05",
+    "title": "Botanical Macro Study",
+    "date": "2026-05-10",
+    "location": "Garfield Park Conservatory",
+    "category": "Macro & Nature",
+    "url": "../../images/flower-macro.jpg",
+    "drive_url": "https://drive.google.com/open?id=example-flower-raw",
+    "camera": "Sony A7 IV &bull; 90mm Macro f/2.8",
+    "notes": "Intricate petal venation and stamen geometry revealing natural Fibonacci spiral patterns."
+  }
+]

@@ -53,8 +53,13 @@ def build_site():
 
 
 def get_html_pages():
-    """Retrieve all generated HTML files in output/ (excluding verification tokens)."""
-    return [p for p in OUTPUT_DIR.glob("**/*.html") if not p.name.startswith("google")]
+    """Retrieve all generated editorial HTML files in output/ (excluding verification tokens and apps)."""
+    return [p for p in OUTPUT_DIR.glob("**/*.html") if not p.name.startswith("google") and "apps" not in p.parts]
+
+
+def get_app_pages():
+    """Retrieve interactive application pages in output/apps/."""
+    return [p for p in OUTPUT_DIR.glob("apps/**/*.html")]
 
 
 def test_html_lang_attribute():
@@ -220,4 +225,16 @@ def test_mode_switchers_present_and_accessible():
         assert 'for="theme-toggle"' in html, f"Missing label for #theme-toggle in {page.name}"
         assert 'for="contrast-toggle"' in html, f"Missing label for #contrast-toggle in {page.name}"
         assert 'for="text-size-toggle"' in html, f"Missing label for #text-size-toggle in {page.name}"
+
+
+def test_interactive_apps_accessibility():
+    """Verify that interactive applications maintain accessibility standards (lang, title, controls)."""
+    app_pages = get_app_pages()
+    assert len(app_pages) >= 2, "Expected at least 2 interactive app pages"
+    for page in app_pages:
+        html = page.read_text(encoding="utf-8")
+        assert re.search(r"<html\s+lang=[\"'][a-zA-Z\-]+[\"']", html, re.IGNORECASE), f"{page.name} missing lang attribute"
+        assert "<title>" in html and "</title>" in html, f"{page.name} missing <title>"
+        assert '<main' in html, f"{page.name} missing <main> container"
+
 

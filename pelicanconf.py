@@ -27,7 +27,7 @@ DEFAULT_LANG = 'en'
 # Source directory layout
 ARTICLE_PATHS = ['posts']
 PAGE_PATHS = ['pages']
-STATIC_PATHS = ['images', 'extra']
+STATIC_PATHS = ['images', 'extra', 'apps', 'data']
 
 # Copy root-level metadata files
 EXTRA_PATH_METADATA = {

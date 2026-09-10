@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Content Authoring & Layout Relationship — Cheat Sheet</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    @page {
+      size: letter portrait;
+      margin: 12mm;
+    }
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #555555;
+      --border: #d0c8b8;
+      --accent: #9a431c;
+      --accent-subtle: #f8f4ed;
+      --code-bg: #f3f0e8;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.42;
+      font-size: 10.5pt;
+      padding: 10px;
+    }
+    h1 {
+      font-size: 17pt;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .subtitle {
+      font-size: 9.5pt;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-weight: normal;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 8px 10px;
+      background: var(--bg);
+    }
+    .card-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+    }
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      margin: 4px 0;
+      background: #faf9f6;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+      margin-top: 4px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 3px 5px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--accent-subtle);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    code {
+      font-family: ui-monospace, "JetBrains Mono", Consolas, monospace;
+      background: var(--code-bg);
+      padding: 1px 3px;
+      border-radius: 3px;
+      font-size: 8.5pt;
+    }
+    pre {
+      font-family: ui-monospace, "JetBrains Mono", Consolas, monospace;
+      background: var(--code-bg);
+      padding: 6px;
+      border-radius: 3px;
+      font-size: 8pt;
+      overflow-x: auto;
+      line-height: 1.3;
+      margin-top: 4px;
+    }
+    .page-break {
+      page-break-after: always;
+      break-after: page;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>
+    <span>Content Authoring &amp; Layout Cheat Sheet</span>
+    <span style="font-size: 9.5pt; color: var(--text-muted);">jimcollinsworth.github.io &bull; v0.5.5</span>
+  </h1>
+  <div class="subtitle">
+    Authoring reference for Pelican YAML metadata, thought evolution lifecycles, authorship boundaries, and semantic layout styling.
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">1. Thought Evolution Lifecycle (Stage Transitions)</div>
+      <div class="mermaid">
+stateDiagram-v2
+  [*] --> Idea: Raw Prompt / Hypothesis
+  [*] --> TIL: Quick Technical Discovery
+  [*] --> Rant: Direct Commentary
+
+  Idea --> Inquiry: Research &amp; Deep Exploration
+  TIL --> Inquiry: Expanding Insight
+  Rant --> Inquiry: Structured Analysis
+
+  Inquiry --> Project: Multi-step Build / Fabrication
+  Inquiry --> App: Software Tool / Visualizer
+  Inquiry --> Article: Long-form Synthesis
+
+  Project --> Article: Mature Case Study
+  App --> Article: Architecture &amp; Rationale
+
+  Project --> Inquiry: New Questions / Redesign
+  Article --> Inquiry: Follow-up Exploration
+      </div>
+      <p style="font-size: 8pt; color: var(--text-muted); margin-top: 2px;">
+        Posts are living thoughts. They progress across stages over time using the <code>evolution:</code> audit log.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2. Authorship &amp; Origin Boundary</div>
+      <div class="mermaid">
+flowchart TD
+  ITEM["Content Item (Post, Read, Photo, Exhibit)"]
+  ORIG{"Is this Jim's Original Work?"}
+  
+  ITEM --> ORIG
+  ORIG -->|YES| JIM["origin: original<br/>(Personal Woodworking, Photos, Software, Theory)"]
+  ORIG -->|NO| EXT["External Reference"]
+
+  EXT --> STUD["origin: study<br/>(Replicating a piece, exercise, practicing a score)"]
+  EXT --> REV["origin: review<br/>(Critique of exhibit, book, film, software)"]
+  EXT --> CUR["origin: curation<br/>(Reading note, bookmark, quote with short reflection)"]
+      </div>
+      <p style="font-size: 8pt; color: var(--text-muted); margin-top: 2px;">
+        Strictly distinguishes Jim's primary creations from reviews and curations where external work is the primary subject.
+      </p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom: 10px;">
+    <div class="card-title">3. Standard Pelican YAML Frontmatter Template</div>
+    <div class="grid-2">
+      <div>
+        <pre><code>---
+title: "Cordoba Stage Classical Guitar Setup"
+slug: "cordoba-stage-guitar"
+date: 2026-03-24
+modified: 2026-09-09
+
+# 1. Primary Classification (The 12 Core Domains)
+category: Music          # Music, Software, Health, Making, Art, Law,
+                         # Politics, Data, Exercise, Anatomy, Engineering
+
+# 2. Multi-Label Topics & Keywords
+tags: [guitar, classical, pickups, acoustic-resonance]
+
+# 3. Publishing Control & Summary Teaser
+status: published        # published | draft | hidden
+summary: "Evaluation and setup adjustments for nylon string tone."
+
+# 4. Thought Evolution & Authorship
+origin: original         # original | study | review | curation
+stage: project           # idea | til | rant | inquiry | project | app | article
+evolution: "2026-03-24:idea > 2026-06-10:inquiry > 2026-09-09:project"
+
+# 5. Interactive Media & Apps (Optional)
+app_url: ""              # e.g. /apps/circle-of-fifths/
+gallery_url: ""          # e.g. Google Photos album URL
+---</code></pre>
+      </div>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Type / Enum</th>
+              <th>Behavior in Pelican</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>category</code></td>
+              <td>Single enum</td>
+              <td>Routes to <code>lanes/{slug}.html</code> category feed.</td>
+            </tr>
+            <tr>
+              <td><code>tags</code></td>
+              <td>YAML list</td>
+              <td>Multi-label cross-category indexing.</td>
+            </tr>
+            <tr>
+              <td><code>status</code></td>
+              <td><code>published</code> / <code>draft</code></td>
+              <td><code>draft</code> builds locally but hides from live site.</td>
+            </tr>
+            <tr>
+              <td><code>summary</code></td>
+              <td>Text</td>
+              <td>Feeds teaser excerpt on index cards.</td>
+            </tr>
+            <tr>
+              <td><code>origin</code></td>
+              <td><code>original</code> / <code>review</code> / <code>curation</code></td>
+              <td>Renders origin badge &amp; attribution styling.</td>
+            </tr>
+            <tr>
+              <td><code>stage</code></td>
+              <td><code>idea</code> &rarr; <code>project</code> &rarr; <code>article</code></td>
+              <td>Renders stage indicator on post header.</td>
+            </tr>
+            <tr>
+              <td><code>evolution</code></td>
+              <td>History string</td>
+              <td>Displays thought evolution timeline.</td>
+            </tr>
+            <tr>
+              <td><code>app_url</code></td>
+              <td>URL path</td>
+              <td>Links companion post to live interactive app.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <div class="card" style="margin-bottom: 10px;">
+    <div class="card-title">4. Markdown Syntax to Semantic CSS Component Mapping</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Markdown / HTML Syntax</th>
+          <th>CSS Selector</th>
+          <th>Visual &amp; Typography Behavior</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Site Header</strong></td>
+          <td>Template-generated</td>
+          <td><code>.site-header</code>, <code>.site-nav</code></td>
+          <td>Clean branding, active page highlight, and zero-JS accessibility controls.</td>
+        </tr>
+        <tr>
+          <td><strong>Lead Summary</strong></td>
+          <td><code>&lt;div class="page-intro"&gt;...&lt;/div&gt;</code></td>
+          <td><code>.page-intro</code></td>
+          <td>Slightly larger type (<code>1.15rem</code>) with generous margins for article ledes.</td>
+        </tr>
+        <tr>
+          <td><strong>Headings (H2-H4)</strong></td>
+          <td><code>## Section</code>, <code>### Sub</code></td>
+          <td><code>h2</code>, <code>h3</code>, <code>h4</code></td>
+          <td>Proportional margins, distinct serif/sans hierarchy, and clear section breaks.</td>
+        </tr>
+        <tr>
+          <td><strong>Body Prose</strong></td>
+          <td>Standard markdown paragraphs</td>
+          <td><code>p</code>, <code>main p</code></td>
+          <td>Readable measure capped at <code>max-width: 76ch</code> with <code>1.65</code> line-height.</td>
+        </tr>
+        <tr>
+          <td><strong>Quotes &amp; Callouts</strong></td>
+          <td><code>&gt; Quote / mental model</code></td>
+          <td><code>blockquote</code></td>
+          <td>Rust accent left border (<code>3px solid var(--accent)</code>), italicized, indented.</td>
+        </tr>
+        <tr>
+          <td><strong>Photo Figures</strong></td>
+          <td><code>![Caption](images/photo.jpg)</code></td>
+          <td><code>figure</code>, <code>figcaption</code></td>
+          <td>Bordered photo card with centered italicized caption below.</td>
+        </tr>
+        <tr>
+          <td><strong>Data Tables</strong></td>
+          <td>Pipe table: <code>| Col 1 | Col 2 |</code></td>
+          <td><code>table</code>, <code>th</code>, <code>td</code></td>
+          <td>Clean bordered table with shaded header row and horizontal row dividers.</td>
+        </tr>
+        <tr>
+          <td><strong>Code Snippets</strong></td>
+          <td><code>```python ... ```</code></td>
+          <td><code>pre</code>, <code>code</code>, <code>.highlight</code></td>
+          <td>Monospace block with card shading, dark mode support, and code syntax styles.</td>
+        </tr>
+        <tr>
+          <td><strong>Dashboard Grid</strong></td>
+          <td><code>&lt;div class="dashboard-grid"&gt;</code></td>
+          <td><code>.dashboard-grid</code></td>
+          <td>Multi-column CSS Grid card layout for metrics, stats, and telemetry.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">5. Responsive Layout &amp; Orientation Rules</div>
+      <div class="mermaid">
+flowchart TD
+  DEV["Client Display Viewport"]
+  DEV --> OR{"Orientation and Width"}
+
+  OR -->|Portrait / Under 960px| PORT["Single-Column Reading Flow<br/>- Focused vertical prose stream<br/>- Maximum reading comfort"]
+  OR -->|Landscape / 960px and Up| LAND["2-Column Magazine Grid (.desktop-two-col)<br/>- Left: Featured Article + Reads<br/>- Right: Recent Stream + Spotlight"]
+
+  DEV --> DENS{"Viewport Width"}
+  DENS -->|Desktop / 640px and Up| DET["Progressive Detail (.post-detail)<br/>- Full excerpts and complete metadata"]
+  DENS -->|Mobile / Under 640px| TEAS["Progressive Teaser (.post-teaser)<br/>- Concise 1-line scannable feeds"]
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">6. Zero-JS &amp; Accessibility Standards</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Implementation Method</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Zero-JS Guarantee</strong></td>
+            <td>100% pure HTML5 + CSS. 0 <code>&lt;script&gt;</code> tags, 0 cookies, 0 runtime dependencies.</td>
+          </tr>
+          <tr>
+            <td><strong>Theme Switcher</strong></td>
+            <td>Pure CSS <code>body:has(#theme-toggle:checked)</code> with OS dark mode fallback.</td>
+          </tr>
+          <tr>
+            <td><strong>Contrast Switcher</strong></td>
+            <td>Pure CSS <code>body:has(#contrast-toggle:checked)</code> &amp; <code>@media (prefers-contrast: more)</code> (7:1+ AAA).</td>
+          </tr>
+          <tr>
+            <td><strong>Text Size Switcher</strong></td>
+            <td>Pure CSS <code>body:has(#text-size-toggle:checked)</code> with 100% relative zoom scaling.</td>
+          </tr>
+          <tr>
+            <td><strong>Keyboard Navigation</strong></td>
+            <td>Skip-to-content link, semantic ARIA landmarks, and 3px focus rings.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+  </script>
+</body>
+</html>

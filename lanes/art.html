@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ DEFAULT_LANG }}">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}{{ SITENAME }}{% if SITESUBTITLE %} &mdash; {{ SITESUBTITLE }}{% endif %}{% endblock %}</title>
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css">
-  <link rel="icon" href="{{ SITEURL }}/favicon.svg" type="image/svg+xml">
-  <link rel="alternate icon" href="{{ SITEURL }}/favicon.ico" type="image/x-icon">
+  <title>Art Posts &mdash; Jim Collinsworth</title>
+  <link rel="stylesheet" href="../theme/css/style.css">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="../favicon.ico" type="image/x-icon">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -17,8 +17,8 @@
     <header class="site-header" role="banner">
       <div class="site-branding">
         <div class="site-identity">
-          <div class="site-title"><a href="{{ SITEURL }}/index.html">{{ SITENAME }}</a></div>
-          <div class="site-tagline">{{ SITESUBTITLE }}</div>
+          <div class="site-title"><a href="../index.html">Jim Collinsworth</a></div>
+          <div class="site-tagline">Out of My Lane</div>
         </div>
         <div class="site-controls" role="group" aria-label="Display and accessibility preferences">
           <label for="theme-toggle" class="control-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme (Light / Dark)">
@@ -55,30 +55,58 @@
         </div>
       </div>
       <nav class="site-nav" aria-label="Main Navigation">
-        <a href="{{ SITEURL }}/index.html"{% if output_file == 'index.html' %} class="active" aria-current="page"{% endif %}>Home</a>
-        <a href="{{ SITEURL }}/about.html"{% if page and page.slug == 'about' %} class="active" aria-current="page"{% endif %}>About</a>
-        <a href="{{ SITEURL }}/posts.html"{% if output_file == 'posts.html' or article or category %} class="active" aria-current="page"{% endif %}>Posts</a>
-        <a href="{{ SITEURL }}/reads.html"{% if page and page.slug == 'reads' %} class="active" aria-current="page"{% endif %}>Reads</a>
-        <a href="{{ SITEURL }}/views.html"{% if page and page.slug == 'views' %} class="active" aria-current="page"{% endif %}>Views</a>
-        <a href="{{ SITEURL }}/gallery.html"{% if page and page.slug == 'gallery' %} class="active" aria-current="page"{% endif %}>Gallery</a>
-        <a href="{{ SITEURL }}/apps.html"{% if page and page.slug == 'apps' %} class="active" aria-current="page"{% endif %}>Apps</a>
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../posts.html" class="active" aria-current="page">Posts</a>
+        <a href="../reads.html">Reads</a>
+        <a href="../views.html">Views</a>
+        <a href="../gallery.html">Gallery</a>
+        <a href="../apps.html">Apps</a>
       </nav>
     </header>
 
     <main id="main-content" tabindex="-1">
-      {% block content %}{% endblock %}
+<div class="back-nav">
+  <a href="../posts.html">&larr; All Posts</a>
+</div>
+
+<h2>Lane: Art</h2>
+
+<nav class="lane-nav" aria-label="Filter posts by lane">
+  <a href="../posts.html" class="lane-link">All</a>
+  &bull; <a href="../lanes/art.html" class="lane-link active" aria-current="page">Art</a>
+  &bull; <a href="../lanes/health.html" class="lane-link">Health</a>
+  &bull; <a href="../lanes/ideas.html" class="lane-link">Ideas</a>
+  &bull; <a href="../lanes/making.html" class="lane-link">Making</a>
+  &bull; <a href="../lanes/music.html" class="lane-link">Music</a>
+  &bull; <a href="../lanes/projects.html" class="lane-link">Projects</a>
+</nav>
+
+<ul class="post-list">
+  <li class="post-item">
+    <div class="post-header">
+      <h3 class="post-title"><a href="../posts/art-institute-chicago-modern-wing.html">Modern Wing Encounters: Renzo Piano's Light & Mid-Century Linearity</a></h3>
+      <div class="post-meta">
+        <time datetime="2026-08-14">Aug 14, 2026</time>
+      </div>
+    </div>
+    <p class="post-desc">
+      Field impressions from an afternoon inside the Art Institute of Chicago Modern Wing, analyzing spatial daylighting and mid-century sculptural geometry.
+    </p>
+  </li>
+</ul>
     </main>
 
     <footer class="site-footer" role="contentinfo">
       <nav class="footer-nav" aria-label="Footer Navigation">
-        <a href="{{ SITEURL }}/index.html">Home</a>
-        <a href="{{ SITEURL }}/about.html">About</a>
-        <a href="{{ SITEURL }}/posts.html">Posts</a>
-        <a href="{{ SITEURL }}/reads.html">Reads</a>
-        <a href="{{ SITEURL }}/views.html">Views</a>
-        <a href="{{ SITEURL }}/gallery.html">Gallery</a>
-        <a href="{{ SITEURL }}/apps.html">Apps</a>
-        <a href="{{ SITEURL }}/about-this-site.html">About This Site</a>
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../posts.html">Posts</a>
+        <a href="../reads.html">Reads</a>
+        <a href="../views.html">Views</a>
+        <a href="../gallery.html">Gallery</a>
+        <a href="../apps.html">Apps</a>
+        <a href="../about-this-site.html">About This Site</a>
         <a href="https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8" target="_blank" rel="noopener">Google Photos <span class="sr-only">(opens external photo album in new tab)</span></a>
       </nav>
       <div>

@@ -57,7 +57,9 @@ def test_core_pages_exist():
         "about.html",
         "posts.html",
         "reads.html",
+        "views.html",
         "gallery.html",
+        "apps.html",
         "about-this-site.html",
         "lanes.html",
         "favicon.svg",
@@ -71,6 +73,7 @@ def test_core_pages_exist():
 def test_post_pages_exist():
     """Verify that all individual post HTML pages exist in output/posts/."""
     expected_posts = [
+        "art-institute-chicago-modern-wing.html",
         "cordoba-stage-guitar.html",
         "digital-piano-enhancements.html",
         "m-e-offline-ai-companion.html",
@@ -85,6 +88,7 @@ def test_post_pages_exist():
 def test_lane_archive_pages_exist():
     """Verify that pursuit lane category pages exist in output/lanes/."""
     expected_lanes = [
+        "art.html",
         "health.html",
         "ideas.html",
         "making.html",
@@ -119,12 +123,20 @@ def test_no_duplicate_page_titles():
     assert '<h1>Posts' not in posts_html
     assert 'class="active"' in posts_html and 'Posts</a>' in posts_html
 
+    views_html = (OUTPUT_DIR / "views.html").read_text(encoding="utf-8")
+    assert '<h1>Views' not in views_html
+    assert 'class="active"' in views_html and 'Views</a>' in views_html
+
+    apps_html = (OUTPUT_DIR / "apps.html").read_text(encoding="utf-8")
+    assert '<h1>Apps' not in apps_html
+    assert 'class="active"' in apps_html and 'Apps</a>' in apps_html
+
 
 def test_zero_pills_lane_formatting():
     """
     Verify that pill badge styling is removed and lanes are simple text links.
     """
-    html_files = list(OUTPUT_DIR.rglob("*.html"))
+    html_files = [f for f in OUTPUT_DIR.rglob("*.html") if "apps" not in f.parts]
     # Also check root-level html files to ensure branch deployments never serve pills
     for root_f in REPO_ROOT.glob("*.html"):
         if root_f.name not in ["googledaf3f946832f8abf.html"]:
@@ -157,12 +169,26 @@ def test_content_flows_from_markdown():
 
 
 def test_zero_javascript_policy():
-    """Verify that zero client-side JavaScript (<script> tags) exists across all generated HTML."""
-    html_files = list(OUTPUT_DIR.rglob("*.html"))
-    for f in html_files:
+    """Verify that zero client-side JavaScript (<script> tags) exists across all editorial content pages."""
+    editorial_pages = [f for f in OUTPUT_DIR.rglob("*.html") if "apps" not in f.parts]
+    assert len(editorial_pages) >= 12, "Expected at least 12 editorial HTML pages"
+    for f in editorial_pages:
         content = f.read_text(encoding="utf-8")
         rel_path = f.relative_to(OUTPUT_DIR).as_posix()
         assert "<script" not in content.lower(), f"Security violation: {rel_path} contains a <script> tag!"
+
+
+def test_apps_and_static_data():
+    """Verify that interactive applications and static tabular datasets compile cleanly into output/."""
+    expected_artifacts = [
+        OUTPUT_DIR / "apps" / "photo-viewer" / "index.html",
+        OUTPUT_DIR / "apps" / "keyword-search" / "index.html",
+        OUTPUT_DIR / "data" / "photos.json",
+        OUTPUT_DIR / "data" / "photos.md",
+        OUTPUT_DIR / "data" / "site-index.json",
+    ]
+    for artifact in expected_artifacts:
+        assert artifact.exists(), f"Expected {artifact.relative_to(OUTPUT_DIR)} to exist in output/"
 
 
 def test_link_and_asset_integrity():
@@ -177,7 +203,7 @@ def test_link_and_asset_integrity():
         # Check internal href links
         for m in re.finditer(r'href="([^"#:]+)"', content):
             link = m.group(1).strip()
-            if not link or link.startswith(("http", "https", "mailto", "tel", "javascript", "#")):
+            if not link or link.startswith(("http", "https", "mailto", "tel", "javascript", "#", "${")):
                 continue
             target_path = (f.parent / link).resolve()
             assert target_path.exists(), f"Broken link in {rel_path}: '{link}' -> {target_path} not found"
@@ -185,7 +211,7 @@ def test_link_and_asset_integrity():
         # Check internal img src links
         for m in re.finditer(r'src="([^":]+)"', content):
             src = m.group(1).strip()
-            if not src or src.startswith(("http", "https", "data:")):
+            if not src or src.startswith(("http", "https", "data:", "${")):
                 continue
             target_path = (f.parent / src).resolve()
             assert target_path.exists(), f"Broken image in {rel_path}: '{src}' -> {target_path} not found"

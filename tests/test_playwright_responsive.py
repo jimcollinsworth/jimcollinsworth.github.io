@@ -36,7 +36,9 @@ def browser_context():
         "about.html",
         "posts.html",
         "reads.html",
+        "views.html",
         "gallery.html",
+        "apps.html",
     ],
 )
 @pytest.mark.parametrize(

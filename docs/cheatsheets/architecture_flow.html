@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Site Architecture & Publishing Flow — Cheat Sheet</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    @page {
+      size: letter portrait;
+      margin: 12mm;
+    }
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #555555;
+      --border: #d0c8b8;
+      --accent: #9a431c;
+      --accent-subtle: #f8f4ed;
+      --code-bg: #f3f0e8;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.45;
+      font-size: 11pt;
+      padding: 10px;
+    }
+    h1 {
+      font-size: 18pt;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .subtitle {
+      font-size: 10pt;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-weight: normal;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 8px 10px;
+      background: var(--bg);
+    }
+    .card-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+    }
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      margin: 6px 0;
+      background: #faf9f6;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-top: 4px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 4px 6px;
+      text-align: left;
+    }
+    th {
+      background: var(--accent-subtle);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    code {
+      font-family: ui-monospace, "JetBrains Mono", Consolas, monospace;
+      background: var(--code-bg);
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 9pt;
+    }
+    pre {
+      font-family: ui-monospace, "JetBrains Mono", Consolas, monospace;
+      background: var(--code-bg);
+      padding: 6px;
+      border-radius: 3px;
+      font-size: 8.5pt;
+      overflow-x: auto;
+      line-height: 1.35;
+      margin-top: 4px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 1px 5px;
+      font-size: 8pt;
+      font-weight: bold;
+      border-radius: 3px;
+      background: var(--accent-subtle);
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+    .page-break {
+      page-break-after: always;
+      break-after: page;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>
+    <span>Site Architecture &amp; Flow Cheat Sheet</span>
+    <span style="font-size: 10pt; color: var(--text-muted);">jimcollinsworth.github.io &bull; v0.5.5</span>
+  </h1>
+  <div class="subtitle">
+    Technical reference guide for static compilation, data flows, pair programming governance, and CI/CD operations.
+  </div>
+
+  <div class="card" style="margin-bottom: 12px;">
+    <div class="card-title">1. End-to-End Publishing Pipeline</div>
+    <div class="mermaid">
+flowchart LR
+  subgraph Authoring ["1. Human Authoring"]
+    OV["Obsidian Vault<br/>(Markdown Notes)"]
+    CP["content/posts/<br/>content/pages/"]
+    IM["content/images/<br/>(Jim's Curated Photos)"]
+    OV -->|Direct Save / Drop| CP
+    OV -->|Manual Selection| IM
+  end
+
+  subgraph Compilation ["2. Pelican Static Generator"]
+    CONF["pelicanconf.py<br/>(Obsidian Reader)"]
+    TH["theme/templates/<br/>(Jinja2 Semantic HTML)"]
+    OUT["output/<br/>(Pure HTML5 + CSS)"]
+    CP --> CONF
+    IM --> CONF
+    TH --> CONF
+    CONF -->|Compile Under 0.2s| OUT
+  end
+
+  subgraph Testing ["3. Automated Quality Gate"]
+    PY["uv run pytest -v<br/>(30 Automated Tests)"]
+    A11Y["Accessibility<br/>(WCAG AAA / ARIA)"]
+    PW["Playwright Headless<br/>(8 Viewports / Light+Dark)"]
+    OUT --> PY
+    PY --> A11Y
+    PY --> PW
+  end
+
+  subgraph Deployment ["4. GitHub Pages CDN"]
+    GA["GitHub Actions<br/>(.github/workflows/deploy.yml)"]
+    GP["GitHub Pages CDN<br/>(100% Zero-JS HTTPS)"]
+    PY -->|git push origin main| GA
+    GA -->|Deploy output/| GP
+  end
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">2. Repository &amp; Source Topography</div>
+      <div class="mermaid">
+classDiagram
+  class Repository {
+    +content/ (Markdown & Media)
+    +theme/ (Jinja2 Templates & CSS)
+    +tools/ (Screenshots & Utilities)
+    +tests/ (30 Pytest Suite)
+    +output/ (Compiled Artifacts)
+    +releases/ (Release History)
+  }
+  class ContentFolder {
+    +posts/ (Articles & Thought Streams)
+    +pages/ (About, Reads, Gallery, About-This-Site)
+    +images/ (Curated Photo Assets)
+    +data/ (Accumulated Static Datasets)
+    +apps/ (Interactive Mini-Apps)
+    +extra/ (Favicons & .nojekyll)
+  }
+  class Governance {
+    +README.md (Guide & Lexicon)
+    +PLANNING.md (Active Roadmap)
+    +ROADMAP.md (Long-Term Vision)
+    +JOURNAL.md (Decision History)
+  }
+  Repository *-- ContentFolder
+  Repository *-- Governance
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">3. Interactive Apps &amp; Static Data Architecture</div>
+      <div class="mermaid">
+flowchart TD
+  DATA["content/data/<br/>(JSON, CSV, SQLite Datasets)"]
+  APP["content/apps/name/<br/>(Standalone App Code: Python/WASM/JS/Ruby)"]
+  POST["content/posts/name.md<br/>(stage: app, app_url: /apps/name/)"]
+  PAGE["HTML Output<br/>(Embedded iframe or Full Page Link)"]
+
+  DATA -->|Fetch / Query Local Static Data| APP
+  APP -->|Linked / Embedded in| POST
+  POST -->|Compiled via Pelican| PAGE
+      </div>
+      <p style="font-size: 8.5pt; color: var(--text-muted); margin-top: 4px;">
+        Every app is paired with a companion post (<code>stage: app</code>) documenting its architecture, rationale, and evolution.
+      </p>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <div class="card" style="margin-bottom: 12px;">
+    <div class="card-title">4. Antigravity AI Pair Programming Governance &amp; Boundaries</div>
+    <div class="mermaid">
+sequenceDiagram
+  autonumber
+  actor Jim as Jim (Author &amp; Architect)
+  participant Obsidian as Obsidian Vault
+  participant Agent as Antigravity AI Agent
+  participant Tests as Pytest / Playwright
+  participant GitHub as GitHub (Repo &amp; Pages)
+
+  Jim->>Obsidian: Authors posts, notes, book reflections, and selects photos
+  Note over Jim,Obsidian: 100% Human Content Ownership (Agent Never Writes Content)
+  Jim->>Agent: Requests layout, styling, tool, or build modification
+  Agent->>Agent: Implements Jinja2 templates, CSS grids, or CLI tools
+  Agent->>Tests: Executes automated test suite (Zero-JS + Viewport verification)
+  Tests-->>Agent: 30/30 Tests Pass
+  Agent->>Agent: Updates 4 Governance Docs (JOURNAL, PLANNING, README, Rules)
+  Agent->>Jim: Presents changes, test output and requests push confirmation
+  Jim->>Agent: Confirms push
+  Agent->>GitHub: git push origin main and creates Git release tags
+  GitHub-->>Jim: Deploys live to GitHub Pages CDN via Actions
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">5. Core Document Governance Matrix</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Document</th>
+            <th>Role &amp; Primary Purpose</th>
+            <th>Update Trigger</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>README.md</code></td>
+            <td>Architecture overview, CLI guide &amp; component lexicon.</td>
+            <td>New tools, syntax, or commands.</td>
+          </tr>
+          <tr>
+            <td><code>PLANNING.md</code></td>
+            <td>Active sprint tasks, near-term milestones &amp; statuses.</td>
+            <td>Every milestone completion.</td>
+          </tr>
+          <tr>
+            <td><code>ROADMAP.md</code></td>
+            <td>Long-term creative sandbox, wishlists &amp; concept specs.</td>
+            <td>New exploratory concepts.</td>
+          </tr>
+          <tr>
+            <td><code>JOURNAL.md</code></td>
+            <td>Chronological technical decision log &amp; troubleshooting.</td>
+            <td>Every commit / session.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">6. Essential CLI Command Quick-Reference</div>
+      <pre><code># 1. Dependency Sync
+uv sync
+
+# 2. Build Pelican Static Site
+uv run pelican content -s pelicanconf.py -o output -d
+
+# 3. Local Development Preview Server
+uv run pelican --listen -p 8000
+
+# 4. Run Full Test Suite (Accessibility + E2E + Playwright)
+uv run pytest -v
+
+# 5. Generate Multi-Resolution Screenshots (8 Viewports)
+uv run python tools/screenshots.py --page index.html
+
+# 6. Granular Versioning Scheme
+v0.5.01 -> v0.5.02 (Features) | v0.5.01.01 -> v0.5.01.02 (Fixes)</code></pre>
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+  </script>
+</body>
+</html>

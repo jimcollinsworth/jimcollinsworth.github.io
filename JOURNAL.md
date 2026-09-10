@@ -4,10 +4,44 @@
 
 ---
 
-## 2026-09-09 — Milestone 7: Versioning v0.5.5, DevOps Dashboard, Continuous Learning Protocol, & Release History
+## 2026-09-09 — Milestone 8: About-This-Site Overhaul, Visual Exhibits ("Views") Lane, Apps Hub & Example Interactive Tools
 
 ### Decisions & Actions Taken
-1. **Bumped Project Version to `v0.5.5` & Created Structured Release History**:
+1. **Overhauled `about-this-site.md`**:
+   - Removed the local CLI install/run commands section.
+   - Prominently positioned the **Google Antigravity & LLM Agent Harness** at the very top of the Technology Stack.
+   - Added direct links and dashboard cards for the **GitHub Repository** (`https://github.com/jimcollinsworth/jimcollinsworth.github.io`) and **Release Notes** (`releases/` / GitHub releases).
+2. **Main Navigation Expansion & "Views" Visual Lane**:
+   - Added **`Views`** and **`Apps`** to both `site-nav` and `footer-nav` in `theme/templates/base.html`.
+   - Created **Views** (`content/pages/views.md`) dedicated to museum visits, art exhibits, gallery tours, and opinionated visual critiques with photo figures and observations.
+   - Added sample art post `content/posts/art-institute-chicago-modern-wing.md` (`origin: review`, `stage: inquiry`, category `Art`).
+3. **Centralized Static Data Directory (`content/data/`)**:
+   - Configured `STATIC_PATHS = ['images', 'extra', 'apps', 'data']` in `pelicanconf.py`.
+   - Created `content/data/photos.json` and `content/data/photos.md` containing image metadata, dates, locations, and direct Google Drive links.
+   - Created `content/data/site-index.json` containing complete multi-facet content index spanning categories, stages, origins, and tags.
+4. **Built Two Full-Screen Example Interactive Applications**:
+   - `content/apps/photo-viewer/index.html`: Responsive full-screen photo viewer parsing manifest data, with filmstrip sidebar, keyboard navigation, camera telemetry, dark/light toggle, and direct Google Drive RAW links.
+   - `content/apps/keyword-search/index.html`: Full-screen interactive taxonomy, keyword, category, and thought stage visual discovery explorer with live fuzzy search and clickable filter chips.
+   - Created Apps Hub page `content/pages/apps.md` (`apps.html`) introducing the sandbox.
+5. **Architectural Boundary: Zero-JS vs. Standalone Apps**:
+   - Preserved 100% Zero-JS guarantee for all editorial reading content (`index.html`, `posts/*.html`, `reads.html`, `views.html`, `about.html`, etc.).
+   - Interactive applications operate in isolated standalone subpaths (`output/apps/**`).
+6. **Automated Test Suite Expansion**:
+   - Expanded test suite from 30 to 36 automated tests (`tests/test_accessibility.py`, `tests/test_pelican_e2e.py`, `tests/test_playwright_responsive.py`), validating all pages and apps across viewports.
+
+---
+
+## 2026-09-09 — Milestone 7: Versioning v0.5.5, DevOps Dashboard, Cheat Sheet PDFs & Release History
+
+### Decisions & Actions Taken
+1. **Created Visual Cheat Sheets & Automated PDF Generator**:
+   - Designed two comprehensive visual cheat sheets featuring rich Mermaid diagrams and print-optimized typography:
+     - `docs/cheatsheets/architecture_flow.pdf` &bull; `.md` &bull; `.html` &mdash; End-to-end publishing pipeline, source topography, interactive apps & static data architecture, Antigravity AI sequence diagram, governance matrix, and CLI commands.
+     - `docs/cheatsheets/content_authoring.pdf` &bull; `.md` &bull; `.html` &mdash; Thought evolution lifecycle state diagram, authorship/origin boundary flow, Pelican YAML frontmatter template, semantic layout component mapping table, and responsive orientation modes.
+   - Built `tools/generate_cheatsheet_pdfs.py` utilizing Playwright headless Chromium to render vector-sharp, letter-format PDFs on demand with built-in diagram validation that catches any Mermaid syntax parsing issues.
+   - Resolved Mermaid syntax error in box 5 ("Responsive Layout & Orientation Rules") by escaping angle brackets in edge labels.
+   - Added reference section in `README.md`.
+2. **Bumped Project Version to `v0.5.5` & Created Structured Release History**:
    - Set version to `0.5.5` across `pyproject.toml` and `about-this-site.md`.
    - Created standardized GitHub-style release documents under `releases/`:
      - `releases/v0.1.md` &mdash; Clean Foundation, Zero-JS, and 3-Document Governance.
@@ -16,18 +50,18 @@
      - `releases/v0.4.md` &mdash; GitHub Pages Root Deployment Alignment & Custom "JC" Favicon.
      - `releases/v0.5.md` &mdash; Magazine 2-Column Desktop Grid, Orientation Modes, and Progressive Density.
      - `releases/v0.5.5.md` &mdash; DevOps Dashboard, Continuous Learning Protocol, and Semantic Component Guide.
-2. **Formalized Continuous Learning Protocol (`/learn`) in Agent Governance**:
+   - Published Git tags and official GitHub Releases (`v0.1` through `v0.5.5`).
+3. **Formalized Continuous Learning Protocol (`/learn`) in Agent Governance**:
    - Integrated learning procedures into `.agents/agent_rules.md`: when new debugging solutions, user corrections, or workflow preferences are established, the agent records structured entries in `JOURNAL.md` and permanently updates `.agents/agent_rules.md` and `.agents/skills/`.
-3. **Created `about-this-site.md` & DevOps Dashboard**:
+4. **Created `about-this-site.md` & DevOps Dashboard**:
    - Built standalone meta page at `content/pages/about-this-site.md` (compiled to `about-this-site.html`).
    - Integrated live GitHub Actions deployment badge, release version metric (`v0.5.5`), zero-JS guarantee (0 KB JS, 0 cookies, 0 tracking), and hosting architecture (GitHub Pages + HTTPS).
    - Formally documented the **Antigravity AI Assistant & Pair Programming Model** detailing the strict separation of concerns (Jim owns 100% of prose/content; Antigravity manages templates, CSS, build tools, tests, and CI/CD).
    - Integrated page into site footer navigation in `theme/templates/base.html`.
-4. **Consolidated Content Types & Semantic Terminology Directly into Docs**:
+5. **Consolidated Content Types & Semantic Terminology Directly into Docs**:
    - Consolidated clear content format definitions (*Post/Essay, Project, TIL, Idea, Read, Comment*) directly into the **Semantic Component Guide** in `README.md`.
-5. **Automated E2E Test Suite Validation**:
-   - Verified `about-this-site.html` in `tests/test_pelican_e2e.py`.
-   - All tests passing cleanly.
+6. **Automated Test Suite Validation**:
+   - Verified 30/30 automated tests passing across accessibility, Playwright browser rendering, and Pelican E2E integrity.
 
 ---
 

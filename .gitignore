@@ -4,6 +4,7 @@
 tmp/
 cache/
 output/
+screenshots/
 baseline/
 nikola-baseline-build/
 /tags

@@ -16,6 +16,10 @@
   --border-subtle: #eae4d8;
   --link: #8a3710;
   --link-hover: #501e06;
+  --accent: var(--link);
+  --accent-hover: var(--link-hover);
+  --border-color: var(--border);
+  --card-bg: var(--bg-card);
   --tag-bg: #eae5d9;
   --tag-text: #454744;
   --code-bg: #ebe6db;
@@ -27,6 +31,40 @@
   
   --max-width: 1080px;
   --line-height-body: 1.7;
+}
+
+.app-launch-btn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.5rem 1rem;
+  background: var(--link);
+  color: #ffffff !important;
+  border-radius: 4px;
+  border: 1px solid var(--link);
+  transition: background 0.15s ease;
+}
+
+.app-launch-btn:hover {
+  background: var(--link-hover);
+  color: #ffffff !important;
+}
+
+.app-data-btn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.88rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  color: var(--text) !important;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+}
+
+.app-data-btn:hover {
+  background: var(--bg-subtle);
 }
 
 /* Manual Theme Toggle (Pure CSS :has) */

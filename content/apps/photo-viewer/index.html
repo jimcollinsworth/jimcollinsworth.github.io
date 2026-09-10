@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Viewer &amp; Drive Manifest Explorer — Jim Collinsworth</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --bg: #fbf9f4;
+      --surface: #ffffff;
+      --border: #dcd4c5;
+      --text: #1d1c1a;
+      --text-muted: #6e6b65;
+      --accent: #9a431c;
+      --accent-hover: #7d3514;
+      --accent-subtle: #f4ede2;
+      --sidebar-width: 320px;
+      --header-height: 56px;
+      --font-serif: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #141413;
+      --surface: #1e1d1b;
+      --border: #383632;
+      --text: #ede9e0;
+      --text-muted: #9c978e;
+      --accent: #e07a4b;
+      --accent-hover: #f09265;
+      --accent-subtle: #2b231d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Top Bar */
+    header.app-bar {
+      height: var(--header-height);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand a.back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .brand a.back-link:hover {
+      text-decoration: underline;
+    }
+
+    .brand h1 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .app-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    button.btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    button.btn:hover {
+      background: var(--accent-subtle);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Main App Layout */
+    .app-body {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Sidebar */
+    aside.sidebar {
+      width: var(--sidebar-width);
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow: hidden;
+      transition: transform 0.25s ease;
+    }
+
+    .sidebar-search {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-search input {
+      width: 100%;
+      padding: 0.45rem 0.65rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-family: inherit;
+    }
+
+    .sidebar-search input:focus {
+      outline: 2px solid var(--accent);
+      border-color: transparent;
+    }
+
+    .photo-list {
+      flex: 1;
+      overflow-y: auto;
+      list-style: none;
+      padding: 0.5rem 0;
+    }
+
+    .photo-item {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.65rem 1rem;
+      cursor: pointer;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s ease;
+    }
+
+    .photo-item:hover {
+      background: var(--accent-subtle);
+    }
+
+    .photo-item.active {
+      background: var(--accent-subtle);
+      border-left: 3px solid var(--accent);
+    }
+
+    .photo-item img {
+      width: 60px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .photo-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .photo-item-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .photo-item-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Main Viewport */
+    main.viewport {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #101010;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .canvas-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      user-select: none;
+    }
+
+    .canvas-container img {
+      max-width: 92%;
+      max-height: 88%;
+      object-fit: contain;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      transition: transform 0.2s ease, opacity 0.25s ease;
+      cursor: grab;
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(30, 30, 30, 0.75);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.1s ease;
+      z-index: 5;
+    }
+
+    .nav-arrow:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .nav-arrow.prev { left: 1rem; }
+    .nav-arrow.next { right: 1rem; }
+
+    /* Metadata Drawer */
+    section.meta-panel {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      flex-shrink: 0;
+      z-index: 5;
+    }
+
+    .meta-main h2 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .meta-tags {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .meta-tag-badge {
+      background: var(--accent-subtle);
+      color: var(--accent);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+
+    .meta-notes {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text);
+      max-width: 800px;
+    }
+
+    .meta-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+
+    .drive-link {
+      background: var(--accent);
+      color: #ffffff;
+      padding: 0.45rem 0.9rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.15s ease;
+    }
+
+    .drive-link:hover {
+      background: var(--accent-hover);
+    }
+
+    .spec-text {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    @media (max-width: 800px) {
+      aside.sidebar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 20;
+        box-shadow: 4px 0 16px rgba(0,0,0,0.25);
+        transform: translateX(-100%);
+      }
+      aside.sidebar.open {
+        transform: translateX(0);
+      }
+      section.meta-panel {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      .meta-actions {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="app-bar">
+    <div class="brand">
+      <a href="../../apps.html" class="back-link">&larr; Back to Apps</a>
+      <h1>Photo Viewer &amp; Drive Explorer</h1>
+    </div>
+    <div class="app-actions">
+      <button class="btn" id="toggle-sidebar" title="Toggle filmstrip sidebar">List</button>
+      <button class="btn" id="toggle-theme" title="Toggle light/dark theme">Theme</button>
+      <button class="btn" id="toggle-fullscreen" title="Toggle full screen">Fullscreen</button>
+    </div>
+  </header>
+
+  <div class="app-body">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-search">
+        <input type="text" id="filter-input" placeholder="Search photos by title, place, tag...">
+      </div>
+      <ul class="photo-list" id="photo-list">
+        <!-- Injected via JavaScript -->
+      </ul>
+    </aside>
+
+    <main class="viewport">
+      <div class="canvas-container">
+        <button class="nav-arrow prev" id="btn-prev" aria-label="Previous photo">&#10094;</button>
+        <img id="main-photo" src="" alt="Selected photo display">
+        <button class="nav-arrow next" id="btn-next" aria-label="Next photo">&#10095;</button>
+      </div>
+
+      <section class="meta-panel">
+        <div class="meta-main">
+          <h2 id="photo-title">Loading photography manifest...</h2>
+          <div class="meta-tags">
+            <span class="meta-tag-badge" id="photo-category">Category</span>
+            <span id="photo-date">Date</span> &bull; 
+            <span id="photo-location">Location</span>
+          </div>
+          <p class="meta-notes" id="photo-notes">Field notes and observations...</p>
+        </div>
+        <div class="meta-actions">
+          <a href="#" target="_blank" rel="noopener" class="drive-link" id="photo-drive-link">
+            <span>View RAW in Google Drive</span> &nearr;
+          </a>
+          <div class="spec-text" id="photo-specs">Camera: Sony A7 IV</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const DEFAULT_PHOTOS = [
+      {
+        id: "photo-01",
+        title: "Lakefront Morning Light",
+        date: "2026-08-14",
+        location: "Lake Michigan Shoreline, Chicago",
+        category: "Atmosphere",
+        url: "../../images/sky-lakefront.jpg",
+        drive_url: "https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8",
+        camera: "Sony A7 IV • 35mm f/1.8",
+        notes: "Low-angle dawn glow breaking across the lake horizon. Soft wave texture with high dynamic range."
+      },
+      {
+        id: "photo-02",
+        title: "Evening Twilight Horizon",
+        date: "2026-07-22",
+        location: "Montrose Harbor, Chicago",
+        category: "Atmosphere",
+        url: "../../images/sky-twilight.jpg",
+        drive_url: "https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8",
+        camera: "Sony A7 IV • 50mm f/1.4",
+        notes: "Deep gradient transition from indigo zenith down to warm ember orange over western horizon line."
+      },
+      {
+        id: "photo-03",
+        title: "Structural Cloud Formation",
+        date: "2026-06-30",
+        location: "Grant Park, Chicago",
+        category: "Geometry",
+        url: "../../images/sky-formation.jpg",
+        drive_url: "https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8",
+        camera: "Sony A7 IV • 24-70mm f/2.8",
+        notes: "High contrast cumulus cloud edge catching afternoon summer sun against deep azure blue."
+      },
+      {
+        id: "photo-04",
+        title: "Midsummer Cumulus Swell",
+        date: "2026-06-18",
+        location: "Lakeshore Trail",
+        category: "Atmosphere",
+        url: "../../images/sky-clouds.jpg",
+        drive_url: "https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8",
+        camera: "Sony A7 IV • 85mm f/1.8",
+        notes: "Pillow cloud textures showing micro-shadowing along atmospheric boundary layer."
+      },
+      {
+        id: "photo-05",
+        title: "Botanical Macro Study",
+        date: "2026-05-10",
+        location: "Garfield Park Conservatory",
+        category: "Macro & Nature",
+        url: "../../images/flower-macro.jpg",
+        drive_url: "https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8",
+        camera: "Sony A7 IV • 90mm Macro f/2.8",
+        notes: "Intricate petal venation and stamen geometry revealing natural Fibonacci spiral patterns."
+      }
+    ];
+
+    let photos = [...DEFAULT_PHOTOS];
+    let currentIndex = 0;
+
+    async function loadPhotoManifest() {
+      try {
+        const response = await fetch("../../data/photos.json");
+        if (response.ok) {
+          const remoteData = await response.json();
+          if (Array.isArray(remoteData) && remoteData.length > 0) {
+            photos = remoteData;
+          }
+        }
+      } catch (err) {
+        console.warn("Using bundled manifest fallback:", err);
+      }
+      renderPhotoList(photos);
+      selectPhoto(0);
+    }
+
+    function renderPhotoList(items) {
+      const listEl = document.getElementById("photo-list");
+      listEl.innerHTML = "";
+      items.forEach((item, idx) => {
+        const li = document.createElement("li");
+        li.className = `photo-item ${idx === currentIndex ? 'active' : ''}`;
+        li.innerHTML = `
+          <img src="${item.url}" alt="${item.title}">
+          <div class="photo-item-info">
+            <div class="photo-item-title">${item.title}</div>
+            <div class="photo-item-meta">${item.date} &bull; ${item.category}</div>
+          </div>
+        `;
+        li.addEventListener("click", () => {
+          selectPhoto(idx);
+          if (window.innerWidth <= 800) {
+            document.getElementById("sidebar").classList.remove("open");
+          }
+        });
+        listEl.appendChild(li);
+      });
+    }
+
+    function selectPhoto(index) {
+      if (index < 0) index = photos.length - 1;
+      if (index >= photos.length) index = 0;
+      currentIndex = index;
+
+      const p = photos[currentIndex];
+      const img = document.getElementById("main-photo");
+      img.style.opacity = "0.3";
+      setTimeout(() => {
+        img.src = p.url;
+        img.alt = p.title;
+        img.style.opacity = "1";
+      }, 100);
+
+      document.getElementById("photo-title").textContent = p.title;
+      document.getElementById("photo-category").textContent = p.category;
+      document.getElementById("photo-date").textContent = p.date;
+      document.getElementById("photo-location").textContent = p.location;
+      document.getElementById("photo-notes").textContent = p.notes;
+      document.getElementById("photo-specs").innerHTML = p.camera;
+      document.getElementById("photo-drive-link").href = p.drive_url;
+
+      document.querySelectorAll(".photo-item").forEach((el, idx) => {
+        el.classList.toggle("active", idx === currentIndex);
+      });
+    }
+
+    // Event Listeners
+    document.getElementById("btn-prev").addEventListener("click", () => selectPhoto(currentIndex - 1));
+    document.getElementById("btn-next").addEventListener("click", () => selectPhoto(currentIndex + 1));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") selectPhoto(currentIndex - 1);
+      if (e.key === "ArrowRight") selectPhoto(currentIndex + 1);
+    });
+
+    document.getElementById("filter-input").addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      const filtered = photos.filter(p => 
+        p.title.toLowerCase().includes(q) || 
+        p.location.toLowerCase().includes(q) || 
+        p.category.toLowerCase().includes(q) ||
+        p.notes.toLowerCase().includes(q)
+      );
+      renderPhotoList(filtered);
+    });
+
+    document.getElementById("toggle-sidebar").addEventListener("click", () => {
+      document.getElementById("sidebar").classList.toggle("open");
+    });
+
+    document.getElementById("toggle-theme").addEventListener("click", () => {
+      const cur = document.documentElement.getAttribute("data-theme");
+      document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+    });
+
+    document.getElementById("toggle-fullscreen").addEventListener("click", () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    loadPhotoManifest();
+  </script>
+</body>
+</html>
