@@ -4,7 +4,40 @@
 
 ---
 
+## 2026-09-10 — Persistent Learning (`/learn`), Human Prompt Highlighting in Journal & Release v0.5.9
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"ok do a /learn, update journal highligh my instructions, questions, corrections, advise, update release numbermerge push and publish"*
+
+### Problem & Diagnosis
+Jim requested executing a `/learn` session with specific continuous learning directives:
+1. **Highlighting Jim's Input**: In `JOURNAL.md`, prominently distinguish Jim's authentic instructions, questions, corrections, and advice from the agent's technical log entries.
+2. **Persistent Rule Codification**: Ensure that agent governance documents (`AGENTS.md` and `.agents/agent_rules.md`) mandate this distinct formatting for all future journal entries.
+3. **Release & Deployment**: Increment the release version to `v0.5.9`, merge the feature branch to `main`, tag the release, push to remote, and publish to GitHub Pages.
+
+### Root Cause & Technical Analysis
+- As noted in `ROADMAP.md`, `JOURNAL.md` contains predominantly agent-generated technical logs, making it difficult to immediately identify Jim's human editorial direction, requirements, and critical course corrections.
+- Establishing a standardized GitHub Flavored Markdown alert block (`> [!NOTE] Jim's Prompts, Instructions & Steering:`) at the top of every journal entry provides immediate visual contrast and preserves human provenance.
+
+### Solution & Standard Procedure
+1. **Governance Documents Updated (`AGENTS.md` & `.agents/agent_rules.md`)**:
+   - Updated Section 6 to formally require callout blocks for Jim's prompts, instructions, corrections, and advice in `JOURNAL.md`.
+2. **Journal Retrofitted & Updated (`JOURNAL.md`)**:
+   - Added prominent callout blocks to recent entries detailing Jim's exact instructions and steering.
+3. **Versioning Synchronized**:
+   - Bumped version to `0.5.9` across `pyproject.toml` and `content/pages/about-this-site.md`.
+   - Created `releases/v0.5.9.md` documenting this milestone.
+4. **Automated Verification**:
+   - Verified 42/42 tests pass with `uv run pytest -v`.
+
+---
+
 ## 2026-09-10 — Tagline Lanes Link, Footer Lane Navigator, AI Promoted Lane, Links Rename & Homepage Bio (v0.5.8)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"i like the make the distinction of me, mine, ours and others could event be menu/page titles. me is the about page along with contacts, what i'm doing now; mine is my own original content, apps, photos (not of art); and then ours with would be nature, hikes, museums, art; and others are books, urls, blogs, articals and my comments/review/mention. i would post my photos of art in others or ours, that one is not entirely clear could go either way. finally want to make ai a major page - basically it's one of the out of my lane 'lanes' pages, but promoted to the top menu. maybe we have an easy way to mark a lane page to show at top level menu, vs a list/tag cloud of all the lanes (maybe 20). but a menu of 'me mine ours others' may be too cute. so lets do about, https://macwright.com/ is probably the best structure wise and content and layout for me. document some of these thoughs but i thik the only change we need is to remove events, i will just have an 'art' post, and change shelf to something else - links is fine for now. and add ai and lanes as 2 more pages, with ai being a lane, and lanes being a description an dindex to all the lanes."*
+> - *"remove about link, instead just have a quick blurb about me on home, and then link to detail about page. add site link for the about site page."*
+> - *"remove lanes page, add a link to that from the out of my lane title. and we can put all the lanes into the footer navigator. go ahead with everything"*
 
 ### Problem & Diagnosis
 Jim requested a refined navigation structure and content organization:
