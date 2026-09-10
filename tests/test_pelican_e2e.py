@@ -62,6 +62,7 @@ def test_core_pages_exist():
         "apps.html",
         "about-this-site.html",
         "prompt-history.html",
+        "contact.html",
         "lanes.html",
         "favicon.svg",
         "favicon.ico",

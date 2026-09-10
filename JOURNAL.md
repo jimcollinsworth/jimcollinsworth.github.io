@@ -4,6 +4,42 @@
 
 ---
 
+## 2026-09-10 — Contact Page, Footer Links Enhancement & UI Walkthrough Visual Protocol (v0.5.7)
+
+### Problem & Diagnosis
+1. **Footer Navigation**:
+   - Following header deduplication in v0.5.6.01, the footer needed clear secondary navigation to key project pages: `About Site`, `Dev Prompts`, and a newly requested `Contact` page, along with external `Google Photos`.
+2. **Contact Channel**:
+   - Visitors and readers lacked a direct, simple contact page.
+3. **UI Visual Evidence Invariant**:
+   - Jim requested a strict governance standard: whenever walkthroughs or reports involve user interface changes, the agent must provide one or two visual screenshots directly in the report before Jim approves pushing or merging.
+
+### Root Cause & Technical Analysis
+- The personal site adheres strictly to a zero-JavaScript philosophy. A contact page must avoid complex JavaScript forms, external tracking widgets, or reCAPTCHAs while providing clear, comfortable ways to get in touch.
+- Secondary meta links (`about-this-site.html` and `prompt-history.html`) belong naturally in the footer, keeping the main header navigation focused on primary reading and exploration lanes.
+- Codifying the visual walkthrough protocol as Section 13 in `AGENTS.md` and `.agents/agent_rules.md` ensures agent execution is gated on immediate visual evidence.
+
+### Solution & Standard Procedure
+1. **Contact Page (`content/pages/contact.md`)**:
+   - Created clean, minimalist Markdown page compiling to `output/contact.html`.
+   - Included direct email contact link (`mailto:jim@jimcollinsworth.com`), context on topics of discussion (classical guitar, software, health, Chicago skies), and site privacy stance.
+2. **Footer Navigation Updates (`theme/templates/base.html`)**:
+   - Updated `<nav class="footer-nav">` with links:
+     - `About Site` (`about-this-site.html`)
+     - `Dev Prompts` (`prompt-history.html`)
+     - `Contact` (`contact.html`)
+     - `Google Photos` (`https://photos.app.goo.gl/...`)
+3. **Governance Codification (`AGENTS.md` & `.agents/agent_rules.md`)**:
+   - Codified **Section 13: Visual Evidence & UI Walkthrough Protocol** mandating inline screenshots before requesting approval to push or merge.
+4. **Automated Testing & Visual Verification**:
+   - Updated `tests/test_pelican_e2e.py` and `tests/test_playwright_responsive.py` to audit `contact.html`.
+   - All 42/42 automated tests pass cleanly with `uv run pytest -v`.
+   - Captured full-page visual screenshots of the Contact page and Footer navigation.
+5. **Versioning**:
+   - Bumped version to `v0.5.7` in `pyproject.toml` and `content/pages/about-this-site.md`.
+
+---
+
 ## 2026-09-10 — High-Contrast Header 2-Line Alignment, Line-Height Optimization & Footer Deduplication (v0.5.6.01)
 
 ### Context & Need

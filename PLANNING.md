@@ -6,6 +6,13 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 12: Contact Page, Footer Navigation Links & UI Walkthrough Visual Protocol (Completed)**
+  - Authored clean, zero-JS editorial Contact page (`content/pages/contact.md` &rarr; `output/contact.html`).
+  - Updated `<nav class="footer-nav">` in `theme/templates/base.html` with direct links: `About Site`, `Dev Prompts`, `Contact`, and `Google Photos`.
+  - Codified **Section 13 (Visual Evidence & UI Walkthrough Protocol)** in `AGENTS.md` and `.agents/agent_rules.md`: mandatory inline visual screenshots before pushing or merging UI changes.
+  - Updated automated test suite (`tests/test_pelican_e2e.py` and `tests/test_playwright_responsive.py`) with all 42/42 tests passing.
+  - Bumped version to `v0.5.7` across `pyproject.toml` and `about-this-site.md`.
+
 - [x] **Milestone 11: Section Taxonomy Refinement (Reads &rarr; Shelf, Gallery &rarr; Photos, Views &rarr; Events) & Header Layout Optimization (Completed)**
   - Renamed content sections across Markdown sources, slugs, templates, navigation, and tests:
     - Reads &rarr; Shelf (`shelf.md` / `shelf.html`)
