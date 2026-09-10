@@ -1,11 +1,11 @@
 ---
-title: "Views"
-slug: "views"
+title: "Events"
+slug: "events"
 ---
 
 <div class="page-intro">
   <p>
-    <strong>Views</strong> curates observations, visual essays, and opinionated critiques from visits to art museums, sculpture parks, architectural sites, and gallery exhibitions. Where <em>Reads</em> tracks books and intellectual models, <em>Views</em> places primary emphasis on photography, spatial curation, craft, and aesthetic critique.
+    <strong>Events</strong> curates observations, visual essays, and opinionated critiques from visits to art museums, sculpture parks, architectural sites, and gallery exhibitions. Where <em>Shelf</em> tracks books and intellectual models, <em>Events</em> places primary emphasis on photography, spatial curation, craft, and aesthetic critique.
   </p>
 </div>
 

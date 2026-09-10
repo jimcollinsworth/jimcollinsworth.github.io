@@ -1,6 +1,6 @@
 ---
-title: "Reads"
-slug: "reads"
+title: "Shelf"
+slug: "shelf"
 ---
 
 <div class="page-intro">

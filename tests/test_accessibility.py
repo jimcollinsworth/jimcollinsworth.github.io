@@ -110,7 +110,7 @@ def test_aria_landmarks():
 
 def test_active_nav_aria_current():
     """Verify that the active navigation item uses aria-current='page'."""
-    core_pages = ["index.html", "about.html", "posts.html", "reads.html", "gallery.html"]
+    core_pages = ["index.html", "about.html", "posts.html", "shelf.html", "events.html", "photos.html"]
     for page_name in core_pages:
         page_file = OUTPUT_DIR / page_name
         if page_file.exists():

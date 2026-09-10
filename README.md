@@ -40,7 +40,7 @@ jimcollinsworth.github.io/
 │       └── deploy.yml            # Automated CI/CD (pytest audit + Pelican build + Pages deployment)
 ├── content/                      # Source Markdown (Obsidian Vault drop folder)
 │   ├── posts/                    # Long-form posts (Health, Projects, Software, Ideas, Music, Art)
-│   ├── pages/                    # Standalone pages (about, reads, views, gallery, apps, about-this-site)
+│   ├── pages/                    # Standalone pages (about, shelf, events, photos, apps, about-this-site, contact)
 │   ├── apps/                     # Standalone interactive mini-apps (photo-viewer, keyword-search)
 │   ├── data/                     # Tabular & info static datasets (JSON, CSV, markdown manifests)
 │   ├── images/                   # Manually curated photos referenced by posts

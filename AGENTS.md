@@ -73,7 +73,7 @@ Inspired by:
   - Health & Body (Tai Chi, Alexander Technique, Anatomy, Sleep)
   - Crafts & Making (Woodworking, Knife making, DIY)
 - **Journal**: Chronological notes, observations, deep dives, and progress reports written by Jim.
-- **Gallery**: Photographic essays and studies (Chicago sky, Lake Michigan, sunsets, botanical, craft).
+- **Photos**: Photographic essays and studies (Chicago sky, Lake Michigan, sunsets, botanical, craft).
 - **Archive**: Historical notes, raw drafts, and original full-resolution photo assets in `archive/`.
 
 ---
@@ -119,7 +119,7 @@ Every commit and meaningful change set must increment the project version:
   - **Project**: Active, multi-step engineering or fabrication build with milestones.
   - **TIL ("Today I Learned") / Quick Note**: Short 1–3 paragraph insight or CLI fix.
   - **Idea / Seedling**: Unexecuted hypothesis or prompt (`Ideas` lane or backlog).
-  - **Read / Book Synthesis**: Curated book reflections (`reads.md`).
+  - **Shelf / Book Synthesis**: Curated book reflections (`shelf.md`).
   - **Comment / Annotation**: Inline callout or marginalia.
 - **No Newspaper Jargon**: Use clean, standard Web & Markdown terminology (*Site Header, Document Title, Lead Intro, Section Headings, Body Paragraphs, Quotes/Callouts, Figures/Captions, Data Tables, Code Blocks, Footer*).
 
@@ -161,4 +161,14 @@ Every commit and meaningful change set must increment the project version:
 > - **Deliberate, Stepwise Progression**: The agent must **NEVER** implement expansive, multi-tier architectural changes (such as complex taxonomy schemes, multi-zone classification systems, or simultaneous multi-template refactors) in a single pass.
 > - **Brainstorm First**: Always explore the simplest minimal viable solution in chat, discuss trade-offs, and obtain Jim's explicit approval before touching code.
 > - **Deferral to GitHub Issues**: If an architectural concept is determined to be too complex, speculative, or in need of deeper rethinking, immediately capture it in a GitHub issue via `gh issue create` (or update an existing ticket) and defer implementation rather than pushing forward.
+
+---
+
+## 13. Visual Evidence & UI Walkthrough Protocol
+
+> [!IMPORTANT]
+> **Inline Visual Evidence Required for UI Changes**:
+> - Whenever work involves user interface changes, layout restructurings, styling adjustments, or visual mode updates, the agent must **always provide one or two visual screenshots directly in the report / walkthrough** presented to Jim.
+> - The agent must display this visual evidence before asking Jim for approval to push to remote branches or merge to `main`.
+> - Never claim UI changes are ready for push or release without giving Jim immediate visual evidence to inspect.
 

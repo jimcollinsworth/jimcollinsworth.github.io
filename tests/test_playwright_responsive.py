@@ -35,12 +35,13 @@ def browser_context():
         "index.html",
         "about.html",
         "posts.html",
-        "reads.html",
-        "views.html",
-        "gallery.html",
+        "shelf.html",
+        "events.html",
+        "photos.html",
         "apps.html",
         "about-this-site.html",
         "prompt-history.html",
+        "contact.html",
     ],
 )
 @pytest.mark.parametrize(
@@ -129,9 +130,9 @@ def test_in_page_mode_switchers_interactive(browser_context):
         contrast_bg = page.evaluate("() => window.getComputedStyle(document.body).backgroundColor")
         assert "0, 0, 0" in contrast_bg  # #000000
 
-        # Verify Low-Complexity mode: graphics hidden, nav serialized, desktop grid flattened
+        # Verify Low-Complexity mode: graphics hidden, nav remains clean 2-line row, desktop grid flattened
         nav_direction = page.evaluate("() => window.getComputedStyle(document.querySelector('nav.site-nav')).flexDirection")
-        assert nav_direction == "column", f"Expected column nav direction, got {nav_direction}"
+        assert nav_direction == "row", f"Expected row nav direction, got {nav_direction}"
         img_display = page.evaluate("() => window.getComputedStyle(document.querySelector('.photo-stream img')).display")
         assert img_display == "none", f"Expected img display none in low complexity mode, got {img_display}"
 

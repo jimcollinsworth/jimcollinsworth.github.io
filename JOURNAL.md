@@ -4,6 +4,111 @@
 
 ---
 
+## 2026-09-10 — Contact Page, Footer Links Enhancement & UI Walkthrough Visual Protocol (v0.5.7)
+
+### Problem & Diagnosis
+1. **Footer Navigation**:
+   - Following header deduplication in v0.5.6.01, the footer needed clear secondary navigation to key project pages: `About Site`, `Dev Prompts`, and a newly requested `Contact` page, along with external `Google Photos`.
+2. **Contact Channel**:
+   - Visitors and readers lacked a direct, simple contact page.
+3. **UI Visual Evidence Invariant**:
+   - Jim requested a strict governance standard: whenever walkthroughs or reports involve user interface changes, the agent must provide one or two visual screenshots directly in the report before Jim approves pushing or merging.
+
+### Root Cause & Technical Analysis
+- The personal site adheres strictly to a zero-JavaScript philosophy. A contact page must avoid complex JavaScript forms, external tracking widgets, or reCAPTCHAs while providing clear, comfortable ways to get in touch.
+- Secondary meta links (`about-this-site.html` and `prompt-history.html`) belong naturally in the footer, keeping the main header navigation focused on primary reading and exploration lanes.
+- Codifying the visual walkthrough protocol as Section 13 in `AGENTS.md` and `.agents/agent_rules.md` ensures agent execution is gated on immediate visual evidence.
+
+### Solution & Standard Procedure
+1. **Contact Page (`content/pages/contact.md`)**:
+   - Created clean, minimalist Markdown page compiling to `output/contact.html`.
+   - Included direct email contact link (`mailto:jim@jimcollinsworth.com`), context on topics of discussion (classical guitar, software, health, Chicago skies), and site privacy stance.
+2. **Footer Navigation Updates (`theme/templates/base.html`)**:
+   - Updated `<nav class="footer-nav">` with links:
+     - `About Site` (`about-this-site.html`)
+     - `Dev Prompts` (`prompt-history.html`)
+     - `Contact` (`contact.html`)
+     - `Google Photos` (`https://photos.app.goo.gl/...`)
+3. **Governance Codification (`AGENTS.md` & `.agents/agent_rules.md`)**:
+   - Codified **Section 13: Visual Evidence & UI Walkthrough Protocol** mandating inline screenshots before requesting approval to push or merge.
+4. **Automated Testing & Visual Verification**:
+   - Updated `tests/test_pelican_e2e.py` and `tests/test_playwright_responsive.py` to audit `contact.html`.
+   - All 42/42 automated tests pass cleanly with `uv run pytest -v`.
+   - Captured full-page visual screenshots of the Contact page and Footer navigation.
+5. **Versioning**:
+   - Bumped version to `v0.5.7` in `pyproject.toml` and `content/pages/about-this-site.md`.
+
+---
+
+## 2026-09-10 — High-Contrast Header 2-Line Alignment, Line-Height Optimization & Footer Deduplication (v0.5.6.01)
+
+### Context & Need
+Jim requested two targeted UI refinements:
+1. **High-Contrast Header & Line Height**:
+   - In High Contrast view (`#contrast-toggle`), remove all extra line feeds on the menu.
+   - Constrain the header strictly to 2 lines (Line 1: Title & Tagline; Line 2: Navigation Links & Controls).
+   - Reduce the line height across high-contrast typography so vertical spacing is tighter and more readable.
+2. **Footer Navigation Deduplication**:
+   - Remove any menu items from the footer that also appear in the header navigation (`Home`, `About`, `Posts`, `Shelf`, `Events`, `Photos`, `Apps`).
+
+### Decisions & Actions Taken
+1. **2-Line High-Contrast Header (`style.css`)**:
+   - Removed `flex-direction: column` from `nav.site-nav` in high-contrast mode, replacing it with horizontal row flex (`flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1.15rem; margin: 0;`).
+   - Removed the `[Active Page] ` text prefix from `nav.site-nav a.active::before`, which previously caused menu items to expand and wrap onto multiple lines. Replaced it with high-contrast underline (`text-decoration: underline 4px; font-weight: 800;`).
+   - Maintained Line 1 (`.site-branding`) with title on far left and tagline on far right; maintained Line 2 (`.site-nav-row`) with menu links on left and controls on far right.
+2. **Reduced Line Height**:
+   - Reduced base high-contrast line height from `1.85` to `1.55` on body, paragraphs, and list elements.
+   - Reduced post teasers from `1.8` to `1.55` line height.
+   - Reduced combined high-contrast + text-size mode line height from `2.0` to `1.7`.
+3. **Footer Menu Deduplication (`base.html`)**:
+   - Cleaned `<nav class="footer-nav">` to only contain links unique to the footer: `About This Site` and `Google Photos`.
+   - Removed duplicate links (`Home`, `About`, `Posts`, `Shelf`, `Events`, `Photos`, `Apps`).
+4. **Testing & Verification**:
+   - Updated `test_in_page_mode_switchers_interactive` in `tests/test_playwright_responsive.py` to assert horizontal `nav_direction == "row"`.
+   - Verified all 40/40 tests pass cleanly in `uv run pytest -v`.
+   - Captured full-page visual screenshots via Playwright validating both desktop and mobile high-contrast rendering.
+5. **Versioning**:
+   - Bumped version to `0.5.6.01` in `pyproject.toml` and `content/pages/about-this-site.md`.
+
+---
+
+## 2026-09-09 — Section Taxonomy Refinement (Reads &rarr; Shelf, Gallery &rarr; Photos, Views &rarr; Events) & Header Layout Optimization
+
+### Context & Need
+Jim requested several coordinated layout and terminology refinements:
+1. **Header Layout**:
+   - Line 1: `Jim Collinsworth` on the far left, `Out of My Lane` right-aligned on the far right.
+   - Line 2: Navigation menu links left-aligned, and theme/accessibility control toggles right-aligned on the same row.
+   - Controls Styling: Tighten icons with less/no white border box so they visually harmonize with the `0.92rem` menu typography.
+2. **Content Section Terminology**:
+   - Rename **Reads** &rarr; **Shelf** (`content/pages/shelf.md`, URL `/shelf.html`).
+   - Rename **Gallery** &rarr; **Photos** (`content/pages/photos.md`, URL `/photos.html`).
+   - Rename **Views** &rarr; **Events** (`content/pages/events.md`, URL `/events.html`).
+
+### Decisions & Actions Taken
+1. **Header Layout & Compact Control Icons**:
+   - Restructured `theme/templates/base.html`: Line 1 `.site-branding` with `space-between` and `align-items: baseline`, right-aligning `.site-tagline`; Line 2 `.site-nav-row` wrapping `.site-nav` (left) and `.site-controls` (right).
+   - Replaced bulky `38x38px` white card box buttons with compact `28x28px` borderless transparent buttons (`border: 1px solid transparent; background: transparent;`) and scaled SVG icons from `18px` to `15px`.
+2. **Markdown Sources & Slug Renaming**:
+   - `content/pages/reads.md` &rarr; `content/pages/shelf.md` (`slug: "shelf"`, `title: "Shelf"`).
+   - `content/pages/gallery.md` &rarr; `content/pages/photos.md` (`slug: "photos"`, `title: "Photos"`).
+   - `content/pages/views.md` &rarr; `content/pages/events.md` (`slug: "events"`, `title: "Events"`).
+   - Updated `content/pages/about.md` reference link to `shelf.html` ("References & Shelf").
+   - Updated `content/pages/apps.md` lead text to reference shelf entries and events.
+3. **Template Navigation & Homepage Updates**:
+   - `theme/templates/base.html`: Updated navigation links and active conditions to `shelf.html`, `events.html`, and `photos.html`; updated footer links accordingly.
+   - `theme/templates/index.html`: Renamed "Recent Reads" section to "From the Shelf", updated links to `shelf.html` ("Browse the complete shelf &rarr;"), and updated photo spotlight link to `photos.html` ("Explore all photos &rarr;").
+4. **Automated Test Suite Synchronization**:
+   - Updated `tests/test_pelican_e2e.py`: `test_core_pages_exist` and `test_no_duplicate_page_titles` now assert `shelf.html`, `events.html`, and `photos.html`.
+   - Updated `tests/test_accessibility.py`: `test_active_nav_aria_current` tests `shelf.html`, `events.html`, and `photos.html`.
+   - Updated `tests/test_playwright_responsive.py`: parameterized pages list updated.
+   - Verified 40/40 tests pass with zero errors.
+5. **Versioning & Root Synchronization**:
+   - Bumped project version to `0.5.6` in `pyproject.toml` and `content/pages/about-this-site.md`.
+   - Rebuilt Pelican static output and synchronized root HTML files, cleanly removing obsolete `reads.html`, `gallery.html`, and `views.html`.
+
+---
+
 ## 2026-09-09 — Accessibility Toggles Overhaul: High-Contrast Low-Complexity Mode & Large Text Scaling
 
 ### Context & Need

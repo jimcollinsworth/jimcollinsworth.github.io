@@ -56,12 +56,13 @@ def test_core_pages_exist():
         "index.html",
         "about.html",
         "posts.html",
-        "reads.html",
-        "views.html",
-        "gallery.html",
+        "shelf.html",
+        "events.html",
+        "photos.html",
         "apps.html",
         "about-this-site.html",
         "prompt-history.html",
+        "contact.html",
         "lanes.html",
         "favicon.svg",
         "favicon.ico",
@@ -112,23 +113,28 @@ def test_no_duplicate_page_titles():
     # Verify the active nav tab is set
     assert 'class="active"' in about_html and 'About</a>' in about_html
 
-    reads_html = (OUTPUT_DIR / "reads.html").read_text(encoding="utf-8")
-    assert '<h1>Reads' not in reads_html
-    assert 'class="active"' in reads_html and 'Reads</a>' in reads_html
+    shelf_html = (OUTPUT_DIR / "shelf.html").read_text(encoding="utf-8")
+    assert '<h1 class="page-title"' not in shelf_html
+    assert '<h1>Shelf' not in shelf_html
+    assert 'class="active"' in shelf_html and 'Shelf</a>' in shelf_html
 
-    gallery_html = (OUTPUT_DIR / "gallery.html").read_text(encoding="utf-8")
-    assert '<h1>Gallery' not in gallery_html
-    assert 'class="active"' in gallery_html and 'Gallery</a>' in gallery_html
+    photos_html = (OUTPUT_DIR / "photos.html").read_text(encoding="utf-8")
+    assert '<h1 class="page-title"' not in photos_html
+    assert '<h1>Photos' not in photos_html
+    assert 'class="active"' in photos_html and 'Photos</a>' in photos_html
 
     posts_html = (OUTPUT_DIR / "posts.html").read_text(encoding="utf-8")
+    assert '<h1 class="page-title"' not in posts_html
     assert '<h1>Posts' not in posts_html
     assert 'class="active"' in posts_html and 'Posts</a>' in posts_html
 
-    views_html = (OUTPUT_DIR / "views.html").read_text(encoding="utf-8")
-    assert '<h1>Views' not in views_html
-    assert 'class="active"' in views_html and 'Views</a>' in views_html
+    events_html = (OUTPUT_DIR / "events.html").read_text(encoding="utf-8")
+    assert '<h1 class="page-title"' not in events_html
+    assert '<h1>Events' not in events_html
+    assert 'class="active"' in events_html and 'Events</a>' in events_html
 
     apps_html = (OUTPUT_DIR / "apps.html").read_text(encoding="utf-8")
+    assert '<h1 class="page-title"' not in apps_html
     assert '<h1>Apps' not in apps_html
     assert 'class="active"' in apps_html and 'Apps</a>' in apps_html
 
