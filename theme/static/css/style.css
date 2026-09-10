@@ -1020,134 +1020,430 @@ footer.site-footer {
    Manual Accessibility Toggle Triggers (Zero-JS CSS :has)
    ========================================================================== */
 
-/* Manual High-Contrast Mode Toggle (Light) */
+/* ==========================================================================
+   1. Manual High-Contrast + Low-Complexity Assistive Mode (:has(#contrast-toggle:checked))
+   Designed for maximum readability, cognitive clarity, and low visual noise:
+   - 21:1 stark contrast
+   - Plain big readable serial text
+   - No multi-column tabs or complex grids
+   - Fewer lines (removes decorative borders, cards, shadows)
+   - No graphics (hides non-essential images, reveals descriptive text)
+   - Explicit data labels for text/assistive readers
+   ========================================================================== */
+
+/* High-Contrast Light Mode */
 body:has(#contrast-toggle:checked) {
   --bg: #ffffff !important;
   --bg-card: #ffffff !important;
-  --bg-subtle: #f0ede6 !important;
+  --bg-subtle: #ffffff !important;
   --text: #000000 !important;
   --text-muted: #1a1a1a !important;
   --border: #000000 !important;
-  --border-subtle: #333333 !important;
-  --link: #702600 !important;
-  --link-hover: #3d1400 !important;
-  --tag-bg: #e6e0d4 !important;
+  --border-subtle: #000000 !important;
+  --link: #0000bb !important;
+  --link-hover: #000066 !important;
+  --tag-bg: #ffffff !important;
   --tag-text: #000000 !important;
-  --code-bg: #e8e3d8 !important;
+  --code-bg: #f4f4f4 !important;
+
+  /* Crisp, high-legibility system typography */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+  font-size: 1.35rem !important;
+  line-height: 1.85 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+body:has(#contrast-toggle:checked) p,
+body:has(#contrast-toggle:checked) li,
+body:has(#contrast-toggle:checked) blockquote {
+  font-size: 1.35rem !important;
+  line-height: 1.85 !important;
+  margin-bottom: 1.5rem !important;
 }
 
 body:has(#contrast-toggle:checked) a {
-  text-decoration: underline !important;
+  text-decoration: underline 3px !important;
+  text-underline-offset: 4px !important;
+  font-weight: 700 !important;
 }
 
-body:has(#contrast-toggle:checked) header.site-header,
-body:has(#contrast-toggle:checked) footer.site-footer,
-body:has(#contrast-toggle:checked) th,
-body:has(#contrast-toggle:checked) td,
-body:has(#contrast-toggle:checked) hr,
-body:has(#contrast-toggle:checked) .post-item {
-  border-color: #000000 !important;
+body:has(#contrast-toggle:checked) a:focus-visible,
+body:has(#contrast-toggle:checked) button:focus-visible,
+body:has(#contrast-toggle:checked) input:focus-visible,
+body:has(#contrast-toggle:checked) label:focus-visible {
+  outline: 4px solid var(--text) !important;
+  outline-offset: 4px !important;
 }
 
-/* Manual High-Contrast Mode Toggle (Dark Base) */
+body:has(#contrast-toggle:checked) h1,
+body:has(#contrast-toggle:checked) h2,
+body:has(#contrast-toggle:checked) h3,
+body:has(#contrast-toggle:checked) h4,
+body:has(#contrast-toggle:checked) .site-title,
+body:has(#contrast-toggle:checked) .post-title,
+body:has(#contrast-toggle:checked) .book-title {
+  font-weight: 800 !important;
+  color: var(--text) !important;
+}
+
+/* High-Contrast Dark Mode */
 body:has(#theme-toggle:checked):has(#contrast-toggle:checked) {
   --bg: #000000 !important;
-  --bg-card: #080808 !important;
-  --bg-subtle: #141414 !important;
+  --bg-card: #000000 !important;
+  --bg-subtle: #000000 !important;
   --text: #ffffff !important;
-  --text-muted: #e6e6e6 !important;
+  --text-muted: #f0f0f0 !important;
   --border: #ffffff !important;
-  --border-subtle: #cccccc !important;
-  --link: #ffb070 !important;
-  --link-hover: #ffd4a8 !important;
-  --tag-bg: #1c1f21 !important;
+  --border-subtle: #ffffff !important;
+  --link: #ffff33 !important;
+  --link-hover: #ffffff !important;
+  --tag-bg: #000000 !important;
   --tag-text: #ffffff !important;
-  --code-bg: #181a1b !important;
-}
-
-body:has(#theme-toggle:checked):has(#contrast-toggle:checked) header.site-header,
-body:has(#theme-toggle:checked):has(#contrast-toggle:checked) footer.site-footer,
-body:has(#theme-toggle:checked):has(#contrast-toggle:checked) th,
-body:has(#theme-toggle:checked):has(#contrast-toggle:checked) td,
-body:has(#theme-toggle:checked):has(#contrast-toggle:checked) hr,
-body:has(#theme-toggle:checked):has(#contrast-toggle:checked) .post-item {
-  border-color: #ffffff !important;
+  --code-bg: #141414 !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
 }
 
 @media (prefers-color-scheme: dark) {
   body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) {
     --bg: #000000 !important;
-    --bg-card: #080808 !important;
-    --bg-subtle: #141414 !important;
+    --bg-card: #000000 !important;
+    --bg-subtle: #000000 !important;
     --text: #ffffff !important;
-    --text-muted: #e6e6e6 !important;
+    --text-muted: #f0f0f0 !important;
     --border: #ffffff !important;
-    --border-subtle: #cccccc !important;
-    --link: #ffb070 !important;
-    --link-hover: #ffd4a8 !important;
-    --tag-bg: #1c1f21 !important;
+    --border-subtle: #ffffff !important;
+    --link: #ffff33 !important;
+    --link-hover: #ffffff !important;
+    --tag-bg: #000000 !important;
     --tag-text: #ffffff !important;
-    --code-bg: #181a1b !important;
-  }
-
-  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) header.site-header,
-  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) footer.site-footer,
-  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) th,
-  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) td,
-  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) hr,
-  body:not(:has(#theme-toggle:checked)):has(#contrast-toggle:checked) .post-item {
-    border-color: #ffffff !important;
+    --code-bg: #141414 !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
   }
 
   body:has(#theme-toggle:checked):has(#contrast-toggle:checked) {
     --bg: #ffffff !important;
     --bg-card: #ffffff !important;
-    --bg-subtle: #f0ede6 !important;
+    --bg-subtle: #ffffff !important;
     --text: #000000 !important;
     --text-muted: #1a1a1a !important;
     --border: #000000 !important;
-    --border-subtle: #333333 !important;
-    --link: #702600 !important;
-    --link-hover: #3d1400 !important;
-    --tag-bg: #e6e0d4 !important;
+    --border-subtle: #000000 !important;
+    --link: #0000bb !important;
+    --link-hover: #000066 !important;
+    --tag-bg: #ffffff !important;
     --tag-text: #000000 !important;
-    --code-bg: #e8e3d8 !important;
-  }
-
-  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) header.site-header,
-  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) footer.site-footer,
-  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) th,
-  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) td,
-  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) hr,
-  body:has(#theme-toggle:checked):has(#contrast-toggle:checked) .post-item {
-    border-color: #000000 !important;
+    --code-bg: #f4f4f4 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
   }
 }
 
-/* Manual Text Size Scaling Toggle */
+/* Low Complexity: Fewer Lines (Strip decorative boxes, borders, and shadows) */
+body:has(#contrast-toggle:checked) .dashboard-card,
+body:has(#contrast-toggle:checked) .timeline-container,
+body:has(#contrast-toggle:checked) .timeline-milestone,
+body:has(#contrast-toggle:checked) .timeline-container div,
+body:has(#contrast-toggle:checked) .timeline-milestone div,
+body:has(#contrast-toggle:checked) .exhibit-card,
+body:has(#contrast-toggle:checked) .app-card,
+body:has(#contrast-toggle:checked) .book-card,
+body:has(#contrast-toggle:checked) .book-item,
+body:has(#contrast-toggle:checked) .post-item,
+body:has(#contrast-toggle:checked) blockquote,
+body:has(#contrast-toggle:checked) figure,
+body:has(#contrast-toggle:checked) .photo-preview-row figure {
+  border: none !important;
+  border-left: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+body:has(#contrast-toggle:checked) header.site-header {
+  border-bottom: 2px solid var(--border) !important;
+}
+
+body:has(#contrast-toggle:checked) footer.site-footer {
+  border-top: 2px solid var(--border) !important;
+}
+
+body:has(#contrast-toggle:checked) hr {
+  border: none !important;
+  border-top: 2px solid var(--border) !important;
+  margin: 2.5rem 0 !important;
+}
+
+/* Low Complexity: No Graphics (Hide photos and decorative visual media) */
+body:has(#contrast-toggle:checked) img:not(.mode-toggle-input),
+body:has(#contrast-toggle:checked) picture,
+body:has(#contrast-toggle:checked) .photo-stream img,
+body:has(#contrast-toggle:checked) .photo-preview-row img,
+body:has(#contrast-toggle:checked) .book-cover,
+body:has(#contrast-toggle:checked) .gallery-grid img {
+  display: none !important;
+}
+
+/* Preserve figcaption as high-clarity descriptive assistive text */
+body:has(#contrast-toggle:checked) figcaption {
+  display: block !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+  margin: 1rem 0 !important;
+  padding: 0.5rem 0.75rem !important;
+  border-left: 4px solid var(--border) !important;
+  background: var(--bg-subtle) !important;
+}
+
+body:has(#contrast-toggle:checked) figcaption::before {
+  content: "[Visual Content Description: " !important;
+  font-weight: 800 !important;
+}
+
+body:has(#contrast-toggle:checked) figcaption::after {
+  content: "]" !important;
+  font-weight: 800 !important;
+}
+
+/* Low Complexity: No Tabs & Serial Navigation */
+body:has(#contrast-toggle:checked) nav.site-nav,
+body:has(#contrast-toggle:checked) nav.footer-nav {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0.6rem !important;
+  margin: 1.5rem 0 !important;
+  border: none !important;
+}
+
+body:has(#contrast-toggle:checked) nav.site-nav a,
+body:has(#contrast-toggle:checked) nav.footer-nav a {
+  display: inline-block !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  padding: 0.35rem 0 !important;
+  border-bottom: none !important;
+}
+
+body:has(#contrast-toggle:checked) nav.site-nav a.active::before,
+body:has(#contrast-toggle:checked) nav.site-nav a[aria-current="page"]::before {
+  content: "[Active Page] " !important;
+  font-weight: 800 !important;
+}
+
+/* Flatten complex multi-column grids into single-column serial text */
+body:has(#contrast-toggle:checked) .desktop-two-col,
+body:has(#contrast-toggle:checked) .dashboard-grid,
+body:has(#contrast-toggle:checked) .photo-preview-row,
+body:has(#contrast-toggle:checked) .gallery-grid {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body:has(#contrast-toggle:checked) .main-column,
+body:has(#contrast-toggle:checked) .sidebar-column {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-bottom: 2.5rem !important;
+}
+
+body:has(#contrast-toggle:checked) .dashboard-card {
+  display: block !important;
+  margin-bottom: 1.75rem !important;
+  padding: 0.75rem 0 !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+body:has(#contrast-toggle:checked) .post-teaser,
+body:has(#contrast-toggle:checked) .post-detail {
+  display: block !important;
+  font-size: 1.25rem !important;
+  line-height: 1.8 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* Low Complexity: Explicit Data Labels for Text Readers */
+body:has(#contrast-toggle:checked) time::before,
+body:has(#contrast-toggle:checked) .post-date::before {
+  content: "Date: " !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+
+body:has(#contrast-toggle:checked) .post-lane::before,
+body:has(#contrast-toggle:checked) .lane-link::before {
+  content: "Category: " !important;
+  font-weight: 700 !important;
+}
+
+body:has(#contrast-toggle:checked) .book-meta span:first-child::before {
+  content: "Author: " !important;
+  font-weight: 700 !important;
+}
+
+body:has(#contrast-toggle:checked) .book-meta time::before {
+  content: "Read: " !important;
+  font-weight: 700 !important;
+}
+
+body:has(#contrast-toggle:checked) a[target="_blank"]::after {
+  content: " (Opens External Link)" !important;
+  font-size: 0.85em !important;
+  font-weight: 600 !important;
+}
+
+/* Reveal Screen Reader context visually for editorial content, but keep button labels inside controls clean */
+body:has(#contrast-toggle:checked) .sr-only:not(.mode-toggle-input):not(.control-btn .sr-only) {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  clip: auto !important;
+  overflow: visible !important;
+  display: inline !important;
+  font-weight: 600 !important;
+}
+
+body:has(#contrast-toggle:checked) .control-btn .sr-only {
+  display: none !important;
+}
+
+body:has(#contrast-toggle:checked) .control-btn {
+  border: 2px solid var(--border) !important;
+  position: relative !important;
+}
+
+
+/* ==========================================================================
+   2. Manual Text Size Scaling Toggle (:has(#text-size-toggle:checked))
+   Obvious, significant enlargement across typography, line heights, and margins
+   ========================================================================== */
+
 body:has(#text-size-toggle:checked) {
-  font-size: 1.32rem;
-  line-height: 1.8;
+  font-size: 1.65rem !important;
+  line-height: 2.0 !important;
+}
+
+body:has(#text-size-toggle:checked) .container {
+  max-width: 1200px !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+body:has(#text-size-toggle:checked) p,
+body:has(#text-size-toggle:checked) li,
+body:has(#text-size-toggle:checked) blockquote {
+  font-size: 1.65rem !important;
+  line-height: 2.0 !important;
+  margin-bottom: 1.75rem !important;
 }
 
 body:has(#text-size-toggle:checked) .site-title {
-  font-size: 1.55rem;
+  font-size: 2.4rem !important;
+}
+
+body:has(#text-size-toggle:checked) .site-tagline {
+  font-size: 1.35rem !important;
+  margin-top: 0.35rem !important;
 }
 
 body:has(#text-size-toggle:checked) h1 {
-  font-size: 2.15rem;
+  font-size: 2.85rem !important;
+  line-height: 1.25 !important;
+  margin-bottom: 1.75rem !important;
 }
 
 body:has(#text-size-toggle:checked) h2 {
-  font-size: 1.65rem;
+  font-size: 2.3rem !important;
+  line-height: 1.3 !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.5rem !important;
 }
 
 body:has(#text-size-toggle:checked) h3 {
-  font-size: 1.35rem;
+  font-size: 1.9rem !important;
+  line-height: 1.35 !important;
 }
 
 body:has(#text-size-toggle:checked) .post-title,
 body:has(#text-size-toggle:checked) .book-title {
-  font-size: 1.45rem;
+  font-size: 2.05rem !important;
+  line-height: 1.3 !important;
+}
+
+body:has(#text-size-toggle:checked) .post-item {
+  margin-bottom: 3.5rem !important;
+  padding-bottom: 2rem !important;
+}
+
+body:has(#text-size-toggle:checked) .post-date,
+body:has(#text-size-toggle:checked) .post-meta,
+body:has(#text-size-toggle:checked) .book-meta,
+body:has(#text-size-toggle:checked) .meta,
+body:has(#text-size-toggle:checked) time {
+  font-size: 1.25rem !important;
+  line-height: 1.6 !important;
+}
+
+body:has(#text-size-toggle:checked) nav.site-nav a,
+body:has(#text-size-toggle:checked) nav.footer-nav a {
+  font-size: 1.35rem !important;
+  min-height: 48px !important;
+  padding: 0.5rem 0.8rem !important;
+}
+
+body:has(#text-size-toggle:checked) .site-controls {
+  gap: 0.75rem !important;
+}
+
+body:has(#text-size-toggle:checked) .control-btn {
+  width: 44px !important;
+  height: 44px !important;
+}
+
+body:has(#text-size-toggle:checked) .control-icon {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+body:has(#text-size-toggle:checked) .app-launch-btn,
+body:has(#text-size-toggle:checked) .app-data-btn {
+  font-size: 1.25rem !important;
+  padding: 0.75rem 1.5rem !important;
+}
+
+body:has(#text-size-toggle:checked) code,
+body:has(#text-size-toggle:checked) pre {
+  font-size: 1.35rem !important;
+  line-height: 1.7 !important;
+}
+
+/* ==========================================================================
+   3. Both Toggles Active: High-Contrast + Low Complexity with Extra-Large Text
+   ========================================================================== */
+
+body:has(#contrast-toggle:checked):has(#text-size-toggle:checked) {
+  font-size: 1.65rem !important;
+  line-height: 2.0 !important;
+}
+
+body:has(#contrast-toggle:checked):has(#text-size-toggle:checked) p,
+body:has(#contrast-toggle:checked):has(#text-size-toggle:checked) li,
+body:has(#contrast-toggle:checked):has(#text-size-toggle:checked) blockquote {
+  font-size: 1.65rem !important;
+  line-height: 2.0 !important;
+}
+
+body:has(#contrast-toggle:checked):has(#text-size-toggle:checked) nav.site-nav a,
+body:has(#contrast-toggle:checked):has(#text-size-toggle:checked) nav.footer-nav a {
+  font-size: 1.45rem !important;
+  padding: 0.5rem 0 !important;
 }
 

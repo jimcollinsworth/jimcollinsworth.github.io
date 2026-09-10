@@ -4,6 +4,32 @@
 
 ---
 
+## 2026-09-09 — Accessibility Toggles Overhaul: High-Contrast Low-Complexity Mode & Large Text Scaling
+
+### Context & Need
+Jim requested that the accessibility toggles deliver much more obvious and significant visual transformations:
+- **Text Size Toggle**: Dramatically bigger text across all elements, expanded line-height, and generous margins so content has comfortable breathing space.
+- **High-Contrast Toggle**: Low-complexity assistive mode tailored for readers needing maximum clarity: fewer lines (stripping decorative boxes, borders, and card outlines), no graphics (hiding photos and decorative images, replaced by structured text summaries), no tabs (serializing navigation into a clear linear list), flattening multi-column grids into a single serial column, and adding explicit data labels (`Date: `, `Category: `, `Author: `, `Read: `, `[Active Page]`) for text and assistive readers.
+
+### Decisions & Actions Taken
+1. **Dramatic Text Scaling (`body:has(#text-size-toggle:checked)`)**:
+   - Scaled base body font size to `1.65rem` (~26.4px) with `2.0` line-height.
+   - Scaled headings (`h1` to `2.85rem`, `h2` to `2.3rem`, `h3` to `1.9rem`, `.site-title` to `2.4rem`, `.post-title` to `2.05rem`).
+   - Expanded paragraph spacing (`margin-bottom: 1.75rem`), post separation (`margin-bottom: 3.5rem`), container padding, and control buttons (`44px`).
+2. **High-Contrast Low-Complexity Assistive Mode (`body:has(#contrast-toggle:checked)`)**:
+   - **Contrast**: Stark 21:1 pure contrast in both Light (`#ffffff` bg / `#000000` text) and Dark (`#000000` bg / `#ffffff` text / `#ffff33` links) with 3px thick link underlines.
+   - **Fewer Lines**: Stripped decorative card borders, timeline boxes, and shadows from `.dashboard-card`, `.timeline-milestone`, `.exhibit-card`, `blockquote`, and `.post-item`.
+   - **No Graphics**: Hidden `img`, `picture`, and decorative gallery previews; styled `<figcaption>` into high-clarity descriptive assistive text blocks (`[Visual Content Description: ...]`).
+   - **No Tabs / Serial Layout**: Serialized `.site-nav` and `.footer-nav` into a clear linear vertical list with active page indicators (`[Active Page]`); flattened `.desktop-two-col`, `.dashboard-grid`, and `.photo-preview-row` into a unified sequential reading column.
+   - **Explicit Data Labels**: Injected bold visual prefixes via CSS pseudo-elements for dates, categories, authors, reading dates, and external link indicators.
+   - Preserved control buttons clickability by keeping `.control-btn .sr-only` scoped.
+3. **Automated Testing & Visual Verification**:
+   - Enhanced `test_in_page_mode_switchers_interactive` in `tests/test_playwright_responsive.py` to assert font size enlargement (>= 24px), column nav direction, and image suppression.
+   - Verified all 40/40 tests pass cleanly in `pytest`.
+   - Generated and visually checked full-page screenshot artifacts across light, dark, large text, and combined high-contrast + large-text modes.
+
+---
+
 ## 2026-09-09 — Prompt History & Instruction Timeline Subpage
 
 ### Context & Need

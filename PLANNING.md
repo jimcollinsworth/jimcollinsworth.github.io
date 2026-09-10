@@ -6,6 +6,16 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 10: Accessibility Toggles Overhaul: High-Contrast Low-Complexity Mode & Large Text Scaling (Completed)**
+  - Dramatically enlarged text sizes across all pages when `#text-size-toggle` is checked (`font-size: 1.65rem`, headings to `2.85rem`, expanded line-height to `2.0`, and expanded margins/padding).
+  - Overhauled `#contrast-toggle` into a low-complexity assistive reading mode:
+    - Stark 21:1 pure contrast (white-on-black or black-on-white) with 3px thick link underlines.
+    - Low complexity & fewer lines: stripped decorative card borders, timeline boxes, and shadows into unboxed clean reading streams.
+    - No graphics: suppressed non-essential photos, images, and decorative media, replacing them with descriptive captions (`[Visual Content Description: ...]`).
+    - No tabs & serial navigation: serialized navigation into a clean vertical list with `[Active Page]` indicators, flattening multi-column grids into single serial text.
+    - Explicit data labels: added bold visual labels for dates, categories, authors, and external links.
+  - Automated tests updated and passing (40/40 tests) with visual screenshot validation.
+
 - [x] **Milestone 9: Prompt History & Instruction Timeline Subpage (Completed)**
   - Created `content/pages/prompt-history.md` compiling to `output/prompt-history.html`.
   - Chronicled Jim's summarized instructions and critical course corrections synced across each release milestone (`v0.1` through `Milestone 8`).

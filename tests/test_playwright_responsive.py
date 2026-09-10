@@ -123,17 +123,23 @@ def test_in_page_mode_switchers_interactive(browser_context):
         dark_bg = page.evaluate("() => window.getComputedStyle(document.body).backgroundColor")
         assert "20, 22, 23" in dark_bg, f"dark_bg was {dark_bg}"
 
-        # Click Contrast Toggle -> switches to High Contrast Dark
+        # Click Contrast Toggle -> switches to High Contrast Dark & Low Complexity
         page.click('label[for="contrast-toggle"]')
         page.wait_for_function("() => window.getComputedStyle(document.body).backgroundColor.includes('0, 0, 0')")
         contrast_bg = page.evaluate("() => window.getComputedStyle(document.body).backgroundColor")
         assert "0, 0, 0" in contrast_bg  # #000000
 
-        # Click Text Size Toggle -> increases body font size
-        initial_font_size = page.evaluate("() => parseFloat(window.getComputedStyle(document.body).fontSize)")
+        # Verify Low-Complexity mode: graphics hidden, nav serialized, desktop grid flattened
+        nav_direction = page.evaluate("() => window.getComputedStyle(document.querySelector('nav.site-nav')).flexDirection")
+        assert nav_direction == "column", f"Expected column nav direction, got {nav_direction}"
+        img_display = page.evaluate("() => window.getComputedStyle(document.querySelector('.photo-stream img')).display")
+        assert img_display == "none", f"Expected img display none in low complexity mode, got {img_display}"
+
+        # Click Text Size Toggle -> dramatically increases body font size
         page.click('label[for="text-size-toggle"]')
+        page.wait_for_function("() => parseFloat(window.getComputedStyle(document.body).fontSize) >= 24")
         enlarged_font_size = page.evaluate("() => parseFloat(window.getComputedStyle(document.body).fontSize)")
-        assert enlarged_font_size > initial_font_size
+        assert enlarged_font_size >= 24, f"Expected enlarged font size >= 24px, got {enlarged_font_size}"
     finally:
         page.close()
 
