@@ -56,8 +56,8 @@ def test_core_pages_exist():
         "index.html",
         "about.html",
         "posts.html",
-        "shelf.html",
-        "events.html",
+        "links.html",
+        "ai.html",
         "photos.html",
         "apps.html",
         "about-this-site.html",
@@ -104,19 +104,22 @@ def test_lane_archive_pages_exist():
 
 def test_no_duplicate_page_titles():
     """
-    Verify that standalone pages (About, Reads, Gallery) omit duplicate <h1> headers
+    Verify that standalone pages omit duplicate <h1> headers
     because the active menu tab already serves as the title.
     """
     about_html = (OUTPUT_DIR / "about.html").read_text(encoding="utf-8")
     assert '<h1 class="page-title"' not in about_html
     assert '<h1>About' not in about_html
-    # Verify the active nav tab is set
-    assert 'class="active"' in about_html and 'About</a>' in about_html
 
-    shelf_html = (OUTPUT_DIR / "shelf.html").read_text(encoding="utf-8")
-    assert '<h1 class="page-title"' not in shelf_html
-    assert '<h1>Shelf' not in shelf_html
-    assert 'class="active"' in shelf_html and 'Shelf</a>' in shelf_html
+    links_html = (OUTPUT_DIR / "links.html").read_text(encoding="utf-8")
+    assert '<h1 class="page-title"' not in links_html
+    assert '<h1>Links' not in links_html
+    assert 'class="active"' in links_html and 'Links</a>' in links_html
+
+    ai_html = (OUTPUT_DIR / "ai.html").read_text(encoding="utf-8")
+    assert '<h1 class="page-title"' not in ai_html
+    assert '<h1>AI' not in ai_html
+    assert 'class="active"' in ai_html and 'AI</a>' in ai_html
 
     photos_html = (OUTPUT_DIR / "photos.html").read_text(encoding="utf-8")
     assert '<h1 class="page-title"' not in photos_html
@@ -127,11 +130,6 @@ def test_no_duplicate_page_titles():
     assert '<h1 class="page-title"' not in posts_html
     assert '<h1>Posts' not in posts_html
     assert 'class="active"' in posts_html and 'Posts</a>' in posts_html
-
-    events_html = (OUTPUT_DIR / "events.html").read_text(encoding="utf-8")
-    assert '<h1 class="page-title"' not in events_html
-    assert '<h1>Events' not in events_html
-    assert 'class="active"' in events_html and 'Events</a>' in events_html
 
     apps_html = (OUTPUT_DIR / "apps.html").read_text(encoding="utf-8")
     assert '<h1 class="page-title"' not in apps_html

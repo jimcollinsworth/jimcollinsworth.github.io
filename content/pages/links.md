@@ -1,11 +1,11 @@
 ---
-title: "Shelf"
-slug: "shelf"
+title: "Links"
+slug: "links"
 ---
 
 <div class="page-intro">
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Curated links, articles, reading recommendations, and bookmarks across computing, music, health, and beyond.
   </p>
 </div>
 

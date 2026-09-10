@@ -4,6 +4,90 @@
 
 ---
 
+## 2026-09-10 — Persistent Learning (`/learn`), Human Prompt Highlighting in Journal & Release v0.5.9
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"ok do a /learn, update journal highligh my instructions, questions, corrections, advise, update release numbermerge push and publish"*
+
+### Problem & Diagnosis
+Jim requested executing a `/learn` session with specific continuous learning directives:
+1. **Highlighting Jim's Input**: In `JOURNAL.md`, prominently distinguish Jim's authentic instructions, questions, corrections, and advice from the agent's technical log entries.
+2. **Persistent Rule Codification**: Ensure that agent governance documents (`AGENTS.md` and `.agents/agent_rules.md`) mandate this distinct formatting for all future journal entries.
+3. **Release & Deployment**: Increment the release version to `v0.5.9`, merge the feature branch to `main`, tag the release, push to remote, and publish to GitHub Pages.
+
+### Root Cause & Technical Analysis
+- As noted in `ROADMAP.md`, `JOURNAL.md` contains predominantly agent-generated technical logs, making it difficult to immediately identify Jim's human editorial direction, requirements, and critical course corrections.
+- Establishing a standardized GitHub Flavored Markdown alert block (`> [!NOTE] Jim's Prompts, Instructions & Steering:`) at the top of every journal entry provides immediate visual contrast and preserves human provenance.
+
+### Solution & Standard Procedure
+1. **Governance Documents Updated (`AGENTS.md` & `.agents/agent_rules.md`)**:
+   - Updated Section 6 to formally require callout blocks for Jim's prompts, instructions, corrections, and advice in `JOURNAL.md`.
+2. **Journal Retrofitted & Updated (`JOURNAL.md`)**:
+   - Added prominent callout blocks to recent entries detailing Jim's exact instructions and steering.
+3. **Versioning Synchronized**:
+   - Bumped version to `0.5.9` across `pyproject.toml` and `content/pages/about-this-site.md`.
+   - Created `releases/v0.5.9.md` documenting this milestone.
+4. **Automated Verification**:
+   - Verified 42/42 tests pass with `uv run pytest -v`.
+
+---
+
+## 2026-09-10 — Tagline Lanes Link, Footer Lane Navigator, AI Promoted Lane, Links Rename & Homepage Bio (v0.5.8)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"i like the make the distinction of me, mine, ours and others could event be menu/page titles. me is the about page along with contacts, what i'm doing now; mine is my own original content, apps, photos (not of art); and then ours with would be nature, hikes, museums, art; and others are books, urls, blogs, articals and my comments/review/mention. i would post my photos of art in others or ours, that one is not entirely clear could go either way. finally want to make ai a major page - basically it's one of the out of my lane 'lanes' pages, but promoted to the top menu. maybe we have an easy way to mark a lane page to show at top level menu, vs a list/tag cloud of all the lanes (maybe 20). but a menu of 'me mine ours others' may be too cute. so lets do about, https://macwright.com/ is probably the best structure wise and content and layout for me. document some of these thoughs but i thik the only change we need is to remove events, i will just have an 'art' post, and change shelf to something else - links is fine for now. and add ai and lanes as 2 more pages, with ai being a lane, and lanes being a description an dindex to all the lanes."*
+> - *"remove about link, instead just have a quick blurb about me on home, and then link to detail about page. add site link for the about site page."*
+> - *"remove lanes page, add a link to that from the out of my lane title. and we can put all the lanes into the footer navigator. go ahead with everything"*
+
+### Problem & Diagnosis
+Jim requested a refined navigation structure and content organization:
+1. **Tagline as Lanes Link**: Make the header tagline *"Out of My Lane"* a direct link to `/lanes.html` rather than keeping a separate `Lanes` item in the menu row.
+2. **Footer Lane Navigator**: Display all active pursuit lanes in the footer navigator (`Art`, `Health`, `Ideas`, `Making`, `Music`, `Projects`), making the entire lane taxonomy discoverable across every page.
+3. **Header Menu Optimization**:
+   - Remove `About` link from header menu; replace with a conversational personal bio blurb on the homepage (`index.html`) with a "More about me &rarr;" link to `about.html`.
+   - Add `Site` link to the header menu pointing to `about-this-site.html`.
+   - Remove `Events` page/menu item (`events.md` / `events.html`).
+   - Rename `Shelf` &rarr; `Links` (`links.md` / `links.html`).
+   - Add **`AI`** as a promoted top-level lane page (`content/pages/ai.md` &rarr; `ai.html`).
+4. **Roadmap & Mental Model**: Document Jim's "Me, Mine, Ours, Others" taxonomy boundary and the `macwright.com` layout inspirations in `ROADMAP.md`.
+
+### Root Cause & Technical Analysis
+- Linking the tagline to `/lanes.html` creates a natural semantic anchor: the site philosophy (*Out of My Lane*) points directly to the directory of all pursuit lanes.
+- Removing `About` from the top nav and placing a conversational intro on `index.html` creates a warmer, more human entrance inspired by minimal personal blogs like `macwright.com` and Shubham's site.
+- Adding `Site` to the header gives prominent visibility to the architecture and DevOps dashboard.
+- Displaying all lanes in the footer ensures full discoverability without overcrowding the primary 7-item header menu (`Home`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`).
+
+### Solution & Standard Procedure
+1. **Templates & HTML Structure**:
+   - `theme/templates/base.html`:
+     - Linked `.site-tagline` to `{{ SITEURL }}/lanes.html`.
+     - Configured main nav: `Home`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`.
+     - Added `.footer-lanes` to the footer displaying all categories with bullet separators.
+     - Added `All Lanes` and `About Jim` to footer secondary navigation.
+   - `theme/templates/index.html`:
+     - Authored conversational personal intro blurb linking to `about.html`.
+     - Renamed "From the Shelf" to "Recent Links" linking to `links.html`.
+   - `theme/templates/categories.html`:
+     - Enhanced `/lanes.html` with a descriptive overview of the "Out of My Lane" philosophy and a grid directory of all lanes.
+2. **Content & Pages**:
+   - Created `content/pages/ai.md` (`slug: ai`, `title: AI`).
+   - Renamed `content/pages/shelf.md` &rarr; `content/pages/links.md` (`slug: links`, `title: Links`).
+   - Deleted `content/pages/events.md`, `events.html`, and obsolete `shelf.html`.
+   - Updated cross-references in `about.md` and `apps.md`.
+3. **Styling (`style.css`)**:
+   - Added `.site-tagline a` subtle color and hover underline styles.
+   - Added `.footer-lanes` flex row styling with subtle divider and hover states.
+   - Synchronized CSS across `theme/static/css/`, `theme/css/`, and `assets/css/`.
+4. **Governance & Roadmap**:
+   - Updated `ROADMAP.md` with Section 6 ("Me, Mine, Ours, Others" taxonomy) and Section 7 (`macwright.com` layout cues and 20-lane architecture).
+   - Updated `README.md` directory map.
+   - Bumped version to `v0.5.8` across `pyproject.toml` and `about-this-site.md`.
+5. **Testing & Verification**:
+   - Updated `tests/test_pelican_e2e.py`, `tests/test_accessibility.py`, and `tests/test_playwright_responsive.py`.
+   - All 42/42 tests passing (`uv run pytest -v`).
+
+---
+
 ## 2026-09-10 — Contact Page, Footer Links Enhancement & UI Walkthrough Visual Protocol (v0.5.7)
 
 ### Problem & Diagnosis

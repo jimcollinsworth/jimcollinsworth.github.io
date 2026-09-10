@@ -82,6 +82,7 @@ Inspired by:
 
 Whenever technical changes, troubleshooting resolutions, layout updates, or user corrections occur:
 1. **`JOURNAL.md`**: Append a structured chronological entry detailing:
+   - **Jim's Guidance & Direction**: Prominently highlight Jim's exact prompts, instructions, questions, corrections, and advice using callouts (`> [!NOTE] Jim's Instructions & Guidance:`).
    - **Problem & Diagnosis**: What issue or requirement occurred.
    - **Root Cause & Technical Analysis**: The underlying architectural or system reason.
    - **Solution & Standard Procedure**: The exact commands or steps taken to resolve it.

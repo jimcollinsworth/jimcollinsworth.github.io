@@ -6,6 +6,17 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 13: Tagline Lanes Link, Footer Lane Navigator, AI Promoted Lane, Links Rename & Homepage Bio (Completed)**
+  - Linked header tagline *"Out of My Lane"* directly to `/lanes.html`.
+  - Configured 7-item header menu: `Home`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`.
+  - Added conversational personal intro blurb to homepage (`index.html`) with direct link to `about.html`.
+  - Added global pursuit lane navigator (`.footer-lanes`) to site footer, listing all categories dynamically.
+  - Created `content/pages/ai.md` (`slug: ai`, `title: AI`) as a promoted top-level lane.
+  - Renamed `Shelf` &rarr; `Links` (`links.md` &rarr; `links.html`).
+  - Removed `Events` page/menu item (`events.md` &rarr; deleted).
+  - Documented "Me, Mine, Ours, Others" taxonomy and `macwright.com` layout inspirations in `ROADMAP.md`.
+  - Synchronized test suites (all 42/42 tests passing), bumped version to `v0.5.8`.
+
 - [x] **Milestone 12: Contact Page, Footer Navigation Links & UI Walkthrough Visual Protocol (Completed)**
   - Authored clean, zero-JS editorial Contact page (`content/pages/contact.md` &rarr; `output/contact.html`).
   - Updated `<nav class="footer-nav">` in `theme/templates/base.html` with direct links: `About Site`, `Dev Prompts`, `Contact`, and `Google Photos`.

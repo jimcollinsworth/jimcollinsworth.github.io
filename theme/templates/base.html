@@ -17,17 +17,17 @@
     <header class="site-header" role="banner">
       <div class="site-branding">
         <div class="site-title"><a href="{{ SITEURL }}/index.html">{{ SITENAME }}</a></div>
-        <div class="site-tagline">{{ SITESUBTITLE }}</div>
+        <div class="site-tagline"><a href="{{ SITEURL }}/lanes.html" title="Explore all pursuit lanes">{{ SITESUBTITLE }}</a></div>
       </div>
       <div class="site-nav-row">
         <nav class="site-nav" aria-label="Main Navigation">
           <a href="{{ SITEURL }}/index.html"{% if output_file == 'index.html' %} class="active" aria-current="page"{% endif %}>Home</a>
-          <a href="{{ SITEURL }}/about.html"{% if page and page.slug == 'about' %} class="active" aria-current="page"{% endif %}>About</a>
           <a href="{{ SITEURL }}/posts.html"{% if output_file == 'posts.html' or article or category %} class="active" aria-current="page"{% endif %}>Posts</a>
-          <a href="{{ SITEURL }}/shelf.html"{% if page and page.slug == 'shelf' %} class="active" aria-current="page"{% endif %}>Shelf</a>
-          <a href="{{ SITEURL }}/events.html"{% if page and page.slug == 'events' %} class="active" aria-current="page"{% endif %}>Events</a>
+          <a href="{{ SITEURL }}/ai.html"{% if page and page.slug == 'ai' %} class="active" aria-current="page"{% endif %}>AI</a>
+          <a href="{{ SITEURL }}/links.html"{% if page and page.slug == 'links' %} class="active" aria-current="page"{% endif %}>Links</a>
           <a href="{{ SITEURL }}/photos.html"{% if page and page.slug == 'photos' %} class="active" aria-current="page"{% endif %}>Photos</a>
           <a href="{{ SITEURL }}/apps.html"{% if page and page.slug == 'apps' %} class="active" aria-current="page"{% endif %}>Apps</a>
+          <a href="{{ SITEURL }}/about-this-site.html"{% if page and page.slug == 'about-this-site' %} class="active" aria-current="page"{% endif %}>Site</a>
         </nav>
         <div class="site-controls" role="group" aria-label="Display and accessibility preferences">
           <label for="theme-toggle" class="control-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme (Light / Dark)">
@@ -70,7 +70,17 @@
     </main>
 
     <footer class="site-footer" role="contentinfo">
+      {% if categories %}
+      <div class="footer-lanes" aria-label="Pursuit Lanes">
+        <span class="footer-lanes-title">Lanes:</span>
+        {% for cat, cat_articles in categories %}
+        <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>{% if not loop.last %} &bull;{% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
       <nav class="footer-nav" aria-label="Footer Navigation">
+        <a href="{{ SITEURL }}/lanes.html">All Lanes</a>
+        <a href="{{ SITEURL }}/about.html">About Jim</a>
         <a href="{{ SITEURL }}/about-this-site.html">About Site</a>
         <a href="{{ SITEURL }}/prompt-history.html">Dev Prompts</a>
         <a href="{{ SITEURL }}/contact.html">Contact</a>
