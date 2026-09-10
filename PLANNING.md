@@ -15,8 +15,10 @@
     - Line 1: `Jim Collinsworth` on far left, `Out of My Lane` right-aligned on far right.
     - Line 2: Navigation menu left-aligned, theme and accessibility toggles right-aligned.
   - Refined theme/contrast/text-size control buttons: compact `28x28px` borderless transparent styling with `15px` SVG icons, eliminating white card boxes to visually harmonize with menu typography.
+  - High-contrast mode refinement: eliminated extra line feeds on menu, constrained header to 2 lines, and reduced line-height across typography (`1.55`).
+  - Footer deduplication: removed any menu items from the footer that appear on the header, leaving only `About This Site` and `Google Photos`.
   - Updated homepage "Recent Reads" section to "From the Shelf" and updated all internal reference links.
-  - Synchronized test suite (40/40 tests passing), bumped version to `v0.5.6`.
+  - Synchronized test suite (40/40 tests passing), bumped version to `v0.5.6.01`.
 
 - [x] **Milestone 10: Accessibility Toggles Overhaul: High-Contrast Low-Complexity Mode & Large Text Scaling (Completed)**
   - Dramatically enlarged text sizes across all pages when `#text-size-toggle` is checked (`font-size: 1.65rem`, headings to `2.85rem`, expanded line-height to `2.0`, and expanded margins/padding).

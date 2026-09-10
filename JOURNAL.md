@@ -4,6 +4,38 @@
 
 ---
 
+## 2026-09-10 — High-Contrast Header 2-Line Alignment, Line-Height Optimization & Footer Deduplication (v0.5.6.01)
+
+### Context & Need
+Jim requested two targeted UI refinements:
+1. **High-Contrast Header & Line Height**:
+   - In High Contrast view (`#contrast-toggle`), remove all extra line feeds on the menu.
+   - Constrain the header strictly to 2 lines (Line 1: Title & Tagline; Line 2: Navigation Links & Controls).
+   - Reduce the line height across high-contrast typography so vertical spacing is tighter and more readable.
+2. **Footer Navigation Deduplication**:
+   - Remove any menu items from the footer that also appear in the header navigation (`Home`, `About`, `Posts`, `Shelf`, `Events`, `Photos`, `Apps`).
+
+### Decisions & Actions Taken
+1. **2-Line High-Contrast Header (`style.css`)**:
+   - Removed `flex-direction: column` from `nav.site-nav` in high-contrast mode, replacing it with horizontal row flex (`flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1.15rem; margin: 0;`).
+   - Removed the `[Active Page] ` text prefix from `nav.site-nav a.active::before`, which previously caused menu items to expand and wrap onto multiple lines. Replaced it with high-contrast underline (`text-decoration: underline 4px; font-weight: 800;`).
+   - Maintained Line 1 (`.site-branding`) with title on far left and tagline on far right; maintained Line 2 (`.site-nav-row`) with menu links on left and controls on far right.
+2. **Reduced Line Height**:
+   - Reduced base high-contrast line height from `1.85` to `1.55` on body, paragraphs, and list elements.
+   - Reduced post teasers from `1.8` to `1.55` line height.
+   - Reduced combined high-contrast + text-size mode line height from `2.0` to `1.7`.
+3. **Footer Menu Deduplication (`base.html`)**:
+   - Cleaned `<nav class="footer-nav">` to only contain links unique to the footer: `About This Site` and `Google Photos`.
+   - Removed duplicate links (`Home`, `About`, `Posts`, `Shelf`, `Events`, `Photos`, `Apps`).
+4. **Testing & Verification**:
+   - Updated `test_in_page_mode_switchers_interactive` in `tests/test_playwright_responsive.py` to assert horizontal `nav_direction == "row"`.
+   - Verified all 40/40 tests pass cleanly in `uv run pytest -v`.
+   - Captured full-page visual screenshots via Playwright validating both desktop and mobile high-contrast rendering.
+5. **Versioning**:
+   - Bumped version to `0.5.6.01` in `pyproject.toml` and `content/pages/about-this-site.md`.
+
+---
+
 ## 2026-09-09 — Section Taxonomy Refinement (Reads &rarr; Shelf, Gallery &rarr; Photos, Views &rarr; Events) & Header Layout Optimization
 
 ### Context & Need
