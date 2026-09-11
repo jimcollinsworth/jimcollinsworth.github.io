@@ -43,3 +43,15 @@ The name of this site reflects my habit of venturing into domains well outside m
     <p>Curated books, research papers, essential URLs, and key quotes.</p>
   </div>
 </div>
+
+---
+
+## Contact & Reader Feedback
+
+Interested in discussing a project, sharing notes, or providing critique?
+
+This site operates under a strict **Zero-JavaScript policy**. Reader submissions from posts and inquiries are routed through a private **Google Apps Script & Google Sheets** pipeline, triaged and synthesized using local LLM tooling, and compiled into static editorial digests without exposing the site to client-side scripts or public comment spam.
+
+- **Direct Email**: [jimcollinsworth@gmail.com](mailto:jimcollinsworth@gmail.com)
+- **Discussion & Pipeline Architecture**: Track the zero-JS commenting system design in [GitHub Issue #9](https://github.com/jimcollinsworth/jimcollinsworth.github.io/issues/9).
+

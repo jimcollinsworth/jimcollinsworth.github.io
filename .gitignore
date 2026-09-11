@@ -196,3 +196,6 @@ Session.vim
 .doit.db.dat
 .doit.db.bak
 .doit.db.dir
+
+# Automated responsive screenshot captures
+screenshots/

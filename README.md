@@ -217,6 +217,10 @@ Per `.agents/agent_rules.md`:
 3. **Agent Rule Authorization**: The agent must **never add or modify rules in `.agents/`** without explicit permission from Jim.
 4. **Command Line Standards**: All agent commands must be standard, clean, reproducible CLI invocations that Jim can run manually.
 5. **Toolchain Constraints**: Strictly **no Node.js or npm** ever for applications or toolchains (only exception: `npx skills`).
+6. **Remote Git Push Protection**: The agent must **never execute `git push`** without Jim's explicit request or confirmation.
+7. **No Tunneling or Privilege Escalation**: Strictly **no Tailscale, ngrok, tunnels, VPNs, or permission bypasses**. Only Jim configures access; always ask first.
+8. **Workspace Isolation**: The agent must **stay strictly within the project directory**. Always explain reasoning and ask Jim for explicit permission before searching or working outside.
+
 
 ---
 

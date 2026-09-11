@@ -11,8 +11,17 @@
   <header class="post-header-full">
     <h1 class="post-title">{{ article.title }}</h1>
     <div class="meta">
+      {% if article.type %}
+      <span class="post-type">[{{ article.type|upper }}]</span>
+      {% if article.previous_types %}
+      <span class="post-type-evolution">(evolved from {% for pt in article.previous_types %}<span class="prev-type">{{ pt }}</span>{% if not loop.last %} &rarr; {% endif %}{% endfor %})</span>
+      {% endif %}
+      &bull;
+      {% endif %}
       <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%B %d, %Y') }}</time>
-      {% if article.category %}
+      {% if article.lanes %}
+      &bull; {% for lane in article.lanes %}<a href="{{ SITEURL }}/{{ lane.url }}" class="post-lane">{{ lane }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
+      {% elif article.category %}
       &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-lane">{{ article.category }}</a>
       {% endif %}
     </div>

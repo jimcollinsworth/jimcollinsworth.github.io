@@ -59,6 +59,7 @@ def test_core_pages_exist():
         "reads.html",
         "gallery.html",
         "lanes.html",
+        "devops.html",
         "pipeline-tools.html",
         "favicon.svg",
         "favicon.ico",
@@ -68,15 +69,23 @@ def test_core_pages_exist():
         assert target.exists(), f"Expected {page} to exist in output/"
 
 
-def test_pipeline_tools_page_structure():
-    """Verify that pipeline-tools.html contains the iframe workbench and fallback guidance."""
-    target = OUTPUT_DIR / "pipeline-tools.html"
-    assert target.exists(), "pipeline-tools.html does not exist in output/"
-    html = target.read_text(encoding="utf-8")
-    assert '<iframe' in html, "Missing <iframe> tag on pipeline-tools.html"
-    assert 'http://127.0.0.1:7860' in html, "Missing default local Gradio target URL"
-    assert 'uv run gradio app.py' in html, "Missing launch instructions in fallback card"
-    assert 'pipeline-tools.html' in (OUTPUT_DIR / "index.html").read_text(encoding="utf-8")
+def test_devops_and_pipeline_tools_page_structure():
+    """Verify that devops.html and pipeline-tools.html contain the iframe workbench and fallback guidance."""
+    devops_target = OUTPUT_DIR / "devops.html"
+    assert devops_target.exists(), "devops.html does not exist in output/"
+    devops_html = devops_target.read_text(encoding="utf-8")
+    assert '<iframe' in devops_html, "Missing <iframe> tag on devops.html"
+    assert 'http://127.0.0.1:7860' in devops_html, "Missing default local Gradio target URL on devops.html"
+    assert 'uv run gradio app.py' in devops_html, "Missing launch instructions in fallback card on devops.html"
+
+    pt_target = OUTPUT_DIR / "pipeline-tools.html"
+    assert pt_target.exists(), "pipeline-tools.html does not exist in output/"
+    pt_html = pt_target.read_text(encoding="utf-8")
+    assert '<iframe' in pt_html, "Missing <iframe> tag on pipeline-tools.html"
+
+    # Verify that DevOps link is present in footer navigation across pages
+    assert 'devops.html' in (OUTPUT_DIR / "index.html").read_text(encoding="utf-8")
+    assert '>DevOps</a>' in (OUTPUT_DIR / "index.html").read_text(encoding="utf-8")
 
 
 def test_post_pages_exist():
@@ -96,15 +105,18 @@ def test_post_pages_exist():
 def test_lane_archive_pages_exist():
     """Verify that pursuit lane category pages exist in output/lanes/."""
     expected_lanes = [
+        "ai.html",
         "health.html",
-        "ideas.html",
         "making.html",
         "music.html",
-        "projects.html",
     ]
     for lane in expected_lanes:
         target = OUTPUT_DIR / "lanes" / lane
         assert target.exists(), f"Expected lane archive {lane} in output/lanes/"
+
+    # Verify that retired lanes (ideas, projects) do not exist
+    assert not (OUTPUT_DIR / "lanes" / "ideas.html").exists(), "ideas.html should not exist as a lane archive"
+    assert not (OUTPUT_DIR / "lanes" / "projects.html").exists(), "projects.html should not exist as a lane archive"
 
 
 def test_no_duplicate_page_titles():
@@ -200,3 +212,41 @@ def test_link_and_asset_integrity():
                 continue
             target_path = (f.parent / src).resolve()
             assert target_path.exists(), f"Broken image in {rel_path}: '{src}' -> {target_path} not found"
+
+
+def test_post_types_displayed_in_listings():
+    """Verify that post type short codes ([SPEC], [WIP], [PROJ], [IDEA]) render with date, lanes, and evolution lineage."""
+    index_html = (OUTPUT_DIR / "index.html").read_text(encoding="utf-8")
+    assert '<span class="post-type">[SPEC]</span>' in index_html, "Missing [SPEC] in index.html post meta"
+    assert '<span class="post-type">[IDEA]</span>' in index_html, "Missing [IDEA] in index.html post meta"
+    assert '<span class="post-type">[WIP]</span>' in index_html, "Missing [WIP] in index.html post meta"
+    assert '<span class="post-type">[PROJ]</span>' in index_html, "Missing [PROJ] in index.html post meta"
+
+    posts_html = (OUTPUT_DIR / "posts.html").read_text(encoding="utf-8")
+    assert '<span class="post-type">[SPEC]</span>' in posts_html, "Missing [SPEC] in posts.html"
+    assert '<span class="post-type">[WIP]</span>' in posts_html, "Missing [WIP] in posts.html"
+
+    guitar_html = (OUTPUT_DIR / "posts" / "cordoba-stage-guitar.html").read_text(encoding="utf-8")
+    assert '<span class="post-type">[WIP]</span>' in guitar_html, "Missing [WIP] in cordoba article header"
+    assert 'evolved from <span class="prev-type">IDEA</span>' in guitar_html
+
+    piano_html = (OUTPUT_DIR / "posts" / "digital-piano-enhancements.html").read_text(encoding="utf-8")
+    assert '<span class="post-type">[PROJ]</span>' in piano_html
+    assert 'evolved from <span class="prev-type">IDEA</span> &rarr; <span class="prev-type">WIP</span>' in piano_html
+
+
+def test_multi_lane_membership():
+    """Verify that multi-lane posts appear across all assigned lane archive pages."""
+    music_html = (OUTPUT_DIR / "lanes" / "music.html").read_text(encoding="utf-8")
+    assert "digital-piano-enhancements.html" in music_html, "Expected digital piano in music lane"
+    assert "cordoba-stage-guitar.html" in music_html, "Expected cordoba guitar in music lane"
+
+    making_html = (OUTPUT_DIR / "lanes" / "making.html").read_text(encoding="utf-8")
+    assert "digital-piano-enhancements.html" in making_html, "Expected digital piano in making lane"
+    assert "ulu-knife-handle.html" in making_html, "Expected ulu knife handle in making lane"
+
+    ai_html = (OUTPUT_DIR / "lanes" / "ai.html").read_text(encoding="utf-8")
+    assert "m-e-offline-ai-companion.html" in ai_html, "Expected M.E. in AI lane"
+    assert "Ideas" not in ai_html, "Retired 'Ideas' category should not appear in AI lane"
+
+

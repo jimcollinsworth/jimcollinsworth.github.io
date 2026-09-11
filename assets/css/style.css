@@ -616,6 +616,27 @@ article p, .page-intro p, .post-desc, .book-notes {
   letter-spacing: 0.04em;
 }
 
+.post-type {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.post-type-evolution {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  margin-left: 0.25rem;
+}
+
+.prev-type {
+  font-weight: 600;
+}
+
 .post-desc, .book-notes {
   color: var(--text);
   font-size: 0.95rem;

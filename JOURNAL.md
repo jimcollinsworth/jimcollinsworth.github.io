@@ -4,6 +4,109 @@
 
 ---
 
+## 2026-09-11 — Rule 12 AI Author Attribution & Zero-JS Google Sheets Commenting Pipeline Architecture
+
+### Context & Need
+- Jim directed formalizing an explicit agent rule mandating transparent attribution whenever AI authors, co-authors, or is suspected of contributing to content, including specific model IDs (`LLM-Gemini3.8`, `LLM-Qwen3.5`).
+- Jim evaluated reader interaction architectures: rejected public GitHub Issues due to vulnerability to automated spam flooding and manual cleanup burdens; evaluated Formspree/Gmail; selected **Google Apps Script + Google Sheets** as the ideal zero-JS private submission buffer where all raw input ("garbage and good stuff") can be reviewed in a tabular dashboard.
+- Needed a comprehensive GitHub Issue detailing the complete architecture, test plan, LLM summarization pipeline, and agent skills.
+
+### Decisions & Actions Taken
+1. **Rule 12 Codified in `.agents/agent_rules.md`**:
+   - Added Rule 12: Mandatory AI & LLM Author Attribution.
+   - Mandated specific model IDs prefixed with `LLM-` (e.g. `LLM-Gemini3.8`, `LLM-Qwen3.5`, `LLM-Claude3.7`) in `Authors:` frontmatter.
+   - Distinguished primary vs. supporting author placement and prohibited deceptive masking.
+   - Documented in `docs/content_authoring.md` and `PLANNING.md`.
+2. **GitHub Issue #9 Created**:
+   - Filed [Issue #9 on `jimcollinsworth.github.io`](https://github.com/jimcollinsworth/jimcollinsworth.github.io/issues/9) via authenticated `antigravity-jc-bot`: *Architecture: Zero-JS Google Sheets + Apps Script Commenting Pipeline with LLM Summarization*.
+   - Outlined trade-off analysis across GitHub Issues, Gmail, Formspree, and Google Sheets.
+   - Detailed specifications for:
+     - Client-side semantic HTML5 form with hidden honeypot.
+     - Google Apps Script web app endpoint (`doPost(e)`).
+     - Google Sheets 9-column schema.
+     - Pre-build ingestion utility (`tools/sync_sheet_comments.py`).
+     - Multi-stage LLM triage and editorial synthesis pipeline (Gemini / `pipeline-tools`).
+     - Pelican static HTML integration.
+     - Planned agent skill (`comment-pipeline-manager`) and end-to-end test suite.
+3. **Site & Documentation Updates**:
+   - Updated `content/pages/about.md` with a "Contact & Reader Feedback" section explaining the zero-JS Google Sheets interaction architecture and linking to Issue #9.
+   - Documented pipeline in Section 6 of `docs/content_authoring.md`.
+   - Verified that all 33 automated tests pass.
+
+---
+
+## 2026-09-10 — Multi-Lane Taxonomy & Post-Type Lifecycle Evolution (Zero-Pills Typography)
+
+### Context & Need
+- Jim established crucial requirements for content modeling:
+  1. **Post-Type Evolution Lifecycle**: Posts possess a single active `type` (e.g. `PROJ`), but may have an evolutionary lineage of `previous_types` (e.g. `[IDEA, WIP]`).
+  2. **Multi-Lane Support**: Posts can belong to multiple pursuit lanes simultaneously (e.g. `lanes: [Music, Making]`).
+  3. **Lane Taxonomy Corrections**: `M.E.` belongs to the `AI` pursuit lane. `Ideas` and `Projects` are permanently retired as lanes because they are post types (`[IDEA]`, `[PROJ]`).
+
+### Decisions & Actions Taken
+1. **Pelican Reader & Generator Hooks (`pelicanconf.py`)**:
+   - Extended `ObsidianMarkdownReader` to parse `lanes` frontmatter (supporting YAML lists or comma-separated strings), set the primary category for Pelican's native internals, and instantiate `Category` objects for each assigned lane.
+   - Parsed `previous_types` and exposed evolution lineage to templates.
+   - Connected `assign_multi_lane_categories` callback to `signals.article_generator_finalized` to dynamically append multi-lane posts to each corresponding lane's category list and sort chronologically.
+2. **Frontmatter Refactoring**:
+   - `m-e-offline-ai-companion.md`: Assigned to `AI` lane as `IDEA` (eliminated `Ideas`).
+   - `digital-piano-enhancements.md`: Assigned to both `Music` and `Making` lanes, with type `PROJ` and previous types `[IDEA, WIP]` (eliminated `Projects`).
+   - `cordoba-stage-guitar.md`: Assigned to `Music` lane, type `WIP`, previous types `[IDEA]`.
+   - `sleep-movement-evaluation-plan.md`: Assigned to `Health` lane, type `SPEC`, previous types `[IDEA, LOG]`.
+   - `ulu-knife-handle.md`: Assigned to `Making` lane, type `PROJ`, previous types `[WIP]`.
+3. **Template & Design System Updates**:
+   - Updated `index.html`, `archives.html` (`posts.html`), `category.html`, and `article.html` to render all assigned lanes.
+   - In `article.html`, rendered the post's evolution lineage (`[PROJ] (evolved from IDEA → WIP)`) in subtle monospace typography (`.post-type-evolution`).
+   - Synced CSS classes across `theme/static/css/style.css`, `theme/css/style.css`, and `assets/css/style.css`.
+4. **Repository Cleanup**:
+   - Deleted legacy root-level archive files `lanes/ideas.html` and `lanes/projects.html`.
+   - Synced root and generated `lanes/ai.html`.
+
+---
+
+## 2026-09-10 — Post Type Taxonomy & Listing Metadata Display (Zero-Pills Typography)
+
+### Context & Need
+- Jim directed creating a concise, acronym-focused post type classification to expose post formats (TIL, WIP, Project, Read, etc.) alongside dates and pursuit lanes on post lists and titles.
+- Filtered a proposed 30-type taxonomy down to 28 curated types: retained `WIP`, removed `REV`, and added four sensory/media consumption channels (`READ`, `WATCH`, `LISTEN`, `VIEW`).
+
+### Decisions & Actions Taken
+1. **Curated 28-Type Taxonomy**:
+   - Codified in `docs/content_authoring.md`:
+     - **Core & Tech**: `TIL`, `WIP`, `URL`, `PROJ`, `APP`, `LOG`, `POST`, `SPEC`, `IDEA`, `OPS`.
+     - **Media & Sensory**: `READ`, `WATCH`, `LISTEN`, `VIEW`.
+     - **Data & Science**: `DATA`, `VIZ`, `PERF`, `ASK`.
+     - **Outdoors & Life**: `HIKE`, `TRIP`, `TOUR`, `WALK`.
+     - **Arts & Culture**: `ART`, `GIG`, `TALK`, `FILM`, `FOOD`, `PIX`.
+2. **Content Frontmatter Assignment**:
+   - Assigned `type:` across all existing posts in `content/posts/`: `[SPEC]` for sleep evaluation plan, `[IDEA]` for M.E. companion, `[WIP]` for Cordoba guitar setup, `[PROJ]` for digital piano and ulu knife handle.
+3. **Template & CSS Integration**:
+   - Updated `index.html`, `archives.html` (`posts.html`), `category.html`, and `article.html` to render `[TYPE] • Date • Lane`.
+   - Added `.post-type` CSS styling using monospace font and subtle muted color preserving the zero-pills editorial design.
+4. **Automated Verification**:
+   - Added `test_post_types_displayed_in_listings` to `tests/test_pelican_e2e.py`. Total test suite expanded to 32 passing tests.
+
+---
+
+## 2026-09-10 — Governance Rules 10 & 11: Anti-Tunneling and Strict Workspace Isolation
+
+### Context & Need
+- Jim directed adding strong, explicit rules prohibiting any use of Tailscale, tunneling, or unauthorized network access techniques, as well as strict isolation to the current project directory.
+- Codified that only Jim modifies permissions, access, or network configuration. Agents must stay inside `d:\projects\jimcollinsworth.github.io` and ask with explicit reasoning before ever searching or working outside.
+
+### Decisions & Actions Taken
+1. **Rule 10: Prohibition of Network Tunneling & Privilege Alteration**:
+   - Strictly forbids Tailscale, ngrok, Cloudflare tunnels, reverse SSH tunnels, frpc, Gradio `share=True` tunneling, and any proxy workarounds.
+   - Forbids backdoor routing, firewall bypasses, or attempting privilege escalation.
+   - Enforces an ask-first policy: only Jim manages access and permissions.
+2. **Rule 11: Workspace Isolation & Project Boundary**:
+   - Mandates that agents remain strictly within the project directory (`d:\projects\jimcollinsworth.github.io`).
+   - Forbids searching parent folders, user profiles, or system directories without first stating clear reasoning and receiving Jim's explicit approval.
+3. **Updated `.agents/agent_rules.md`**:
+   - Added Sections 10 and 11 directly to the authoritative rule file.
+
+---
+
 ## 2026-09-09 — Adoption of Pelican 4.12.0 Official Content Authoring & Metadata Standards
 
 ### Context & Need
@@ -32,15 +135,15 @@
 - Evaluated options for running embedded PostgreSQL on hosted Hugging Face Spaces vs. local embedded instances vs. external serverless PostgreSQL.
 
 ### Decisions & Actions Taken
-1. **Dedicated Cockpit Page (`content/pages/pipeline-tools.md` -> `pipeline-tools.html`)**:
-   - Created clean, responsive page embedding the local Gradio workbench (`http://127.0.0.1:7860`) inside an `<iframe>` styled with site borders, card background, and status bar.
+1. **Dedicated Cockpit Page (`content/pages/devops.md` -> `devops.html` & `pipeline-tools.html`)**:
+   - Created clean, responsive page embedding the local Gradio workbench (`http://127.0.0.1:7860`) inside an `<iframe>` styled with site borders, card background, status bar, and clear `<h1>DevOps Workbench</h1>` title.
    - Built a clear offline fallback card documenting the PowerShell command (`cd d:\projects\pipeline-tools; uv run gradio app.py`) and direct link.
-   - Linked in the site footer navigation (`theme/templates/base.html`).
+   - Added explicit **DevOps** link to the site footer navigation (`theme/templates/base.html`).
 2. **PostgreSQL & Hugging Face Spaces Architectural Analysis**:
    - Documented in `ROADMAP.md`: Free-tier Hugging Face Spaces have ephemeral storage, causing embedded PostgreSQL databases to wipe on container sleep/restart unless persistent SSD storage ($5/mo) is provisioned.
    - Recommended pairing Hugging Face with free-tier serverless PostgreSQL (**Neon.tech** or **Supabase**) to persist Pixeltable tables indefinitely across container restarts at zero cost.
 3. **Automated E2E Tests**:
-   - Added `test_pipeline_tools_page_structure` to `tests/test_pelican_e2e.py` validating output existence, iframe URL, fallback commands, and footer link integrity. Total test suite expanded to 31 passing tests.
+   - Added `test_devops_and_pipeline_tools_page_structure` to `tests/test_pelican_e2e.py` validating output existence of `devops.html`, iframe URL, fallback commands, and footer link integrity. Total test suite expanded to 31 passing tests.
 
 ---
 

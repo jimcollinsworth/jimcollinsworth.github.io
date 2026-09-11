@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps &mdash; Jim Collinsworth</title>
+  <link rel="stylesheet" href="./theme/css/style.css">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="./favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <input type="checkbox" id="theme-toggle" class="sr-only mode-toggle-input">
+  <input type="checkbox" id="contrast-toggle" class="sr-only mode-toggle-input">
+  <input type="checkbox" id="text-size-toggle" class="sr-only mode-toggle-input">
+  <div class="container">
+    <header class="site-header" role="banner">
+      <div class="site-branding">
+        <div class="site-identity">
+          <div class="site-title"><a href="./index.html">Jim Collinsworth</a></div>
+          <div class="site-tagline">Out of My Lane</div>
+        </div>
+        <div class="site-controls" role="group" aria-label="Display and accessibility preferences">
+          <label for="theme-toggle" class="control-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme (Light / Dark)">
+            <svg class="control-icon icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="control-icon icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="sr-only">Toggle theme</span>
+          </label>
+          <label for="contrast-toggle" class="control-btn" title="Toggle high contrast" aria-label="Toggle high contrast">
+            <svg class="control-icon icon-contrast" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"></path>
+            </svg>
+            <span class="sr-only">Toggle high contrast</span>
+          </label>
+          <label for="text-size-toggle" class="control-btn" title="Toggle larger text size" aria-label="Toggle larger text size">
+            <svg class="control-icon icon-text-size" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <text x="3" y="17" font-size="14" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
+              <text x="14" y="13" font-size="10" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
+            </svg>
+            <span class="sr-only">Toggle larger text size</span>
+          </label>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./posts.html">Posts</a>
+        <a href="./reads.html">Reads</a>
+        <a href="./gallery.html">Gallery</a>
+      </nav>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+<article class="page-body">
+  <header class="post-header" style="margin-bottom: 1.5rem;">
+  <h1 class="post-title" style="font-size: 2rem; margin-bottom: 0.5rem;">DevOps Workbench</h1>
+  <p class="post-meta" style="color: var(--text-muted); font-size: 0.95rem;">
+    Local developer operations, multimodal pipeline tools, and background services.
+  </p>
+</header>
+
+<div class="page-intro">
+  <p>
+    An interactive multimodal workbench and ETL engine powered by <strong>Pixeltable</strong> and <strong>Gradio</strong>. Ingest local directories, scan media assets, test sample-first prompts with local Ollama or Google Gemini, and export enriched metadata and Markdown sidecars.
+  </p>
+  <p style="margin-top: 0.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+    <a href="https://huggingface.co/spaces/jimcollinsworth/pipeline-tools" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.75rem; border-radius: 6px; background: var(--bg-card); border: 1px solid var(--border); font-size: 0.85rem; text-decoration: none; color: var(--text);">
+      <span>🤗</span> <strong>Hugging Face Space</strong>
+    </a>
+    <a href="https://github.com/jimcollinsworth/pipeline-tools" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.75rem; border-radius: 6px; background: var(--bg-card); border: 1px solid var(--border); font-size: 0.85rem; text-decoration: none; color: var(--text);">
+      <span>🐙</span> <strong>GitHub Repository</strong>
+    </a>
+    <a href="http://127.0.0.1:7860" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.75rem; border-radius: 6px; background: var(--bg-card); border: 1px solid var(--border); font-size: 0.85rem; text-decoration: none; color: var(--text);">
+      <span>💻</span> <strong>Local Dev (127.0.0.1:7860)</strong>
+    </a>
+  </p>
+</div>
+
+<div class="app-container" style="margin: 2rem 0;">
+  <!-- Status Bar -->
+  <div class="app-status-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: var(--bg-card); border: 1px solid var(--border); border-bottom: none; border-radius: 8px 8px 0 0; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); flex-wrap: wrap; gap: 0.5rem;">
+    <span><strong>Live Cloud App:</strong> <a href="https://huggingface.co/spaces/jimcollinsworth/pipeline-tools" target="_blank" rel="noopener" style="color: var(--text); text-decoration: underline;">jimcollinsworth/pipeline-tools</a></span>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <span><strong>Engine:</strong> Pixeltable + Gradio</span>
+      <a href="https://jimcollinsworth-pipeline-tools.hf.space" target="_blank" rel="noopener" style="color: #2563eb; font-weight: 500; text-decoration: none;">
+        ↗ Open Fullscreen
+      </a>
+    </div>
+  </div>
+
+  <!-- Embedded Application Frame -->
+  <iframe 
+    id="devops-workbench-frame"
+    src="https://jimcollinsworth-pipeline-tools.hf.space" 
+    width="100%" 
+    height="950" 
+    style="width: 100%; height: 950px; border: 1px solid var(--border); border-radius: 0 0 8px 8px; background: var(--bg-card); display: block;"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking; clipboard-write"
+    sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-downloads"
+    title="DevOps &amp; Pipeline Tools Workbench">
+  </iframe>
+
+  <!-- Usage & Fallback Notes -->
+  <div class="app-fallback-card" style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; background: var(--bg-subtle); border: 1px solid var(--border-subtle); border-radius: 8px; font-family: var(--font-sans); font-size: 0.9rem; line-height: 1.6;">
+    <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.05rem; color: var(--text);">Cloud vs. Local Execution</h3>
+    <p style="margin-bottom: 0.75rem;">
+      <strong>☁️ Cloud Space:</strong> Hosted live on Hugging Face Spaces. In cloud mode, multimodal prompts and evaluations use Google Gemini via Space secrets.<br>
+      <strong>💻 Local Workbench:</strong> Connects to your local machine at <a href="http://127.0.0.1:7860" target="_blank" rel="noopener">http://127.0.0.1:7860</a> with full access to local disk folders, raw media files, and local Ollama models.
+    </p>
+    <p style="margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+      To run the local workbench in PowerShell:
+    </p>
+    <pre style="background: var(--code-bg); padding: 0.75rem 1rem; border-radius: 6px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.85rem; color: var(--text); margin-bottom: 0.75rem;"><code>cd d:\projects\pipeline-tools
+uv run gradio app.py</code></pre>
+  </div>
+</div>
+</article>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <nav class="footer-nav" aria-label="Footer Navigation">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./posts.html">Posts</a>
+        <a href="./reads.html">Reads</a>
+        <a href="./gallery.html">Gallery</a>
+        <a href="./devops.html">DevOps</a>
+        <a href="https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8" target="_blank" rel="noopener">Google Photos <span class="sr-only">(opens external photo album in new tab)</span></a>
+      </nav>
+      <div>
+        Content &copy; Jim Collinsworth. Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

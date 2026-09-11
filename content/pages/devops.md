@@ -1,12 +1,12 @@
 ---
-title: "Pipeline Tools"
-slug: "pipeline-tools"
+Title: DevOps
+Slug: devops
 ---
 
 <header class="post-header" style="margin-bottom: 1.5rem;">
-  <h1 class="post-title" style="font-size: 2rem; margin-bottom: 0.5rem;">Pipeline Tools</h1>
+  <h1 class="post-title" style="font-size: 2rem; margin-bottom: 0.5rem;">DevOps Workbench</h1>
   <p class="post-meta" style="color: var(--text-muted); font-size: 0.95rem;">
-    Multimodal ETL and dataset tooling. See also the unified <a href="./devops.html">DevOps Workbench</a>.
+    Local developer operations, multimodal pipeline tools, and background services.
   </p>
 </header>
 
@@ -41,14 +41,14 @@ slug: "pipeline-tools"
 
   <!-- Embedded Application Frame -->
   <iframe 
-    id="pipeline-tools-frame"
+    id="devops-workbench-frame"
     src="https://jimcollinsworth-pipeline-tools.hf.space" 
     width="100%" 
     height="950" 
     style="width: 100%; height: 950px; border: 1px solid var(--border); border-radius: 0 0 8px 8px; background: var(--bg-card); display: block;"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking; clipboard-write"
     sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-downloads"
-    title="Pipeline Tools Multimodal Workbench">
+    title="DevOps &amp; Pipeline Tools Workbench">
   </iframe>
 
   <!-- Usage & Fallback Notes -->

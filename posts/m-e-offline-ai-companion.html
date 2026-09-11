@@ -9,22 +9,61 @@
   <link rel="alternate icon" href="../favicon.ico" type="image/x-icon">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <input type="checkbox" id="theme-toggle" class="sr-only mode-toggle-input">
+  <input type="checkbox" id="contrast-toggle" class="sr-only mode-toggle-input">
+  <input type="checkbox" id="text-size-toggle" class="sr-only mode-toggle-input">
   <div class="container">
-    <header class="site-header">
+    <header class="site-header" role="banner">
       <div class="site-branding">
-        <div class="site-title"><a href="../index.html">Jim Collinsworth</a></div>
-        <div class="site-tagline">Out of My Lane</div>
+        <div class="site-identity">
+          <div class="site-title"><a href="../index.html">Jim Collinsworth</a></div>
+          <div class="site-tagline">Out of My Lane</div>
+        </div>
+        <div class="site-controls" role="group" aria-label="Display and accessibility preferences">
+          <label for="theme-toggle" class="control-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme (Light / Dark)">
+            <svg class="control-icon icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="control-icon icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="sr-only">Toggle theme</span>
+          </label>
+          <label for="contrast-toggle" class="control-btn" title="Toggle high contrast" aria-label="Toggle high contrast">
+            <svg class="control-icon icon-contrast" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"></path>
+            </svg>
+            <span class="sr-only">Toggle high contrast</span>
+          </label>
+          <label for="text-size-toggle" class="control-btn" title="Toggle larger text size" aria-label="Toggle larger text size">
+            <svg class="control-icon icon-text-size" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <text x="3" y="17" font-size="14" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
+              <text x="14" y="13" font-size="10" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
+            </svg>
+            <span class="sr-only">Toggle larger text size</span>
+          </label>
+        </div>
       </div>
-      <nav class="site-nav">
+      <nav class="site-nav" aria-label="Main Navigation">
         <a href="../index.html">Home</a>
         <a href="../about.html">About</a>
-        <a href="../posts.html" class="active">Posts</a>
+        <a href="../posts.html" class="active" aria-current="page">Posts</a>
         <a href="../reads.html">Reads</a>
         <a href="../gallery.html">Gallery</a>
       </nav>
     </header>
 
-    <main>
+    <main id="main-content" tabindex="-1">
 <div class="back-nav">
   <a href="../posts.html">&larr; Back to Posts</a>
 </div>
@@ -33,9 +72,10 @@
   <header class="post-header-full">
     <h1 class="post-title">M.E. (Mental Entity / My Essence)</h1>
     <div class="meta">
+      <span class="post-type">[IDEA]</span>
+      &bull;
       <time datetime="2026-09-06">September 06, 2026</time>
-      &bull; <a href="../lanes/ideas.html" class="post-lane">Ideas</a>
-    </div>
+      &bull; <a href="../lanes/ai.html" class="post-lane">AI</a>    </div>
   </header>
 
   <div class="post-content">
@@ -44,15 +84,16 @@
 </article>
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-nav">
+    <footer class="site-footer" role="contentinfo">
+      <nav class="footer-nav" aria-label="Footer Navigation">
         <a href="../index.html">Home</a>
         <a href="../about.html">About</a>
         <a href="../posts.html">Posts</a>
         <a href="../reads.html">Reads</a>
         <a href="../gallery.html">Gallery</a>
-        <a href="https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8" target="_blank" rel="noopener">Google Photos</a>
-      </div>
+        <a href="../devops.html">DevOps</a>
+        <a href="https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8" target="_blank" rel="noopener">Google Photos <span class="sr-only">(opens external photo album in new tab)</span></a>
+      </nav>
       <div>
         Content &copy; Jim Collinsworth. Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
       </div>
