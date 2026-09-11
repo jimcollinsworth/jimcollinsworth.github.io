@@ -20,4 +20,4 @@ Building personal AI systems that run entirely on local silicon without third-pa
 - Clean engineering boundaries where humans author all core ideas and content, while AI agents steward infrastructure, testing, and continuous deployment.
 
 ### 3. All AI Posts & Lane Stream
-To explore all chronological notes, technical deep dives, and ideas in this domain, visit the **[AI Lane &rarr;](lanes/ideas.html)**.
+To explore all chronological notes, technical deep dives, and ideas in this domain, visit the **[AI Lane &rarr;](lanes/ai.html)**.

@@ -6,6 +6,17 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 14: Multi-Lane Taxonomy, Post-Type Evolution & Rule 14 AI Attribution (Completed - Release v0.6.0)**
+  - Decoupled content format/lifecycle (`type`, `previous_types`) from pursuit lanes (`lanes`).
+  - Standardized canonical 5 pursuit lanes: `AI`, `Art`, `Health`, `Making`, `Music`.
+  - Purged non-lanes `Ideas` and `Projects` from category archives; mapped them to post types `[IDEA]` and `[PROJ]`.
+  - Enabled multi-lane post membership (e.g. `[Music, Making]` on Digital Piano) with dynamic generation in all assigned lane archives.
+  - Implemented 28-code uppercase post-type short codes and conceptual evolution lineage (`(evolved from IDEA → WIP)`).
+  - Designed Zero-JS Google Sheets + Apps Script commenting pipeline architecture ([GitHub Issue #9](https://github.com/jimcollinsworth/jimcollinsworth.github.io/issues/9)).
+  - Codified Rule 14 (Mandatory AI & LLM Author Attribution) in `.agents/agent_rules.md` and `docs/content_authoring.md`.
+  - Expanded automated test suite to 43/43 passing tests (`uv run pytest -v`).
+  - Bumped release version to `v0.6.0`.
+
 - [x] **Milestone 13: Tagline Lanes Link, Footer Lane Navigator, AI Promoted Lane, Links Rename & Homepage Bio (Completed)**
   - Linked header tagline *"Out of My Lane"* directly to `/lanes.html`.
   - Configured 7-item header menu: `Home`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`.

@@ -88,18 +88,57 @@ def test_post_pages_exist():
 
 
 def test_lane_archive_pages_exist():
-    """Verify that pursuit lane category pages exist in output/lanes/."""
+    """Verify that pursuit lane category pages exist in output/lanes/ and retired categories are absent."""
     expected_lanes = [
+        "ai.html",
         "art.html",
         "health.html",
-        "ideas.html",
         "making.html",
         "music.html",
-        "projects.html",
     ]
     for lane in expected_lanes:
         target = OUTPUT_DIR / "lanes" / lane
         assert target.exists(), f"Expected lane archive {lane} in output/lanes/"
+
+    # Ideas and Projects are post types, NOT pursuit lanes
+    for retired in ["ideas.html", "projects.html"]:
+        target = OUTPUT_DIR / "lanes" / retired
+        assert not target.exists(), f"Retired lane {retired} should NOT exist in output/lanes/"
+
+
+def test_multi_lane_membership_and_type_evolution():
+    """
+    Verify:
+    1. Multi-lane articles appear in all assigned lane archive pages (e.g. Digital Piano in Music & Making).
+    2. Post type short codes [TYPE] and evolution lineage appear in article headers.
+    """
+    # Multi-lane verification
+    music_lane = (OUTPUT_DIR / "lanes" / "music.html").read_text(encoding="utf-8")
+    making_lane = (OUTPUT_DIR / "lanes" / "making.html").read_text(encoding="utf-8")
+    ai_lane = (OUTPUT_DIR / "lanes" / "ai.html").read_text(encoding="utf-8")
+
+    assert "Digital Piano Enhancements" in music_lane, "Digital Piano should appear in Music lane"
+    assert "Digital Piano Enhancements" in making_lane, "Digital Piano should appear in Making lane"
+    assert "M.E. (Mental Entity / My Essence)" in ai_lane, "M.E. should appear in AI lane"
+
+    # Post-type short codes and evolution lineage verification
+    piano_html = (OUTPUT_DIR / "posts" / "digital-piano-enhancements.html").read_text(encoding="utf-8")
+    assert '<span class="post-type">[PROJ]</span>' in piano_html
+    assert "(evolved from" in piano_html
+    assert '<span class="prev-type">IDEA</span>' in piano_html
+    assert '<span class="prev-type">WIP</span>' in piano_html
+
+    me_html = (OUTPUT_DIR / "posts" / "m-e-offline-ai-companion.html").read_text(encoding="utf-8")
+    assert '<span class="post-type">[IDEA]</span>' in me_html
+
+    sleep_html = (OUTPUT_DIR / "posts" / "sleep-movement-evaluation-plan.html").read_text(encoding="utf-8")
+    assert '<span class="post-type">[SPEC]</span>' in sleep_html
+    assert '<span class="prev-type">IDEA</span>' in sleep_html
+    assert '<span class="prev-type">LOG</span>' in sleep_html
+
+    art_html = (OUTPUT_DIR / "posts" / "art-institute-chicago-modern-wing.html").read_text(encoding="utf-8")
+    assert '<span class="post-type">[VIEW]</span>' in art_html
+    assert '<span class="prev-type">TIL</span>' in art_html
 
 
 def test_no_duplicate_page_titles():

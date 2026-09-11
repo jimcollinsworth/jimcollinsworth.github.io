@@ -1,7 +1,12 @@
 ---
 title: "Sleep Health & Movement Evaluation Plan"
 date: "2026-09-07"
-category: "Health"
+lanes:
+  - Health
+type: "SPEC"
+previous_types:
+  - IDEA
+  - LOG
 slug: "sleep-movement-evaluation-plan"
 summary: "Addressing sleep movement issues, limb twitching, and non-pharmaceutical clinical assessment pathways."
 ---

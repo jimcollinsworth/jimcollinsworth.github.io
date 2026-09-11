@@ -23,8 +23,13 @@
         <div class="post-header">
           <h3 class="post-title"><a href="{{ SITEURL }}/{{ featured.url }}">{{ featured.title }}</a></h3>
           <div class="post-meta">
+            {% if featured.type %}
+            <span class="post-type">[{{ featured.type|upper }}]</span> &bull;
+            {% endif %}
             <time datetime="{{ featured.date.strftime('%Y-%m-%d') }}">{{ featured.date.strftime('%b %d, %Y') }}</time>
-            {% if featured.category %}
+            {% if featured.lanes %}
+            &bull; <span class="post-lanes">{% for lane in featured.lanes %}<a href="{{ SITEURL }}/{{ lane.url }}" class="post-lane">{{ lane }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
+            {% elif featured.category %}
             &bull; <a href="{{ SITEURL }}/{{ featured.category.url }}" class="post-lane">{{ featured.category }}</a>
             {% endif %}
           </div>
@@ -85,8 +90,13 @@
           <div class="post-header">
             <h3 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
             <div class="post-meta">
+              {% if article.type %}
+              <span class="post-type">[{{ article.type|upper }}]</span> &bull;
+              {% endif %}
               <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
-              {% if article.category %}
+              {% if article.lanes %}
+              &bull; <span class="post-lanes">{% for lane in article.lanes %}<a href="{{ SITEURL }}/{{ lane.url }}" class="post-lane">{{ lane }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
+              {% elif article.category %}
               &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-lane">{{ article.category }}</a>
               {% endif %}
             </div>

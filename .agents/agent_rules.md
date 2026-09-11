@@ -173,3 +173,43 @@ Every commit and meaningful change set must increment the project version:
 > - The agent must display this visual evidence before asking Jim for approval to push to remote branches or merge to `main`.
 > - Never claim UI changes are ready for push or release without giving Jim immediate visual evidence to inspect.
 
+---
+
+## 14. Mandatory AI & LLM Author Attribution (Strict)
+
+> [!IMPORTANT]
+> **Transparent and Uncompromising Attribution for AI-Authored or AI-Assisted Content**:
+> - Whenever an AI model creates, co-authors, synthesizes, formats, or significantly contributes to content, posts, essays, code comments, summaries, or artifacts (or is even reasonably suspected of having contributed), the AI model **must be explicitly credited** in the metadata author fields.
+> - **Specific Model ID Standard**: Do not use generic labels like "AI" or "Assistant". You must specify the exact model identifier prefixed with `LLM-`, for example:
+>   - `LLM-Gemini3.8`
+>   - `LLM-Qwen3.5`
+>   - `LLM-Claude3.7`
+> - **Role Placement in Frontmatter**:
+>   - **Primary Author**: If the AI generated the core text or substantial body of the work:
+>     `Authors: LLM-Gemini3.8, Jim Collinsworth`
+>   - **Supporting Author / Collaborator**: If Jim authored the core ideas or primary text with significant AI synthesis, editing, or expansion:
+>     `Authors: Jim Collinsworth, LLM-Gemini3.8`
+> - **No Deceptive Human-Only Masking**: Never strip, hide, or omit AI attribution to present collaborative or AI-generated output as exclusively human-authored.
+
+---
+
+## 15. Prohibition of Network Tunneling, Unauthorized Access & Privilege Escalation (Strict)
+
+> [!CAUTION]
+> **Zero Tolerance for Network Tunneling, Proxy Workarounds, or Privilege Modification**:
+> - The agent must **NEVER** install, configure, invoke, or suggest network tunneling tools, VPNs, or unauthorized remote access utilities. This includes, but is not limited to: **Tailscale, ngrok, Cloudflare Tunnels, reverse SSH tunnels, frpc, Gradio `share=True` tunneling**, or any similar service.
+> - The agent must **NEVER** attempt "creative" workarounds, backdoor routing, firewall bypasses, permission alterations, or privilege escalation on the host machine or remote resources.
+> - **Only Jim** is authorized to configure network access, adjust security policies, grant permissions, or provision external connectivity.
+> - **Strict Ask-First Policy**: If any legitimate task appears to require network access, authentication, or resource permissions, the agent must **never attempt it or seek a workaround** — the agent must stop immediately and ask Jim directly.
+
+---
+
+## 16. Workspace Isolation & Project Boundary Rule (Strict)
+
+> [!CAUTION]
+> **Stay Inside the Current Project Directory**:
+> - The agent must operate **strictly within the active project directory** (`d:\projects\jimcollinsworth.github.io`).
+> - The agent must **NEVER** search, inspect, list, read, or execute commands in parent directories (such as `d:\projects\`), other repositories, user-profile roots (`C:\Users\jimco\`), or system-level configuration paths.
+> - **Reasoning & Permission Required**: If an operation ever appears to require working, searching, or reading files outside of the current project directory, the agent must **first provide clear reasoning to Jim and ask for explicit permission before doing so**.
+
+

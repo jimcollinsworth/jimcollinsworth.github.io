@@ -4,6 +4,53 @@
 
 ---
 
+## 2026-09-11 — Multi-Lane Taxonomy, Post-Type Evolution, Zero-JS Commenting Pipeline & Release v0.6.0
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"ok toomany, remove thrd,pmrt, quote,lab, psper, snip. keep rest, updatd docss and assign types to existing content. displat the types short code along with date month yr, and lanes for each post"*
+> - *"wip good, not rest. remove rev, maybe read, watch, listen, view"*
+> - *"so posts have a single current tyoe but voul dc hav e previos types. posts czn havd multple lanes. m.e. is ai lane, ideas is not a lane, neitger is projects"*
+> - *"can i do a commenting system without javascript? any dynamic menus?"*
+> - *"i want to host on github, where are the submitted comments going? how do i feed them back into the build process and repo? i will want to do signficant summarization/filtering using llm i think. what spam protection does github pages and google mail provide me, what risks do i have"*
+> - *"github issues are a bad approach since attackers will flood it, i have to delete them all. is formspree free? gmail sounds good as it uses their spam protection and i can easily get comments back out"*
+> - *"i like the google sheets idea now, so i could have a nice simple comment/email form at bottom of posts and contact page. user enter email and limited text does push to google apps script and then to sheet, i want to see all garbage and good stuff. add issue for all this along with design option comments and final decision. update site page with this info how it works. we will need the google apps script, google sheets, way to get comments from sheets into the pelecan publish task, llm based summarizer/filter (might be generalized tool with custom prompts, pipeline-tools?) or could be hardcoded to start easier, write tests of course. probably some agent skills files that could help with commenting management so support skills selections use in the tool prompt fields. get this all into a ticket, do some preliminary design, but don't implement yet. in the author metadata field for posts or anything we want to make sure AI is listed as a primary author or supporting author when appropriate or even suspected"*
+> - *"lets commit and push, publish, update release number"*
+
+### Problem & Diagnosis
+1. **Taxonomy Conflation**: Posts previously used a single `category` field that mixed subject domains (`Music`, `Health`, `Making`) with developmental stages and formats (`Ideas`, `Projects`). Furthermore, posts were artificially constrained to a single category, preventing articles from spanning related disciplines (such as Digital Piano modifications touching both `Music` and `Making`).
+2. **Post Lifecycle Tracking**: Need an explicit way to convey the current format of a post alongside its conceptual history (e.g., an entry starting as an `[IDEA]`, progressing to `[WIP]`, and culminating in a completed `[PROJ]`).
+3. **Spam-Safe, Zero-JS Interaction**: Desire a reader feedback and commenting channel without violating the site's strict Zero-JS policy, while avoiding GitHub issue tracker spam defacement and ensuring Jim retains visibility into all submissions ("garbage and good stuff").
+4. **Mandatory AI Attribution**: Need an uncompromising policy to transparently credit AI models whenever they contribute to content or code artifacts.
+
+### Root Cause & Technical Analysis
+- Pelican's default category model assumes a single 1:1 relationship between an article and a Category object. To support multi-lane posts, the reader must parse multiple lanes from frontmatter, set a primary category for internal wrappers, and hook into `article_generator_finalized` to append the article to all its respective category lists so that each lane archive (`lanes/<lane>.html`) includes all assigned articles.
+- Decoupling content type (`type`) and evolutionary history (`previous_types`) from categories ensures pure thematic lanes (`AI`, `Art`, `Health`, `Making`, `Music`).
+- Using a serverless Google Apps Script Web App endpoint as an HTML form action allows semantic Zero-JS form submission directly to a private Google Sheet, insulating GitHub from spam and giving Jim full control over LLM preprocessing and static digest publishing.
+
+### Solution & Standard Procedure
+1. **Multi-Lane & Type Parsing in `pelicanconf.py`**:
+   - Updated `ObsidianMarkdownReader` to parse YAML `lanes`, `type`, and `previous_types`.
+   - Connected `assign_multi_lane_categories` hook to `signals.article_generator_finalized`, properly populating multi-lane articles into all assigned categories.
+2. **Template & CSS Updates**:
+   - `theme/templates/article.html`, `archives.html`, `category.html`, `index.html`: Rendered `[TYPE]`, `(evolved from ...)`, and multiple lane links enclosed in `<span class="post-lanes">` to preserve clean typography without whitespace anomalies before commas.
+   - Added `.post-type`, `.post-type-evolution`, and `.prev-type` rules to `theme/static/css/style.css`, `theme/css/style.css`, and `assets/css/style.css`.
+3. **Category Cleanup**:
+   - Purged `lanes/ideas.html` and `lanes/projects.html`.
+   - Re-assigned `M.E.` to `AI` lane and `Digital Piano Enhancements` to `[Music, Making]`.
+   - Standardized 5 active lanes: `AI`, `Art`, `Health`, `Making`, `Music`.
+4. **Zero-JS Feedback System Design**:
+   - Filed detailed architecture tracking ticket [GitHub Issue #9](https://github.com/jimcollinsworth/jimcollinsworth.github.io/issues/9).
+   - Documented pipeline in `docs/content_authoring.md` and added contact description to `content/pages/about.md`.
+5. **Rule 14 Codified**:
+   - Added Rule 14 (Mandatory AI & LLM Author Attribution with `LLM-<model-id>`) in `.agents/agent_rules.md`.
+6. **Automated Testing & Release**:
+   - Expanded test suite to 43 passing tests (`tests/test_pelican_e2e.py`).
+   - Bumped version to `0.6.0` in `pyproject.toml`, `uv.lock`, and `content/pages/about-this-site.md`.
+   - Generated `releases/v0.6.0.md`.
+   - Synchronized static assets to repository root for GitHub Pages publication.
+
+---
+
 ## 2026-09-10 — Persistent Learning (`/learn`), Human Prompt Highlighting in Journal & Release v0.5.9
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

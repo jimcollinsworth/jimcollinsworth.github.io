@@ -24,7 +24,15 @@
     <div class="post-header">
       <h3 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
       <div class="post-meta">
+        {% if article.type %}
+        <span class="post-type">[{{ article.type|upper }}]</span> &bull;
+        {% endif %}
         <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
+        {% if article.lanes %}
+        &bull; <span class="post-lanes">{% for lane in article.lanes %}{% if lane == category %}<span class="post-lane">{{ lane }}</span>{% else %}<a href="{{ SITEURL }}/{{ lane.url }}" class="post-lane">{{ lane }}</a>{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</span>
+        {% elif article.category %}
+        &bull; <span class="post-lane">{{ article.category }}</span>
+        {% endif %}
       </div>
     </div>
     {% if article.summary %}

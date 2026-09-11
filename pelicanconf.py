@@ -13,6 +13,7 @@ import yaml
 from markdown import Markdown
 from pelican import signals
 from pelican.readers import MarkdownReader, pelican_open
+from pelican.urlwrappers import Category
 
 AUTHOR = 'Jim Collinsworth'
 SITENAME = 'Jim Collinsworth'
@@ -85,7 +86,8 @@ DELETE_OUTPUT_DIR = True
 class ObsidianMarkdownReader(MarkdownReader):
     """
     Reader for Obsidian Markdown files with YAML front-matter delimiters (---).
-    Automatically parses YAML metadata and formats it for Pelican's internal processor.
+    Automatically parses YAML metadata (including multi-lane assignments and post-type
+    evolution lineage) and formats it for Pelican's internal processor.
     """
     enabled = True
     file_extensions = ['md', 'markdown']
@@ -93,11 +95,40 @@ class ObsidianMarkdownReader(MarkdownReader):
     def read(self, source_path: str) -> tuple[str, dict[str, Any]]:
         self._source_path = source_path
         self._md = Markdown(**self.settings['MARKDOWN'])
+        extra_meta: dict[str, Any] = {}
+
         with pelican_open(source_path) as text:
             m = re.match(r'^---\s*\n(.*?)\n---\s*\n(.*)$', text, re.DOTALL)
             if m:
                 raw_meta, body = m.groups()
                 parsed = yaml.safe_load(raw_meta) or {}
+
+                # Multi-lane parsing: accept list or comma-separated string
+                raw_lanes = parsed.get('lanes') or parsed.get('category')
+                lanes_list: list[str] = []
+                if isinstance(raw_lanes, list):
+                    lanes_list = [str(l).strip() for l in raw_lanes if str(l).strip()]
+                elif isinstance(raw_lanes, str):
+                    lanes_list = [l.strip() for l in raw_lanes.split(',') if l.strip()]
+
+                if lanes_list:
+                    # Primary category for Pelican's native internals
+                    parsed['category'] = lanes_list[0]
+                    extra_meta['lanes_raw'] = lanes_list
+
+                # Post type: single active short code (uppercase)
+                if 'type' in parsed and parsed['type']:
+                    parsed['type'] = str(parsed['type']).strip().upper()
+                    extra_meta['type'] = parsed['type']
+
+                # Type evolution: optional list of previous types
+                if 'previous_types' in parsed and parsed['previous_types']:
+                    raw_prev = parsed['previous_types']
+                    if isinstance(raw_prev, list):
+                        extra_meta['previous_types'] = [str(x).strip().upper() for x in raw_prev if str(x).strip()]
+                    elif isinstance(raw_prev, str):
+                        extra_meta['previous_types'] = [x.strip().upper() for x in raw_prev.split(',') if x.strip()]
+
                 headers: list[str] = []
                 for k, v in parsed.items():
                     if isinstance(v, list):
@@ -111,7 +142,63 @@ class ObsidianMarkdownReader(MarkdownReader):
             metadata = self._parse_metadata(self._md.Meta)
         else:
             metadata = {}
+
+        # Wrap all assigned lanes in Category objects
+        if 'lanes_raw' in extra_meta:
+            metadata['lanes'] = [Category(name, self.settings) for name in extra_meta['lanes_raw']]
+        elif 'category' in metadata and isinstance(metadata['category'], Category):
+            metadata['lanes'] = [metadata['category']]
+
+        # Assign post type and type evolution lineage
+        if 'type' in extra_meta:
+            metadata['type'] = extra_meta['type']
+        if 'previous_types' in extra_meta:
+            metadata['previous_types'] = extra_meta['previous_types']
+
         return content, metadata
+
+
+def assign_multi_lane_categories(generator: Any) -> None:
+    """
+    Populate multi-lane articles into all respective lane categories in Pelican's generator,
+    ensuring that an article belonging to multiple lanes (e.g. [Music, Making])
+    is generated on both lanes/music.html and lanes/making.html.
+    """
+    categories_map: dict[str, tuple[Category, list[Any]]] = {}
+
+    # Map existing categories from generator
+    for cat, arts in generator.categories:
+        categories_map[cat.name] = (cat, list(arts))
+
+    # Ensure every lane specified on every article is represented
+    for article in generator.articles:
+        lanes = getattr(article, 'lanes', [])
+        if not lanes and hasattr(article, 'category'):
+            lanes = [article.category]
+
+        for lane in lanes:
+            lane_name = lane.name if hasattr(lane, 'name') else str(lane)
+            if lane_name not in categories_map:
+                cat_obj = lane if isinstance(lane, Category) else Category(lane_name, generator.settings)
+                categories_map[lane_name] = (cat_obj, [])
+
+            cat_obj, arts = categories_map[lane_name]
+            if article not in arts:
+                arts.append(article)
+
+    # Re-sort articles in each lane chronologically (newest first)
+    reverse_archives = generator.context.get('NEWEST_FIRST_ARCHIVES', True)
+    updated_categories: list[tuple[Category, list[Any]]] = []
+    for cat_name, (cat_obj, arts) in sorted(
+        categories_map.items(),
+        reverse=generator.settings.get('REVERSE_CATEGORY_ORDER', False),
+    ):
+        arts_sorted = list(arts)
+        arts_sorted.sort(key=lambda a: getattr(a, 'date', None), reverse=reverse_archives)
+        updated_categories.append((cat_obj, arts_sorted))
+
+    generator.categories = updated_categories
+    generator.context['categories'] = updated_categories
 
 
 def add_obsidian_reader(readers_instance: Any) -> None:
@@ -120,3 +207,4 @@ def add_obsidian_reader(readers_instance: Any) -> None:
 
 
 signals.readers_init.connect(add_obsidian_reader)
+signals.article_generator_finalized.connect(assign_multi_lane_categories)

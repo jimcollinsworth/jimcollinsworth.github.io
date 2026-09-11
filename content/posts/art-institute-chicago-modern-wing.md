@@ -3,7 +3,11 @@ title: "Modern Wing Encounters: Renzo Piano's Light & Mid-Century Linearity"
 slug: "art-institute-chicago-modern-wing"
 date: 2026-08-14
 modified: 2026-09-09
-category: Art
+lanes:
+  - Art
+type: "VIEW"
+previous_types:
+  - TIL
 tags: [museums, chicago, sculpture, architecture, lighting, curation]
 status: published
 summary: "Field impressions from an afternoon inside the Art Institute of Chicago Modern Wing, analyzing spatial daylighting and mid-century sculptural geometry."
