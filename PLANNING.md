@@ -6,6 +6,20 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 21: Color Flair & Photo Border Architectural Design (Designed & Documented - Issue #6)**
+  - Sampled color palettes directly from sky and Lake Michigan photography (`sky-twilight.jpg`, `sky-lakefront.jpg`, `sky-clouds.jpg`) using Playwright Canvas extraction.
+  - Architected pure Zero-JS semantic 4-edge `<aside>` perimeter frame enabling click-to-view full-screen photo without interfering with reading canvas or scrolling.
+  - Implemented responsive border scaling: 8px mobile, 14px–16px desktop, and matching link underlines (`text-decoration-color: var(--flair-color)`).
+  - Designed neutral studio grey border (`#808387` light / `#323538` dark) for photo-rich pages (`photos.html`) to frame photos cleanly without color clashing.
+  - Generated and inspected 7 visual prototype screenshots across viewports and color configurations.
+  - Documented full architectural design proposal and findings in a detailed comment on GitHub Issue #6. Production code left clean pending Jim's review.
+
+- [x] **Milestone 20: Verbatim Dev Prompts Timeline & Automated Milestone Sync (Completed - Issue #7)**
+  - Replaced decorative cards and haiku synthesis with simple, unadorned plaintext quotes of Jim's authentic prompts on `content/pages/prompt-history.md`.
+  - Created `tools/sync_dev_prompts.py` to parse `JOURNAL.md` on a per-milestone basis, extracting 29 steering prompts across 9 releases through `v0.6.5`.
+  - Added 6th metric card to the DevOps dashboard on `content/pages/about-this-site.md` linking to `prompt-history.html`.
+  - Posted full status update comment to GitHub Issue #7. All 51 automated tests passing.
+
 - [x] **Milestone 19: Dynamic Mobile Dropdown Menu in Portrait Mode (Completed - Release v0.6.5)**
   - Implemented dynamic hiding dropdown menu in mobile portrait mode using 100% pure HTML5 `<details>` and `<summary>` (Zero-JS).
   - Dynamic Jinja2 `namespace` logic identifies active section and displays it on the closed button (`[ Home ▾ ]`, `[ Posts ▾ ]`, `[ About ▾ ]`, `[ Site ▾ ]`, etc.).

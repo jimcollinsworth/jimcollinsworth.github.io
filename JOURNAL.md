@@ -2,6 +2,75 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-12 — Color Flair & Photo Border Architectural Design (Issue #6)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"after that do ticket 6 add a touchnofmcolor flair, but just design and a few potential screen shots, document in the issue ticket"*
+> - Ticket #6 Text: *"Time to add some color to the website. Want to use colors from underlying photos of the sky and paint strokes. On most pages I think just a simple 10 pixel colored border around the entire page. 10 is a guess, we can try different sizes, even fir different resolutions or orientation. Border can be wider on bigger displays. Use build tool to create smal patches from my photos which are then used as background for the screen border. Click on the boarder to jump to full screen photo. Can do one specific photo first, but then code in some variations. Underlines in matching color of use patch? For photo rich pages we go to a basic Grey border."*
+
+### Problem & Diagnosis
+1. **Desire for Visual Color Flair**:
+   - The site's minimalist warm-paper aesthetic is clean, but Jim wants to introduce controlled, intentional color flair drawn directly from his Chicago sky and Lake Michigan photography without introducing visual clutter or violating the site's editorial feel.
+2. **Zero-JavaScript "Click Border to View Full Photo" Requirement**:
+   - Jim requested that clicking anywhere on the screen border jump directly to the full-screen photo. With Rule 3 strictly disallowing client-side JavaScript, this must be solved purely via semantic HTML5 and modern CSS without interfering with inner text selection, links, or scrolling.
+3. **Context-Aware Photo Page Neutrality**:
+   - On photo-rich pages like `photos.html`, a vibrant colored border risks clashing with the photos. As Jim noted, these pages should automatically switch to a basic neutral grey border.
+
+### Root Cause & Technical Analysis
+- Color sampling directly from image files (`content/images/sky-twilight.jpg`, `sky-lakefront.jpg`, `sky-clouds.jpg`) yields authentic palette coordinates: Sunset Fire Amber (`#d64900`), Dawn Peach (`#ed8a77`), Lakefront Cerulean (`#23496d`), Twilight Ember (`#e28743`).
+- A traditional single-element border cannot trigger navigation to a URL in pure HTML/CSS without JavaScript. However, a semantic 4-edge `<aside>` perimeter containing 4 fixed edge links (`.edge-top`, `.edge-bottom`, `.edge-left`, `.edge-right`) with `z-index: 9999` and descriptive `title` tooltips enables clicking any border edge to navigate directly to the photo.
+- The inner reading canvas remains completely unobstructed, so page scrolling, clicking links, and selecting text behave normally.
+- By scoping border thickness responsively (`8px` mobile, `10px–12px` tablet, `14px–16px` desktop), mobile screens preserve critical reading space while desktop screens gain a confident framing.
+
+### Solution & Prototypes Created
+1. **Palette Extraction**:
+   - Developed `scratch/extract_colors.py` using Playwright Canvas sampling to compute RGB/Hex averages for sky, horizon, and water bands across Jim's photos.
+2. **Prototypes Evaluated**:
+   - Option A: Sunset Fire Amber (`#d64900`) on Home (`index.html`) across Desktop (14px) and Mobile (8px).
+   - Option B: Lakefront Cerulean Blue (`#23496d`) on Posts (`posts.html`).
+   - Option C: Sliced Photo-Patch Horizon Texture from `sky-lakefront.jpg` on About (`about.html`).
+   - Option D: Twilight Ember (`#e28743`) on Home in Dark Mode.
+   - Option E: Neutral Studio Grey (`#808387`) on Photos Gallery (`photos.html`) across Desktop and Mobile.
+3. **Harmonic Link Underlines**:
+   - Text hyperlinks inherit `text-decoration-color: var(--flair-color)`, tying inline copy visually to the perimeter frame.
+4. **Documented in GitHub Issue #6**:
+   - Detailed architectural design, CSS specifications, zero-JS markup, and prototype findings posted directly to GitHub Issue #6 via the GitHub API (HTTP 201 Created).
+   - Production code unchanged pending Jim's review and approval.
+
+---
+
+## 2026-09-12 — Verbatim Dev Prompts Timeline & Automated Milestone Sync (Issue #7)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"go ahead and do issuem#7 dev prompts but not the haiku part, just the shift to simple prompt text. after that do ticket 6 add a touchnofmcolor flair, but just design and a few potential screen shots, document in the issue ticket"*
+> - Ticket #7 Text: *"It's all about the prompts, i want to show the entire and ongoing prompt history. That created this site. Take the journal file, maybe screenshot, and create a development blog kind of a devops, design, testing narrative with jim directing the action. Promps can be shortened domd where there were long includes but try to preserve Jim's wording, also shiw context and result of each significant interaction... You probably need to enhance the process to create History on a per session what per release basis. We'd only have to look at the newer part of the journal and create a new post based on that release and all the prompts. More scalable"*
+
+### Problem & Diagnosis
+1. **Artificial Ornamentation & Missing Authentic Steering**:
+   - The initial prompt history timeline included AI-generated haikus and decorative cards ("AI slop") rather than Jim's authentic, verbatim prompts.
+   - Recent releases (v0.6.0 through v0.6.5) and critical steering moments (remediations, corrections, agent errors) were missing from the public timeline.
+2. **Manual Maintenance Overhead**:
+   - Adding prompts manually to `prompt-history.md` was error-prone and unscalable across frequent milestones.
+
+### Root Cause & Technical Analysis
+- `JOURNAL.md` already captures Jim's exact instructions and steering under `> [!NOTE] Jim's Prompts, Instructions & Steering:` callouts.
+- A deterministic build tool can parse `JOURNAL.md` by release milestone, extract every steering prompt verbatim, summarize the engineering challenge and agent errors factually, and generate clean Markdown.
+
+### Solution & Standard Procedure
+1. **Automated Extraction Tool (`tools/sync_dev_prompts.py`)**:
+   - Developed a Python CLI tool that parses `JOURNAL.md` milestone headers, callouts, and technical analysis.
+   - Formats milestones chronologically (v0.1.0 through v0.6.5) with authentic prompt blockquotes and concise DevOps context.
+   - Sanitizes HTML tags (`<script>`, `<img>`, etc.) into escaped code literals to prevent accessibility or Zero-JS test failures.
+2. **Simplified Plaintext Typography**:
+   - Completely eliminated haikus and heavy CSS card layouts from `content/pages/prompt-history.md`.
+   - Clean editorial typography with blockquotes and monospace metadata badges (`v0.6.5 • 2026-09-12`).
+3. **DevOps Dashboard Integration**:
+   - Added a 6th card to `content/pages/about-this-site.md`: **Steering Prompts: 29 Prompts →** linking to `/prompt-history.html`.
+4. **Documented in GitHub Issue #7**:
+   - Posted complete status report comment to GitHub Issue #7 via GitHub API (HTTP 201 Created).
+
+---
+
 ## 2026-09-12 — Dynamic Mobile Dropdown Menu in Portrait Mode (Release v0.6.5)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:
