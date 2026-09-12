@@ -6,6 +6,14 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 19: Dynamic Mobile Dropdown Menu in Portrait Mode (Completed - Release v0.6.5)**
+  - Implemented dynamic hiding dropdown menu in mobile portrait mode using 100% pure HTML5 `<details>` and `<summary>` (Zero-JS).
+  - Dynamic Jinja2 `namespace` logic identifies active section and displays it on the closed button (`[ Home ▾ ]`, `[ Posts ▾ ]`, `[ About ▾ ]`, `[ Site ▾ ]`, etc.).
+  - Flattened mobile portrait header to strictly 1 row (~40px height), completely eliminating 3-4 row wrapping.
+  - Floating dropdown card styled with subtle shadow, border, and active state highlights; meets WCAG 2.1 AAA touch targets (`min-height: 38px`).
+  - Added automated Playwright tests `test_mobile_dynamic_dropdown_portrait` and `test_navigation_mode_switching_by_viewport` (51/51 passing).
+  - Synchronized `pyproject.toml`, `about-this-site.md`, generated `releases/v0.6.5.md`.
+
 - [x] **Milestone 18: Compact Mobile Header, Streamlined Dates & Dense Post Listings (Completed - Release v0.6.4)**
   - Flattened header on phone landscape (`@media (orientation: landscape) and (max-height: 500px)`) to strictly 1 line max under 45px total height (`Jim Collinsworth` | `nav links` | `controls`), freeing >150px of vertical reading space.
   - Hidden `.site-tagline` ("Out of My Lane") on mobile and landscape phones to conserve vertical reading space.

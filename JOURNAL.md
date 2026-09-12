@@ -2,6 +2,44 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-12 — Dynamic Mobile Dropdown Menu in Portrait Mode (Release v0.6.5)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"an improvement but need the dynamic menu in portrate mode thats possible right?"*
+
+### Problem & Diagnosis
+1. **Multi-Row Header Wrapping in Mobile Portrait**:
+   - On physical smartphones in portrait orientation (360px–414px width), 8 separate navigation links (`Home`, `About`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`) could not fit on a single line, wrapping across 3–4 rows and pushing the page content down.
+2. **Zero-JavaScript Constraint**:
+   - In accordance with site technical principles (Rule 3: Zero JavaScript), client-side JavaScript or `<script>` toggles are strictly forbidden. The dynamic dropdown menu must function 100% using native semantic HTML5 disclosure and modern CSS.
+
+### Root Cause & Technical Analysis
+- Mobile portrait layout attempted to display all horizontal menu links simultaneously.
+- Standard HTML5 `<details>` and `<summary>` elements provide native browser disclosure functionality without client-side scripts, with accessibility baked in by default.
+- Jinja2 template logic with `namespace` can resolve the current active section (`Home`, `About`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`, or `Menu`) and render it dynamically inside the `<summary>` element.
+
+### Solution & Standard Procedure
+1. **Semantic HTML5 `<details>` & `<summary>` Integration**:
+   - In `theme/templates/base.html`, added `<details class="mobile-nav-dropdown">` alongside `<nav class="site-nav desktop-nav">`.
+   - Populated `<summary class="mobile-nav-summary">` with dynamic Jinja2 `ns.active_title` and an inline SVG chevron.
+   - Chevron rotates 180 degrees smoothly on open via CSS `transform: rotate(180deg)`.
+2. **Strictly Single-Row Mobile Portrait Header**:
+   - Changed `header.site-header` in `@media (max-width: 640px)` to `display: flex; flex-direction: row; justify-content: space-between; align-items: center;`.
+   - Aligned `Jim Collinsworth` on the far left, and grouped `[ Current Page ▾ ]` with `🌙 ◑ A` on the right.
+   - Completely eliminated multi-row wrapping on portrait screens down to 320px width.
+3. **Floating Navigation Menu Card**:
+   - Absolutely positioned `.mobile-nav-menu` under the dropdown button with `var(--bg-card)`, subtle border, and shadow.
+   - Touch targets meet WCAG 2.1 AAA accessibility with `min-height: 38px`.
+   - Full support for dark mode and high-contrast mode.
+4. **Responsive Mode Separation**:
+   - On Desktop (> 640px): `.desktop-nav` is visible, `.mobile-nav-dropdown` is hidden (`display: none;`).
+   - On Phone Landscape (< 500px height): `.desktop-nav` is visible on one line, `.mobile-nav-dropdown` is hidden (`display: none !important;`).
+   - On Phone Portrait (< 640px): `.desktop-nav` is hidden (`display: none !important;`), `.mobile-nav-dropdown` is visible (`display: inline-flex !important;`).
+5. **Automated Verification**:
+   - Added `test_mobile_dynamic_dropdown_portrait` and `test_navigation_mode_switching_by_viewport` in `tests/test_playwright_responsive.py`.
+   - Verified all 51 automated tests passing.
+   - Bumped version to `v0.6.5` across `pyproject.toml`, `about-this-site.md`, and `releases/v0.6.5.md`.
+
 ---
 
 ## 2026-09-12 — Compact Mobile Header, Streamlined Dates & Dense Post Listings (Release v0.6.4)

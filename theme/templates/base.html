@@ -20,7 +20,24 @@
         <div class="site-tagline"><a href="{{ SITEURL }}/posts.html" title="All Posts">{{ SITESUBTITLE }}</a></div>
       </div>
       <div class="site-nav-row">
-        <nav class="site-nav" aria-label="Main Navigation">
+        {% set ns = namespace(active_title='Menu') %}
+        {% if output_file == 'index.html' %}
+          {% set ns.active_title = 'Home' %}
+        {% endif %}
+        {% if MENUITEMS %}
+          {% for title, url, match_key in MENUITEMS %}
+            {% if (output_file == match_key) or (page and page.slug == match_key) or (match_key == 'posts.html' and (article or category)) %}
+              {% set ns.active_title = title %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if pages %}
+          {% for p in pages if page and page.slug == p.slug and p.menu %}
+            {% set ns.active_title = p.menu_title or p.title %}
+          {% endfor %}
+        {% endif %}
+
+        <nav class="site-nav desktop-nav" aria-label="Main Navigation">
           {% if MENUITEMS %}
             {% for title, url, match_key in MENUITEMS %}
               <a href="{{ SITEURL }}{{ url }}"{% if (output_file == match_key) or (page and page.slug == match_key) or (match_key == 'posts.html' and (article or category)) %} class="active" aria-current="page"{% endif %}>{{ title }}</a>
@@ -36,6 +53,31 @@
             {% endfor %}
           {% endif %}
         </nav>
+
+        <details class="mobile-nav-dropdown">
+          <summary class="mobile-nav-summary" aria-label="Navigation Menu">
+            <span class="mobile-nav-current">{{ ns.active_title }}</span>
+            <svg class="mobile-nav-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </summary>
+          <nav class="mobile-nav-menu" aria-label="Mobile Navigation">
+            {% if MENUITEMS %}
+              {% for title, url, match_key in MENUITEMS %}
+                <a href="{{ SITEURL }}{{ url }}"{% if (output_file == match_key) or (page and page.slug == match_key) or (match_key == 'posts.html' and (article or category)) %} class="active" aria-current="page"{% endif %}>{{ title }}</a>
+              {% endfor %}
+            {% else %}
+              <a href="{{ SITEURL }}/index.html"{% if output_file == 'index.html' %} class="active" aria-current="page"{% endif %}>Home</a>
+              <a href="{{ SITEURL }}/about.html"{% if page and page.slug == 'about' %} class="active" aria-current="page"{% endif %}>About</a>
+              <a href="{{ SITEURL }}/posts.html"{% if output_file == 'posts.html' or article or category %} class="active" aria-current="page"{% endif %}>Posts</a>
+            {% endif %}
+            {% if pages %}
+              {% for p in pages|sort(attribute='menu_order') if p.menu and not (MENUITEMS and p.slug in (MENUITEMS|map(attribute='2')|list)) %}
+                <a href="{{ SITEURL }}/{{ p.url }}"{% if page and page.slug == p.slug %} class="active" aria-current="page"{% endif %}>{{ p.menu_title or p.title }}</a>
+              {% endfor %}
+            {% endif %}
+          </nav>
+        </details>
         <div class="site-controls" role="group" aria-label="Display and accessibility preferences">
           <label for="theme-toggle" class="control-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme (Light / Dark)">
             <svg class="control-icon icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
