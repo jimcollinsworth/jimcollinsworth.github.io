@@ -120,21 +120,21 @@ def test_active_nav_aria_current():
             )
 
 
-def test_lane_nav_aria_current():
-    """Verify that lane navigation tabs include aria-current='page' on active filter."""
+def test_stream_nav_aria_current():
+    """Verify that stream navigation tabs include aria-current='page' on active filter."""
     posts_page = OUTPUT_DIR / "posts.html"
     assert posts_page.exists()
     html = posts_page.read_text(encoding="utf-8")
-    assert 'class="lane-link active" aria-current="page"' in html or (
-        'class="lane-link active"' in html and 'aria-current="page"' in html
-    ), "Posts page missing aria-current='page' on active 'All' lane."
+    assert 'class="stream-link active" aria-current="page"' in html or (
+        'class="stream-link active"' in html and 'aria-current="page"' in html
+    ), "Posts page missing aria-current='page' on active 'All' stream."
 
-    lane_pages = list((OUTPUT_DIR / "lanes").glob("*.html"))
-    assert len(lane_pages) > 0, "No lane pages found in output/lanes/."
-    for lane_page in lane_pages:
-        lane_html = lane_page.read_text(encoding="utf-8")
-        assert 'aria-current="page"' in lane_html, (
-            f"Lane page {lane_page.name} missing aria-current='page' on active lane."
+    category_pages = list((OUTPUT_DIR / "category").glob("*.html"))
+    assert len(category_pages) > 0, "No category pages found in output/category/."
+    for cat_page in category_pages:
+        cat_html = cat_page.read_text(encoding="utf-8")
+        assert 'aria-current="page"' in cat_html, (
+            f"Category page {cat_page.name} missing aria-current='page' on active category."
         )
 
 

@@ -5,7 +5,7 @@ slug: "ai"
 
 <div class="page-intro">
   <p>
-    Artificial intelligence is one of my central pursuit lanes. My focus is on completely local, offline AI models, personal cognitive companions, agentic workflows, and the practical software systems of the next few decades.
+    Artificial intelligence is one of my central exploration domains. My focus is on completely local, offline AI models, personal cognitive companions, agentic workflows, and the practical software systems of the next few decades.
   </p>
 </div>
 
@@ -19,5 +19,5 @@ Building personal AI systems that run entirely on local silicon without third-pa
 - Exploring modern agentic developer tools (Google Antigravity, LLM agent harnesses, test-driven synthesis).
 - Clean engineering boundaries where humans author all core ideas and content, while AI agents steward infrastructure, testing, and continuous deployment.
 
-### 3. All AI Posts & Lane Stream
-To explore all chronological notes, technical deep dives, and ideas in this domain, visit the **[AI Lane &rarr;](lanes/ai.html)**.
+### 3. Chronological Stream
+To explore all chronological notes, technical deep dives, and ideas, visit **[All Posts &rarr;](posts.html)**.

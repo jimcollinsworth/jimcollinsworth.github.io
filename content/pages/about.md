@@ -13,9 +13,9 @@ slug: "about"
 
 *"How does that work?"* is the question that is always in my mind, and comes up for everything: software, hardware, electricity, biology, society, law, music, art, psychology... I'll be the first to admit something I don't know, but at the same time will be fleshing out the alternatives, questioning everything, devising an educated guess and following up as soon as I can to understand.
 
-## Lanes & "Out of My Lane"
+## "Out of My Lane"
 
-The name of this site reflects my habit of venturing into domains well outside my core training. Rather than siloing myself into a single specialty, I organize my active pursuits and projects into thematic **Lanes**:
+The name of this site reflects my habit of venturing into domains well outside my core training. Rather than siloing myself into a single specialty, I chronicle my active pursuits across multiple areas of curiosity:
 
 <div class="lanes-list grid-view">
   <div class="lane-entry">

@@ -550,8 +550,8 @@ hr {
   margin-bottom: 1.25rem;
 }
 
-/* Lanes & Category Links (Simple Text Links, No Pills) */
-.lane-nav {
+/* Streams & Category Links (Simple Text Links, No Pills) */
+.stream-nav, .lane-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 1rem;
@@ -562,7 +562,7 @@ hr {
   color: var(--text-muted);
 }
 
-.lane-link, .post-lane {
+.stream-link, .post-category, .lane-link, .post-lane {
   font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--link);
@@ -571,12 +571,12 @@ hr {
   transition: color 0.15s ease;
 }
 
-.lane-link:hover, .post-lane:hover {
+.stream-link:hover, .post-category:hover, .lane-link:hover, .post-lane:hover {
   color: var(--link-hover);
   text-decoration: underline;
 }
 
-.lane-link.active {
+.stream-link.active, .lane-link.active {
   color: var(--text);
   font-weight: 700;
   text-decoration: underline;
@@ -867,7 +867,7 @@ footer.site-footer {
   gap: 0.75rem;
 }
 
-.footer-lanes {
+.footer-categories, .footer-lanes {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -879,7 +879,7 @@ footer.site-footer {
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.footer-lanes-title {
+.footer-categories-title, .footer-lanes-title {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -888,7 +888,7 @@ footer.site-footer {
   margin-right: 0.25rem;
 }
 
-.footer-lanes a {
+.footer-categories a, .footer-lanes a {
   color: var(--text-muted);
   text-decoration: none;
   display: inline-flex;
@@ -897,7 +897,7 @@ footer.site-footer {
   padding: 0.15rem 0.2rem;
 }
 
-.footer-lanes a:hover {
+.footer-categories a:hover, .footer-lanes a:hover {
   color: var(--link);
   text-decoration: underline;
 }

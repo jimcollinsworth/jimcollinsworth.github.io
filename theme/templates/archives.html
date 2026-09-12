@@ -5,15 +5,15 @@
 {% block content %}
 <div class="page-intro">
   <p>
-    Notes, technical deep dives, project logs, and observations across my pursuit lanes.
+    Notes, technical deep dives, project logs, and observations.
   </p>
 </div>
 
 {% if categories %}
-<nav class="lane-nav" aria-label="Filter posts by lane">
-  <a href="{{ SITEURL }}/posts.html" class="lane-link active" aria-current="page">All</a>
+<nav class="stream-nav" aria-label="Filter posts by stream">
+  <a href="{{ SITEURL }}/posts.html" class="stream-link active" aria-current="page">All</a>
   {% for cat, cat_articles in categories %}
-  &bull; <a href="{{ SITEURL }}/{{ cat.url }}" class="lane-link">{{ cat }}</a>
+  &bull; <a href="{{ SITEURL }}/{{ cat.url }}" class="stream-link">{{ cat }}</a>
   {% endfor %}
 </nav>
 {% endif %}
@@ -28,10 +28,8 @@
         <span class="post-type">[{{ article.type|upper }}]</span> &bull;
         {% endif %}
         <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
-        {% if article.lanes %}
-        &bull; <span class="post-lanes">{% for lane in article.lanes %}<a href="{{ SITEURL }}/{{ lane.url }}" class="post-lane">{{ lane }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
-        {% elif article.category %}
-        &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-lane">{{ article.category }}</a>
+        {% if article.category %}
+        &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-category">{{ article.category }}</a>
         {% endif %}
       </div>
     </div>

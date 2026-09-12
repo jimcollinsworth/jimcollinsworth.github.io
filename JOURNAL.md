@@ -4,6 +4,62 @@
 
 ---
 
+## 2026-09-12 — Provenance Categories (Mine, AI Generated, Ours, Theirs), Streams Navigation & Release v0.6.1
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"changing terminology a bit, too much emphasis currently on lanes. Really? All it should be is a possibility. Tagline, and then lanes are simply just pages like I have a page on tai. Chi and a page on music in those pages. We'll link too one or many posts based on some filtering criteria"*
+> - *"remove most references to lanes, lanes are simply custom pages, we will have a tai chi page, with my tai chi posts, links and summary, and a science page... then we just need keywordsi think. where do the pelecan concepts fit again"*
+> - *"what pelecan features utilize categories? how else could we use caregories? o mine, ours, theirs....futeur, present, past....private, public, draft"*
+> - *"me like about, biodata, mine, ai generated, ours, theirs, lets go with those categories. ill also build custom pages for tai chi, music, big projects"*
+
+### Problem & Diagnosis
+1. **Over-Emphasis on Rigid "Lanes"**:
+   - The site taxonomy had become overly preoccupied with artificial "lanes" categories (`AI`, `Art`, `Health`, `Making`, `Music`), creating category silos and complex multi-category hooks.
+   - In Jim's authoring model, topic exploration belongs on dedicated, curated custom pages (e.g. a Tai Chi page, a Music page, a Science page, or Big Projects) that link to posts based on keyword tags and personal narrative context, rather than rigid category containers.
+2. **Pelican Native Category Misalignment**:
+   - Pelican’s core engine is architected around a single, mutually exclusive Category per article. Using Pelican categories for multi-topic assignment required custom generator mutation hooks.
+   - Conversely, provenance and authorship (`Mine`, `AI Generated`, `Ours`, `Theirs`) is strictly mutually exclusive and canonical, making it the ideal 1:1 match for Pelican’s native category architecture.
+3. **Tagline & Navigation Flow**:
+   - Header tagline *"Out of My Lane"* previously linked to `/lanes.html`, emphasizing the lane taxonomy. It should instead point to the full chronological post stream (`/posts.html`).
+   - Footer and archive headers displayed heavy `.lane-nav` and `.footer-lanes` bars that needed to transition to lightweight, unobtrusive stream selectors.
+
+### Root Cause & Technical Analysis
+- Mapping Pelican’s native category mechanism to provenance streams (`Mine`, `AI Generated`, `Ours`, `Theirs`) restores Pelican's clean out-of-the-box category indexing without needing generator monkey-patching or manual category list injection.
+- Topical categorization is decoupled entirely into flexible tags (`tags: [...]`), allowing future custom pages (such as Tai Chi or Music) to query and link to any relevant posts regardless of category.
+- Articles without an explicit `Category` frontmatter key default gracefully to `"Mine"`.
+
+### Solution & Standard Procedure
+1. **Pelican Configuration (`pelicanconf.py`)**:
+   - Configured `CATEGORY_URL = 'category/{slug}.html'` and `CATEGORY_SAVE_AS = 'category/{slug}.html'`.
+   - Disabled generic category list generation (`CATEGORIES_SAVE_AS = ''`).
+   - Removed obsolete `assign_multi_lane_categories` generator signal hook and `Category` import.
+   - Updated `ObsidianMarkdownReader` to parse `category` (defaulting to `"Mine"`), `type`, `previous_types`, and `tags`.
+2. **Content Metadata Migration (`content/posts/`)**:
+   - Converted all posts from `lanes:` to `category: "Mine"` (or `"Ours"`) with topical `tags: [...]`:
+     - `cordoba-stage-guitar.md`: `category: "Mine"`, `tags: [music, guitar]`, `type: WIP`.
+     - `digital-piano-enhancements.md`: `category: "Mine"`, `tags: [music, making, piano]`, `type: PROJ`.
+     - `ulu-knife-handle.md`: `category: "Mine"`, `tags: [making, woodworking]`, `type: PROJ`.
+     - `sleep-movement-evaluation-plan.md`: `category: "Mine"`, `tags: [health, tai-chi, sleep]`, `type: SPEC`.
+     - `m-e-offline-ai-companion.md`: `category: "Mine"`, `tags: [ai, software]`, `type: IDEA`.
+     - `art-institute-chicago-modern-wing.md`: `category: "Ours"`, `tags: [museums, chicago, sculpture, architecture, lighting, curation]`, `type: VIEW`.
+3. **Template & Styling Alignment**:
+   - `theme/templates/base.html`: Pointed tagline *"Out of My Lane"* to `/posts.html`. Replaced `.footer-lanes` with subtle `.footer-categories` (`Streams: Mine • Ours`).
+   - `theme/templates/archives.html`: Replaced `.lane-nav` with `.stream-nav` (`All • Mine • Ours`). Replaced lane loop with `article.category`.
+   - `theme/templates/category.html`: Rendered clean `<h2>Category: {{ category }}</h2>` with stream navigation.
+   - `theme/templates/article.html` & `theme/templates/index.html`: Replaced lane loops with `article.category` stream links.
+   - Styled `.stream-nav`, `.stream-link`, `.post-category`, `.footer-categories` in `theme/static/css/style.css`, `theme/css/style.css`, and `assets/css/style.css`.
+4. **Purged Retired Files**:
+   - Deleted `lanes/` directory and `lanes.html`. Generated category streams in `category/mine.html` and `category/ours.html`.
+5. **Governance & Documentation**:
+   - Updated Section 5 of `AGENTS.md` and `.agents/agent_rules.md` to define Provenance Categories and Custom Topic Pages.
+   - Updated `docs/content_authoring.md` and `README.md`.
+6. **Automated Testing & Release**:
+   - Updated `tests/test_pelican_e2e.py` and `tests/test_accessibility.py` to audit stream navigation and `category/` outputs.
+   - Verified 43/43 passing automated tests (`uv run pytest -v`).
+   - Bumped version to `v0.6.1` in `pyproject.toml` and `content/pages/about-this-site.md`.
+
+---
+
 ## 2026-09-11 — Multi-Lane Taxonomy, Post-Type Evolution, Zero-JS Commenting Pipeline & Release v0.6.0
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

@@ -65,14 +65,16 @@ Inspired by:
 
 ---
 
-## 5. Content Organization & "Lanes"
+## 5. Content Organization, Provenance Categories & Custom Topic Pages
 
-- **Lanes (Areas of Interest)**: Jim's explorations and pursuits across different domains:
-  - Music (Guitar, Piano, Theory)
-  - STEM & Computing (Software, Data, AI, Electronics, Weather)
-  - Health & Body (Tai Chi, Alexander Technique, Anatomy, Sleep)
-  - Crafts & Making (Woodworking, Knife making, DIY)
-- **Journal**: Chronological notes, observations, deep dives, and progress reports written by Jim.
+- **Provenance Categories (Streams)**: Mutually-exclusive authorship and provenance streams mapped directly to Pelican categories:
+  - **`Mine`**: Original human writing, projects, and personal notes authored by Jim.
+  - **`AI Generated`**: Material generated primarily by AI / LLMs.
+  - **`Ours`**: Collaborative works created jointly (Jim + collaborators or Jim + AI).
+  - **`Theirs`**: External works, curated references, quotes, or third-party highlights.
+- **Custom Topic Pages**: Curated standalone pages (e.g., Tai Chi, Music, Science, Big Projects) linking to one or many posts and assets based on specific filtering or narrative context.
+- **Keywords / Tags**: Flexible subject tags (`tags: [...]`) for thematic exploration across posts.
+- **Journal / Posts**: Chronological notes, observations, deep dives, and progress reports written by Jim.
 - **Photos**: Photographic essays and studies (Chicago sky, Lake Michigan, sunsets, botanical, craft).
 - **Archive**: Historical notes, raw drafts, and original full-resolution photo assets in `archive/`.
 

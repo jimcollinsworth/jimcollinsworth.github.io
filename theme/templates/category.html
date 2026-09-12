@@ -7,13 +7,13 @@
   <a href="{{ SITEURL }}/posts.html">&larr; All Posts</a>
 </div>
 
-<h2>Lane: {{ category }}</h2>
+<h2>Category: {{ category }}</h2>
 
 {% if categories %}
-<nav class="lane-nav" aria-label="Filter posts by lane">
-  <a href="{{ SITEURL }}/posts.html" class="lane-link">All</a>
+<nav class="stream-nav" aria-label="Filter posts by stream">
+  <a href="{{ SITEURL }}/posts.html" class="stream-link">All</a>
   {% for cat, cat_articles in categories %}
-  &bull; <a href="{{ SITEURL }}/{{ cat.url }}" class="lane-link{% if cat == category %} active{% endif %}"{% if cat == category %} aria-current="page"{% endif %}>{{ cat }}</a>
+  &bull; <a href="{{ SITEURL }}/{{ cat.url }}" class="stream-link{% if cat == category %} active{% endif %}"{% if cat == category %} aria-current="page"{% endif %}>{{ cat }}</a>
   {% endfor %}
 </nav>
 {% endif %}
@@ -28,10 +28,8 @@
         <span class="post-type">[{{ article.type|upper }}]</span> &bull;
         {% endif %}
         <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
-        {% if article.lanes %}
-        &bull; <span class="post-lanes">{% for lane in article.lanes %}{% if lane == category %}<span class="post-lane">{{ lane }}</span>{% else %}<a href="{{ SITEURL }}/{{ lane.url }}" class="post-lane">{{ lane }}</a>{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</span>
-        {% elif article.category %}
-        &bull; <span class="post-lane">{{ article.category }}</span>
+        {% if article.category %}
+        &bull; <span class="post-category">{{ article.category }}</span>
         {% endif %}
       </div>
     </div>

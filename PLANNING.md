@@ -6,6 +6,17 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 15: Provenance Categories, Topic-Driven Decoupling & Streams Navigation (Completed - Release v0.6.1)**
+  - Replaced rigid "lanes" taxonomy with 4 mutually-exclusive Provenance Categories: `Mine`, `AI Generated`, `Ours`, `Theirs`.
+  - Re-aligned Pelican categories 1:1 with provenance streams, writing clean archives to `category/{slug}.html`.
+  - Re-pointed header tagline *"Out of My Lane"* directly to `/posts.html` (All Posts).
+  - Retired `lanes/` and `lanes.html`; replaced `.lane-nav` and `.footer-lanes` with subtle, unboxed `.stream-nav` and `.footer-categories` (`Streams: Mine • Ours`).
+  - Switched post frontmatter to `Category: "Mine"` (or `Ours`, `Theirs`, `AI Generated`) with flexible topical keywords (`tags: [...]`) and format short codes (`type: PROJ`, `previous_types: [...]`).
+  - Updated Section 5 of `AGENTS.md` and `.agents/agent_rules.md` to define Provenance Categories and Custom Topic Pages (e.g., Tai Chi, Music, Science, Big Projects to be authored by Jim).
+  - Updated `docs/content_authoring.md` and `README.md` metadata guides.
+  - Updated test suites (`tests/test_pelican_e2e.py` and `tests/test_accessibility.py`) with all 43/43 tests passing.
+  - Bumped version to `v0.6.1`.
+
 - [x] **Milestone 14: Multi-Lane Taxonomy, Post-Type Evolution & Rule 14 AI Attribution (Completed - Release v0.6.0)**
   - Decoupled content format/lifecycle (`type`, `previous_types`) from pursuit lanes (`lanes`).
   - Standardized canonical 5 pursuit lanes: `AI`, `Art`, `Health`, `Making`, `Music`.

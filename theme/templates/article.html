@@ -19,10 +19,8 @@
       &bull;
       {% endif %}
       <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%B %d, %Y') }}</time>
-      {% if article.lanes %}
-      &bull; <span class="post-lanes">{% for lane in article.lanes %}<a href="{{ SITEURL }}/{{ lane.url }}" class="post-lane">{{ lane }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
-      {% elif article.category %}
-      &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-lane">{{ article.category }}</a>
+      {% if article.category %}
+      &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-category">{{ article.category }}</a>
       {% endif %}
     </div>
   </header>
