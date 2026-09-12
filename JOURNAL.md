@@ -12,6 +12,8 @@
 > - *"Certain pages will always appear in the menu like about, blog, any page or custom page can be made to appear in the menu by some sort of configuration setting whatever pelican supporsts."*
 > - *"i like the new categories, but let's keep it on the downlow In our website. just mention in the about page, and that's it. no nav of lists. maybr try an icon next to posts, what would coukd tge icons be. But we will keep content categorized this way, me, mine, ours... Moving forward, it will figure out more uses of it in the future"*
 > - *"We can simply call the category aI. Not ai generated."*
+> - *"what is our icon library, theme? must bemsomembetter icons althoughmi like the svgs, find outmofficialmpelicanmthememicons ormgive me a few,to pick from."*
+> - *"feather quill, use robot head instaed of sparkle"*
 
 ### Problem & Diagnosis
 1. **Category Expansion & Naming**:
@@ -20,7 +22,7 @@
 2. **Category Presentation ("On the Downlow")**:
    - The previous release introduced prominent `.stream-nav` filter lists on archives and `STREAMS: Mine • Ours` in the footer. Jim directed that categories should remain "on the downlow" without visible navigation lists, while quietly categorizing content behind the scenes.
    - The taxonomy needed to be explained on [`content/pages/about.md`](about.html).
-   - Posts needed subtle, unobtrusive visual indicators (icons) for category attribution without overwhelming the editorial typography.
+   - Posts needed subtle, unobtrusive visual indicators (icons) for category attribution without overwhelming the editorial typography. Jim explicitly selected a **feather quill** for `Mine` and a **robot head** for `AI`.
 3. **Flexible Top Navigation Menu**:
    - Navigation needed permanent inclusion of core pages (`Home`, `About`, `Posts`), with the ability to configure or dynamically opt in any page or custom page (such as upcoming `tai-chi.md` or `music.md`) via Pelican configuration or Markdown frontmatter.
 4. **Walkthrough Screenshot Preview Rendering**:
@@ -30,6 +32,7 @@
 - In webviews, markdown image paths with Windows backslashes (`\`) are parsed as escape characters (e.g. `\U`, `\a`) and fail to resolve. Standardizing to `file:///C:/Users/...` forward-slashed URIs restores immediate preview rendering.
 - Pelican's native `MENUITEMS` configuration in `pelicanconf.py` provides a clean tuple for permanent and configured menu items. Combining this with frontmatter inspection (`page.menu == True`) allows zero-code opt-in for any future Markdown page.
 - Inline SVGs (13×13px) with `<title>` and `aria-label` allow category indicators to render identically across platforms with zero client-side JavaScript, no external font dependencies, and full screen-reader accessibility.
+- Lucide / Feather icon SVGs (`feather` for quill and `bot` for robot head) provide crisp, semantic, minimalist line art matching our typography without adding external asset or font overhead.
 
 ### Solution & Standard Procedure
 1. **Category Normalization (`pelicanconf.py`)**:
@@ -41,7 +44,7 @@
 3. **Downlow Presentation & Category Icons**:
    - Removed `.stream-nav` category lists from `theme/templates/archives.html` and `theme/templates/category.html`.
    - Removed `.footer-categories` from `theme/templates/base.html`.
-   - Created `theme/templates/category_icon.html` macro rendering subtle 13×13px inline SVG icons for `Me` (👤), `Mine` (🖋️), `AI` (✦), `Ours` (👥), and `Theirs` (❝).
+   - Created `theme/templates/category_icon.html` macro rendering subtle 13×13px inline SVG icons for `Me` (👤 user outline), `Mine` (🪶 feather quill outline), `AI` (🤖 robot head outline), `Ours` (👥 dual users outline), and `Theirs` (❝ quotation marks outline).
    - Rendered category badges in `archives.html`, `index.html`, `category.html`, and `article.html`.
    - Styled `.category-badge` and `.category-icon` in CSS.
 4. **Documentation & About Page**:
