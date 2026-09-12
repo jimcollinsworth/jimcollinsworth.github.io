@@ -19,7 +19,7 @@
         {% if article.type %}
         <span class="post-type">[{{ article.type|upper }}]</span> &bull;
         {% endif %}
-        <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
+        <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %y') }}</time>
         {% if article.category %}
         &bull; {{ category_icon(article.category) }}
         {% endif %}

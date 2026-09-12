@@ -6,6 +6,17 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 18: Compact Mobile Header, Streamlined Dates & Dense Post Listings (Completed - Release v0.6.4)**
+  - Flattened header on phone landscape (`@media (orientation: landscape) and (max-height: 500px)`) to strictly 1 line max under 45px total height (`Jim Collinsworth` | `nav links` | `controls`), freeing >150px of vertical reading space.
+  - Hidden `.site-tagline` ("Out of My Lane") on mobile and landscape phones to conserve vertical reading space.
+  - Re-architected mobile portrait header into a compact 2-row grid: Row 1 (`Jim Collinsworth` + `site-controls`) and Row 2 (`site-nav` across full width).
+  - Streamlined dates across templates to concise Month Year format (`%b %y`, e.g. `Aug 26`, `Sep 23`).
+  - Removed visual evolution lineage (`(evolved from ...)`) from post headers and listings.
+  - Implemented dense mobile post listings: clamped post descriptions to 2 lines max with `-webkit-line-clamp: 2`, reduced vertical spacing to 0.75rem with clean separators.
+  - Tabled dynamic hiding dropdown menu and `[VIEW]` vs `VIEW` discussion for future milestones.
+  - Added automated Playwright tests `test_mobile_header_compact_and_landscape_single_line` and `test_streamlined_date_formats` (49/49 passing).
+  - Synchronized `pyproject.toml`, `about-this-site.md`, generated `releases/v0.6.4.md`.
+
 - [x] **Milestone 17: Responsive Image Containment & Edge-to-Edge Photo Stream (Completed - Release v0.6.3)**
   - Fixed layout blowout in posts (e.g. Modern Wing 2,108px images) by enforcing universal fluid media containment (`img, picture, video, canvas { max-width: 100%; height: auto; }`).
   - Added semantic editorial `<figure>` and `<figcaption>` base styling with subtle borders, border radiuses, and readable typography.

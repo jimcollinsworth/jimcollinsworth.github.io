@@ -23,9 +23,9 @@ slug: "about-this-site"
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
     <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Site Version &amp; Releases</div>
     <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem;">
-      <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases" target="_blank" rel="noopener">v0.6.3 &bull; Release Notes &rarr;</a>
+      <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases" target="_blank" rel="noopener">v0.6.4 &bull; Release Notes &rarr;</a>
     </div>
-    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Full historical release notes v0.1 &ndash; v0.6.3</div>
+    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Full historical release notes v0.1 &ndash; v0.6.4</div>
   </div>
 
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">

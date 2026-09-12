@@ -14,12 +14,9 @@
     <div class="meta">
       {% if article.type %}
       <span class="post-type">[{{ article.type|upper }}]</span>
-      {% if article.previous_types %}
-      <span class="post-type-evolution">(evolved from {% for pt in article.previous_types %}<span class="prev-type">{{ pt }}</span>{% if not loop.last %} &rarr; {% endif %}{% endfor %})</span>
-      {% endif %}
       &bull;
       {% endif %}
-      <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%B %d, %Y') }}</time>
+      <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %y') }}</time>
       {% if article.category %}
       &bull; {{ category_icon(article.category) }}
       {% endif %}

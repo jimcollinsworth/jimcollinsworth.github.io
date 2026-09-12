@@ -4,6 +4,52 @@
 
 ---
 
+## 2026-09-12 — Compact Mobile Header, Streamlined Dates & Dense Post Listings (Release v0.6.4)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"getting close buy phone is,still too packed. on landscape mode fully half the screen ismwasted for the header, must be one line max for phone, can hide out of my lane if needed on small devices. should be a dynamic hiding menu at some point and justmshow current menu name, withmdrop down."*
+> - *"on posts and list remove the evolved from til. thismwill be available only thu the metadata display. change dates to month year, so Aug 26 or Sep 23.  i dont really like the [view] vs just view, table for futuremdiscussion"*
+> - *"phone content should be smaller, only short post text and minimal spacing in lists, ideally 1, 2 lines max"*
+> - *"and then merge push and publish"*
+
+### Problem & Diagnosis
+1. **Header Real Estate on Landscape Phone**:
+   - Jim provided live mobile photos demonstrating that in landscape mode, the multi-row header (`Jim Collinsworth` + `Out of My Lane` row, followed by navigation links + controls, plus 4.5rem margin/padding) consumed more than half the vertical screen height (~200px of a 390px viewport), leaving minimal space for content.
+   - In portrait mode, navigation wrapped `Site` to line 3 and controls to line 4.
+2. **Post Evolution Lineage**:
+   - `(evolved from TIL)` rendered prominently in article headers, creating clutter. Jim directed removing this from the visual post headers and lists, preserving it strictly in the metadata.
+3. **Date Verbosity**:
+   - Full date formats (`August 14, 2026` or `Aug 14, 2026`) occupied excessive horizontal width on mobile. Jim requested concise Month Year format (`Aug 26`, `Sep 23`).
+4. **Mobile Content & List Spacing**:
+   - Post list items had generous desktop margins (2.25rem) and full paragraph descriptions, meaning only 1 item fit on screen at a time on mobile.
+
+### Root Cause & Technical Analysis
+- Header structure placed `.site-branding` and `.site-nav-row` as vertical block flex items, preventing single-line flow on wide horizontal viewports like landscape phones.
+- Mobile breakpoints lacked specific line-clamp constraints on `.post-desc` and had identical margins to desktop.
+- `strftime('%b %y')` provides clean, standard 2-digit year representations matching Jim's concise format.
+
+### Solution & Standard Procedure
+1. **Single-Line Header on Phone Landscape**:
+   - Configured `@media (orientation: landscape) and (max-height: 500px)` with `header.site-header { display: flex; flex-direction: row; justify-content: space-between; align-items: center; }`.
+   - Hidden `.site-tagline` on mobile and landscape phones.
+   - Header height reduced to under 45px total (saving >150px of vertical space).
+2. **Compact 2-Row Grid on Phone Portrait**:
+   - Used `display: contents` on `.site-nav-row` to place title and controls on row 1, with navigation links cleanly spanning row 2.
+3. **Streamlined Dates**:
+   - Updated Pelican Jinja2 templates (`article.html`, `archives.html`, `category.html`, `index.html`) to format dates as `{{ article.date.strftime('%b %y') }}`.
+4. **Evolution Lineage Removal**:
+   - Removed `(evolved from ...)` from `article.html` and verified absence in all lists.
+5. **Dense Mobile Post Listings**:
+   - Applied `-webkit-line-clamp: 2` to `.post-desc`, `.book-notes`, and `.post-teaser` on mobile (< 640px).
+   - Reduced item spacing to `0.75rem` with subtle border separators.
+6. **Automated Testing & Governance**:
+   - Added `test_mobile_header_compact_and_landscape_single_line` and `test_streamlined_date_formats` to `test_playwright_responsive.py`.
+   - Verified all 49 tests passing.
+   - Tabled dropdown menu and `[VIEW]` vs `VIEW` for future milestones in `PLANNING.md`.
+   - Bumped version to `v0.6.4` across `pyproject.toml`, `about-this-site.md`, and generated `releases/v0.6.4.md`.
+
+---
+
 ## 2026-09-12 — Responsive Image Containment, Edge-to-Edge Photo Stream & Release v0.6.3
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

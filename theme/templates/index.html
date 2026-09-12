@@ -22,7 +22,7 @@
             {% if featured.type %}
             <span class="post-type">[{{ featured.type|upper }}]</span> &bull;
             {% endif %}
-            <time datetime="{{ featured.date.strftime('%Y-%m-%d') }}">{{ featured.date.strftime('%b %d, %Y') }}</time>
+            <time datetime="{{ featured.date.strftime('%Y-%m-%d') }}">{{ featured.date.strftime('%b %y') }}</time>
             {% if featured.category %}
             &bull; {{ category_icon(featured.category) }}
             {% endif %}
@@ -87,7 +87,7 @@
               {% if article.type %}
               <span class="post-type">[{{ article.type|upper }}]</span> &bull;
               {% endif %}
-              <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
+              <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %y') }}</time>
               {% if article.category %}
               &bull; {{ category_icon(article.category) }}
               {% endif %}

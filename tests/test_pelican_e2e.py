@@ -116,12 +116,10 @@ def test_category_membership_and_type_evolution():
     assert "M.E. (Mental Entity / My Essence)" in mine_category, "M.E. should appear in Mine category"
     assert "Modern Wing Encounters" in ours_category, "Modern Wing should appear in Ours category"
 
-    # Post-type short codes and evolution lineage verification
+    # Post-type short codes verification (evolved from removed per Jim's instruction)
     piano_html = (OUTPUT_DIR / "posts" / "digital-piano-enhancements.html").read_text(encoding="utf-8")
     assert '<span class="post-type">[PROJ]</span>' in piano_html
-    assert "(evolved from" in piano_html
-    assert '<span class="prev-type">IDEA</span>' in piano_html
-    assert '<span class="prev-type">WIP</span>' in piano_html
+    assert "(evolved from" not in piano_html
     assert 'class="category-badge"' in piano_html
     assert 'Mine</span>' in piano_html
 
@@ -132,14 +130,13 @@ def test_category_membership_and_type_evolution():
 
     sleep_html = (OUTPUT_DIR / "posts" / "sleep-movement-evaluation-plan.html").read_text(encoding="utf-8")
     assert '<span class="post-type">[SPEC]</span>' in sleep_html
-    assert '<span class="prev-type">IDEA</span>' in sleep_html
-    assert '<span class="prev-type">LOG</span>' in sleep_html
+    assert "(evolved from" not in sleep_html
     assert 'class="category-badge"' in sleep_html
     assert 'Mine</span>' in sleep_html
 
     art_html = (OUTPUT_DIR / "posts" / "art-institute-chicago-modern-wing.html").read_text(encoding="utf-8")
     assert '<span class="post-type">[VIEW]</span>' in art_html
-    assert '<span class="prev-type">TIL</span>' in art_html
+    assert "(evolved from" not in art_html
     assert 'class="category-badge"' in art_html
     assert 'Ours</span>' in art_html
 

@@ -225,33 +225,220 @@ img, picture, video, canvas {
 /* Mobile (< 640px) */
 @media (max-width: 640px) {
   html {
-    font-size: 97%;
+    font-size: 94%;
   }
   body {
-    padding: 1.25rem 1rem 2.5rem;
+    padding: 1rem 1rem 2rem;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  header.site-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    row-gap: 0.4rem;
+    column-gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.65rem;
   }
   .site-branding {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.75rem;
-    margin-bottom: 0.85rem;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    margin: 0;
   }
   .site-title {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
   .site-tagline {
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-align: right;
+    display: none !important;
   }
   .site-nav-row {
+    display: contents;
+  }
+  .site-controls {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    margin-left: auto;
+    gap: 0.25rem;
+  }
+  nav.site-nav {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
-    gap: 0.5rem 1rem;
+    gap: 0.35rem 0.75rem;
+    font-size: 0.86rem;
+    margin-top: 0.15rem;
+  }
+  nav.site-nav a {
+    min-height: 28px;
+    padding: 0.15rem 0.1rem;
+  }
+
+  /* Content & Headings Scaling */
+  h1, .post-title-full {
+    font-size: 1.35rem;
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+  h2 {
+    font-size: 1.15rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.35rem;
+  }
+  h3 {
+    font-size: 1.05rem;
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  article p, .page-intro p {
+    margin-bottom: 0.75rem;
+  }
+  .page-intro {
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+  .intro-blurb {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  /* Compact Mobile Post & Book Listings (1-2 lines max) */
+  .post-list, .book-list {
+    margin: 0.25rem 0 1rem;
+  }
+  .post-item, .book-item {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .post-item.featured {
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.75rem;
+  }
+  .post-header, .book-header {
+    margin-bottom: 0.15rem;
+  }
+  .post-title, .book-title {
+    font-size: 1.02rem;
+    line-height: 1.25;
+    margin: 0 0 0.15rem;
+  }
+  .post-meta, .book-meta {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+  }
+  .post-desc, .book-notes, .post-teaser {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.85rem;
+    line-height: 1.35;
+    margin-top: 0.15rem;
+    margin-bottom: 0;
+    color: var(--text-muted);
+  }
+  .post-detail {
+    display: none;
+  }
+}
+
+/* Phone Landscape Mode (Strictly One Line Header) */
+@media (orientation: landscape) and (max-height: 500px) {
+  body {
+    padding: 0.65rem 1.25rem 1.25rem;
+  }
+  header.site-header {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 0.65rem !important;
+    padding-bottom: 0.4rem !important;
+  }
+  .site-branding {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+  }
+  .site-title {
+    font-size: 1.05rem !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+  }
+  .site-tagline {
+    display: none !important;
+  }
+  .site-nav-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.65rem !important;
+    flex-wrap: nowrap !important;
+    margin: 0 !important;
+  }
+  nav.site-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.55rem !important;
+    font-size: 0.82rem !important;
+    flex-wrap: nowrap !important;
+    margin: 0 !important;
+  }
+  nav.site-nav a {
+    min-height: 24px !important;
+    padding: 0.1rem 0.2rem !important;
+    white-space: nowrap !important;
+  }
+  .site-controls {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin-left: 0.4rem !important;
+    gap: 0.2rem !important;
+    flex-shrink: 0 !important;
+  }
+  .control-btn {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    min-height: 24px !important;
+  }
+  .control-btn svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  /* Compact Content & Headings in Landscape */
+  h1, .post-title-full {
+    font-size: 1.3rem;
+    line-height: 1.25;
+    margin-bottom: 0.35rem;
+  }
+  h2 {
+    font-size: 1.15rem;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  .page-intro {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+  }
+  .post-desc, .book-notes, .post-teaser {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.84rem;
+    line-height: 1.35;
   }
 }
 

@@ -200,3 +200,44 @@ def test_images_fit_viewport_width(browser_context, page_rel_path, viewport):
         context.close()
 
 
+def test_mobile_header_compact_and_landscape_single_line(browser_context):
+    """Verify header is strictly 1-line in phone landscape and tagline is hidden on mobile."""
+    target_file = OUTPUT_DIR / "about-this-site.html"
+    assert target_file.exists()
+
+    # Test Phone Landscape (844x390)
+    context = browser_context.new_context(viewport={"width": 844, "height": 390})
+    page = context.new_page()
+    try:
+        page.goto(f"file:///{target_file.as_posix()}")
+        header_height = page.evaluate("() => document.querySelector('header.site-header').getBoundingClientRect().height")
+        assert header_height <= 50, f"Header height in landscape phone was {header_height}px, expected <= 50px (single line)"
+
+        tagline_display = page.evaluate("() => window.getComputedStyle(document.querySelector('.site-tagline')).display")
+        assert tagline_display == "none", f"Tagline should be hidden in landscape phone, got {tagline_display}"
+    finally:
+        context.close()
+
+    # Test Phone Portrait (390x844)
+    context = browser_context.new_context(viewport={"width": 390, "height": 844})
+    page = context.new_page()
+    try:
+        page.goto(f"file:///{target_file.as_posix()}")
+        tagline_display = page.evaluate("() => window.getComputedStyle(document.querySelector('.site-tagline')).display")
+        assert tagline_display == "none", f"Tagline should be hidden in portrait phone, got {tagline_display}"
+    finally:
+        context.close()
+
+
+def test_streamlined_date_formats():
+    """Verify dates across posts and archive match '%b %y' format (e.g. Aug 26)."""
+    import re
+    posts_file = OUTPUT_DIR / "posts.html"
+    assert posts_file.exists()
+    html = posts_file.read_text(encoding="utf-8")
+    assert re.search(r"<time datetime=\"\d{4}-\d{2}-\d{2}\">[A-Z][a-z]{2} \d{2}</time>", html), (
+        "Expected date format '%b %y' (e.g. Aug 26) in posts.html"
+    )
+
+
+
