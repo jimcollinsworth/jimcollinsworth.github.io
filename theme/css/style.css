@@ -582,6 +582,35 @@ hr {
   text-decoration: underline;
 }
 
+/* Provenance Category Badges & Icons ("On the downlow") */
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  vertical-align: middle;
+  transition: color 0.15s ease;
+}
+
+.category-icon {
+  display: inline-block;
+  vertical-align: -1px;
+  stroke: currentColor;
+  opacity: 0.75;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.category-badge:hover .category-icon {
+  opacity: 1;
+}
+
+.category-label {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
 /* Prose Reading Measure */
 article p, .page-intro p, .post-desc, .book-notes {
   max-width: 76ch;

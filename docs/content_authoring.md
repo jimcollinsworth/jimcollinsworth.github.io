@@ -45,10 +45,13 @@ Status: published
 | :--- | :--- | :--- | :--- |
 | **`Title`** | **Yes** | Text string | Title of the article or page. Used in `<title>`, `<h1>`, and cards. |
 | **`Date`** | **Yes** (Articles) | `YYYY-MM-DD` or `YYYY-MM-DD HH:MM` | Publication timestamp. Governs chronological ordering. |
-| **`Category`** | Optional (Articles) | Text string (`"Mine"`, `"AI Generated"`, `"Ours"`, `"Theirs"`) | Provenance stream. Defaults to `"Mine"` if omitted. Organizes content by origin/authorship into `category/{slug}.html`. |
+| **`Category`** | Optional (Articles) | Text string (`"Me"`, `"Mine"`, `"AI"`, `"Ours"`, `"Theirs"`) | Provenance stream. Defaults to `"Mine"` if omitted. Organizes content quietly by origin/perspective. |
 | **`Tags`** | Optional | YAML list or comma-separated strings (e.g. `[music, guitar]`) | Subject keywords for topical filtering and discovery across posts. |
 | **`Type`** | Optional | Uppercase short code (e.g., `PROJ`, `IDEA`, `WIP`, `SPEC`) | Single active post format indicator displayed alongside date and category in lists. |
 | **`Previous_types`** | Optional | YAML list or comma-separated short codes (e.g. `[IDEA, WIP]`) | Conceptual evolution lineage. Renders on the post as `(evolved from IDEA → WIP)`. |
+| **`Menu`** | Optional (Pages) | `true` or `false` | When `true`, automatically includes the page in the site's top navigation menu. |
+| **`Menu_order`** | Optional (Pages) | Integer (e.g. `5`) | Sort position in the top navigation menu. |
+| **`Menu_title`** | Optional (Pages) | Text string | Custom label for top navigation menu if different from `Title`. |
 | **`Slug`** | Optional | Lowercase URL slug (e.g., `digital-piano-enhancements`) | Determines the output URL (`posts/{slug}.html`). Auto-generated from Title if omitted. |
 | **`Summary`** | Recommended | 1–2 plain text sentences | Explicit teaser description displayed in article lists and index cards. |
 | **`Authors`** | Optional | Text string or list (e.g. `Jim Collinsworth`, `Jim Collinsworth, LLM-Gemini3.8`) | Author credit. **Rule 14**: When AI is an author, co-author, or suspected contributor, credit the exact model ID prefixed with `LLM-` (e.g., `LLM-Gemini3.8`, `LLM-Qwen3.5`). |
@@ -59,9 +62,9 @@ Status: published
 
 > [!IMPORTANT]
 > **Provenance Category vs. Type vs. Custom Topic Pages**:
-> - **Provenance Categories** (`Mine`, `AI Generated`, `Ours`, `Theirs`) represent mutually exclusive authorship streams.
+> - **Provenance Categories** (`Me`, `Mine`, `AI`, `Ours`, `Theirs`) represent mutually exclusive authorship/origin streams, kept understated ("on the downlow") on the public site and detailed on `about.md`.
 > - **Post Types** (`Type`, e.g. `[IDEA]`, `[PROJ]`, `[WIP]`) represent format and lifecycle stage.
-> - **Custom Topic Pages** (e.g. Tai Chi, Music, Science) are standalone curated pages linking to posts based on keyword tags and narrative context, rather than rigid category silos.
+> - **Custom Topic Pages** (e.g. Tai Chi, Music, Science) are standalone curated pages linking to posts based on keyword tags and narrative context. Pages can be added to the top menu by configuring `MENUITEMS` in `pelicanconf.py` or specifying `menu: true` in page frontmatter.
 
 ---
 

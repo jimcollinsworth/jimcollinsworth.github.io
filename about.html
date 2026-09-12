@@ -21,13 +21,14 @@
       </div>
       <div class="site-nav-row">
         <nav class="site-nav" aria-label="Main Navigation">
-          <a href="./index.html">Home</a>
-          <a href="./posts.html">Posts</a>
-          <a href="./ai.html">AI</a>
-          <a href="./links.html">Links</a>
-          <a href="./photos.html">Photos</a>
-          <a href="./apps.html">Apps</a>
-          <a href="./about-this-site.html">Site</a>
+              <a href="./index.html">Home</a>
+              <a href="./about.html" class="active" aria-current="page">About</a>
+              <a href="./posts.html">Posts</a>
+              <a href="./ai.html">AI</a>
+              <a href="./links.html">Links</a>
+              <a href="./photos.html">Photos</a>
+              <a href="./apps.html">Apps</a>
+              <a href="./about-this-site.html">Site</a>
         </nav>
         <div class="site-controls" role="group" aria-label="Display and accessibility preferences">
           <label for="theme-toggle" class="control-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme (Light / Dark)">
@@ -105,6 +106,16 @@
 </div>
 
 <hr>
+<h2>Content Streams &amp; Categorization</h2>
+<p>Behind the scenes, content is organized quietly by origin and perspective rather than rigid subject silos:</p>
+<ul>
+<li><strong>Me</strong>: Notes about myself, personal biodata (activity, sleep, health tracking), personal bookmarks, and things written about me by me.</li>
+<li><strong>Mine</strong>: Original essays, technical notes, software, and physical making projects authored directly by me.</li>
+<li><strong>AI</strong>: Explorations and code generated or co-authored with artificial intelligence.</li>
+<li><strong>Ours</strong>: Collaborative works created jointly with peers, friends, or humans and AI.</li>
+<li><strong>Theirs</strong>: Curated external references, insightful quotes, and third-party works.</li>
+</ul>
+<hr>
 <h2>Contact &amp; Reader Feedback</h2>
 <p>Interested in discussing a project, sharing notes, or providing critique?</p>
 <p>This site operates under a strict <strong>Zero-JavaScript policy</strong>. Reader submissions from posts and inquiries are routed through a private <strong>Google Apps Script &amp; Google Sheets</strong> pipeline, triaged and synthesized using local LLM tooling, and compiled into static editorial digests without exposing the site to client-side scripts or public comment spam.</p>
@@ -116,9 +127,6 @@
     </main>
 
     <footer class="site-footer" role="contentinfo">
-      <div class="footer-categories" aria-label="Content Streams">
-        <span class="footer-categories-title">Streams:</span>
-        <a href="./category/mine.html">Mine</a> &bull;        <a href="./category/ours.html">Ours</a>      </div>
       <nav class="footer-nav" aria-label="Footer Navigation">
         <a href="./posts.html">All Posts</a>
         <a href="./about.html">About Jim</a>

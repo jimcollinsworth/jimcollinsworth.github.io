@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "category_icon.html" import category_icon %}
 
 {% block title %}Posts &mdash; {{ SITENAME }}{% endblock %}
 
@@ -8,15 +9,6 @@
     Notes, technical deep dives, project logs, and observations.
   </p>
 </div>
-
-{% if categories %}
-<nav class="stream-nav" aria-label="Filter posts by stream">
-  <a href="{{ SITEURL }}/posts.html" class="stream-link active" aria-current="page">All</a>
-  {% for cat, cat_articles in categories %}
-  &bull; <a href="{{ SITEURL }}/{{ cat.url }}" class="stream-link">{{ cat }}</a>
-  {% endfor %}
-</nav>
-{% endif %}
 
 <ul class="post-list">
   {% for article in dates %}
@@ -29,7 +21,7 @@
         {% endif %}
         <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
         {% if article.category %}
-        &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-category">{{ article.category }}</a>
+        &bull; {{ category_icon(article.category) }}
         {% endif %}
       </div>
     </div>

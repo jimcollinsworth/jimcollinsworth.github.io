@@ -1,0 +1,14 @@
+{% macro category_icon(cat) %}
+{% set c = cat|string|lower %}
+{% if c == 'me' %}
+<span class="category-badge" title="Category: Me" aria-label="Category: Me"><svg class="category-icon icon-me" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span class="category-label">Me</span></span>
+{% elif c == 'mine' %}
+<span class="category-badge" title="Category: Mine" aria-label="Category: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg><span class="category-label">Mine</span></span>
+{% elif c in ['ai', 'ai generated'] %}
+<span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"></path></svg><span class="category-label">AI</span></span>
+{% elif c == 'ours' %}
+<span class="category-badge" title="Category: Ours" aria-label="Category: Ours"><svg class="category-icon icon-ours" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-3-3.87"></path><path d="M7 21v-2a4 4 0 0 1 3-3.87"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span class="category-label">Ours</span></span>
+{% elif c == 'theirs' %}
+<span class="category-badge" title="Category: Theirs" aria-label="Category: Theirs"><svg class="category-icon icon-theirs" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path></svg><span class="category-label">Theirs</span></span>
+{% endif %}
+{% endmacro %}

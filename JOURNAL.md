@@ -4,6 +4,56 @@
 
 ---
 
+## 2026-09-12 — 'Me' Category, Downlow Iconography, Configurable Menu & Release v0.6.2
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"we also have me as a category, this is stuff about me maybe written about me by me, maybe my fit bit data, or bookmarks"*
+> - *"why are previews not available in the walkthrough comma check our screenshoting ability. make dure btowser testds sre running and checking screens."*
+> - *"Certain pages will always appear in the menu like about, blog, any page or custom page can be made to appear in the menu by some sort of configuration setting whatever pelican supporsts."*
+> - *"i like the new categories, but let's keep it on the downlow In our website. just mention in the about page, and that's it. no nav of lists. maybr try an icon next to posts, what would coukd tge icons be. But we will keep content categorized this way, me, mine, ours... Moving forward, it will figure out more uses of it in the future"*
+> - *"We can simply call the category aI. Not ai generated."*
+
+### Problem & Diagnosis
+1. **Category Expansion & Naming**:
+   - Jim required adding **`Me`** as a distinct category for autobiographical notes, personal biodata (Fitbit, sleep, health tracking), personal bookmarks, and things written about Jim by Jim.
+   - The label `AI Generated` was overly verbose and needed simplification to **`AI`**.
+2. **Category Presentation ("On the Downlow")**:
+   - The previous release introduced prominent `.stream-nav` filter lists on archives and `STREAMS: Mine • Ours` in the footer. Jim directed that categories should remain "on the downlow" without visible navigation lists, while quietly categorizing content behind the scenes.
+   - The taxonomy needed to be explained on [`content/pages/about.md`](about.html).
+   - Posts needed subtle, unobtrusive visual indicators (icons) for category attribution without overwhelming the editorial typography.
+3. **Flexible Top Navigation Menu**:
+   - Navigation needed permanent inclusion of core pages (`Home`, `About`, `Posts`), with the ability to configure or dynamically opt in any page or custom page (such as upcoming `tai-chi.md` or `music.md`) via Pelican configuration or Markdown frontmatter.
+4. **Walkthrough Screenshot Preview Rendering**:
+   - Image previews failed to render in walkthrough artifacts due to Windows backslash path escaping in the Antigravity webview markdown renderer.
+
+### Root Cause & Technical Analysis
+- In webviews, markdown image paths with Windows backslashes (`\`) are parsed as escape characters (e.g. `\U`, `\a`) and fail to resolve. Standardizing to `file:///C:/Users/...` forward-slashed URIs restores immediate preview rendering.
+- Pelican's native `MENUITEMS` configuration in `pelicanconf.py` provides a clean tuple for permanent and configured menu items. Combining this with frontmatter inspection (`page.menu == True`) allows zero-code opt-in for any future Markdown page.
+- Inline SVGs (13×13px) with `<title>` and `aria-label` allow category indicators to render identically across platforms with zero client-side JavaScript, no external font dependencies, and full screen-reader accessibility.
+
+### Solution & Standard Procedure
+1. **Category Normalization (`pelicanconf.py`)**:
+   - Configured `ObsidianMarkdownReader` to normalize `ai generated` &rarr; `AI`, and support `Me`, `Mine`, `AI`, `Ours`, `Theirs` (defaulting to `Mine`).
+2. **Configurable Navigation Menu**:
+   - Configured `MENUITEMS` in `pelicanconf.py` with `Home`, `About`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`.
+   - Added `menu`, `menu_order`, and `menu_title` parsing to `ObsidianMarkdownReader`.
+   - Updated `theme/templates/base.html` to dynamically render `MENUITEMS` plus any page marked `menu: true`.
+3. **Downlow Presentation & Category Icons**:
+   - Removed `.stream-nav` category lists from `theme/templates/archives.html` and `theme/templates/category.html`.
+   - Removed `.footer-categories` from `theme/templates/base.html`.
+   - Created `theme/templates/category_icon.html` macro rendering subtle 13×13px inline SVG icons for `Me` (👤), `Mine` (🖋️), `AI` (✦), `Ours` (👥), and `Theirs` (❝).
+   - Rendered category badges in `archives.html`, `index.html`, `category.html`, and `article.html`.
+   - Styled `.category-badge` and `.category-icon` in CSS.
+4. **Documentation & About Page**:
+   - Added "Content Streams & Categorization" section to `content/pages/about.md`.
+   - Updated Section 5 in `AGENTS.md` and `.agents/agent_rules.md`.
+   - Updated `docs/content_authoring.md` and `PLANNING.md` (Milestone 16).
+5. **Testing & Versioning**:
+   - Updated test suites, verified all 43 tests passing (`uv run pytest -v`).
+   - Bumped version to `v0.6.2` in `pyproject.toml`, `content/pages/about-this-site.md`, and `releases/v0.6.2.md`.
+
+---
+
 ## 2026-09-12 — Provenance Categories (Mine, AI Generated, Ours, Theirs), Streams Navigation & Release v0.6.1
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

@@ -1,19 +1,15 @@
 {% extends "base.html" %}
+{% from "category_icon.html" import category_icon %}
 
 {% block content %}
-<section class="page-intro">
+<div class="intro-blurb">
   <p>
-    I'm Jim Collinsworth &mdash; newly retired after 50 years spanning Arthur Andersen, professional guitar, software startups, and data science. <em>Out of My Lane</em> is where I chronicle my pursuits across computing, AI, music, health, making, and the Chicago lakefront.
+    Welcome. I'm Jim Collinsworth &mdash; a retired technologist and multi-disciplinary maker exploring whatever captures my curiosity: software &amp; data, tai chi, classical guitar, piano, woodworking, and local AI. <a href="{{ SITEURL }}/about.html">More about me &rarr;</a>
   </p>
-  <p>
-    <a href="{{ SITEURL }}/about.html">More about me &rarr;</a>
-  </p>
-</section>
-
-<hr>
+</div>
 
 <div class="desktop-two-col">
-  <!-- Main Column: Featured Starred Post + Recent Reads -->
+  <!-- Main Column: Featured Long-form & Bookshelf Spotlight -->
   <div class="main-column">
     <section>
       <h2>Featured Post</h2>
@@ -28,7 +24,7 @@
             {% endif %}
             <time datetime="{{ featured.date.strftime('%Y-%m-%d') }}">{{ featured.date.strftime('%b %d, %Y') }}</time>
             {% if featured.category %}
-            &bull; <a href="{{ SITEURL }}/{{ featured.category.url }}" class="post-category">{{ featured.category }}</a>
+            &bull; {{ category_icon(featured.category) }}
             {% endif %}
           </div>
         </div>
@@ -93,7 +89,7 @@
               {% endif %}
               <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
               {% if article.category %}
-              &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-category">{{ article.category }}</a>
+              &bull; {{ category_icon(article.category) }}
               {% endif %}
             </div>
           </div>

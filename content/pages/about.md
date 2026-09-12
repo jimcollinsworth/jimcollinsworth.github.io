@@ -46,6 +46,18 @@ The name of this site reflects my habit of venturing into domains well outside m
 
 ---
 
+## Content Streams & Categorization
+
+Behind the scenes, content is organized quietly by origin and perspective rather than rigid subject silos:
+
+- **Me**: Notes about myself, personal biodata (activity, sleep, health tracking), personal bookmarks, and things written about me by me.
+- **Mine**: Original essays, technical notes, software, and physical making projects authored directly by me.
+- **AI**: Explorations and code generated or co-authored with artificial intelligence.
+- **Ours**: Collaborative works created jointly with peers, friends, or humans and AI.
+- **Theirs**: Curated external references, insightful quotes, and third-party works.
+
+---
+
 ## Contact & Reader Feedback
 
 Interested in discussing a project, sharing notes, or providing critique?

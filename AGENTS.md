@@ -67,12 +67,13 @@ Inspired by:
 
 ## 5. Content Organization, Provenance Categories & Custom Topic Pages
 
-- **Provenance Categories (Streams)**: Mutually-exclusive authorship and provenance streams mapped directly to Pelican categories:
-  - **`Mine`**: Original human writing, projects, and personal notes authored by Jim.
-  - **`AI Generated`**: Material generated primarily by AI / LLMs.
+- **Provenance Categories (Streams)**: Mutually-exclusive authorship and provenance streams mapped directly to Pelican categories (kept "on the downlow" on the public site, detailed on `about.md`):
+  - **`Me`**: Direct autobiographical notes, personal biodata (activity/sleep/health), bookmarks, and reflections about Jim written by Jim.
+  - **`Mine`**: Original human writing, technical notes, software, and physical making projects authored by Jim.
+  - **`AI`**: Material and code generated or co-authored with AI / LLMs.
   - **`Ours`**: Collaborative works created jointly (Jim + collaborators or Jim + AI).
   - **`Theirs`**: External works, curated references, quotes, or third-party highlights.
-- **Custom Topic Pages**: Curated standalone pages (e.g., Tai Chi, Music, Science, Big Projects) linking to one or many posts and assets based on specific filtering or narrative context.
+- **Custom Topic Pages & Menu Configuration**: Curated standalone pages (e.g., Tai Chi, Music, Science, Big Projects) linking to posts via tags. Any page can be added to the top navigation menu via `MENUITEMS` in `pelicanconf.py` or by adding `menu: true` (and optional `menu_order: ...`) to page frontmatter.
 - **Keywords / Tags**: Flexible subject tags (`tags: [...]`) for thematic exploration across posts.
 - **Journal / Posts**: Chronological notes, observations, deep dives, and progress reports written by Jim.
 - **Photos**: Photographic essays and studies (Chicago sky, Lake Michigan, sunsets, botanical, craft).

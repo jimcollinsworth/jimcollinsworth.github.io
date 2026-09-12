@@ -19,6 +19,20 @@ SITENAME = 'Jim Collinsworth'
 SITESUBTITLE = 'Out of My Lane'
 SITEURL = ''
 
+# Navigation Menu Configuration
+# Permanent core items (Home, About, Posts) + configurable custom pages.
+# Any custom page can also set `menu: true` in frontmatter to appear automatically.
+MENUITEMS = (
+    ('Home', '/index.html', 'index.html'),
+    ('About', '/about.html', 'about'),
+    ('Posts', '/posts.html', 'posts.html'),
+    ('AI', '/ai.html', 'ai'),
+    ('Links', '/links.html', 'links'),
+    ('Photos', '/photos.html', 'photos'),
+    ('Apps', '/apps.html', 'apps'),
+    ('Site', '/about-this-site.html', 'about-this-site'),
+)
+
 PATH = 'content'
 OUTPUT_PATH = 'output'
 TIMEZONE = 'America/Chicago'
@@ -102,14 +116,38 @@ class ObsidianMarkdownReader(MarkdownReader):
                 raw_meta, body = m.groups()
                 parsed = yaml.safe_load(raw_meta) or {}
 
-                # Category: Provenance (Mine, AI Generated, Ours, Theirs)
+                # Category: Provenance (Me, Mine, AI, Ours, Theirs)
                 cat = parsed.get('category') or parsed.get('lanes')
                 if isinstance(cat, list) and cat:
-                    parsed['category'] = str(cat[0]).strip()
+                    raw_cat = str(cat[0]).strip()
                 elif isinstance(cat, str) and cat:
-                    parsed['category'] = str(cat.split(',')[0]).strip()
+                    raw_cat = str(cat.split(',')[0]).strip()
+                else:
+                    raw_cat = 'Mine'
+
+                # Normalize 'AI Generated' -> 'AI', support Me, Mine, Ours, Theirs
+                raw_lower = raw_cat.lower()
+                if raw_lower in ['ai generated', 'ai-generated', 'ai']:
+                    parsed['category'] = 'AI'
+                elif raw_lower == 'me':
+                    parsed['category'] = 'Me'
+                elif raw_lower == 'ours':
+                    parsed['category'] = 'Ours'
+                elif raw_lower == 'theirs':
+                    parsed['category'] = 'Theirs'
                 else:
                     parsed['category'] = 'Mine'
+
+                # Menu configuration support for pages
+                if 'menu' in parsed:
+                    extra_meta['menu'] = bool(parsed['menu'])
+                if 'menu_order' in parsed:
+                    try:
+                        extra_meta['menu_order'] = int(parsed['menu_order'])
+                    except (ValueError, TypeError):
+                        extra_meta['menu_order'] = 99
+                if 'menu_title' in parsed:
+                    extra_meta['menu_title'] = str(parsed['menu_title']).strip()
 
                 # Post type: single active short code (uppercase)
                 if 'type' in parsed and parsed['type']:
@@ -138,11 +176,17 @@ class ObsidianMarkdownReader(MarkdownReader):
         else:
             metadata = {}
 
-        # Assign post type and type evolution lineage
+        # Assign post type, type evolution lineage, and menu settings
         if 'type' in extra_meta:
             metadata['type'] = extra_meta['type']
         if 'previous_types' in extra_meta:
             metadata['previous_types'] = extra_meta['previous_types']
+        if 'menu' in extra_meta:
+            metadata['menu'] = extra_meta['menu']
+        if 'menu_order' in extra_meta:
+            metadata['menu_order'] = extra_meta['menu_order']
+        if 'menu_title' in extra_meta:
+            metadata['menu_title'] = extra_meta['menu_title']
 
         return content, metadata
 

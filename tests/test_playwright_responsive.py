@@ -100,6 +100,12 @@ def test_screenshot_script_execution(tmp_path):
     assert index_dir.exists()
     screenshots = list(index_dir.glob("*.png"))
     assert len(screenshots) == 1
+    screenshot = screenshots[0]
+    # Verify non-empty screenshot with valid PNG header
+    assert screenshot.stat().st_size > 5000, f"Screenshot file too small: {screenshot.stat().st_size} bytes"
+    with open(screenshot, "rb") as sf:
+        header = sf.read(8)
+        assert header == b"\x89PNG\r\n\x1a\n", "Invalid PNG file header"
     assert (index_dir / "preview.html").exists()
 
 

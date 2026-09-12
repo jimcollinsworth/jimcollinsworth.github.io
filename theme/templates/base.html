@@ -21,13 +21,20 @@
       </div>
       <div class="site-nav-row">
         <nav class="site-nav" aria-label="Main Navigation">
-          <a href="{{ SITEURL }}/index.html"{% if output_file == 'index.html' %} class="active" aria-current="page"{% endif %}>Home</a>
-          <a href="{{ SITEURL }}/posts.html"{% if output_file == 'posts.html' or article or category %} class="active" aria-current="page"{% endif %}>Posts</a>
-          <a href="{{ SITEURL }}/ai.html"{% if page and page.slug == 'ai' %} class="active" aria-current="page"{% endif %}>AI</a>
-          <a href="{{ SITEURL }}/links.html"{% if page and page.slug == 'links' %} class="active" aria-current="page"{% endif %}>Links</a>
-          <a href="{{ SITEURL }}/photos.html"{% if page and page.slug == 'photos' %} class="active" aria-current="page"{% endif %}>Photos</a>
-          <a href="{{ SITEURL }}/apps.html"{% if page and page.slug == 'apps' %} class="active" aria-current="page"{% endif %}>Apps</a>
-          <a href="{{ SITEURL }}/about-this-site.html"{% if page and page.slug == 'about-this-site' %} class="active" aria-current="page"{% endif %}>Site</a>
+          {% if MENUITEMS %}
+            {% for title, url, match_key in MENUITEMS %}
+              <a href="{{ SITEURL }}{{ url }}"{% if (output_file == match_key) or (page and page.slug == match_key) or (match_key == 'posts.html' and (article or category)) %} class="active" aria-current="page"{% endif %}>{{ title }}</a>
+            {% endfor %}
+          {% else %}
+            <a href="{{ SITEURL }}/index.html"{% if output_file == 'index.html' %} class="active" aria-current="page"{% endif %}>Home</a>
+            <a href="{{ SITEURL }}/about.html"{% if page and page.slug == 'about' %} class="active" aria-current="page"{% endif %}>About</a>
+            <a href="{{ SITEURL }}/posts.html"{% if output_file == 'posts.html' or article or category %} class="active" aria-current="page"{% endif %}>Posts</a>
+          {% endif %}
+          {% if pages %}
+            {% for p in pages|sort(attribute='menu_order') if p.menu and not (MENUITEMS and p.slug in (MENUITEMS|map(attribute='2')|list)) %}
+              <a href="{{ SITEURL }}/{{ p.url }}"{% if page and page.slug == p.slug %} class="active" aria-current="page"{% endif %}>{{ p.menu_title or p.title }}</a>
+            {% endfor %}
+          {% endif %}
         </nav>
         <div class="site-controls" role="group" aria-label="Display and accessibility preferences">
           <label for="theme-toggle" class="control-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme (Light / Dark)">
@@ -70,14 +77,6 @@
     </main>
 
     <footer class="site-footer" role="contentinfo">
-      {% if categories %}
-      <div class="footer-categories" aria-label="Content Streams">
-        <span class="footer-categories-title">Streams:</span>
-        {% for cat, cat_articles in categories %}
-        <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>{% if not loop.last %} &bull;{% endif %}
-        {% endfor %}
-      </div>
-      {% endif %}
       <nav class="footer-nav" aria-label="Footer Navigation">
         <a href="{{ SITEURL }}/posts.html">All Posts</a>
         <a href="{{ SITEURL }}/about.html">About Jim</a>

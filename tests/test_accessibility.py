@@ -110,7 +110,7 @@ def test_aria_landmarks():
 
 def test_active_nav_aria_current():
     """Verify that the active navigation item uses aria-current='page'."""
-    core_pages = ["index.html", "posts.html", "ai.html", "links.html", "photos.html", "apps.html", "about-this-site.html"]
+    core_pages = ["index.html", "about.html", "posts.html", "ai.html", "links.html", "photos.html", "apps.html", "about-this-site.html"]
     for page_name in core_pages:
         page_file = OUTPUT_DIR / page_name
         if page_file.exists():
@@ -120,22 +120,15 @@ def test_active_nav_aria_current():
             )
 
 
-def test_stream_nav_aria_current():
-    """Verify that stream navigation tabs include aria-current='page' on active filter."""
+def test_category_badges_and_icons_accessibility():
+    """Verify that category badges include title and aria-label, and SVGs are aria-hidden."""
     posts_page = OUTPUT_DIR / "posts.html"
     assert posts_page.exists()
     html = posts_page.read_text(encoding="utf-8")
-    assert 'class="stream-link active" aria-current="page"' in html or (
-        'class="stream-link active"' in html and 'aria-current="page"' in html
-    ), "Posts page missing aria-current='page' on active 'All' stream."
-
-    category_pages = list((OUTPUT_DIR / "category").glob("*.html"))
-    assert len(category_pages) > 0, "No category pages found in output/category/."
-    for cat_page in category_pages:
-        cat_html = cat_page.read_text(encoding="utf-8")
-        assert 'aria-current="page"' in cat_html, (
-            f"Category page {cat_page.name} missing aria-current='page' on active category."
-        )
+    assert 'class="category-badge"' in html
+    assert 'aria-label="Category:' in html
+    assert 'class="category-icon' in html
+    assert 'aria-hidden="true"' in html
 
 
 def test_all_images_have_alt_attributes():

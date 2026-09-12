@@ -122,22 +122,26 @@ def test_category_membership_and_type_evolution():
     assert "(evolved from" in piano_html
     assert '<span class="prev-type">IDEA</span>' in piano_html
     assert '<span class="prev-type">WIP</span>' in piano_html
-    assert "Mine</a>" in piano_html
+    assert 'class="category-badge"' in piano_html
+    assert 'Mine</span>' in piano_html
 
     me_html = (OUTPUT_DIR / "posts" / "m-e-offline-ai-companion.html").read_text(encoding="utf-8")
     assert '<span class="post-type">[IDEA]</span>' in me_html
-    assert "Mine</a>" in me_html
+    assert 'class="category-badge"' in me_html
+    assert 'Mine</span>' in me_html
 
     sleep_html = (OUTPUT_DIR / "posts" / "sleep-movement-evaluation-plan.html").read_text(encoding="utf-8")
     assert '<span class="post-type">[SPEC]</span>' in sleep_html
     assert '<span class="prev-type">IDEA</span>' in sleep_html
     assert '<span class="prev-type">LOG</span>' in sleep_html
-    assert "Mine</a>" in sleep_html
+    assert 'class="category-badge"' in sleep_html
+    assert 'Mine</span>' in sleep_html
 
     art_html = (OUTPUT_DIR / "posts" / "art-institute-chicago-modern-wing.html").read_text(encoding="utf-8")
     assert '<span class="post-type">[VIEW]</span>' in art_html
     assert '<span class="prev-type">TIL</span>' in art_html
-    assert "Ours</a>" in art_html
+    assert 'class="category-badge"' in art_html
+    assert 'Ours</span>' in art_html
 
 
 def test_no_duplicate_page_titles():
@@ -192,10 +196,10 @@ def test_zero_pills_lane_formatting():
         assert 'class="pill ' not in content, f"Found pill class in {rel_path}"
         assert 'pill-nav' not in content, f"Found pill-nav class in {rel_path}"
 
-    # Verify that posts.html uses stream-nav and stream-link
+    # Verify that posts.html uses category-badge and category-icon ("on the downlow")
     posts_html = (OUTPUT_DIR / "posts.html").read_text(encoding="utf-8")
-    assert 'class="stream-nav"' in posts_html
-    assert 'class="stream-link' in posts_html
+    assert 'class="category-badge"' in posts_html
+    assert 'class="category-icon' in posts_html
 
 
 def test_content_flows_from_markdown():

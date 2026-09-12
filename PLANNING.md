@@ -6,6 +6,16 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 16: 'Me' Category, Downlow Presentation, Post Iconography & Configurable Menu (Completed - Release v0.6.2)**
+  - Added **`Me`** provenance category for autobiographical notes, personal biodata (Fitbit/sleep/health), bookmarks, and self-written reflections.
+  - Renamed **`AI Generated`** &rarr; **`AI`**.
+  - Kept categories "on the downlow": removed `.stream-nav` category lists from `posts.html` and `category/*.html`, and removed `.footer-categories` from the site footer.
+  - Documented the 5 provenance categories (`Me`, `Mine`, `AI`, `Ours`, `Theirs`) on `content/pages/about.md`.
+  - Introduced subtle 13×13px inline SVG category icons next to posts in archive listings, index feeds, and article headers (`Me`: 👤, `Mine`: 🖋️, `AI`: ✦, `Ours`: 👥, `Theirs`: ❝) with `<title>` tooltips and screen-reader `aria-label`s.
+  - Implemented configurable top navigation menu via Pelican's `MENUITEMS` with permanent core items (`Home`, `About`, `Posts`) and page frontmatter opt-in (`menu: true`, `menu_order: ...`).
+  - Resolved artifact screenshot preview rendering by standardizing URIs to `file:///C:/Users/...`.
+  - Synchronized test suites, governance documents, and bumped version to `v0.6.2`.
+
 - [x] **Milestone 15: Provenance Categories, Topic-Driven Decoupling & Streams Navigation (Completed - Release v0.6.1)**
   - Replaced rigid "lanes" taxonomy with 4 mutually-exclusive Provenance Categories: `Mine`, `AI Generated`, `Ours`, `Theirs`.
   - Re-aligned Pelican categories 1:1 with provenance streams, writing clean archives to `category/{slug}.html`.
