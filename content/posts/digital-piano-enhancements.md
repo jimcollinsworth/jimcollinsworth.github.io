@@ -1,9 +1,11 @@
 ---
 title: "Digital Piano Enhancements"
 date: "2026-09-04"
-lanes:
-  - Music
-  - Making
+category: "Mine"
+tags:
+  - music
+  - making
+  - piano
 type: "PROJ"
 previous_types:
   - IDEA

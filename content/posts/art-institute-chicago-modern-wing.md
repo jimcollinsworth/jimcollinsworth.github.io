@@ -3,8 +3,7 @@ title: "Modern Wing Encounters: Renzo Piano's Light & Mid-Century Linearity"
 slug: "art-institute-chicago-modern-wing"
 date: 2026-08-14
 modified: 2026-09-09
-lanes:
-  - Art
+category: "Ours"
 type: "VIEW"
 previous_types:
   - TIL

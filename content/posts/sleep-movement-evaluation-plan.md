@@ -1,8 +1,11 @@
 ---
 title: "Sleep Health & Movement Evaluation Plan"
 date: "2026-09-07"
-lanes:
-  - Health
+category: "Mine"
+tags:
+  - health
+  - tai-chi
+  - sleep
 type: "SPEC"
 previous_types:
   - IDEA

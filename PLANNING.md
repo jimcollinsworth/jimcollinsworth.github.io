@@ -6,6 +6,46 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 18: Compact Mobile Header, Streamlined Dates & Dense Post Listings (Completed - Release v0.6.4)**
+  - Flattened header on phone landscape (`@media (orientation: landscape) and (max-height: 500px)`) to strictly 1 line max under 45px total height (`Jim Collinsworth` | `nav links` | `controls`), freeing >150px of vertical reading space.
+  - Hidden `.site-tagline` ("Out of My Lane") on mobile and landscape phones to conserve vertical reading space.
+  - Re-architected mobile portrait header into a compact 2-row grid: Row 1 (`Jim Collinsworth` + `site-controls`) and Row 2 (`site-nav` across full width).
+  - Streamlined dates across templates to concise Month Year format (`%b %y`, e.g. `Aug 26`, `Sep 23`).
+  - Removed visual evolution lineage (`(evolved from ...)`) from post headers and listings.
+  - Implemented dense mobile post listings: clamped post descriptions to 2 lines max with `-webkit-line-clamp: 2`, reduced vertical spacing to 0.75rem with clean separators.
+  - Tabled dynamic hiding dropdown menu and `[VIEW]` vs `VIEW` discussion for future milestones.
+  - Added automated Playwright tests `test_mobile_header_compact_and_landscape_single_line` and `test_streamlined_date_formats` (49/49 passing).
+  - Synchronized `pyproject.toml`, `about-this-site.md`, generated `releases/v0.6.4.md`.
+
+- [x] **Milestone 17: Responsive Image Containment & Edge-to-Edge Photo Stream (Completed - Release v0.6.3)**
+  - Fixed layout blowout in posts (e.g. Modern Wing 2,108px images) by enforcing universal fluid media containment (`img, picture, video, canvas { max-width: 100%; height: auto; }`).
+  - Added semantic editorial `<figure>` and `<figcaption>` base styling with subtle borders, border radiuses, and readable typography.
+  - Implemented edge-to-edge zero-gutter display for photo albums (`.photo-stream`) on mobile (< 640px) and tablet (< 1024px) screens (`margin-left: -1rem; margin-right: -1rem; width: calc(100% + 2rem)`), while preserving caption padding.
+  - Updated category icons to Jim's choices: feather quill (`feather`) for `Mine` and robot head (`bot`) for `AI`.
+  - Added automated Playwright viewport containment tests (`test_images_fit_viewport_width`) verifying 0 horizontal scroll overflow and bounded image dimensions across viewports.
+  - Updated test suite to 47/47 passing tests, synchronized `about-this-site.md`, `pyproject.toml`, and generated `releases/v0.6.3.md`.
+
+- [x] **Milestone 16: 'Me' Category, Downlow Presentation, Post Iconography & Configurable Menu (Completed - Release v0.6.2)**
+  - Added **`Me`** provenance category for autobiographical notes, personal biodata (Fitbit/sleep/health), bookmarks, and self-written reflections.
+  - Renamed **`AI Generated`** &rarr; **`AI`**.
+  - Kept categories "on the downlow": removed `.stream-nav` category lists from `posts.html` and `category/*.html`, and removed `.footer-categories` from the site footer.
+  - Documented the 5 provenance categories (`Me`, `Mine`, `AI`, `Ours`, `Theirs`) on `content/pages/about.md`.
+  - Introduced subtle 13×13px inline SVG category icons next to posts in archive listings, index feeds, and article headers (`Me`: 👤, `Mine`: 🖋️, `AI`: ✦, `Ours`: 👥, `Theirs`: ❝) with `<title>` tooltips and screen-reader `aria-label`s.
+  - Implemented configurable top navigation menu via Pelican's `MENUITEMS` with permanent core items (`Home`, `About`, `Posts`) and page frontmatter opt-in (`menu: true`, `menu_order: ...`).
+  - Resolved artifact screenshot preview rendering by standardizing URIs to `file:///C:/Users/...`.
+  - Synchronized test suites, governance documents, and bumped version to `v0.6.2`.
+
+- [x] **Milestone 15: Provenance Categories, Topic-Driven Decoupling & Streams Navigation (Completed - Release v0.6.1)**
+  - Replaced rigid "lanes" taxonomy with 4 mutually-exclusive Provenance Categories: `Mine`, `AI Generated`, `Ours`, `Theirs`.
+  - Re-aligned Pelican categories 1:1 with provenance streams, writing clean archives to `category/{slug}.html`.
+  - Re-pointed header tagline *"Out of My Lane"* directly to `/posts.html` (All Posts).
+  - Retired `lanes/` and `lanes.html`; replaced `.lane-nav` and `.footer-lanes` with subtle, unboxed `.stream-nav` and `.footer-categories` (`Streams: Mine • Ours`).
+  - Switched post frontmatter to `Category: "Mine"` (or `Ours`, `Theirs`, `AI Generated`) with flexible topical keywords (`tags: [...]`) and format short codes (`type: PROJ`, `previous_types: [...]`).
+  - Updated Section 5 of `AGENTS.md` and `.agents/agent_rules.md` to define Provenance Categories and Custom Topic Pages (e.g., Tai Chi, Music, Science, Big Projects to be authored by Jim).
+  - Updated `docs/content_authoring.md` and `README.md` metadata guides.
+  - Updated test suites (`tests/test_pelican_e2e.py` and `tests/test_accessibility.py`) with all 43/43 tests passing.
+  - Bumped version to `v0.6.1`.
+
 - [x] **Milestone 14: Multi-Lane Taxonomy, Post-Type Evolution & Rule 14 AI Attribution (Completed - Release v0.6.0)**
   - Decoupled content format/lifecycle (`type`, `previous_types`) from pursuit lanes (`lanes`).
   - Standardized canonical 5 pursuit lanes: `AI`, `Art`, `Health`, `Making`, `Music`.

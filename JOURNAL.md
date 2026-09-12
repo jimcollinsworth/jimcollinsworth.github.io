@@ -4,6 +4,192 @@
 
 ---
 
+## 2026-09-12 — Compact Mobile Header, Streamlined Dates & Dense Post Listings (Release v0.6.4)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"getting close buy phone is,still too packed. on landscape mode fully half the screen ismwasted for the header, must be one line max for phone, can hide out of my lane if needed on small devices. should be a dynamic hiding menu at some point and justmshow current menu name, withmdrop down."*
+> - *"on posts and list remove the evolved from til. thismwill be available only thu the metadata display. change dates to month year, so Aug 26 or Sep 23.  i dont really like the [view] vs just view, table for futuremdiscussion"*
+> - *"phone content should be smaller, only short post text and minimal spacing in lists, ideally 1, 2 lines max"*
+> - *"and then merge push and publish"*
+
+### Problem & Diagnosis
+1. **Header Real Estate on Landscape Phone**:
+   - Jim provided live mobile photos demonstrating that in landscape mode, the multi-row header (`Jim Collinsworth` + `Out of My Lane` row, followed by navigation links + controls, plus 4.5rem margin/padding) consumed more than half the vertical screen height (~200px of a 390px viewport), leaving minimal space for content.
+   - In portrait mode, navigation wrapped `Site` to line 3 and controls to line 4.
+2. **Post Evolution Lineage**:
+   - `(evolved from TIL)` rendered prominently in article headers, creating clutter. Jim directed removing this from the visual post headers and lists, preserving it strictly in the metadata.
+3. **Date Verbosity**:
+   - Full date formats (`August 14, 2026` or `Aug 14, 2026`) occupied excessive horizontal width on mobile. Jim requested concise Month Year format (`Aug 26`, `Sep 23`).
+4. **Mobile Content & List Spacing**:
+   - Post list items had generous desktop margins (2.25rem) and full paragraph descriptions, meaning only 1 item fit on screen at a time on mobile.
+
+### Root Cause & Technical Analysis
+- Header structure placed `.site-branding` and `.site-nav-row` as vertical block flex items, preventing single-line flow on wide horizontal viewports like landscape phones.
+- Mobile breakpoints lacked specific line-clamp constraints on `.post-desc` and had identical margins to desktop.
+- `strftime('%b %y')` provides clean, standard 2-digit year representations matching Jim's concise format.
+
+### Solution & Standard Procedure
+1. **Single-Line Header on Phone Landscape**:
+   - Configured `@media (orientation: landscape) and (max-height: 500px)` with `header.site-header { display: flex; flex-direction: row; justify-content: space-between; align-items: center; }`.
+   - Hidden `.site-tagline` on mobile and landscape phones.
+   - Header height reduced to under 45px total (saving >150px of vertical space).
+2. **Compact 2-Row Grid on Phone Portrait**:
+   - Used `display: contents` on `.site-nav-row` to place title and controls on row 1, with navigation links cleanly spanning row 2.
+3. **Streamlined Dates**:
+   - Updated Pelican Jinja2 templates (`article.html`, `archives.html`, `category.html`, `index.html`) to format dates as `{{ article.date.strftime('%b %y') }}`.
+4. **Evolution Lineage Removal**:
+   - Removed `(evolved from ...)` from `article.html` and verified absence in all lists.
+5. **Dense Mobile Post Listings**:
+   - Applied `-webkit-line-clamp: 2` to `.post-desc`, `.book-notes`, and `.post-teaser` on mobile (< 640px).
+   - Reduced item spacing to `0.75rem` with subtle border separators.
+6. **Automated Testing & Governance**:
+   - Added `test_mobile_header_compact_and_landscape_single_line` and `test_streamlined_date_formats` to `test_playwright_responsive.py`.
+   - Verified all 49 tests passing.
+   - Tabled dropdown menu and `[VIEW]` vs `VIEW` for future milestones in `PLANNING.md`.
+   - Bumped version to `v0.6.4` across `pyproject.toml`, `about-this-site.md`, and generated `releases/v0.6.4.md`.
+
+---
+
+## 2026-09-12 — Responsive Image Containment, Edge-to-Edge Photo Stream & Release v0.6.3
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"in photomalbumms the photosmproperly span the window, might even be able to remove left right padding for photos. but thempost on modern wing the photosmare full sized,,muchnwidermthan screen. inmgeneral they should fit to screen width"*
+
+### Problem & Diagnosis
+1. **Unconstrained Post Images**:
+   - In posts like `art-institute-chicago-modern-wing.md`, full-resolution architectural photography (`sky-lakefront.jpg` at 2,108px wide) was rendered inside `<figure><img ...></figure>` without any max-width constraints.
+   - On mobile viewports (e.g. 390px iPhone), this caused the page canvas to explode to 4,136px wide, causing massive horizontal scrolling, distorted responsive layouts, and unreadable text.
+2. **Photo Album Padding**:
+   - In photo albums (`photos.html`), photos scaled correctly within the container, but had default container/body left and right padding (1rem on phone, 1.75rem on tablet, 2rem on desktop). Jim suggested removing left/right padding for photo streams to allow photos to span the window edge-to-edge.
+
+### Root Cause & Technical Analysis
+- The CSS reset in `assets/css/style.css` defined box-sizing and html/body typography, but lacked standard fluid media reset rules (`img, picture, video, canvas { max-width: 100%; height: auto; }`).
+- Individual `<figure>` and `<figcaption>` elements only had styles defined under `.photo-stream figure`, with no base rules for general editorial figures in articles.
+- On portable screens (< 1024px), `.photo-stream` can break out of container padding via negative margins (`margin-left: -1rem; margin-right: -1rem; width: calc(100% + 2rem)`), delivering immersive edge-to-edge photography while preserving caption alignment via matching caption padding.
+
+### Solution & Standard Procedure
+1. **Fluid Media Reset**:
+   - Added `img, picture, video, canvas { max-width: 100%; height: auto; }` directly following the `body` declaration in `assets/css/style.css`.
+2. **Base Figure & Caption Styling**:
+   - Defined base styles for `figure` (`margin: 2.25rem 0; max-width: 100%;`), `figure img` (`width: 100%; max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-subtle); display: block;`), and `figcaption` (`font-family: var(--font-sans); font-size: 0.88rem; color: var(--text-muted); line-height: 1.45;`).
+3. **Edge-to-Edge Photo Stream**:
+   - Added negative-margin breakout on mobile (< 640px) and tablet (< 1024px) for `.photo-stream`, removing left and right gutters for photos while applying matching padding to `figcaption` to maintain text alignment with headers.
+4. **Automated Visual Regression Testing**:
+   - Added `test_images_fit_viewport_width` to `tests/test_playwright_responsive.py`, validating both Modern Wing and Photo Album pages across phone and laptop viewports with zero horizontal overflow (`scrollWidth <= clientWidth`) and bounded image bounding boxes.
+5. **Release & Synchronization**:
+   - Updated test suite (all 47/47 tests passing), synchronized `assets/css/style.css` across theme files, updated `pyproject.toml` and `about-this-site.md` to `v0.6.3`, and wrote `releases/v0.6.3.md`.
+
+---
+
+## 2026-09-12 — 'Me' Category, Downlow Iconography, Configurable Menu & Release v0.6.2
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"we also have me as a category, this is stuff about me maybe written about me by me, maybe my fit bit data, or bookmarks"*
+> - *"why are previews not available in the walkthrough comma check our screenshoting ability. make dure btowser testds sre running and checking screens."*
+> - *"Certain pages will always appear in the menu like about, blog, any page or custom page can be made to appear in the menu by some sort of configuration setting whatever pelican supporsts."*
+> - *"i like the new categories, but let's keep it on the downlow In our website. just mention in the about page, and that's it. no nav of lists. maybr try an icon next to posts, what would coukd tge icons be. But we will keep content categorized this way, me, mine, ours... Moving forward, it will figure out more uses of it in the future"*
+> - *"We can simply call the category aI. Not ai generated."*
+> - *"what is our icon library, theme? must bemsomembetter icons althoughmi like the svgs, find outmofficialmpelicanmthememicons ormgive me a few,to pick from."*
+> - *"feather quill, use robot head instaed of sparkle"*
+
+### Problem & Diagnosis
+1. **Category Expansion & Naming**:
+   - Jim required adding **`Me`** as a distinct category for autobiographical notes, personal biodata (Fitbit, sleep, health tracking), personal bookmarks, and things written about Jim by Jim.
+   - The label `AI Generated` was overly verbose and needed simplification to **`AI`**.
+2. **Category Presentation ("On the Downlow")**:
+   - The previous release introduced prominent `.stream-nav` filter lists on archives and `STREAMS: Mine • Ours` in the footer. Jim directed that categories should remain "on the downlow" without visible navigation lists, while quietly categorizing content behind the scenes.
+   - The taxonomy needed to be explained on [`content/pages/about.md`](about.html).
+   - Posts needed subtle, unobtrusive visual indicators (icons) for category attribution without overwhelming the editorial typography. Jim explicitly selected a **feather quill** for `Mine` and a **robot head** for `AI`.
+3. **Flexible Top Navigation Menu**:
+   - Navigation needed permanent inclusion of core pages (`Home`, `About`, `Posts`), with the ability to configure or dynamically opt in any page or custom page (such as upcoming `tai-chi.md` or `music.md`) via Pelican configuration or Markdown frontmatter.
+4. **Walkthrough Screenshot Preview Rendering**:
+   - Image previews failed to render in walkthrough artifacts due to Windows backslash path escaping in the Antigravity webview markdown renderer.
+
+### Root Cause & Technical Analysis
+- In webviews, markdown image paths with Windows backslashes (`\`) are parsed as escape characters (e.g. `\U`, `\a`) and fail to resolve. Standardizing to `file:///C:/Users/...` forward-slashed URIs restores immediate preview rendering.
+- Pelican's native `MENUITEMS` configuration in `pelicanconf.py` provides a clean tuple for permanent and configured menu items. Combining this with frontmatter inspection (`page.menu == True`) allows zero-code opt-in for any future Markdown page.
+- Inline SVGs (13×13px) with `<title>` and `aria-label` allow category indicators to render identically across platforms with zero client-side JavaScript, no external font dependencies, and full screen-reader accessibility.
+- Lucide / Feather icon SVGs (`feather` for quill and `bot` for robot head) provide crisp, semantic, minimalist line art matching our typography without adding external asset or font overhead.
+
+### Solution & Standard Procedure
+1. **Category Normalization (`pelicanconf.py`)**:
+   - Configured `ObsidianMarkdownReader` to normalize `ai generated` &rarr; `AI`, and support `Me`, `Mine`, `AI`, `Ours`, `Theirs` (defaulting to `Mine`).
+2. **Configurable Navigation Menu**:
+   - Configured `MENUITEMS` in `pelicanconf.py` with `Home`, `About`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`.
+   - Added `menu`, `menu_order`, and `menu_title` parsing to `ObsidianMarkdownReader`.
+   - Updated `theme/templates/base.html` to dynamically render `MENUITEMS` plus any page marked `menu: true`.
+3. **Downlow Presentation & Category Icons**:
+   - Removed `.stream-nav` category lists from `theme/templates/archives.html` and `theme/templates/category.html`.
+   - Removed `.footer-categories` from `theme/templates/base.html`.
+   - Created `theme/templates/category_icon.html` macro rendering subtle 13×13px inline SVG icons for `Me` (👤 user outline), `Mine` (🪶 feather quill outline), `AI` (🤖 robot head outline), `Ours` (👥 dual users outline), and `Theirs` (❝ quotation marks outline).
+   - Rendered category badges in `archives.html`, `index.html`, `category.html`, and `article.html`.
+   - Styled `.category-badge` and `.category-icon` in CSS.
+4. **Documentation & About Page**:
+   - Added "Content Streams & Categorization" section to `content/pages/about.md`.
+   - Updated Section 5 in `AGENTS.md` and `.agents/agent_rules.md`.
+   - Updated `docs/content_authoring.md` and `PLANNING.md` (Milestone 16).
+5. **Testing & Versioning**:
+   - Updated test suites, verified all 43 tests passing (`uv run pytest -v`).
+   - Bumped version to `v0.6.2` in `pyproject.toml`, `content/pages/about-this-site.md`, and `releases/v0.6.2.md`.
+
+---
+
+## 2026-09-12 — Provenance Categories (Mine, AI Generated, Ours, Theirs), Streams Navigation & Release v0.6.1
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"changing terminology a bit, too much emphasis currently on lanes. Really? All it should be is a possibility. Tagline, and then lanes are simply just pages like I have a page on tai. Chi and a page on music in those pages. We'll link too one or many posts based on some filtering criteria"*
+> - *"remove most references to lanes, lanes are simply custom pages, we will have a tai chi page, with my tai chi posts, links and summary, and a science page... then we just need keywordsi think. where do the pelecan concepts fit again"*
+> - *"what pelecan features utilize categories? how else could we use caregories? o mine, ours, theirs....futeur, present, past....private, public, draft"*
+> - *"me like about, biodata, mine, ai generated, ours, theirs, lets go with those categories. ill also build custom pages for tai chi, music, big projects"*
+
+### Problem & Diagnosis
+1. **Over-Emphasis on Rigid "Lanes"**:
+   - The site taxonomy had become overly preoccupied with artificial "lanes" categories (`AI`, `Art`, `Health`, `Making`, `Music`), creating category silos and complex multi-category hooks.
+   - In Jim's authoring model, topic exploration belongs on dedicated, curated custom pages (e.g. a Tai Chi page, a Music page, a Science page, or Big Projects) that link to posts based on keyword tags and personal narrative context, rather than rigid category containers.
+2. **Pelican Native Category Misalignment**:
+   - Pelican’s core engine is architected around a single, mutually exclusive Category per article. Using Pelican categories for multi-topic assignment required custom generator mutation hooks.
+   - Conversely, provenance and authorship (`Mine`, `AI Generated`, `Ours`, `Theirs`) is strictly mutually exclusive and canonical, making it the ideal 1:1 match for Pelican’s native category architecture.
+3. **Tagline & Navigation Flow**:
+   - Header tagline *"Out of My Lane"* previously linked to `/lanes.html`, emphasizing the lane taxonomy. It should instead point to the full chronological post stream (`/posts.html`).
+   - Footer and archive headers displayed heavy `.lane-nav` and `.footer-lanes` bars that needed to transition to lightweight, unobtrusive stream selectors.
+
+### Root Cause & Technical Analysis
+- Mapping Pelican’s native category mechanism to provenance streams (`Mine`, `AI Generated`, `Ours`, `Theirs`) restores Pelican's clean out-of-the-box category indexing without needing generator monkey-patching or manual category list injection.
+- Topical categorization is decoupled entirely into flexible tags (`tags: [...]`), allowing future custom pages (such as Tai Chi or Music) to query and link to any relevant posts regardless of category.
+- Articles without an explicit `Category` frontmatter key default gracefully to `"Mine"`.
+
+### Solution & Standard Procedure
+1. **Pelican Configuration (`pelicanconf.py`)**:
+   - Configured `CATEGORY_URL = 'category/{slug}.html'` and `CATEGORY_SAVE_AS = 'category/{slug}.html'`.
+   - Disabled generic category list generation (`CATEGORIES_SAVE_AS = ''`).
+   - Removed obsolete `assign_multi_lane_categories` generator signal hook and `Category` import.
+   - Updated `ObsidianMarkdownReader` to parse `category` (defaulting to `"Mine"`), `type`, `previous_types`, and `tags`.
+2. **Content Metadata Migration (`content/posts/`)**:
+   - Converted all posts from `lanes:` to `category: "Mine"` (or `"Ours"`) with topical `tags: [...]`:
+     - `cordoba-stage-guitar.md`: `category: "Mine"`, `tags: [music, guitar]`, `type: WIP`.
+     - `digital-piano-enhancements.md`: `category: "Mine"`, `tags: [music, making, piano]`, `type: PROJ`.
+     - `ulu-knife-handle.md`: `category: "Mine"`, `tags: [making, woodworking]`, `type: PROJ`.
+     - `sleep-movement-evaluation-plan.md`: `category: "Mine"`, `tags: [health, tai-chi, sleep]`, `type: SPEC`.
+     - `m-e-offline-ai-companion.md`: `category: "Mine"`, `tags: [ai, software]`, `type: IDEA`.
+     - `art-institute-chicago-modern-wing.md`: `category: "Ours"`, `tags: [museums, chicago, sculpture, architecture, lighting, curation]`, `type: VIEW`.
+3. **Template & Styling Alignment**:
+   - `theme/templates/base.html`: Pointed tagline *"Out of My Lane"* to `/posts.html`. Replaced `.footer-lanes` with subtle `.footer-categories` (`Streams: Mine • Ours`).
+   - `theme/templates/archives.html`: Replaced `.lane-nav` with `.stream-nav` (`All • Mine • Ours`). Replaced lane loop with `article.category`.
+   - `theme/templates/category.html`: Rendered clean `<h2>Category: {{ category }}</h2>` with stream navigation.
+   - `theme/templates/article.html` & `theme/templates/index.html`: Replaced lane loops with `article.category` stream links.
+   - Styled `.stream-nav`, `.stream-link`, `.post-category`, `.footer-categories` in `theme/static/css/style.css`, `theme/css/style.css`, and `assets/css/style.css`.
+4. **Purged Retired Files**:
+   - Deleted `lanes/` directory and `lanes.html`. Generated category streams in `category/mine.html` and `category/ours.html`.
+5. **Governance & Documentation**:
+   - Updated Section 5 of `AGENTS.md` and `.agents/agent_rules.md` to define Provenance Categories and Custom Topic Pages.
+   - Updated `docs/content_authoring.md` and `README.md`.
+6. **Automated Testing & Release**:
+   - Updated `tests/test_pelican_e2e.py` and `tests/test_accessibility.py` to audit stream navigation and `category/` outputs.
+   - Verified 43/43 passing automated tests (`uv run pytest -v`).
+   - Bumped version to `v0.6.1` in `pyproject.toml` and `content/pages/about-this-site.md`.
+
+---
+
 ## 2026-09-11 — Multi-Lane Taxonomy, Post-Type Evolution, Zero-JS Commenting Pipeline & Release v0.6.0
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

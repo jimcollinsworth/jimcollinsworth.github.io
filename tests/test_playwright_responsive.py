@@ -100,6 +100,12 @@ def test_screenshot_script_execution(tmp_path):
     assert index_dir.exists()
     screenshots = list(index_dir.glob("*.png"))
     assert len(screenshots) == 1
+    screenshot = screenshots[0]
+    # Verify non-empty screenshot with valid PNG header
+    assert screenshot.stat().st_size > 5000, f"Screenshot file too small: {screenshot.stat().st_size} bytes"
+    with open(screenshot, "rb") as sf:
+        header = sf.read(8)
+        assert header == b"\x89PNG\r\n\x1a\n", "Invalid PNG file header"
     assert (index_dir / "preview.html").exists()
 
 
@@ -143,4 +149,95 @@ def test_in_page_mode_switchers_interactive(browser_context):
         assert enlarged_font_size >= 24, f"Expected enlarged font size >= 24px, got {enlarged_font_size}"
     finally:
         page.close()
+
+
+@pytest.mark.parametrize(
+    "page_rel_path",
+    [
+        "posts/art-institute-chicago-modern-wing.html",
+        "photos.html",
+    ],
+)
+@pytest.mark.parametrize(
+    "viewport",
+    [
+        {"width": 390, "height": 844, "name": "phone_portrait"},
+        {"width": 1366, "height": 768, "name": "laptop_landscape"},
+    ],
+)
+def test_images_fit_viewport_width(browser_context, page_rel_path, viewport):
+    """Verify that images and figures stay contained within viewport without horizontal overflow."""
+    target_file = OUTPUT_DIR / page_rel_path
+    assert target_file.exists(), f"Target file {target_file} does not exist"
+
+    context = browser_context.new_context(
+        viewport={"width": viewport["width"], "height": viewport["height"]}
+    )
+    page = context.new_page()
+    try:
+        page.goto(f"file:///{target_file.as_posix()}")
+        page.wait_for_load_state("networkidle")
+
+        # Check that page does not have horizontal scrollbar overflow
+        scroll_width = page.evaluate("() => document.documentElement.scrollWidth")
+        client_width = page.evaluate("() => document.documentElement.clientWidth")
+        assert scroll_width <= client_width + 2, (
+            f"Page {page_rel_path} has horizontal scroll overflow: scrollWidth={scroll_width}, clientWidth={client_width}"
+        )
+
+        # Check each image bounding box
+        img_boxes = page.evaluate("""() => {
+            return Array.from(document.querySelectorAll('img:not(.mode-toggle-input)')).map(img => {
+                const rect = img.getBoundingClientRect();
+                return { src: img.src, width: rect.width, right: rect.right };
+            });
+        }""")
+        for box in img_boxes:
+            assert box["width"] <= viewport["width"] + 2, (
+                f"Image {box['src']} width {box['width']} exceeds viewport {viewport['width']}"
+            )
+    finally:
+        context.close()
+
+
+def test_mobile_header_compact_and_landscape_single_line(browser_context):
+    """Verify header is strictly 1-line in phone landscape and tagline is hidden on mobile."""
+    target_file = OUTPUT_DIR / "about-this-site.html"
+    assert target_file.exists()
+
+    # Test Phone Landscape (844x390)
+    context = browser_context.new_context(viewport={"width": 844, "height": 390})
+    page = context.new_page()
+    try:
+        page.goto(f"file:///{target_file.as_posix()}")
+        header_height = page.evaluate("() => document.querySelector('header.site-header').getBoundingClientRect().height")
+        assert header_height <= 50, f"Header height in landscape phone was {header_height}px, expected <= 50px (single line)"
+
+        tagline_display = page.evaluate("() => window.getComputedStyle(document.querySelector('.site-tagline')).display")
+        assert tagline_display == "none", f"Tagline should be hidden in landscape phone, got {tagline_display}"
+    finally:
+        context.close()
+
+    # Test Phone Portrait (390x844)
+    context = browser_context.new_context(viewport={"width": 390, "height": 844})
+    page = context.new_page()
+    try:
+        page.goto(f"file:///{target_file.as_posix()}")
+        tagline_display = page.evaluate("() => window.getComputedStyle(document.querySelector('.site-tagline')).display")
+        assert tagline_display == "none", f"Tagline should be hidden in portrait phone, got {tagline_display}"
+    finally:
+        context.close()
+
+
+def test_streamlined_date_formats():
+    """Verify dates across posts and archive match '%b %y' format (e.g. Aug 26)."""
+    import re
+    posts_file = OUTPUT_DIR / "posts.html"
+    assert posts_file.exists()
+    html = posts_file.read_text(encoding="utf-8")
+    assert re.search(r"<time datetime=\"\d{4}-\d{2}-\d{2}\">[A-Z][a-z]{2} \d{2}</time>", html), (
+        "Expected date format '%b %y' (e.g. Aug 26) in posts.html"
+    )
+
+
 

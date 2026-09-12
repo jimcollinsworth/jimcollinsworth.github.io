@@ -13,9 +13,9 @@ slug: "about"
 
 *"How does that work?"* is the question that is always in my mind, and comes up for everything: software, hardware, electricity, biology, society, law, music, art, psychology... I'll be the first to admit something I don't know, but at the same time will be fleshing out the alternatives, questioning everything, devising an educated guess and following up as soon as I can to understand.
 
-## Lanes & "Out of My Lane"
+## "Out of My Lane"
 
-The name of this site reflects my habit of venturing into domains well outside my core training. Rather than siloing myself into a single specialty, I organize my active pursuits and projects into thematic **Lanes**:
+The name of this site reflects my habit of venturing into domains well outside my core training. Rather than siloing myself into a single specialty, I chronicle my active pursuits across multiple areas of curiosity:
 
 <div class="lanes-list grid-view">
   <div class="lane-entry">
@@ -43,6 +43,18 @@ The name of this site reflects my habit of venturing into domains well outside m
     <p>Curated books, research papers, essential URLs, and key quotes.</p>
   </div>
 </div>
+
+---
+
+## Content Streams & Categorization
+
+Behind the scenes, content is organized quietly by origin and perspective rather than rigid subject silos:
+
+- **Me**: Notes about myself, personal biodata (activity, sleep, health tracking), personal bookmarks, and things written about me by me.
+- **Mine**: Original essays, technical notes, software, and physical making projects authored directly by me.
+- **AI**: Explorations and code generated or co-authored with artificial intelligence.
+- **Ours**: Collaborative works created jointly with peers, friends, or humans and AI.
+- **Theirs**: Curated external references, insightful quotes, and third-party works.
 
 ---
 

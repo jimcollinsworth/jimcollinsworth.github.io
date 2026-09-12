@@ -1,22 +1,14 @@
 {% extends "base.html" %}
+{% from "category_icon.html" import category_icon %}
 
 {% block title %}Posts &mdash; {{ SITENAME }}{% endblock %}
 
 {% block content %}
 <div class="page-intro">
   <p>
-    Notes, technical deep dives, project logs, and observations across my pursuit lanes.
+    Notes, technical deep dives, project logs, and observations.
   </p>
 </div>
-
-{% if categories %}
-<nav class="lane-nav" aria-label="Filter posts by lane">
-  <a href="{{ SITEURL }}/posts.html" class="lane-link active" aria-current="page">All</a>
-  {% for cat, cat_articles in categories %}
-  &bull; <a href="{{ SITEURL }}/{{ cat.url }}" class="lane-link">{{ cat }}</a>
-  {% endfor %}
-</nav>
-{% endif %}
 
 <ul class="post-list">
   {% for article in dates %}
@@ -27,11 +19,9 @@
         {% if article.type %}
         <span class="post-type">[{{ article.type|upper }}]</span> &bull;
         {% endif %}
-        <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
-        {% if article.lanes %}
-        &bull; <span class="post-lanes">{% for lane in article.lanes %}<a href="{{ SITEURL }}/{{ lane.url }}" class="post-lane">{{ lane }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
-        {% elif article.category %}
-        &bull; <a href="{{ SITEURL }}/{{ article.category.url }}" class="post-lane">{{ article.category }}</a>
+        <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %y') }}</time>
+        {% if article.category %}
+        &bull; {{ category_icon(article.category) }}
         {% endif %}
       </div>
     </div>

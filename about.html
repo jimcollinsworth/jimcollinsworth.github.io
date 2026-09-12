@@ -17,17 +17,18 @@
     <header class="site-header" role="banner">
       <div class="site-branding">
         <div class="site-title"><a href="./index.html">Jim Collinsworth</a></div>
-        <div class="site-tagline"><a href="./lanes.html" title="Explore all pursuit lanes">Out of My Lane</a></div>
+        <div class="site-tagline"><a href="./posts.html" title="All Posts">Out of My Lane</a></div>
       </div>
       <div class="site-nav-row">
         <nav class="site-nav" aria-label="Main Navigation">
-          <a href="./index.html">Home</a>
-          <a href="./posts.html">Posts</a>
-          <a href="./ai.html">AI</a>
-          <a href="./links.html">Links</a>
-          <a href="./photos.html">Photos</a>
-          <a href="./apps.html">Apps</a>
-          <a href="./about-this-site.html">Site</a>
+              <a href="./index.html">Home</a>
+              <a href="./about.html" class="active" aria-current="page">About</a>
+              <a href="./posts.html">Posts</a>
+              <a href="./ai.html">AI</a>
+              <a href="./links.html">Links</a>
+              <a href="./photos.html">Photos</a>
+              <a href="./apps.html">Apps</a>
+              <a href="./about-this-site.html">Site</a>
         </nav>
         <div class="site-controls" role="group" aria-label="Display and accessibility preferences">
           <label for="theme-toggle" class="control-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme (Light / Dark)">
@@ -45,18 +46,18 @@
             <svg class="control-icon icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
-            <span class="sr-only">Toggle theme</span>
+            <span class="sr-only">Toggle dark and light color theme</span>
           </label>
-          <label for="contrast-toggle" class="control-btn" title="Toggle high contrast" aria-label="Toggle high contrast">
+          <label for="contrast-toggle" class="control-btn" title="Toggle high-contrast low-complexity mode" aria-label="Toggle high-contrast low-complexity mode">
             <svg class="control-icon icon-contrast" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="10"></circle>
               <path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"></path>
             </svg>
-            <span class="sr-only">Toggle high contrast</span>
+            <span class="sr-only">Toggle high contrast reading mode</span>
           </label>
           <label for="text-size-toggle" class="control-btn" title="Toggle larger text size" aria-label="Toggle larger text size">
             <svg class="control-icon icon-text-size" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <text x="3" y="17" font-size="14" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
+              <text x="3" y="18" font-size="14" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
               <text x="14" y="13" font-size="10" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
             </svg>
             <span class="sr-only">Toggle larger text size</span>
@@ -75,8 +76,8 @@
 
 <h2>Curiosity &amp; Mindset</h2>
 <p><em>"How does that work?"</em> is the question that is always in my mind, and comes up for everything: software, hardware, electricity, biology, society, law, music, art, psychology... I'll be the first to admit something I don't know, but at the same time will be fleshing out the alternatives, questioning everything, devising an educated guess and following up as soon as I can to understand.</p>
-<h2>Lanes &amp; "Out of My Lane"</h2>
-<p>The name of this site reflects my habit of venturing into domains well outside my core training. Rather than siloing myself into a single specialty, I organize my active pursuits and projects into thematic <strong>Lanes</strong>:</p>
+<h2>"Out of My Lane"</h2>
+<p>The name of this site reflects my habit of venturing into domains well outside my core training. Rather than siloing myself into a single specialty, I chronicle my active pursuits across multiple areas of curiosity:</p>
 <div class="lanes-list grid-view">
   <div class="lane-entry">
     <h3><a href="posts.html#music">Music &amp; Art</a></h3>
@@ -105,6 +106,16 @@
 </div>
 
 <hr>
+<h2>Content Streams &amp; Categorization</h2>
+<p>Behind the scenes, content is organized quietly by origin and perspective rather than rigid subject silos:</p>
+<ul>
+<li><strong>Me</strong>: Notes about myself, personal biodata (activity, sleep, health tracking), personal bookmarks, and things written about me by me.</li>
+<li><strong>Mine</strong>: Original essays, technical notes, software, and physical making projects authored directly by me.</li>
+<li><strong>AI</strong>: Explorations and code generated or co-authored with artificial intelligence.</li>
+<li><strong>Ours</strong>: Collaborative works created jointly with peers, friends, or humans and AI.</li>
+<li><strong>Theirs</strong>: Curated external references, insightful quotes, and third-party works.</li>
+</ul>
+<hr>
 <h2>Contact &amp; Reader Feedback</h2>
 <p>Interested in discussing a project, sharing notes, or providing critique?</p>
 <p>This site operates under a strict <strong>Zero-JavaScript policy</strong>. Reader submissions from posts and inquiries are routed through a private <strong>Google Apps Script &amp; Google Sheets</strong> pipeline, triaged and synthesized using local LLM tooling, and compiled into static editorial digests without exposing the site to client-side scripts or public comment spam.</p>
@@ -116,11 +127,8 @@
     </main>
 
     <footer class="site-footer" role="contentinfo">
-      <div class="footer-lanes" aria-label="Pursuit Lanes">
-        <span class="footer-lanes-title">Lanes:</span>
-        <a href="./lanes/ai.html">AI</a> &bull;        <a href="./lanes/art.html">Art</a> &bull;        <a href="./lanes/health.html">Health</a> &bull;        <a href="./lanes/making.html">Making</a> &bull;        <a href="./lanes/music.html">Music</a>      </div>
       <nav class="footer-nav" aria-label="Footer Navigation">
-        <a href="./lanes.html">All Lanes</a>
+        <a href="./posts.html">All Posts</a>
         <a href="./about.html">About Jim</a>
         <a href="./about-this-site.html">About Site</a>
         <a href="./prompt-history.html">Dev Prompts</a>

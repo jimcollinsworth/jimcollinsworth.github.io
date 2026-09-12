@@ -1,8 +1,10 @@
 ---
 title: "Cordoba Stage Nylon Electric Guitar"
 date: "2026-09-05"
-lanes:
-  - Music
+category: "Mine"
+tags:
+  - music
+  - guitar
 type: "WIP"
 previous_types:
   - IDEA

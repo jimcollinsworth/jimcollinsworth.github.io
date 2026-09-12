@@ -17,17 +17,24 @@
     <header class="site-header" role="banner">
       <div class="site-branding">
         <div class="site-title"><a href="{{ SITEURL }}/index.html">{{ SITENAME }}</a></div>
-        <div class="site-tagline"><a href="{{ SITEURL }}/lanes.html" title="Explore all pursuit lanes">{{ SITESUBTITLE }}</a></div>
+        <div class="site-tagline"><a href="{{ SITEURL }}/posts.html" title="All Posts">{{ SITESUBTITLE }}</a></div>
       </div>
       <div class="site-nav-row">
         <nav class="site-nav" aria-label="Main Navigation">
-          <a href="{{ SITEURL }}/index.html"{% if output_file == 'index.html' %} class="active" aria-current="page"{% endif %}>Home</a>
-          <a href="{{ SITEURL }}/posts.html"{% if output_file == 'posts.html' or article or category %} class="active" aria-current="page"{% endif %}>Posts</a>
-          <a href="{{ SITEURL }}/ai.html"{% if page and page.slug == 'ai' %} class="active" aria-current="page"{% endif %}>AI</a>
-          <a href="{{ SITEURL }}/links.html"{% if page and page.slug == 'links' %} class="active" aria-current="page"{% endif %}>Links</a>
-          <a href="{{ SITEURL }}/photos.html"{% if page and page.slug == 'photos' %} class="active" aria-current="page"{% endif %}>Photos</a>
-          <a href="{{ SITEURL }}/apps.html"{% if page and page.slug == 'apps' %} class="active" aria-current="page"{% endif %}>Apps</a>
-          <a href="{{ SITEURL }}/about-this-site.html"{% if page and page.slug == 'about-this-site' %} class="active" aria-current="page"{% endif %}>Site</a>
+          {% if MENUITEMS %}
+            {% for title, url, match_key in MENUITEMS %}
+              <a href="{{ SITEURL }}{{ url }}"{% if (output_file == match_key) or (page and page.slug == match_key) or (match_key == 'posts.html' and (article or category)) %} class="active" aria-current="page"{% endif %}>{{ title }}</a>
+            {% endfor %}
+          {% else %}
+            <a href="{{ SITEURL }}/index.html"{% if output_file == 'index.html' %} class="active" aria-current="page"{% endif %}>Home</a>
+            <a href="{{ SITEURL }}/about.html"{% if page and page.slug == 'about' %} class="active" aria-current="page"{% endif %}>About</a>
+            <a href="{{ SITEURL }}/posts.html"{% if output_file == 'posts.html' or article or category %} class="active" aria-current="page"{% endif %}>Posts</a>
+          {% endif %}
+          {% if pages %}
+            {% for p in pages|sort(attribute='menu_order') if p.menu and not (MENUITEMS and p.slug in (MENUITEMS|map(attribute='2')|list)) %}
+              <a href="{{ SITEURL }}/{{ p.url }}"{% if page and page.slug == p.slug %} class="active" aria-current="page"{% endif %}>{{ p.menu_title or p.title }}</a>
+            {% endfor %}
+          {% endif %}
         </nav>
         <div class="site-controls" role="group" aria-label="Display and accessibility preferences">
           <label for="theme-toggle" class="control-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme (Light / Dark)">
@@ -45,18 +52,18 @@
             <svg class="control-icon icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
-            <span class="sr-only">Toggle theme</span>
+            <span class="sr-only">Toggle dark and light color theme</span>
           </label>
-          <label for="contrast-toggle" class="control-btn" title="Toggle high contrast" aria-label="Toggle high contrast">
+          <label for="contrast-toggle" class="control-btn" title="Toggle high-contrast low-complexity mode" aria-label="Toggle high-contrast low-complexity mode">
             <svg class="control-icon icon-contrast" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="10"></circle>
               <path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"></path>
             </svg>
-            <span class="sr-only">Toggle high contrast</span>
+            <span class="sr-only">Toggle high contrast reading mode</span>
           </label>
           <label for="text-size-toggle" class="control-btn" title="Toggle larger text size" aria-label="Toggle larger text size">
             <svg class="control-icon icon-text-size" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <text x="3" y="17" font-size="14" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
+              <text x="3" y="18" font-size="14" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
               <text x="14" y="13" font-size="10" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
             </svg>
             <span class="sr-only">Toggle larger text size</span>
@@ -70,16 +77,8 @@
     </main>
 
     <footer class="site-footer" role="contentinfo">
-      {% if categories %}
-      <div class="footer-lanes" aria-label="Pursuit Lanes">
-        <span class="footer-lanes-title">Lanes:</span>
-        {% for cat, cat_articles in categories %}
-        <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>{% if not loop.last %} &bull;{% endif %}
-        {% endfor %}
-      </div>
-      {% endif %}
       <nav class="footer-nav" aria-label="Footer Navigation">
-        <a href="{{ SITEURL }}/lanes.html">All Lanes</a>
+        <a href="{{ SITEURL }}/posts.html">All Posts</a>
         <a href="{{ SITEURL }}/about.html">About Jim</a>
         <a href="{{ SITEURL }}/about-this-site.html">About Site</a>
         <a href="{{ SITEURL }}/prompt-history.html">Dev Prompts</a>

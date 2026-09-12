@@ -1,8 +1,10 @@
 ---
 title: "Ulu Knife Handle"
 date: "2026-09-03"
-lanes:
-  - Making
+category: "Mine"
+tags:
+  - making
+  - woodworking
 type: "PROJ"
 previous_types:
   - WIP

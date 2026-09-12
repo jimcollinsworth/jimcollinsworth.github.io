@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pursuit Lanes &mdash; Jim Collinsworth</title>
-  <link rel="stylesheet" href="./theme/css/style.css">
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="alternate icon" href="./favicon.ico" type="image/x-icon">
+  <title>Ours Posts &mdash; Jim Collinsworth</title>
+  <link rel="stylesheet" href="../theme/css/style.css">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="../favicon.ico" type="image/x-icon">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -16,18 +16,19 @@
   <div class="container">
     <header class="site-header" role="banner">
       <div class="site-branding">
-        <div class="site-title"><a href="./index.html">Jim Collinsworth</a></div>
-        <div class="site-tagline"><a href="./lanes.html" title="Explore all pursuit lanes">Out of My Lane</a></div>
+        <div class="site-title"><a href="../index.html">Jim Collinsworth</a></div>
+        <div class="site-tagline"><a href="../posts.html" title="All Posts">Out of My Lane</a></div>
       </div>
       <div class="site-nav-row">
         <nav class="site-nav" aria-label="Main Navigation">
-          <a href="./index.html">Home</a>
-          <a href="./posts.html">Posts</a>
-          <a href="./ai.html">AI</a>
-          <a href="./links.html">Links</a>
-          <a href="./photos.html">Photos</a>
-          <a href="./apps.html">Apps</a>
-          <a href="./about-this-site.html">Site</a>
+              <a href="../index.html">Home</a>
+              <a href="../about.html">About</a>
+              <a href="../posts.html" class="active" aria-current="page">Posts</a>
+              <a href="../ai.html">AI</a>
+              <a href="../links.html">Links</a>
+              <a href="../photos.html">Photos</a>
+              <a href="../apps.html">Apps</a>
+              <a href="../about-this-site.html">Site</a>
         </nav>
         <div class="site-controls" role="group" aria-label="Display and accessibility preferences">
           <label for="theme-toggle" class="control-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme (Light / Dark)">
@@ -45,18 +46,18 @@
             <svg class="control-icon icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
-            <span class="sr-only">Toggle theme</span>
+            <span class="sr-only">Toggle dark and light color theme</span>
           </label>
-          <label for="contrast-toggle" class="control-btn" title="Toggle high contrast" aria-label="Toggle high contrast">
+          <label for="contrast-toggle" class="control-btn" title="Toggle high-contrast low-complexity mode" aria-label="Toggle high-contrast low-complexity mode">
             <svg class="control-icon icon-contrast" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="10"></circle>
               <path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"></path>
             </svg>
-            <span class="sr-only">Toggle high contrast</span>
+            <span class="sr-only">Toggle high contrast reading mode</span>
           </label>
           <label for="text-size-toggle" class="control-btn" title="Toggle larger text size" aria-label="Toggle larger text size">
             <svg class="control-icon icon-text-size" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <text x="3" y="17" font-size="14" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
+              <text x="3" y="18" font-size="14" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
               <text x="14" y="13" font-size="10" font-weight="700" fill="currentColor" font-family="sans-serif">A</text>
             </svg>
             <span class="sr-only">Toggle larger text size</span>
@@ -66,48 +67,37 @@
     </header>
 
     <main id="main-content" tabindex="-1">
-<div class="page-intro">
-  <p>
-    The name <em>Out of My Lane</em> reflects my habit of venturing into domains well outside conventional boundaries. Rather than siloing into a single specialty, my active projects, technical deep dives, and observations are organized across thematic pursuit lanes.
-  </p>
+<div class="back-nav">
+  <a href="../posts.html">&larr; All Posts</a>
 </div>
 
-<h2>All Active Lanes</h2>
+<h2>Category: Ours</h2>
 
-<div class="lanes-list grid-view">
-  <div class="lane-entry">
-    <h3><a href="./lanes/ai.html">AI</a></h3>
-    <p>1 post &bull; <a href="./lanes/ai.html">Browse lane &rarr;</a></p>
-  </div>
-  <div class="lane-entry">
-    <h3><a href="./lanes/art.html">Art</a></h3>
-    <p>1 post &bull; <a href="./lanes/art.html">Browse lane &rarr;</a></p>
-  </div>
-  <div class="lane-entry">
-    <h3><a href="./lanes/health.html">Health</a></h3>
-    <p>1 post &bull; <a href="./lanes/health.html">Browse lane &rarr;</a></p>
-  </div>
-  <div class="lane-entry">
-    <h3><a href="./lanes/making.html">Making</a></h3>
-    <p>2 posts &bull; <a href="./lanes/making.html">Browse lane &rarr;</a></p>
-  </div>
-  <div class="lane-entry">
-    <h3><a href="./lanes/music.html">Music</a></h3>
-    <p>2 posts &bull; <a href="./lanes/music.html">Browse lane &rarr;</a></p>
-  </div>
-</div>
+<ul class="post-list">
+  <li class="post-item">
+    <div class="post-header">
+      <h3 class="post-title"><a href="../posts/art-institute-chicago-modern-wing.html">Modern Wing Encounters: Renzo Piano's Light & Mid-Century Linearity</a></h3>
+      <div class="post-meta">
+        <span class="post-type">[VIEW]</span> &bull;
+        <time datetime="2026-08-14">Aug 14, 2026</time>
+        &bull; <span class="category-badge" title="Category: Ours" aria-label="Category: Ours"><svg class="category-icon icon-ours" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-3-3.87"></path><path d="M7 21v-2a4 4 0 0 1 3-3.87"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span class="category-label">Ours</span></span>
+
+      </div>
+    </div>
+    <p class="post-desc">
+      Field impressions from an afternoon inside the Art Institute of Chicago Modern Wing, analyzing spatial daylighting and mid-century sculptural geometry.
+    </p>
+  </li>
+</ul>
     </main>
 
     <footer class="site-footer" role="contentinfo">
-      <div class="footer-lanes" aria-label="Pursuit Lanes">
-        <span class="footer-lanes-title">Lanes:</span>
-        <a href="./lanes/ai.html">AI</a> &bull;        <a href="./lanes/art.html">Art</a> &bull;        <a href="./lanes/health.html">Health</a> &bull;        <a href="./lanes/making.html">Making</a> &bull;        <a href="./lanes/music.html">Music</a>      </div>
       <nav class="footer-nav" aria-label="Footer Navigation">
-        <a href="./lanes.html">All Lanes</a>
-        <a href="./about.html">About Jim</a>
-        <a href="./about-this-site.html">About Site</a>
-        <a href="./prompt-history.html">Dev Prompts</a>
-        <a href="./contact.html">Contact</a>
+        <a href="../posts.html">All Posts</a>
+        <a href="../about.html">About Jim</a>
+        <a href="../about-this-site.html">About Site</a>
+        <a href="../prompt-history.html">Dev Prompts</a>
+        <a href="../contact.html">Contact</a>
         <a href="https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8" target="_blank" rel="noopener">Google Photos <span class="sr-only">(opens external photo album in new tab)</span></a>
       </nav>
       <div>

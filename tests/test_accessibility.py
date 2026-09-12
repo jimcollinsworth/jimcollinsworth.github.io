@@ -110,7 +110,7 @@ def test_aria_landmarks():
 
 def test_active_nav_aria_current():
     """Verify that the active navigation item uses aria-current='page'."""
-    core_pages = ["index.html", "posts.html", "ai.html", "links.html", "photos.html", "apps.html", "about-this-site.html"]
+    core_pages = ["index.html", "about.html", "posts.html", "ai.html", "links.html", "photos.html", "apps.html", "about-this-site.html"]
     for page_name in core_pages:
         page_file = OUTPUT_DIR / page_name
         if page_file.exists():
@@ -120,22 +120,15 @@ def test_active_nav_aria_current():
             )
 
 
-def test_lane_nav_aria_current():
-    """Verify that lane navigation tabs include aria-current='page' on active filter."""
+def test_category_badges_and_icons_accessibility():
+    """Verify that category badges include title and aria-label, and SVGs are aria-hidden."""
     posts_page = OUTPUT_DIR / "posts.html"
     assert posts_page.exists()
     html = posts_page.read_text(encoding="utf-8")
-    assert 'class="lane-link active" aria-current="page"' in html or (
-        'class="lane-link active"' in html and 'aria-current="page"' in html
-    ), "Posts page missing aria-current='page' on active 'All' lane."
-
-    lane_pages = list((OUTPUT_DIR / "lanes").glob("*.html"))
-    assert len(lane_pages) > 0, "No lane pages found in output/lanes/."
-    for lane_page in lane_pages:
-        lane_html = lane_page.read_text(encoding="utf-8")
-        assert 'aria-current="page"' in lane_html, (
-            f"Lane page {lane_page.name} missing aria-current='page' on active lane."
-        )
+    assert 'class="category-badge"' in html
+    assert 'aria-label="Category:' in html
+    assert 'class="category-icon' in html
+    assert 'aria-hidden="true"' in html
 
 
 def test_all_images_have_alt_attributes():

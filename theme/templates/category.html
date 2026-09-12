@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "category_icon.html" import category_icon %}
 
 {% block title %}{{ category }} Posts &mdash; {{ SITENAME }}{% endblock %}
 
@@ -7,16 +8,7 @@
   <a href="{{ SITEURL }}/posts.html">&larr; All Posts</a>
 </div>
 
-<h2>Lane: {{ category }}</h2>
-
-{% if categories %}
-<nav class="lane-nav" aria-label="Filter posts by lane">
-  <a href="{{ SITEURL }}/posts.html" class="lane-link">All</a>
-  {% for cat, cat_articles in categories %}
-  &bull; <a href="{{ SITEURL }}/{{ cat.url }}" class="lane-link{% if cat == category %} active{% endif %}"{% if cat == category %} aria-current="page"{% endif %}>{{ cat }}</a>
-  {% endfor %}
-</nav>
-{% endif %}
+<h2>Category: {{ category }}</h2>
 
 <ul class="post-list">
   {% for article in articles %}
@@ -27,11 +19,9 @@
         {% if article.type %}
         <span class="post-type">[{{ article.type|upper }}]</span> &bull;
         {% endif %}
-        <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %d, %Y') }}</time>
-        {% if article.lanes %}
-        &bull; <span class="post-lanes">{% for lane in article.lanes %}{% if lane == category %}<span class="post-lane">{{ lane }}</span>{% else %}<a href="{{ SITEURL }}/{{ lane.url }}" class="post-lane">{{ lane }}</a>{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</span>
-        {% elif article.category %}
-        &bull; <span class="post-lane">{{ article.category }}</span>
+        <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %y') }}</time>
+        {% if article.category %}
+        &bull; {{ category_icon(article.category) }}
         {% endif %}
       </div>
     </div>
