@@ -4,6 +4,37 @@
 
 ---
 
+## 2026-09-12 — Responsive Image Containment, Edge-to-Edge Photo Stream & Release v0.6.3
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"in photomalbumms the photosmproperly span the window, might even be able to remove left right padding for photos. but thempost on modern wing the photosmare full sized,,muchnwidermthan screen. inmgeneral they should fit to screen width"*
+
+### Problem & Diagnosis
+1. **Unconstrained Post Images**:
+   - In posts like `art-institute-chicago-modern-wing.md`, full-resolution architectural photography (`sky-lakefront.jpg` at 2,108px wide) was rendered inside `<figure><img ...></figure>` without any max-width constraints.
+   - On mobile viewports (e.g. 390px iPhone), this caused the page canvas to explode to 4,136px wide, causing massive horizontal scrolling, distorted responsive layouts, and unreadable text.
+2. **Photo Album Padding**:
+   - In photo albums (`photos.html`), photos scaled correctly within the container, but had default container/body left and right padding (1rem on phone, 1.75rem on tablet, 2rem on desktop). Jim suggested removing left/right padding for photo streams to allow photos to span the window edge-to-edge.
+
+### Root Cause & Technical Analysis
+- The CSS reset in `assets/css/style.css` defined box-sizing and html/body typography, but lacked standard fluid media reset rules (`img, picture, video, canvas { max-width: 100%; height: auto; }`).
+- Individual `<figure>` and `<figcaption>` elements only had styles defined under `.photo-stream figure`, with no base rules for general editorial figures in articles.
+- On portable screens (< 1024px), `.photo-stream` can break out of container padding via negative margins (`margin-left: -1rem; margin-right: -1rem; width: calc(100% + 2rem)`), delivering immersive edge-to-edge photography while preserving caption alignment via matching caption padding.
+
+### Solution & Standard Procedure
+1. **Fluid Media Reset**:
+   - Added `img, picture, video, canvas { max-width: 100%; height: auto; }` directly following the `body` declaration in `assets/css/style.css`.
+2. **Base Figure & Caption Styling**:
+   - Defined base styles for `figure` (`margin: 2.25rem 0; max-width: 100%;`), `figure img` (`width: 100%; max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-subtle); display: block;`), and `figcaption` (`font-family: var(--font-sans); font-size: 0.88rem; color: var(--text-muted); line-height: 1.45;`).
+3. **Edge-to-Edge Photo Stream**:
+   - Added negative-margin breakout on mobile (< 640px) and tablet (< 1024px) for `.photo-stream`, removing left and right gutters for photos while applying matching padding to `figcaption` to maintain text alignment with headers.
+4. **Automated Visual Regression Testing**:
+   - Added `test_images_fit_viewport_width` to `tests/test_playwright_responsive.py`, validating both Modern Wing and Photo Album pages across phone and laptop viewports with zero horizontal overflow (`scrollWidth <= clientWidth`) and bounded image bounding boxes.
+5. **Release & Synchronization**:
+   - Updated test suite (all 47/47 tests passing), synchronized `assets/css/style.css` across theme files, updated `pyproject.toml` and `about-this-site.md` to `v0.6.3`, and wrote `releases/v0.6.3.md`.
+
+---
+
 ## 2026-09-12 — 'Me' Category, Downlow Iconography, Configurable Menu & Release v0.6.2
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

@@ -6,6 +6,14 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 17: Responsive Image Containment & Edge-to-Edge Photo Stream (Completed - Release v0.6.3)**
+  - Fixed layout blowout in posts (e.g. Modern Wing 2,108px images) by enforcing universal fluid media containment (`img, picture, video, canvas { max-width: 100%; height: auto; }`).
+  - Added semantic editorial `<figure>` and `<figcaption>` base styling with subtle borders, border radiuses, and readable typography.
+  - Implemented edge-to-edge zero-gutter display for photo albums (`.photo-stream`) on mobile (< 640px) and tablet (< 1024px) screens (`margin-left: -1rem; margin-right: -1rem; width: calc(100% + 2rem)`), while preserving caption padding.
+  - Updated category icons to Jim's choices: feather quill (`feather`) for `Mine` and robot head (`bot`) for `AI`.
+  - Added automated Playwright viewport containment tests (`test_images_fit_viewport_width`) verifying 0 horizontal scroll overflow and bounded image dimensions across viewports.
+  - Updated test suite to 47/47 passing tests, synchronized `about-this-site.md`, `pyproject.toml`, and generated `releases/v0.6.3.md`.
+
 - [x] **Milestone 16: 'Me' Category, Downlow Presentation, Post Iconography & Configurable Menu (Completed - Release v0.6.2)**
   - Added **`Me`** provenance category for autobiographical notes, personal biodata (Fitbit/sleep/health), bookmarks, and self-written reflections.
   - Renamed **`AI Generated`** &rarr; **`AI`**.

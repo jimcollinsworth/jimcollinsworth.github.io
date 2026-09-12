@@ -142,6 +142,12 @@ body {
   overflow-wrap: break-word;
 }
 
+/* Fluid & Responsive Media Defaults (Never overflow viewport or container) */
+img, picture, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Skip to main content link (WCAG 2.4.1) */
 .skip-link {
   position: absolute;
@@ -799,6 +805,30 @@ article p, .page-intro p, .post-desc, .book-notes {
   font-size: 1.15rem;
 }
 
+/* Editorial Figures & Imagery */
+figure {
+  margin: 2.25rem 0;
+  max-width: 100%;
+}
+
+figure img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  border: 1px solid var(--border-subtle);
+}
+
+figcaption {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin-top: 0.6rem;
+  text-align: left;
+}
+
 /* MacWright-Style Photo Stream & Adaptive Grid */
 .photo-stream {
   display: flex;
@@ -846,6 +876,36 @@ article p, .page-intro p, .post-desc, .book-notes {
   color: var(--text-muted);
   margin-top: 0.5rem;
   text-align: left;
+}
+
+/* Edge-to-Edge Photo Stream: Remove Left/Right Gutters on Portable Viewports */
+@media (max-width: 1024px) {
+  .photo-stream {
+    margin-left: -1.75rem;
+    margin-right: -1.75rem;
+    width: calc(100% + 3.5rem);
+  }
+  .photo-stream img {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .photo-stream figcaption {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .photo-stream {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    width: calc(100% + 2rem);
+  }
+  .photo-stream figcaption {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 /* Callout / Aside */
