@@ -7,7 +7,7 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>73 prompts</strong> from Jim across 21 milestones, alongside concise summaries of actions taken.
+    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>74 prompts</strong> from Jim across 21 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
 
@@ -25,6 +25,8 @@ make the pipeline-tool app run in full screen mode just like the other 2. explai
 remove the "Interactive Application • Visual Media" from apps list, whatever that label is, remove it. app should list - providence icon, title (in the same smaller font we use for title in blog lists, seems like the same header level would be used).
 
 we need a photo/screen print for each app, probably in the app blog posting. i assume every post can have a default photo and maybe thumbnail used for various display purposes. thow in screen shots for each of the 3 apps in their initial posts.
+
+remove all the padding between menu items, about should be much closer to home
 
 **Response:**
 

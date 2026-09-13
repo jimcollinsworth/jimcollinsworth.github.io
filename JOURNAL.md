@@ -10,6 +10,7 @@
 > - *"make the pipeline-tool app run in full screen mode just like the other 2. explain approach issues. could also have a link to full app in spaces. where is all this configured for build? is it in the app blog post metadata? in apps directory config? also, fair to say that all apps going forward will mainly be AI authored so lets respect that providence, how about ai providence with me as author (2 icons would be great in this case but don't know how prevalent that use case is. I (mine) will author the app post, but ai does 95% (or 99%))"*
 > - *"remove the "Interactive Application • Visual Media" from apps list, whatever that label is, remove it. app should list - providence icon, title (in the same smaller font we use for title in blog lists, seems like the same header level would be used)."*
 > - *"we need a photo/screen print for each app, probably in the app blog posting. i assume every post can have a default photo and maybe thumbnail used for various display purposes. thow in screen shots for each of the 3 apps in their initial posts."*
+> - *"remove all the padding between menu items, about should be much closer to home"*
 
 ### Problem & Diagnosis
 1. **Featured Post Flexibility**:
@@ -44,7 +45,10 @@
    - Removed eyebrow labels on `content/pages/apps.md`.
    - Replaced card titles with `[ICON] [TITLE]` rows using `1.05rem` font-sans headers matching blog list formatting.
    - Added direct navigation buttons to full-screen apps and app posts.
-6. **Verification & Versioning**:
+6. **Tightened Navigation Menu Item Spacing**:
+   - Reduced `gap` on `nav.site-nav` from `1.25rem` to `0.15rem` and horizontal link padding from `0.55rem` to `0.25rem`.
+   - Updated `margin-left` to `-0.25rem` to keep "Home" flush with site branding while bringing "About" immediately adjacent to "Home".
+7. **Verification & Versioning**:
    - Bumped project version to `v0.7.0` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
    - Passed all 51 automated tests in `pytest -v`.
 

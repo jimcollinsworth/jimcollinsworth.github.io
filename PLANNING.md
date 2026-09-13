@@ -14,6 +14,7 @@
   - Built full-screen standalone application wrapper `content/apps/pipeline-tools/index.html` with top app bar and 100% viewport iframe.
   - Added dual provenance icon support (`[AI]` + `[Mine]`) in `theme/templates/category_icon.html` and `theme/static/css/style.css`.
   - Streamlined `content/pages/apps.md` cards by removing uppercase eyebrow labels and matching `1.05rem` font-sans post titles.
+  - Tightened navigation menu item spacing (`gap: 0.15rem;`, link padding `0.25rem;`, `margin-left: -0.25rem;`), bringing "About" close to "Home" while maintaining flush alignment with branding.
   - Bumped version to `v0.7.0` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
   - Passed all 51 automated tests in `pytest -v`.
 
