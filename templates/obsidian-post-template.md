@@ -53,7 +53,7 @@ tags:
   - general
   - writing
 
-# 5. PUBLISHING STATUS & SUMMARY (Required)
+# 5. PUBLISHING STATUS (Required) & SUMMARY (Optional)
 # ------------------------------------------------------------------------------
 # Publishing workflow state:
 #   - published : Normal public visibility, included in chronological lists & archives
@@ -61,8 +61,10 @@ tags:
 #   - hidden    : Rendered to HTML but excluded from public post listings
 status: published
 
-# Concise 1–2 sentence summary / teaser for post cards, index feeds, and meta tags.
-summary: "A concise 1–2 sentence summary of this post for index listings and search snippets."
+# (Optional) Concise 1–2 sentence summary / teaser for post cards and RSS feeds.
+# Following Pelican convention, this is completely optional: if omitted, Pelican
+# automatically derives the excerpt from the beginning of your post body text.
+# summary: "A concise 1–2 sentence summary of this post for index listings and search snippets."
 
 # 6. REVISION & HERO MEDIA (Optional)
 # ------------------------------------------------------------------------------

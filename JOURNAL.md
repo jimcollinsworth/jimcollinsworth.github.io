@@ -2,6 +2,42 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Pelican Conventions Rule, Optional Summary & Menu Architecture (v0.6.8)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"nope don't need summary, want to follow pelican conventions if possible (make an agents.md rule)"*
+> - *"can a blog post be a menu? do the custom pages (about.md) have a menu:true"*
+
+### Problem & Diagnosis
+1. **Adherence to Official Pelican Conventions vs. Custom Abstractions**:
+   - Rather than introducing custom alias layers (e.g. mapping `description` to `summary`), Jim directed that the site strictly follow official Pelican conventions.
+   - In Pelican, `summary` is optional in content files: Pelican automatically truncates the article body (first 50 words / first paragraph) when `summary:` is omitted.
+   - Jim requested an explicit governance rule in `AGENTS.md` to codify this architectural standard.
+2. **Menu Architecture Clarity**:
+   - Jim asked whether custom pages like `about.md` have `menu: true` in their frontmatter, and whether a blog post can be in the navigation menu.
+
+### Root Cause & Technical Analysis
+- `content/pages/about.md` and other core pages do not have `menu: true` in their frontmatter; they appear in the top navigation because they are explicitly declared in the `MENUITEMS` tuple in `pelicanconf.py`.
+- The `pages` loop in `theme/templates/base.html` exists as an automatic opt-in for *additional* standalone pages that set `menu: true` (and are not already listed in `MENUITEMS`).
+- Any blog post (article) can be added to the navigation menu immediately via `MENUITEMS` in `pelicanconf.py` (e.g. for cornerstone essays, deep dives, or featured projects).
+- Codifying Section 17 in `AGENTS.md` and `.agents/agent_rules.md` ensures LLM agents preserve Pelican's standard, unadorned conventions and avoid metadata bloat.
+
+### Solution & Standard Procedure
+1. **Rule Codification**:
+   - Added Section 17 to `AGENTS.md` and synchronized `.agents/agent_rules.md`:
+     - Mandatory adherence to standard Pelican conventions and built-in metadata keywords.
+     - Optional summary policy: no requirement for manual `summary:` frontmatter.
+     - Prohibition of redundant alias layers and metadata bloat.
+2. **Template Update**:
+   - Updated `templates/obsidian-post-template.md` to mark `summary` as `(Optional)` with a note explaining Pelican's automatic body text derivation.
+3. **Menu Architecture Clarification**:
+   - Documented the dual-tier menu system: `MENUITEMS` for permanent links (pages and articles), and `menu: true` for frontmatter-driven dynamic pages.
+4. **Testing & Synchronization**:
+   - Verified clean static compilation and 51/51 passing tests via `uv run pytest -v`.
+   - Bumped project version to `0.6.8` across `pyproject.toml` and `about-this-site.md`.
+
+---
+
 ## 2026-09-12 — Header Horizon Bar, Reversed Active Nav & Obsidian Post Template (v0.6.7)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

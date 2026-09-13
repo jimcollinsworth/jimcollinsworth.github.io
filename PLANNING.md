@@ -6,6 +6,13 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 23: Pelican Conventions Rule, Optional Summary & Menu Architecture (Completed - Release v0.6.8)**
+  - Codified Section 17 in `AGENTS.md` and `.agents/agent_rules.md` requiring strict adherence to official Pelican conventions, standard metadata fields, and disallowing custom alias layers or metadata bloat.
+  - Formulated optional summary policy: no requirement for manual `summary:` frontmatter; Pelican auto-derives the summary from body text when omitted.
+  - Updated `templates/obsidian-post-template.md` to document `summary:` as optional per Pelican conventions.
+  - Clarified menu architecture: custom pages (`about.md`, etc.) are configured via `MENUITEMS` in `pelicanconf.py`, while `menu: true` serves as an opt-in for additional pages. Verified that blog posts can also be placed into `MENUITEMS` directly.
+  - Synchronized `pyproject.toml`, `about-this-site.md`, and bumped version to `v0.6.8`.
+
 - [x] **Milestone 22: Header Horizon Bar, Reversed Active Nav & Obsidian Post Template (Completed - Release v0.6.7)**
   - Implemented 4px basic grey horizontal horizon bar (`--border-header: #b5b0a6` light / `#44494e` dark) beneath `header.site-header` on desktop, scaled to 3px on mobile and phone landscape.
   - Re-architected active navigation indicator from a conflicting bottom border to a high-contrast reversed pill (`background-color: var(--text); color: var(--bg) !important; font-weight: 600; border-radius: 4px; padding: 0.25rem 0.65rem; border-bottom: none;`).

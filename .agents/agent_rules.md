@@ -215,4 +215,15 @@ Every commit and meaningful change set must increment the project version:
 > - The agent must **NEVER** search, inspect, list, read, or execute commands in parent directories (such as `d:\projects\`), other repositories, user-profile roots (`C:\Users\jimco\`), or system-level configuration paths.
 > - **Reasoning & Permission Required**: If an operation ever appears to require working, searching, or reading files outside of the current project directory, the agent must **first provide clear reasoning to Jim and ask for explicit permission before doing so**.
 
+---
+
+## 17. Standard Pelican Conventions & Minimalist Metadata Rule (Strict)
+
+> [!IMPORTANT]
+> **Adhere Strictly to Standard Pelican Conventions**:
+> - The agent must strictly favor standard, official Pelican conventions, configuration settings, and built-in metadata keywords over custom abstractions, proprietary aliases, or bespoke extensions.
+> - **Standard Metadata Conventions**: Use official Pelican metadata fields (`title`, `date`, `modified`, `category`, `tags`, `slug`, `summary`, `status`, `author`, `template`, `save_as`, `url`). Do not invent or introduce redundant alias layers (such as mapping `description` to `summary`).
+> - **Optional Summary Policy**: Follow Pelican's convention where `summary` is strictly optional in content files. Authors are not required to provide a manual `summary:` line in frontmatter; when omitted, Pelican automatically derives the summary from the post body using standard word/paragraph truncation (`SUMMARY_MAX_LENGTH`).
+> - **No Metadata Bloat**: Keep frontmatter minimal, clean, and transparent. Do not add arbitrary, speculative, or unrequested metadata keys to posts or templates.
+
 
