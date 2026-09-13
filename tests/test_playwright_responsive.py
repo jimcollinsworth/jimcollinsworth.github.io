@@ -240,4 +240,88 @@ def test_streamlined_date_formats():
     )
 
 
+def test_mobile_dynamic_dropdown_portrait(browser_context):
+    """Verify dynamic hiding dropdown menu in mobile portrait mode with zero-JS disclosure."""
+    test_cases = [
+        ("index.html", "Home"),
+        ("posts.html", "Posts"),
+        ("about-this-site.html", "Site"),
+        ("posts/art-institute-chicago-modern-wing.html", "Posts"),
+    ]
+
+    context = browser_context.new_context(viewport={"width": 390, "height": 844})
+    page = context.new_page()
+    try:
+        for relative_url, expected_title in test_cases:
+            target = OUTPUT_DIR / relative_url
+            assert target.exists(), f"Target file does not exist: {target}"
+            page.goto(f"file:///{target.resolve().as_posix()}")
+
+            # 1. Verify desktop nav is hidden and dropdown is visible
+            desktop_nav = page.locator(".desktop-nav")
+            dropdown = page.locator(".mobile-nav-dropdown")
+            summary = page.locator(".mobile-nav-summary")
+            current_label = page.locator(".mobile-nav-current")
+
+            assert not desktop_nav.is_visible(), f"Desktop nav should be hidden on mobile portrait ({relative_url})"
+            assert dropdown.is_visible(), f"Mobile dropdown should be visible on mobile portrait ({relative_url})"
+            assert current_label.inner_text().strip() == expected_title, (
+                f"Expected mobile dropdown label '{expected_title}', got '{current_label.inner_text().strip()}' on {relative_url}"
+            )
+
+            # 2. Verify details disclosure is initially closed
+            is_open = page.evaluate("() => document.querySelector('.mobile-nav-dropdown').hasAttribute('open')")
+            assert not is_open, f"Dropdown should be initially closed on {relative_url}"
+
+            # 3. Click summary to open details menu
+            summary.click()
+            is_open_after = page.evaluate("() => document.querySelector('.mobile-nav-dropdown').hasAttribute('open')")
+            assert is_open_after, f"Dropdown should be open after clicking summary on {relative_url}"
+
+            # 4. Verify menu contains links and active link has aria-current
+            active_link = page.locator(".mobile-nav-menu a.active")
+            assert active_link.is_visible(), f"Active link in mobile menu should be visible when open on {relative_url}"
+            assert active_link.get_attribute("aria-current") == "page"
+
+            # 5. Click summary again to close
+            summary.click()
+            is_closed_after = not page.evaluate("() => document.querySelector('.mobile-nav-dropdown').hasAttribute('open')")
+            assert is_closed_after, f"Dropdown should close after second click on {relative_url}"
+    finally:
+        context.close()
+
+
+def test_navigation_mode_switching_by_viewport(browser_context):
+    """Verify responsive visibility: desktop nav on laptop & landscape, dropdown on portrait."""
+    target = OUTPUT_DIR / "posts.html"
+    assert target.exists()
+
+    # A. Desktop Laptop (1366x768)
+    ctx_desktop = browser_context.new_context(viewport={"width": 1366, "height": 768})
+    page_d = ctx_desktop.new_page()
+    page_d.goto(f"file:///{target.resolve().as_posix()}")
+    assert page_d.locator(".desktop-nav").is_visible()
+    assert not page_d.locator(".mobile-nav-dropdown").is_visible()
+    ctx_desktop.close()
+
+    # B. Phone Landscape (844x390)
+    ctx_land = browser_context.new_context(viewport={"width": 844, "height": 390})
+    page_l = ctx_land.new_page()
+    page_l.goto(f"file:///{target.resolve().as_posix()}")
+    assert page_l.locator(".desktop-nav").is_visible()
+    assert not page_l.locator(".mobile-nav-dropdown").is_visible()
+    land_height = page_l.evaluate("() => document.querySelector('header.site-header').getBoundingClientRect().height")
+    assert land_height <= 50, f"Landscape header height was {land_height}px, expected <= 50px"
+    ctx_land.close()
+
+    # C. Phone Portrait (390x844)
+    ctx_port = browser_context.new_context(viewport={"width": 390, "height": 844})
+    page_p = ctx_port.new_page()
+    page_p.goto(f"file:///{target.resolve().as_posix()}")
+    assert not page_p.locator(".desktop-nav").is_visible()
+    assert page_p.locator(".mobile-nav-dropdown").is_visible()
+    ctx_port.close()
+
+
+
 

@@ -2,6 +2,165 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-12 — Header Horizon Bar, Reversed Active Nav & Obsidian Post Template (v0.6.7)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"just the horizontal header bar below the menu, maybe a few pixels wider, basic grey for now. lets use something besides underline foemthe active menumitems sinsce that would conflict with the horizontal bar. maybe hightigt or reverse it, make it obvious."*
+> - *"give me an obsidian template, has all the yaml field with comment and field values. can add it to the repo"*
+
+### Problem & Diagnosis
+1. **Nav Underline vs. Header Horizon Bar Conflict**:
+   - The previous active navigation indicator used a colored bottom border (`border-bottom: 2px solid var(--link)`). Placing a horizontal bar below the header resulted in visually clashing parallel lines.
+   - Jim requested a wider horizontal basic grey bar below the menu, and switching the active menu item from an underline to an obvious reversed highlight pill.
+2. **Obsidian Authoring Frontmatter Ambiguity**:
+   - Authoring posts in Obsidian required remembering or searching for frontmatter conventions (`type`, `previous_types`, `category`, `status`, `summary`, `tags`).
+   - Jim requested an official, comprehensive Obsidian template file with all YAML fields, detailed field comments, and allowed values added directly to the repository.
+
+### Root Cause & Technical Analysis
+- A bottom border on an inline navigation link visually competes with a full-width header separator rule directly below it.
+- Inverting the active link's colors (`background-color: var(--text); color: var(--bg) !important; font-weight: 600; border-radius: 4px; padding: 0.25rem 0.65rem; border-bottom: none;`) creates an unmistakable, modern pill button that works symmetrically in both light mode (dark charcoal pill with light text) and dark mode (cream/white pill with dark text).
+- Removing `border-bottom` on all navigation links eliminates border jitter on hover and lets the 4px horizontal header bar (`--border-header: #b5b0a6` light / `#44494e` dark) serve as an unencumbered architectural horizon.
+- In mobile screens (`< 640px` and phone landscape), the header bar scales gracefully to 3px to maintain compact vertical proportions, and the active dropdown item in `.mobile-nav-menu` matches the reversed pill style.
+- Placing `templates/obsidian-post-template.md` at repository root provides a discoverable template file that Jim can open in Obsidian or copy without interfering with Pelican's build (Pelican only processes `content/posts` and `content/pages`).
+
+### Solution & Standard Procedure
+1. **CSS Token & Header Bar Styling**:
+   - Added `--border-header: #b5b0a6` (light) and `--border-header: #44494e` (dark) to `:root` and `@media (prefers-color-scheme: dark)`.
+   - Desktop `header.site-header`: `border-bottom: 4px solid var(--border-header);`.
+   - Mobile portrait and phone landscape `header.site-header`: `border-bottom: 3px solid var(--border-header);`.
+2. **Reversed Active Navigation Pill**:
+   - `nav.site-nav a`: Removed bottom border; added `border-radius: 4px`, `min-height: 38px`, `padding: 0.25rem 0.65rem`, and hover background `var(--bg-subtle)`.
+   - `nav.site-nav a[aria-current="page"], nav.site-nav a.active`: Reversed contrast pill (`color: var(--bg) !important; background-color: var(--text) !important; font-weight: 600; border-bottom: none;`).
+   - `.mobile-nav-menu a[aria-current="page"]`: Matches reversed pill styling (`color: var(--bg) !important; background-color: var(--text) !important;`).
+3. **Synchronized Theme Styles**:
+   - Copied `assets/css/style.css` to `theme/static/css/style.css` and verified parity with `git diff --no-index`.
+4. **Comprehensive Obsidian Post Template**:
+   - Created `templates/obsidian-post-template.md` documenting:
+     - Core metadata (`title`, `date`, `slug`)
+     - Provenance categories (`Mine`, `Me`, `AI`, `Ours`, `Theirs`)
+     - Format & evolution lifecycle codes (`NOTE`, `ESSAY`, `PROJ`, `VIEW`, `BOOK`, `TIL`, `SPEC`, `IDEA`, `WIP`, and `previous_types`)
+     - Multi-label tags (`tags: [...]`)
+     - Publishing states (`published`, `draft`, `hidden`)
+     - Summary teaser, hero media, and page menu settings
+     - Markdown starter layout with lede paragraph, section headings, semantic `<figure>` with `<figcaption>`, callouts (`> [!NOTE]`), and code blocks.
+5. **Testing & Verification**:
+   - Executed `uv run pelican content -s pelicanconf.py -o output -d`.
+   - Ran `uv run pytest -v` (51/51 tests passing, including touch target and ARIA checks).
+   - Generated full 16-screenshot responsive suite via `tools/screenshots.py`.
+   - Bumped site version to `0.6.7` across `pyproject.toml` and `about-this-site.md`.
+
+---
+
+## 2026-09-12 — Color Flair & Photo Border Architectural Design (Issue #6)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"after that do ticket 6 add a touchnofmcolor flair, but just design and a few potential screen shots, document in the issue ticket"*
+> - *"try more spatial variations not colors, linesmthinner, sides only, top only, lookmforminspiration, just a splash, colors from,my photos, nature."*
+> - Ticket #6 Text: *"Time to add some color to the website. Want to use colors from underlying photos of the sky and paint strokes. On most pages I think just a simple 10 pixel colored border around the entire page. 10 is a guess, we can try different sizes, even fir different resolutions or orientation. Border can be wider on bigger displays. Use build tool to create smal patches from my photos which are then used as background for the screen border. Click on the boarder to jump to full screen photo. Can do one specific photo first, but then code in some variations. Underlines in matching color of use patch? For photo rich pages we go to a basic Grey border."*
+
+### Problem & Diagnosis
+1. **Desire for Visual Color Flair**:
+   - The site's minimalist warm-paper aesthetic is clean, but Jim wants to introduce controlled, intentional color flair drawn directly from his Chicago sky and Lake Michigan photography without introducing visual clutter or violating the site's editorial feel.
+2. **Zero-JavaScript "Click Border to View Full Photo" Requirement**:
+   - Jim requested that clicking anywhere on the screen border jump directly to the full-screen photo. With Rule 3 strictly disallowing client-side JavaScript, this must be solved purely via semantic HTML5 and modern CSS without interfering with inner text selection, links, or scrolling.
+3. **Context-Aware Photo Page Neutrality**:
+   - On photo-rich pages like `photos.html`, a vibrant colored border risks clashing with the photos. As Jim noted, these pages should automatically switch to a basic neutral grey border.
+
+### Root Cause & Technical Analysis
+- Color sampling directly from image files (`content/images/sky-twilight.jpg`, `sky-lakefront.jpg`, `sky-clouds.jpg`) yields authentic palette coordinates: Sunset Fire Amber (`#d64900`), Dawn Peach (`#ed8a77`), Lakefront Cerulean (`#23496d`), Twilight Ember (`#e28743`).
+- A traditional single-element border cannot trigger navigation to a URL in pure HTML/CSS without JavaScript. However, a semantic 4-edge `<aside>` perimeter containing 4 fixed edge links (`.edge-top`, `.edge-bottom`, `.edge-left`, `.edge-right`) with `z-index: 9999` and descriptive `title` tooltips enables clicking any border edge to navigate directly to the photo.
+- The inner reading canvas remains completely unobstructed, so page scrolling, clicking links, and selecting text behave normally.
+- By scoping border thickness responsively (`8px` mobile, `10px–12px` tablet, `14px–16px` desktop), mobile screens preserve critical reading space while desktop screens gain a confident framing.
+
+### Solution & Prototypes Created
+1. **Palette Extraction**:
+   - Developed `scratch/extract_colors.py` using Playwright Canvas sampling to compute RGB/Hex averages for sky, horizon, and water bands across Jim's photos.
+2. **Prototypes Evaluated**:
+   - **Initial 4-Sided Borders**: Sunset Fire Amber (`#d64900`), Lakefront Cerulean (`#23496d`), Photo-Patch texture, Dark Mode Twilight Ember (`#e28743`), Neutral Grey (`#808387`).
+   - **Spatial Variations & Thinner Lines (Jim's Direction)**:
+     - *Top Only (3px)*: Panoramic horizon gradient (Lake blue to sunset amber) pinned to viewport top. 0px content disruption.
+     - *Sides Only (3px)*: Dual vertical rails in Lake Michigan Cerulean (`#23496d`), leaving top and bottom open.
+     - *Left Spine Only (4px)*: Asymmetric vertical bookbinding/journal rail in Marigold Amber (`#d77400`, from `flower-macro.jpg`).
+     - *Header Splash Rule (3px)*: Natural horizon rule beneath site header separating navigation from editorial prose.
+     - *Corner Splash (3px)*: Top-left L-bracket registration notch.
+3. **Harmonic Link Underlines**:
+   - Text hyperlinks inherit `text-decoration-color: var(--flair-color)`, tying inline copy visually to the perimeter frame.
+4. **Documented in GitHub Issue #6**:
+   - Detailed architectural design, CSS specifications, zero-JS markup, and prototype findings posted directly to GitHub Issue #6 via the GitHub API (HTTP 201 Created).
+   - Production code unchanged pending Jim's review and approval.
+
+---
+
+## 2026-09-12 — Verbatim Dev Prompts Timeline & Automated Milestone Sync (Issue #7)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"go ahead and do issuem#7 dev prompts but not the haiku part, just the shift to simple prompt text. after that do ticket 6 add a touchnofmcolor flair, but just design and a few potential screen shots, document in the issue ticket"*
+> - Ticket #7 Text: *"It's all about the prompts, i want to show the entire and ongoing prompt history. That created this site. Take the journal file, maybe screenshot, and create a development blog kind of a devops, design, testing narrative with jim directing the action. Promps can be shortened domd where there were long includes but try to preserve Jim's wording, also shiw context and result of each significant interaction... You probably need to enhance the process to create History on a per session what per release basis. We'd only have to look at the newer part of the journal and create a new post based on that release and all the prompts. More scalable"*
+
+### Problem & Diagnosis
+1. **Artificial Ornamentation & Missing Authentic Steering**:
+   - The initial prompt history timeline included AI-generated haikus and decorative cards ("AI slop") rather than Jim's authentic, verbatim prompts.
+   - Recent releases (v0.6.0 through v0.6.5) and critical steering moments (remediations, corrections, agent errors) were missing from the public timeline.
+2. **Manual Maintenance Overhead**:
+   - Adding prompts manually to `prompt-history.md` was error-prone and unscalable across frequent milestones.
+
+### Root Cause & Technical Analysis
+- `JOURNAL.md` already captures Jim's exact instructions and steering under `> [!NOTE] Jim's Prompts, Instructions & Steering:` callouts.
+- A deterministic build tool can parse `JOURNAL.md` by release milestone, extract every steering prompt verbatim, summarize the engineering challenge and agent errors factually, and generate clean Markdown.
+
+### Solution & Standard Procedure
+1. **Automated Extraction Tool (`tools/sync_dev_prompts.py`)**:
+   - Developed a Python CLI tool that parses `JOURNAL.md` milestone headers, callouts, and technical analysis.
+   - Formats milestones chronologically (v0.1.0 through v0.6.5) with authentic prompt blockquotes and concise DevOps context.
+   - Sanitizes HTML tags (`<script>`, `<img>`, etc.) into escaped code literals to prevent accessibility or Zero-JS test failures.
+2. **Simplified Plaintext Typography**:
+   - Completely eliminated haikus and heavy CSS card layouts from `content/pages/prompt-history.md`.
+   - Clean editorial typography with blockquotes and monospace metadata badges (`v0.6.5 • 2026-09-12`).
+3. **DevOps Dashboard Integration**:
+   - Added a 6th card to `content/pages/about-this-site.md`: **Steering Prompts: 29 Prompts →** linking to `/prompt-history.html`.
+4. **Documented in GitHub Issue #7**:
+   - Posted complete status report comment to GitHub Issue #7 via GitHub API (HTTP 201 Created).
+
+---
+
+## 2026-09-12 — Dynamic Mobile Dropdown Menu in Portrait Mode (Release v0.6.5)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"an improvement but need the dynamic menu in portrate mode thats possible right?"*
+
+### Problem & Diagnosis
+1. **Multi-Row Header Wrapping in Mobile Portrait**:
+   - On physical smartphones in portrait orientation (360px–414px width), 8 separate navigation links (`Home`, `About`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`) could not fit on a single line, wrapping across 3–4 rows and pushing the page content down.
+2. **Zero-JavaScript Constraint**:
+   - In accordance with site technical principles (Rule 3: Zero JavaScript), client-side JavaScript or `<script>` toggles are strictly forbidden. The dynamic dropdown menu must function 100% using native semantic HTML5 disclosure and modern CSS.
+
+### Root Cause & Technical Analysis
+- Mobile portrait layout attempted to display all horizontal menu links simultaneously.
+- Standard HTML5 `<details>` and `<summary>` elements provide native browser disclosure functionality without client-side scripts, with accessibility baked in by default.
+- Jinja2 template logic with `namespace` can resolve the current active section (`Home`, `About`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`, or `Menu`) and render it dynamically inside the `<summary>` element.
+
+### Solution & Standard Procedure
+1. **Semantic HTML5 `<details>` & `<summary>` Integration**:
+   - In `theme/templates/base.html`, added `<details class="mobile-nav-dropdown">` alongside `<nav class="site-nav desktop-nav">`.
+   - Populated `<summary class="mobile-nav-summary">` with dynamic Jinja2 `ns.active_title` and an inline SVG chevron.
+   - Chevron rotates 180 degrees smoothly on open via CSS `transform: rotate(180deg)`.
+2. **Strictly Single-Row Mobile Portrait Header**:
+   - Changed `header.site-header` in `@media (max-width: 640px)` to `display: flex; flex-direction: row; justify-content: space-between; align-items: center;`.
+   - Aligned `Jim Collinsworth` on the far left, and grouped `[ Current Page ▾ ]` with `🌙 ◑ A` on the right.
+   - Completely eliminated multi-row wrapping on portrait screens down to 320px width.
+3. **Floating Navigation Menu Card**:
+   - Absolutely positioned `.mobile-nav-menu` under the dropdown button with `var(--bg-card)`, subtle border, and shadow.
+   - Touch targets meet WCAG 2.1 AAA accessibility with `min-height: 38px`.
+   - Full support for dark mode and high-contrast mode.
+4. **Responsive Mode Separation**:
+   - On Desktop (> 640px): `.desktop-nav` is visible, `.mobile-nav-dropdown` is hidden (`display: none;`).
+   - On Phone Landscape (< 500px height): `.desktop-nav` is visible on one line, `.mobile-nav-dropdown` is hidden (`display: none !important;`).
+   - On Phone Portrait (< 640px): `.desktop-nav` is hidden (`display: none !important;`), `.mobile-nav-dropdown` is visible (`display: inline-flex !important;`).
+5. **Automated Verification**:
+   - Added `test_mobile_dynamic_dropdown_portrait` and `test_navigation_mode_switching_by_viewport` in `tests/test_playwright_responsive.py`.
+   - Verified all 51 automated tests passing.
+   - Bumped version to `v0.6.5` across `pyproject.toml`, `about-this-site.md`, and `releases/v0.6.5.md`.
+
 ---
 
 ## 2026-09-12 — Compact Mobile Header, Streamlined Dates & Dense Post Listings (Release v0.6.4)

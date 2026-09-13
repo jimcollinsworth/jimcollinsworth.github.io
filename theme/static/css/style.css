@@ -23,6 +23,7 @@
   --tag-bg: #eae5d9;
   --tag-text: #454744;
   --code-bg: #ebe6db;
+  --border-header: #b5b0a6;
 
   /* Typography */
   --font-serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
@@ -82,6 +83,7 @@ body:has(#theme-toggle:checked) {
   --tag-bg: #292d30;
   --tag-text: #d0cecd;
   --code-bg: #222527;
+  --border-header: #44494e;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -99,6 +101,7 @@ body:has(#theme-toggle:checked) {
     --tag-bg: #292d30;
     --tag-text: #d0cecd;
     --code-bg: #222527;
+    --border-header: #44494e;
   }
 
   /* In OS dark mode, checking #theme-toggle flips back to Light */
@@ -115,6 +118,7 @@ body:has(#theme-toggle:checked) {
     --tag-bg: #eae5d9;
     --tag-text: #454744;
     --code-bg: #ebe6db;
+    --border-header: #b5b0a6;
   }
 }
 
@@ -233,46 +237,51 @@ img, picture, video, canvas {
     line-height: 1.55;
   }
   header.site-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    row-gap: 0.4rem;
-    column-gap: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    position: relative;
     margin-bottom: 1.25rem;
     padding-bottom: 0.65rem;
+    border-bottom: 3px solid var(--border-header);
   }
   .site-branding {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
+    display: flex;
+    align-items: center;
     margin: 0;
+    flex-shrink: 0;
   }
   .site-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
+    white-space: nowrap;
+    margin: 0;
   }
   .site-tagline {
     display: none !important;
   }
   .site-nav-row {
-    display: contents;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+  }
+  nav.desktop-nav,
+  body:has(#contrast-toggle:checked) nav.desktop-nav {
+    display: none !important;
+  }
+  .mobile-nav-dropdown,
+  body:has(#contrast-toggle:checked) .mobile-nav-dropdown {
+    display: inline-flex !important;
+    align-items: center;
+    position: relative;
   }
   .site-controls {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
     gap: 0.25rem;
-  }
-  nav.site-nav {
-    grid-column: 1 / 3;
-    grid-row: 2 / 3;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem 0.75rem;
-    font-size: 0.86rem;
-    margin-top: 0.15rem;
-  }
-  nav.site-nav a {
-    min-height: 28px;
-    padding: 0.15rem 0.1rem;
+    margin-left: 0;
   }
 
   /* Content & Headings Scaling */
@@ -361,6 +370,7 @@ img, picture, video, canvas {
     align-items: center !important;
     margin-bottom: 0.65rem !important;
     padding-bottom: 0.4rem !important;
+    border-bottom: 3px solid var(--border-header) !important;
   }
   .site-branding {
     display: flex !important;
@@ -384,7 +394,12 @@ img, picture, video, canvas {
     flex-wrap: nowrap !important;
     margin: 0 !important;
   }
-  nav.site-nav {
+  .mobile-nav-dropdown,
+  body:has(#contrast-toggle:checked) .mobile-nav-dropdown {
+    display: none !important;
+  }
+  nav.desktop-nav,
+  body:has(#contrast-toggle:checked) nav.desktop-nav {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
@@ -393,7 +408,7 @@ img, picture, video, canvas {
     flex-wrap: nowrap !important;
     margin: 0 !important;
   }
-  nav.site-nav a {
+  nav.desktop-nav a {
     min-height: 24px !important;
     padding: 0.1rem 0.2rem !important;
     white-space: nowrap !important;
@@ -446,7 +461,7 @@ img, picture, video, canvas {
 header.site-header {
   margin-bottom: 3rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 4px solid var(--border-header);
 }
 
 .site-branding {
@@ -608,20 +623,119 @@ nav.site-nav a {
   display: inline-flex;
   align-items: center;
   min-height: 38px;
-  padding: 0.35rem 0.25rem;
-  border-bottom: 2px solid transparent;
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  border-bottom: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 nav.site-nav a:hover {
   color: var(--link);
-  border-bottom-color: var(--link);
+  background-color: var(--bg-subtle);
 }
 
 nav.site-nav a[aria-current="page"],
 nav.site-nav a.active {
+  color: var(--bg) !important;
+  background-color: var(--text) !important;
+  font-weight: 600;
+  border-bottom: none;
+}
+
+/* Mobile Dynamic Dropdown Navigation (Zero-JS) */
+.mobile-nav-dropdown {
+  display: none;
+  position: relative;
+}
+
+.mobile-nav-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  list-style: none;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.mobile-nav-summary::-webkit-details-marker {
+  display: none;
+}
+.mobile-nav-summary::marker {
+  display: none;
+}
+
+.mobile-nav-summary:hover,
+.mobile-nav-summary:focus-visible,
+.mobile-nav-dropdown[open] .mobile-nav-summary {
+  background: var(--bg-card);
+  border-color: var(--link);
   color: var(--link);
-  border-bottom-color: var(--link);
-  font-weight: 700;
+  outline: none;
+}
+
+.mobile-nav-chevron {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mobile-nav-dropdown[open] .mobile-nav-chevron {
+  transform: rotate(180deg);
+}
+
+.mobile-nav-menu {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  min-width: 165px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
+  padding: 0.35rem 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  min-height: 38px;
+  border-radius: 4px;
+  border-left: 3px solid transparent;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.mobile-nav-menu a:hover,
+.mobile-nav-menu a:focus-visible {
+  background-color: var(--bg-subtle);
+  color: var(--link);
+  outline: none;
+}
+
+.mobile-nav-menu a[aria-current="page"],
+.mobile-nav-menu a.active {
+  color: var(--bg) !important;
+  font-weight: 600;
+  background-color: var(--text) !important;
+  border-left-color: transparent;
 }
 
 /* Typography Hierarchy */
@@ -1588,14 +1702,44 @@ body:has(#contrast-toggle:checked) .site-nav-row {
   gap: 0.5rem 1rem !important;
 }
 
-body:has(#contrast-toggle:checked) nav.site-nav {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  gap: 0.25rem 1.15rem !important;
-  margin: 0 !important;
-  border: none !important;
+@media (min-width: 641px), (orientation: landscape) and (max-height: 500px) {
+  body:has(#contrast-toggle:checked) nav.site-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0.25rem 1.15rem !important;
+    margin: 0 !important;
+    border: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body:has(#contrast-toggle:checked) nav.desktop-nav {
+    display: none !important;
+  }
+  body:has(#contrast-toggle:checked) .mobile-nav-dropdown {
+    display: inline-flex !important;
+  }
+  body:has(#contrast-toggle:checked) .mobile-nav-summary {
+    border: 2px solid var(--border) !important;
+    font-weight: 800 !important;
+  }
+  body:has(#contrast-toggle:checked) .mobile-nav-menu {
+    border: 2px solid var(--border) !important;
+    background: var(--bg) !important;
+    box-shadow: none !important;
+  }
+  body:has(#contrast-toggle:checked) .mobile-nav-menu a {
+    font-weight: 700 !important;
+    text-decoration: underline 2px !important;
+    text-underline-offset: 3px !important;
+  }
+  body:has(#contrast-toggle:checked) .mobile-nav-menu a.active,
+  body:has(#contrast-toggle:checked) .mobile-nav-menu a[aria-current="page"] {
+    font-weight: 800 !important;
+    text-decoration: underline 4px !important;
+  }
 }
 
 body:has(#contrast-toggle:checked) nav.site-nav a {

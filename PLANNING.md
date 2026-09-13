@@ -6,6 +6,39 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 22: Header Horizon Bar, Reversed Active Nav & Obsidian Post Template (Completed - Release v0.6.7)**
+  - Implemented 4px basic grey horizontal horizon bar (`--border-header: #b5b0a6` light / `#44494e` dark) beneath `header.site-header` on desktop, scaled to 3px on mobile and phone landscape.
+  - Re-architected active navigation indicator from a conflicting bottom border to a high-contrast reversed pill (`background-color: var(--text); color: var(--bg) !important; font-weight: 600; border-radius: 4px; padding: 0.25rem 0.65rem; border-bottom: none;`).
+  - Removed `border-bottom` on all navigation links to eliminate visual clash with the horizontal header bar and prevent hover jitter.
+  - Aligned mobile dynamic dropdown menu active item styling with reversed pill treatment.
+  - Created `templates/obsidian-post-template.md` at repo root with comprehensive commented YAML frontmatter (documenting `title`, `date`, `slug`, `category`, `type`, `previous_types`, `tags`, `status`, `summary`, `image`, `menu` settings) and an editorial Markdown starter layout.
+  - Verified 100% parity between `assets/css/style.css` and `theme/static/css/style.css`.
+  - Rebuilt static site and ran automated test suite (51/51 tests passing).
+  - Captured 16 responsive screenshots across all 8 viewports in light and dark modes.
+  - Synchronized `pyproject.toml`, `about-this-site.md`, and bumped version to `v0.6.7`.
+
+- [x] **Milestone 21: Color Flair & Photo Border Architectural Design (Designed & Documented - Issue #6)**
+  - Sampled color palettes directly from sky and Lake Michigan photography (`sky-twilight.jpg`, `sky-lakefront.jpg`, `sky-clouds.jpg`) using Playwright Canvas extraction.
+  - Architected pure Zero-JS semantic 4-edge `<aside>` perimeter frame enabling click-to-view full-screen photo without interfering with reading canvas or scrolling.
+  - Implemented responsive border scaling: 8px mobile, 14px–16px desktop, and matching link underlines (`text-decoration-color: var(--flair-color)`).
+  - Designed neutral studio grey border (`#808387` light / `#323538` dark) for photo-rich pages (`photos.html`) to frame photos cleanly without color clashing.
+  - Generated and inspected 7 visual prototype screenshots across viewports and color configurations.
+  - Documented full architectural design proposal and findings in a detailed comment on GitHub Issue #6. Production code left clean pending Jim's review.
+
+- [x] **Milestone 20: Verbatim Dev Prompts Timeline & Automated Milestone Sync (Completed - Issue #7)**
+  - Replaced decorative cards and haiku synthesis with simple, unadorned plaintext quotes of Jim's authentic prompts on `content/pages/prompt-history.md`.
+  - Created `tools/sync_dev_prompts.py` to parse `JOURNAL.md` on a per-milestone basis, extracting 29 steering prompts across 9 releases through `v0.6.5`.
+  - Added 6th metric card to the DevOps dashboard on `content/pages/about-this-site.md` linking to `prompt-history.html`.
+  - Posted full status update comment to GitHub Issue #7. All 51 automated tests passing.
+
+- [x] **Milestone 19: Dynamic Mobile Dropdown Menu in Portrait Mode (Completed - Release v0.6.5)**
+  - Implemented dynamic hiding dropdown menu in mobile portrait mode using 100% pure HTML5 `<details>` and `<summary>` (Zero-JS).
+  - Dynamic Jinja2 `namespace` logic identifies active section and displays it on the closed button (`[ Home ▾ ]`, `[ Posts ▾ ]`, `[ About ▾ ]`, `[ Site ▾ ]`, etc.).
+  - Flattened mobile portrait header to strictly 1 row (~40px height), completely eliminating 3-4 row wrapping.
+  - Floating dropdown card styled with subtle shadow, border, and active state highlights; meets WCAG 2.1 AAA touch targets (`min-height: 38px`).
+  - Added automated Playwright tests `test_mobile_dynamic_dropdown_portrait` and `test_navigation_mode_switching_by_viewport` (51/51 passing).
+  - Synchronized `pyproject.toml`, `about-this-site.md`, generated `releases/v0.6.5.md`.
+
 - [x] **Milestone 18: Compact Mobile Header, Streamlined Dates & Dense Post Listings (Completed - Release v0.6.4)**
   - Flattened header on phone landscape (`@media (orientation: landscape) and (max-height: 500px)`) to strictly 1 line max under 45px total height (`Jim Collinsworth` | `nav links` | `controls`), freeing >150px of vertical reading space.
   - Hidden `.site-tagline` ("Out of My Lane") on mobile and landscape phones to conserve vertical reading space.
