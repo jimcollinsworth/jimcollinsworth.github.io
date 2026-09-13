@@ -3,58 +3,138 @@ title: "Links"
 slug: "links"
 ---
 
-<div class="page-intro">
-  <p>
-    Curated links, articles, reading recommendations, and bookmarks across computing, music, health, and beyond.
-  </p>
+<div class="links-intro-row">
+  <div class="links-intro-col">
+    <div class="page-intro">
+      <p>
+        Curated links, articles, reading recommendations, and bookmarks across computing, music, health, and beyond.
+      </p>
+    </div>
+  </div>
+  <aside class="links-sidebar-meta">
+    <div class="links-meta-card">
+      <div class="links-meta-section">
+        <span class="links-meta-label">Collection</span>
+        <span class="links-meta-val">6 Curated Links &bull; 4 Domains</span>
+      </div>
+      <div class="links-meta-section">
+        <span class="links-meta-label">Topics</span>
+        <div class="keyword-tags">
+          <span class="keyword-tag">#ai</span>
+          <span class="keyword-tag">#computing</span>
+          <span class="keyword-tag">#somatics</span>
+          <span class="keyword-tag">#music</span>
+          <span class="keyword-tag">#making</span>
+        </div>
+      </div>
+    </div>
+  </aside>
 </div>
 
-<ul class="book-list">
-  <li class="book-item">
-    <div class="book-header-row">
-      <div class="book-header-left">
-        <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>
-        <h2 class="book-title">Lorem Ipsum Dolor Sit Amet *</h2>
-      </div>
-      <div class="book-header-right">
-        <span class="book-author">AI</span>
-        <time datetime="2026-09">Sep 2026</time>
-      </div>
-    </div>
-    <p class="book-notes">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>
-  </li>
+<div class="links-grid-row">
+  <div class="links-col">
+    <h2>Computing &amp; AI</h2>
+    <ul class="book-list">
+      <li class="book-item">
+        <div class="book-header-row">
+          <div class="book-header-left">
+            <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>
+            <h3 class="book-title">Lorem Ipsum Dolor Sit Amet *</h3>
+          </div>
+          <div class="book-header-right">
+            <span class="book-author">AI</span>
+            <time datetime="2026-09">Sep 2026</time>
+          </div>
+        </div>
+        <p class="book-notes">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </li>
 
-  <li class="book-item">
-    <div class="book-header-row">
-      <div class="book-header-left">
-        <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>
-        <h2 class="book-title">Consectetur Adipiscing Elit</h2>
-      </div>
-      <div class="book-header-right">
-        <span class="book-author">AI</span>
-        <time datetime="2026-08">Aug 2026</time>
-      </div>
-    </div>
-    <p class="book-notes">
-      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </p>
-  </li>
+      <li class="book-item">
+        <div class="book-header-row">
+          <div class="book-header-left">
+            <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>
+            <h3 class="book-title">Consectetur Adipiscing Elit</h3>
+          </div>
+          <div class="book-header-right">
+            <span class="book-author">AI</span>
+            <time datetime="2026-08">Aug 2026</time>
+          </div>
+        </div>
+        <p class="book-notes">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+        </p>
+      </li>
 
-  <li class="book-item">
-    <div class="book-header-row">
-      <div class="book-header-left">
-        <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>
-        <h2 class="book-title">Tempor Incididunt Ut Labore *</h2>
-      </div>
-      <div class="book-header-right">
-        <span class="book-author">AI</span>
-        <time datetime="2026-07">Jul 2026</time>
-      </div>
-    </div>
-    <p class="book-notes">
-      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.
-    </p>
-  </li>
-</ul>
+      <li class="book-item">
+        <div class="book-header-row">
+          <div class="book-header-left">
+            <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>
+            <h3 class="book-title">Tempor Incididunt Ut Labore *</h3>
+          </div>
+          <div class="book-header-right">
+            <span class="book-author">AI</span>
+            <time datetime="2026-07">Jul 2026</time>
+          </div>
+        </div>
+        <p class="book-notes">
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.
+        </p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="links-col">
+    <h2>Arts, Health &amp; Making</h2>
+    <ul class="book-list">
+      <li class="book-item">
+        <div class="book-header-row">
+          <div class="book-header-left">
+            <span class="category-badge" title="Category: Theirs" aria-label="Category: Theirs"><svg class="category-icon icon-theirs" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path></svg></span>
+            <h3 class="book-title">Alexander Technique &amp; Somatics</h3>
+          </div>
+          <div class="book-header-right">
+            <span class="book-author">THEIRS</span>
+            <time datetime="2026-09">Sep 2026</time>
+          </div>
+        </div>
+        <p class="book-notes">
+          Clinical somatic alignment, conscious inhibition of habit patterns, and head-neck-spine coordination protocols.
+        </p>
+      </li>
+
+      <li class="book-item">
+        <div class="book-header-row">
+          <div class="book-header-left">
+            <span class="category-badge" title="Category: Theirs" aria-label="Category: Theirs"><svg class="category-icon icon-theirs" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path></svg></span>
+            <h3 class="book-title">Classical Guitar Technique Studies</h3>
+          </div>
+          <div class="book-header-right">
+            <span class="book-author">THEIRS</span>
+            <time datetime="2026-08">Aug 2026</time>
+          </div>
+        </div>
+        <p class="book-notes">
+          Right-hand tone production, rest-stroke mechanics, and Giuliani arpeggio routines for nylon string articulation.
+        </p>
+      </li>
+
+      <li class="book-item">
+        <div class="book-header-row">
+          <div class="book-header-left">
+            <span class="category-badge" title="Category: Theirs" aria-label="Category: Theirs"><svg class="category-icon icon-theirs" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path></svg></span>
+            <h3 class="book-title">Woodworking Edge Geometry</h3>
+          </div>
+          <div class="book-header-right">
+            <span class="book-author">THEIRS</span>
+            <time datetime="2026-06">Jun 2026</time>
+          </div>
+        </div>
+        <p class="book-notes">
+          Primary and secondary bevel angles, waterstone sharpening sequences, and edge retention across hardwood species.
+        </p>
+      </li>
+    </ul>
+  </div>
+</div>

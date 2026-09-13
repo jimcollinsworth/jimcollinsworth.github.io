@@ -2,6 +2,48 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Desktop 2-Row/2-Column Layout & Menu Left Margin Alignment (v0.6.15)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"desktop view needs more content, it could be 2 column, side by side lists, or list (and page intro) on left and link stats/keywords, etc on right sidebar."*
+> - *"and the left justification of the menu is annoying. don't like that jim, Home, horizontal bar and content don't line up. must be some solution for active/inactive menu, dropdown form to have consistent left margin, don't let menu jump around when toggling,"*
+> - *"1 yes for menu in 2 line mode"*
+> - *"2 yes keep dropdown as is for single line compact form"*
+> - *"3 desktop content - 2 columns/2 rows. first row is page summary in column 1 and then stats/keyword selectors in column 2. then row 2 has tech in column 1 and arts, crafts, rest in col 2. can't have full width page into on desktop or landscape tablet, too wide. note the columns in the intro can be different (70/30) than for the links (50/50)"*
+> - *"also it seems our desktop screen prints should be for much wider and higher resolution screens, go for a more realistic desktop monitor. the desktop now looks more like a tablet landscape, medium sized screen."*
+
+### Problem & Diagnosis
+1. **Left Margin Alignment Discrepancy**:
+   - The site title ("Jim Collinsworth"), the 4px horizontal bar, and body headings/content begin flush at the left container boundary (`x = 0`).
+   - In 2-line desktop navigation mode, menu items (`nav.site-nav a`) have `padding: 0.2rem 0.55rem`, causing the first label ("Home") to be inset by ~9px from the site title and content.
+   - On mobile, `.intro-blurb` had `padding: 0.75rem`, causing the lead intro to be indented 12px relative to the site title and horizontal bar.
+2. **Menu Toggling Horizontal Shift**:
+   - Inactive menu links used `font-weight: 500`, while the active link used `font-weight: 600`. Switching tabs changed the character width of labels, causing subsequent links to shift horizontally.
+3. **Desktop Content Density on Links Page**:
+   - The Links page was rendered as a single narrow column, leaving unused whitespace on desktop displays.
+4. **Desktop Screenshot Resolution**:
+   - Screenshots were captured at 1280x800, resembling a landscape tablet rather than a standard 1920x1080 desktop monitor.
+
+### Root Cause & Technical Analysis
+- `nav.site-nav` lacked a negative margin offset to cancel out the first child's padding box.
+- Dynamic font-weight toggling altered glyph bounding boxes across page loads.
+- `links.md` lacked a responsive grid wrapper separating introduction, metadata, and topic categories.
+
+### Solution & Standard Procedure
+1. **Flush Left Navigation Alignment & Zero-Jump Toggling**:
+   - Added `margin-left: -0.55rem;` to `nav.site-nav` in `theme/static/css/style.css`, aligning the first text label with the site title, 4px horizontal bar, and content.
+   - Set uniform `font-weight: 600;` on all navigation links (`nav.site-nav a`), ensuring static character widths across active and inactive states.
+   - Set `padding: 0;` on `.intro-blurb` across mobile and desktop.
+   - Preserved single-line compact dropdown form on the right beside theme switchers for viewports under 768px.
+2. **2-Row / 2-Column Responsive Layout for Links**:
+   - Created `.links-intro-row` (70% / 30% grid on desktop/landscape) with intro summary in column 1 and a stats / keyword card in column 2.
+   - Created `.links-grid-row` (50% / 50% grid on desktop/landscape) with technical/AI references in column 1 and arts, health & making links in column 2.
+   - Preserved single-column stacking on mobile and tablet portrait viewports.
+3. **High-Resolution Desktop Captures**:
+   - Configured Playwright capture script to 1920x1080 resolution.
+4. **Verification**:
+   - Rebuilt site with Pelican, verified all 51 automated tests passed, and bumped version to `v0.6.15`.
+
 ## 2026-09-13 — Provenance Icon Title Prefix & Intro Arrow Link (v0.6.14)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

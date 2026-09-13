@@ -7,9 +7,34 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>61 prompts</strong> from Jim across 18 milestones, alongside concise summaries of actions taken.
+    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>67 prompts</strong> from Jim across 19 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
+
+## Desktop 2-Row/2-Column Layout & Menu Left Margin Alignment (v0.6.15)
+*2026-09-13*
+
+**Jim (Mine):**
+
+desktop view needs more content, it could be 2 column, side by side lists, or list (and page intro) on left and link stats/keywords, etc on right sidebar.
+
+and the left justification of the menu is annoying. don't like that jim, Home, horizontal bar and content don't line up. must be some solution for active/inactive menu, dropdown form to have consistent left margin, don't let menu jump around when toggling,
+
+1 yes for menu in 2 line mode
+
+2 yes keep dropdown as is for single line compact form
+
+3 desktop content - 2 columns/2 rows. first row is page summary in column 1 and then stats/keyword selectors in column 2. then row 2 has tech in column 1 and arts, crafts, rest in col 2. can't have full width page into on desktop or landscape tablet, too wide. note the columns in the intro can be different (70/30) than for the links (50/50)
+
+also it seems our desktop screen prints should be for much wider and higher resolution screens, go for a more realistic desktop monitor. the desktop now looks more like a tablet landscape, medium sized screen.
+
+**Response:**
+
+- Flush Left Navigation Alignment & Zero-Jump Toggling: Added `margin-left: -0.55rem;` to `nav.site-nav` in `theme/static/css/style.css`, aligning the first text label with the site title, 4px horizontal bar, and content.
+- 2-Row / 2-Column Responsive Layout for Links: Created `.links-intro-row` (70% / 30% grid on desktop/landscape) with intro summary in column 1 and a stats / keyword card in column 2.
+- High-Resolution Desktop Captures: Configured Playwright capture script to 1920x1080 resolution.
+
+---
 
 ## Provenance Icon Title Prefix & Intro Arrow Link (v0.6.14)
 *2026-09-13*

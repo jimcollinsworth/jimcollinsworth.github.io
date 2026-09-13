@@ -6,6 +6,15 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 30: Desktop 2-Row/2-Column Layout & Menu Left Margin Alignment (Completed - Release v0.6.15)**
+  - Applied `margin-left: -0.55rem;` to `nav.site-nav`, achieving flush vertical alignment between "Jim", the first menu label, the 4px horizontal bar, and body content.
+  - Standardized `font-weight: 600;` across all navigation links to eliminate horizontal character width shifts when toggling active tabs.
+  - Removed mobile `.intro-blurb` padding (`padding: 0;`), aligning the mobile lead paragraph with the site title and horizontal line.
+  - Reorganized `content/pages/links.md` into a responsive 2-row / 2-column layout: Row 1 (70/30) with summary and collection stats/keywords; Row 2 (50/50) with Computing & AI on left, Arts, Health & Making on right.
+  - Added responsive CSS grid rules for `.links-intro-row`, `.links-grid-row`, and `.links-meta-card`.
+  - Configured realistic 1920x1080 resolution in screenshot capture script.
+  - Rebuilt static site with Pelican; passed all 51 automated tests (`pytest -v`).
+
 - [x] **Milestone 29: Provenance Icon Title Prefix & Intro Arrow Link (Completed - Release v0.6.14)**
   - Unified provenance icon positioning across `Recent Links` (`index.html` and `links.md`) so that the provenance icon prefixes the title, matching `Recent Stream` and `Featured Post`.
   - Added `.book-header-row`, `.book-header-left`, and `.book-header-right` flex styles to `theme/static/css/style.css` to align `[ICON] [TITLE]` on left and right-justified author (`AI`) and date on right.
