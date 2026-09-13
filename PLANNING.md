@@ -6,6 +6,28 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 33: Big Display Typography Scaling & Full-Screen App Header Unification (Completed - Release v0.7.1)**
+  - Scaled site title ("Jim Collinsworth") to `1.95rem` and tagline ("Out of My Lane") to `1.45rem` on big displays (`@media (min-width: 1360px)`).
+  - Scaled base desktop site title to `1.55rem` and tagline to `1.25rem`.
+  - Scaled tagline in text-size toggle mode to `1.65rem`.
+  - Harmonized top header bar markup and CSS in `content/apps/pipeline-tools/index.html` with `photo-viewer` and `keyword-search` (plain text accent `← Back to Apps` link, serif bold title, and `btn` action classes).
+  - Added theme toggle and browser full-screen request buttons to `content/apps/pipeline-tools/index.html`.
+  - Captured uncropped full-width (1920px) header evidence showing both left and right outer container margins and alignment.
+  - Bumped version to `v0.7.1` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+  - Passed all 51 automated tests in `pytest -v`.
+
+- [x] **Milestone 32: Site v0.7.0: App Posts, Full-Screen App Container & Dual AI/Mine Provenance (Completed - Release v0.7.0)**
+  - Bound Featured Post summary dynamically on `index.html` via `featured.summary`.
+  - Promoted Pipeline Tools to active Featured Post (`content/posts/pipeline-tools-workbench.md`).
+  - Created dedicated articles for Photo Viewer and Keyword Explorer in `content/posts/`.
+  - Captured high-resolution application screenshots into `content/images/` and embedded them in posts with `<figure>` and `<figcaption>`.
+  - Built full-screen standalone application wrapper `content/apps/pipeline-tools/index.html` with top app bar and 100% viewport iframe.
+  - Added dual provenance icon support (`[AI]` + `[Mine]`) in `theme/templates/category_icon.html` and `theme/static/css/style.css`.
+  - Streamlined `content/pages/apps.md` cards by removing uppercase eyebrow labels and matching `1.05rem` font-sans post titles.
+  - Tightened navigation menu item spacing (`gap: 0.15rem;`, link padding `0.25rem;`, `margin-left: -0.25rem;`), bringing "About" close to "Home" while maintaining flush alignment with branding.
+  - Bumped version to `v0.7.0` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+  - Passed all 51 automated tests in `pytest -v`.
+
 - [x] **Milestone 31: Pipeline Tools App Page & Hugging Face Spaces Integration (Completed - Release v0.6.16)**
   - Created dedicated application page `content/pages/pipeline-tools.md` with Stream `Mine` attribution (Jim Collinsworth).
   - Integrated direct iframe embed (`https://jimcollinsworth-pipeline-tools.hf.space`) with breadcrumbs back to the Apps hub.

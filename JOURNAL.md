@@ -2,6 +2,95 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Big Display Typography Scaling & Full-Screen App Header Unification (v0.7.1)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"i think on big displays 'jim collinsworth' and 'out of my lane' can be a bit bigger"*
+> - *"and is the pipeline-tools hugging face app running in full screen mode like the other 2 apps now with the same header bar?"*
+> - *"why can't i see the left and right edges,"*
+
+### Problem & Diagnosis
+1. **Desktop Branding Presence on Big Displays**:
+   - On wide desktop displays (1360px to 1920px+), the site title ("Jim Collinsworth") at `1.35rem` and tagline ("Out of My Lane") at `1.15rem` were visually understated relative to the 1380px layout container width and reading copy.
+2. **Cropped Visual Evidence in Walkthrough**:
+   - The closeup header screenshot in `walkthrough.md` was clipped at `x: 300, width: 1320` across a 1920px viewport, shaving off 300px on both sides and cutting off the outer container edges, leaving "n Collinsworth" on the left and "Out of My L" on the right.
+3. **App Header Consistency**:
+   - The standalone full-screen application wrapper for Pipeline Tools had minor styling and button discrepancies compared to Photo Viewer and Keyword Explorer (`.brand-link` with button border vs plain text accent link `&larr; Back to Apps`, missing Theme and Fullscreen toggle buttons).
+
+### Root Cause & Technical Analysis
+- The `@media (min-width: 1360px)` supersize desktop query increased `--max-width` to 1380px and body padding to `1.5rem 3rem 4rem`, but lacked specific font size overrides for `.site-title` and `.site-tagline`.
+- Standardizing base desktop `.site-title` to `1.55rem` and `.site-tagline` to `1.25rem`, with big display overrides to `1.95rem` and `1.45rem`, maintains baseline alignment (`align-items: baseline`) while providing appropriate visual presence.
+- Aligning `content/apps/pipeline-tools/index.html` markup to `.brand a.back-link`, `<h1>`, and standard `.btn` elements provides uniform UI across all three standalone applications.
+
+### Solution & Standard Procedure
+1. **Typography Scaling in CSS (`theme/static/css/style.css`)**:
+   - Scaled base desktop `.site-title` from `1.35rem` to `1.55rem`.
+   - Scaled base desktop `.site-tagline` from `1.15rem` to `1.25rem`.
+   - Added `@media (min-width: 1360px)` overrides: `.site-title { font-size: 1.95rem; }` and `.site-tagline { font-size: 1.45rem; }`.
+   - Scaled `.site-tagline` under `#text-size-toggle:checked` to `1.65rem !important`.
+2. **App Header Standardization in pipeline-tools**:
+   - Standardized left navigation to back-link anchor (&larr; Back to Apps) with colored accent and underline on hover.
+   - Standardized app title to serif bold h1 header.
+   - Standardized action buttons using shared `.btn` classes.
+   - Added Theme toggle and browser Fullscreen toggle buttons matching Photo Viewer.
+3. **Uncropped Full-Width Screenshot Captures**:
+   - Developed `scratch/capture_fullwidth_header_and_apps.py` capturing uncropped 1920px width viewports (`preview_header_fullwidth_1920_light.png` and `preview_header_fullwidth_1920_dark.png`), showing full left and right outer container margins and alignment.
+   - Captured side-by-side header bar comparisons across all three applications.
+4. **Verification & Versioning**:
+   - Synchronized `pyproject.toml` and `content/pages/about-this-site.md` to `v0.7.1`.
+   - Synced `content/pages/prompt-history.md` via `tools/sync_dev_prompts.py` (77 prompts across 22 milestones).
+   - Passed all 51 automated tests (`uv run pytest -v`).
+
+## 2026-09-13 — Site v0.7.0: App Posts, Full-Screen App Container & Dual AI/Mine Provenance (v0.7.0)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"wow bump the version up to .7 looking good."*
+> - *"i want to make pipeline tools app post the featured post - each app needs a post I author, and then links to run in full screen mode, and links to github repo readme, hugging face space, other links. get these posts created if not aready created."*
+> - *"make the pipeline-tool app run in full screen mode just like the other 2. explain approach issues. could also have a link to full app in spaces. where is all this configured for build? is it in the app blog post metadata? in apps directory config? also, fair to say that all apps going forward will mainly be AI authored so lets respect that providence, how about ai providence with me as author (2 icons would be great in this case but don't know how prevalent that use case is. I (mine) will author the app post, but ai does 95% (or 99%))"*
+> - *"remove the "Interactive Application • Visual Media" from apps list, whatever that label is, remove it. app should list - providence icon, title (in the same smaller font we use for title in blog lists, seems like the same header level would be used)."*
+> - *"we need a photo/screen print for each app, probably in the app blog posting. i assume every post can have a default photo and maybe thumbnail used for various display purposes. thow in screen shots for each of the 3 apps in their initial posts."*
+> - *"remove all the padding between menu items, about should be much closer to home"*
+
+### Problem & Diagnosis
+1. **Featured Post Flexibility**:
+   - The homepage Featured Post section (`theme/templates/index.html`) contained hardcoded summary text and did not dynamically update when new articles were published.
+2. **Missing Editorial Posts for Applications**:
+   - The three applications on the site (Pipeline Tools, Photo Viewer, and Keyword Explorer) lacked dedicated narrative articles in `content/posts/`.
+3. **Full-Screen Pipeline Tools Container**:
+   - Photo Viewer and Keyword Explorer run as standalone full-viewport (`100vw` $\times$ `100vh`) apps in `apps/`, while Pipeline Tools only had an in-page 850px embed on `pipeline-tools.html`.
+4. **Dual Provenance Attribution**:
+   - The codebase lacked a mechanism to represent software generated by AI while curated and authored by Jim (`[AI]` + `[Mine]` dual icon display).
+5. **Apps Hub Visual Clutter**:
+   - The cards on `apps.md` had uppercase eyebrow labels (`Interactive Application • Visual Media`) and large 1.4rem titles that did not match the compact 1.05rem blog post list headers.
+
+### Root Cause & Technical Analysis
+- `index.html` hardcoded the paragraph text inside `<p class="post-teaser">` instead of binding to `{{ featured.summary }}`.
+- Standalone applications are copied from `content/apps/` to `output/apps/` via `STATIC_PATHS` in `pelicanconf.py`. Pipeline Tools required a static wrapper HTML page to host the cloud backend iframe in full-viewport mode.
+- `category_icon.html` only accepted a single category string without multi-badge flex layout.
+
+### Solution & Standard Procedure
+1. **Dynamic Featured Post**:
+   - Bound the Featured Post description on `theme/templates/index.html` to `{{ featured.summary }}`.
+   - Published `content/posts/pipeline-tools-workbench.md` dated `2026-09-13`, making it the active Featured Post on the homepage.
+2. **Dedicated App Posts & High-Resolution Screenshots**:
+   - Captured screenshots using Playwright to `content/images/`: `pipeline-tools-app.png`, `photo-viewer-app.png`, and `keyword-explorer-app.png`.
+   - Created three markdown articles in `content/posts/` (`pipeline-tools-workbench.md`, `photo-viewer-drive-manifest-explorer.md`, and `keyword-explorer-taxonomy.md`) with semantic `<figure>`, `<img>` with `alt` text, `<figcaption>`, and direct action links.
+3. **Full-Screen Pipeline Tools App (`content/apps/pipeline-tools/index.html`)**:
+   - Created a standalone full-viewport wrapper with a 56px top app bar (`← Back to Apps`, title, Spaces link, GitHub link, App Post link) and 100% viewport iframe.
+4. **Dual Provenance Icon Support**:
+   - Updated `theme/templates/category_icon.html` with dual badge rendering (`AI` + `Mine`) when an article has AI category and Jim Collinsworth as author (or explicitly requests dual provenance).
+   - Added `.category-badge.dual-badge` styling in `theme/static/css/style.css`.
+5. **Apps Hub Header Streamlining**:
+   - Removed eyebrow labels on `content/pages/apps.md`.
+   - Replaced card titles with `[ICON] [TITLE]` rows using `1.05rem` font-sans headers matching blog list formatting.
+   - Added direct navigation buttons to full-screen apps and app posts.
+6. **Tightened Navigation Menu Item Spacing**:
+   - Reduced `gap` on `nav.site-nav` from `1.25rem` to `0.15rem` and horizontal link padding from `0.55rem` to `0.25rem`.
+   - Updated `margin-left` to `-0.25rem` to keep "Home" flush with site branding while bringing "About" immediately adjacent to "Home".
+7. **Verification & Versioning**:
+   - Bumped project version to `v0.7.0` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+   - Passed all 51 automated tests in `pytest -v`.
+
 ## 2026-09-13 — Pipeline Tools App Page & Hugging Face Spaces Integration (v0.6.16)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

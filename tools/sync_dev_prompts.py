@@ -139,7 +139,8 @@ def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int)
             md.append("**Response:**")
             md.append("")
             for a in m["actions"]:
-                md.append(f"- {a}")
+                sanitized_a = re.sub(r"<(/?[a-zA-Z0-9]+[^>]*)>", r"&lt;\1&gt;", a)
+                md.append(f"- {sanitized_a}")
             md.append("")
 
         md.append("---")

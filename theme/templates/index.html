@@ -19,7 +19,7 @@
         <div class="post-header-row">
           <div class="post-header-left">
             {% if featured.category %}
-            {{ category_icon(featured.category) }}
+            {{ category_icon(featured.category, featured.author) }}
             {% endif %}
             <h3 class="post-title"><a href="{{ SITEURL }}/{{ featured.url }}">{{ featured.title }}</a></h3>
           </div>
@@ -31,12 +31,11 @@
           </div>
         </div>
         <div class="post-desc">
-          <p class="post-teaser">
-            Movement during sleep is the problem: leg/body twitching and vocalization. A structured plan focusing on nutrition, exercise, somatic alignment (Alexander Technique, Tai Chi), and standardized self-evaluations.
-          </p>
-          <p class="post-detail">
-            Standardized baseline clinical assessments tracked over time include the Restless Legs Syndrome Rating Scale (RLSRS &amp; IRLSSG), Pittsburgh Sleep Quality Index (PSQI), and Epworth Sleepiness Scale (ESS) alongside daily sleep diary notes.
-          </p>
+          {% if featured.summary %}
+          <div class="post-teaser">
+            {{ featured.summary }}
+          </div>
+          {% endif %}
         </div>
       </article>
       {% endif %}
@@ -90,7 +89,7 @@
           <div class="post-header-row">
             <div class="post-header-left">
               {% if article.category %}
-              {{ category_icon(article.category) }}
+              {{ category_icon(article.category, article.author) }}
               {% endif %}
               <h3 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
             </div>

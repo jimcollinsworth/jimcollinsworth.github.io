@@ -13,7 +13,7 @@
     <h1 class="post-title">{{ article.title }}</h1>
     <div class="meta">
       {% if article.category %}
-      {{ category_icon(article.category) }}
+      {{ category_icon(article.category, article.author) }}
       {% endif %}
       {% if article.type %}
       <span class="post-type">{{ article.type|upper }}</span>

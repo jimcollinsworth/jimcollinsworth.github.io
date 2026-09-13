@@ -7,9 +7,53 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>68 prompts</strong> from Jim across 20 milestones, alongside concise summaries of actions taken.
+    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>77 prompts</strong> from Jim across 22 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
+
+## Big Display Typography Scaling & Full-Screen App Header Unification (v0.7.1)
+*2026-09-13*
+
+**Jim (Mine):**
+
+i think on big displays 'jim collinsworth' and 'out of my lane' can be a bit bigger
+
+and is the pipeline-tools hugging face app running in full screen mode like the other 2 apps now with the same header bar?
+
+why can't i see the left and right edges,
+
+**Response:**
+
+- Typography Scaling in CSS (`theme/static/css/style.css`): Scaled base desktop `.site-title` from `1.35rem` to `1.55rem`.
+- App Header Standardization in pipeline-tools: Standardized left navigation to back-link anchor (&larr; Back to Apps) with colored accent and underline on hover.
+- Uncropped Full-Width Screenshot Captures: Developed `scratch/capture_fullwidth_header_and_apps.py` capturing uncropped 1920px width viewports (`preview_header_fullwidth_1920_light.png` and `preview_header_fullwidth_1920_dark.png`), showing full left and right outer container margins and alignment.
+
+---
+
+## Site v0.7.0: App Posts, Full-Screen App Container & Dual AI/Mine Provenance (v0.7.0)
+*2026-09-13*
+
+**Jim (Mine):**
+
+wow bump the version up to .7 looking good.
+
+i want to make pipeline tools app post the featured post - each app needs a post I author, and then links to run in full screen mode, and links to github repo readme, hugging face space, other links. get these posts created if not aready created.
+
+make the pipeline-tool app run in full screen mode just like the other 2. explain approach issues. could also have a link to full app in spaces. where is all this configured for build? is it in the app blog post metadata? in apps directory config? also, fair to say that all apps going forward will mainly be AI authored so lets respect that providence, how about ai providence with me as author (2 icons would be great in this case but don't know how prevalent that use case is. I (mine) will author the app post, but ai does 95% (or 99%))
+
+remove the "Interactive Application • Visual Media" from apps list, whatever that label is, remove it. app should list - providence icon, title (in the same smaller font we use for title in blog lists, seems like the same header level would be used).
+
+we need a photo/screen print for each app, probably in the app blog posting. i assume every post can have a default photo and maybe thumbnail used for various display purposes. thow in screen shots for each of the 3 apps in their initial posts.
+
+remove all the padding between menu items, about should be much closer to home
+
+**Response:**
+
+- Dynamic Featured Post: Bound the Featured Post description on `theme/templates/index.html` to `{{ featured.summary }}`.
+- Dedicated App Posts & High-Resolution Screenshots: Captured screenshots using Playwright to `content/images/`: `pipeline-tools-app.png`, `photo-viewer-app.png`, and `keyword-explorer-app.png`.
+- Full-Screen Pipeline Tools App (`content/apps/pipeline-tools/index.html`): Created a standalone full-viewport wrapper with a 56px top app bar (`← Back to Apps`, title, Spaces link, GitHub link, App Post link) and 100% viewport iframe.
+
+---
 
 ## Pipeline Tools App Page & Hugging Face Spaces Integration (v0.6.16)
 *2026-09-13*
@@ -254,7 +298,7 @@ an improvement but need the dynamic menu in portrate mode thats possible right?
 
 **Response:**
 
-- Semantic HTML5 `<details>` & `<summary>` Integration: In `theme/templates/base.html`, added `<details class="mobile-nav-dropdown">` alongside `<nav class="site-nav desktop-nav">`.
+- Semantic HTML5 `&lt;details&gt;` & `&lt;summary&gt;` Integration: In `theme/templates/base.html`, added `&lt;details class="mobile-nav-dropdown"&gt;` alongside `&lt;nav class="site-nav desktop-nav"&gt;`.
 - Strictly Single-Row Mobile Portrait Header: Changed `header.site-header` in `@media (max-width: 640px)` to `display: flex; flex-direction: row; justify-content: space-between; align-items: center;`.
 - Floating Navigation Menu Card: Absolutely positioned `.mobile-nav-menu` under the dropdown button with `var(--bg-card)`, subtle border, and shadow.
 
@@ -368,7 +412,7 @@ lets commit and push, publish, update release number
 **Response:**
 
 - Multi-Lane & Type Parsing in `pelicanconf.py`: Updated `ObsidianMarkdownReader` to parse YAML `lanes`, `type`, and `previous_types`.
-- Template & CSS Updates: `theme/templates/article.html`, `archives.html`, `category.html`, `index.html`: Rendered `[TYPE]`, `(evolved from ...)`, and multiple lane links enclosed in `<span class="post-lanes">` to preserve clean typography without whitespace anomalies before commas.
+- Template & CSS Updates: `theme/templates/article.html`, `archives.html`, `category.html`, `index.html`: Rendered `[TYPE]`, `(evolved from ...)`, and multiple lane links enclosed in `&lt;span class="post-lanes"&gt;` to preserve clean typography without whitespace anomalies before commas.
 - Category Cleanup: Purged `lanes/ideas.html` and `lanes/projects.html`.
 
 ---

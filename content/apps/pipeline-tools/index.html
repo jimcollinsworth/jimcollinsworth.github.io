@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipeline Tools v1.3 // Multimodal Workbench — Jim Collinsworth</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --bg: #fbf9f4;
+      --surface: #ffffff;
+      --border: #dcd4c5;
+      --text: #1d1c1a;
+      --text-muted: #6e6b65;
+      --accent: #9a431c;
+      --accent-hover: #7d3514;
+      --accent-subtle: #f4ede2;
+      --header-height: 56px;
+      --font-serif: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #141413;
+      --surface: #1e1d1b;
+      --border: #383632;
+      --text: #ede9e0;
+      --text-muted: #9c978e;
+      --accent: #e07a4b;
+      --accent-hover: #f09265;
+      --accent-subtle: #2b231d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Top Bar */
+    header.app-bar {
+      height: var(--header-height);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+      flex-shrink: 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 0;
+    }
+
+    .brand a.back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+    }
+
+    .brand a.back-link:hover {
+      text-decoration: underline;
+    }
+
+    .brand h1 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text);
+    }
+
+    .app-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    button.btn, a.btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    button.btn:hover, a.btn:hover {
+      background: var(--accent-subtle);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    a.btn.primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    a.btn.primary:hover {
+      background: var(--accent-hover);
+      color: #ffffff;
+    }
+
+    /* Iframe Viewport Container */
+    .app-main {
+      flex: 1;
+      width: 100%;
+      height: calc(100vh - var(--header-height));
+      position: relative;
+      background: var(--bg);
+    }
+
+    .app-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .brand h1 {
+        display: none;
+      }
+      header.app-bar {
+        padding: 0 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-bar" role="banner">
+    <div class="brand">
+      <a href="../../apps.html" class="back-link">&larr; Back to Apps</a>
+      <h1>Pipeline Tools v1.3 // Multimodal Workbench</h1>
+    </div>
+    <div class="app-actions">
+      <button class="btn" id="toggle-theme" title="Toggle light/dark theme">Theme</button>
+      <button class="btn" id="toggle-fullscreen" title="Toggle full screen">Fullscreen</button>
+      <a href="https://huggingface.co/spaces/jimcollinsworth/pipeline-tools" class="btn primary" target="_blank" rel="noopener">Open in Spaces &nearr;</a>
+      <a href="https://github.com/jimcollinsworth/pipeline-tools" class="btn" target="_blank" rel="noopener">GitHub &nearr;</a>
+      <a href="../../posts/pipeline-tools-workbench.html" class="btn" title="Read App Article">App Post &rarr;</a>
+    </div>
+  </header>
+
+  <main class="app-main" role="main">
+    <iframe
+      src="https://jimcollinsworth-pipeline-tools.hf.space"
+      class="app-iframe"
+      title="Pipeline Tools Interactive Workbench"
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+      sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-downloads">
+    </iframe>
+  </main>
+
+  <script>
+    document.getElementById("toggle-theme").addEventListener("click", () => {
+      const cur = document.documentElement.getAttribute("data-theme");
+      document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+    });
+
+    document.getElementById("toggle-fullscreen").addEventListener("click", () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+  </script>
+</body>
+</html>
