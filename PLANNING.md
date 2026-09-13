@@ -6,6 +6,16 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 24: Tightened Header Spacing, Compact Active Nav & Segmented Controls (Completed - Release v0.6.9)**
+  - Reduced excessive vertical padding above the header (`body` top padding reduced from 2.5rem to 1.25rem on desktop, 1.5rem on supersize, 1.25rem on tablets, 0.85rem on mobile).
+  - Tightened vertical spacing between branding and navigation (`margin-bottom: 0.35rem;`).
+  - Reduced desktop header padding above the grey horizon bar to `0.45rem`, and margin below the bar to `1.5rem`.
+  - Tightened active navigation highlight pill on desktop (`padding: 0.12rem 0.55rem; line-height: 1.2;`, removed desktop `min-height: 38px`), creating a short, crisp pill that hugs navigation labels.
+  - Integrated mobile portrait dropdown and theme/mode switcher icons with the horizon bar (`padding-bottom: 0.35rem`, `margin-bottom: 0.85rem`).
+  - Grouped `.site-controls` into a cohesive, segmented capsule (`gap: 1px`, `background-color: var(--bg-subtle)`, `border: 1px solid var(--border-subtle)`, `border-radius: 6px`, `padding: 1px`) with square 25px buttons matching the height and visual weight of the mobile dropdown button.
+  - Cleaned `templates/obsidian-post-template.md` by removing Section 7 (`STANDALONE PAGE MENU SETTINGS`) and removed redundant `p.menu` fallback loops from `theme/templates/base.html`.
+  - Recompiled site and verified all 51 automated tests passing. Bumped version to `v0.6.9`.
+
 - [x] **Milestone 23: Pelican Conventions Rule, Optional Summary & Menu Architecture (Completed - Release v0.6.8)**
   - Codified Section 17 in `AGENTS.md` and `.agents/agent_rules.md` requiring strict adherence to official Pelican conventions, standard metadata fields, and disallowing custom alias layers or metadata bloat.
   - Formulated optional summary policy: no requirement for manual `summary:` frontmatter; Pelican auto-derives the summary from body text when omitted.

@@ -5,9 +5,111 @@ slug: "prompt-history"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> is an unadorned, chronological chronicle of human-directed pair programming for <code>jimcollinsworth.github.io</code>. Extracted directly from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>, it captures <strong>29 direct steering prompts</strong> across 9 releases and milestones. Prompts are presented in Jim's simple, verbatim words, paired with concise release summaries and notes on what the agent did wrong and how it was corrected.
+    <strong>Development Prompts</strong> is an unadorned, chronological chronicle of human-directed pair programming for <code>jimcollinsworth.github.io</code>. Extracted directly from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>, it captures <strong>39 direct steering prompts</strong> across 14 releases and milestones. Prompts are presented in Jim's simple, verbatim words, paired with concise release summaries and notes on what the agent did wrong and how it was corrected.
   </p>
 </div>
+
+## Tightened Header Spacing, Compact Active Nav & Segmented Controls (v0.6.9)
+*2026-09-13*
+
+**Jim's Direct Prompts:**
+
+> *"no but remove menuitem from the template if we don&#x27;t realy use it."*
+
+> *"on site page (and all pages) there is too much vertical spacing in the header, reduce spacing above, between and below, should be pretty tight with the grey bar. Make the selected highlight on menu items shorter, don&#x27;t need all that padding and margins."*
+
+> *"on home page in phone profile view the menu dropdown and theme icons don&#x27;t look quite integrated with the line, need to remove spacing under, get the theme icons closer together looking like a unit (maybe a very very subtle background group (but don&#x27;t add any physical spacing)"*
+
+**Course Corrections & Technical Remediation:**
+
+- <strong>Excessive Vertical Spacing in Header</strong>:
+- The desktop header had wide vertical gaps: 2.5rem body top padding, 0.85rem branding margin, 1.5rem header bottom padding, and 3.0rem header bottom margin.
+- The active navigation highlight pill had tall top/bottom padding and a 38px min-height on desktop, making it feel bulky and oversized relative to the editorial type.
+- <strong>Mobile Portrait (&lt; 640px) Integration</strong&gt;:
+- In phone portrait mode, the <code>.mobile-nav-summary</code> dropdown and theme switcher buttons (<code>.control-btn</code>) floated with excess space above the 3px grey horizon line.
+- The theme/contrast/text-size buttons appeared as disparate floating icons rather than a unified, integrated control capsule.
+- <strong>Template & Menu Cleanup</strong>:
+- <code>templates/obsidian-post-template.md</code> had an unused section for standalone page menu settings (<code>menu: true</code>, <code>menu_order</code>, <code>menu_title</code>).
+- <code>theme/templates/base.html</code> contained redundant fallback loops checking for <code>p.menu</code> on pages when navigation is centrally and reliably defined in <code>MENUITEMS</code>.
+
+---
+
+## Pelican Conventions Rule, Optional Summary & Menu Architecture (v0.6.8)
+*2026-09-13*
+
+**Jim's Direct Prompts:**
+
+> *"nope don&#x27;t need summary, want to follow pelican conventions if possible (make an agents.md rule)"*
+
+> *"can a blog post be a menu? do the custom pages (about.md) have a menu:true"*
+
+**Course Corrections & Technical Remediation:**
+
+- <strong>Adherence to Official Pelican Conventions vs. Custom Abstractions</strong>:
+- Rather than introducing custom alias layers (e.g. mapping <code>description</code> to <code>summary</code>), Jim directed that the site strictly follow official Pelican conventions.
+- In Pelican, <code>summary</code> is optional in content files: Pelican automatically truncates the article body (first 50 words / first paragraph) when <code>summary:</code> is omitted.
+- Jim requested an explicit governance rule in <code>AGENTS.md</code> to codify this architectural standard.
+- <strong>Menu Architecture Clarity</strong>:
+- Jim asked whether custom pages like <code>about.md</code> have <code>menu: true</code> in their frontmatter, and whether a blog post can be in the navigation menu.
+
+---
+
+## Header Horizon Bar, Reversed Active Nav & Obsidian Post Template (v0.6.7)
+*2026-09-12*
+
+**Jim's Direct Prompts:**
+
+> *"just the horizontal header bar below the menu, maybe a few pixels wider, basic grey for now. lets use something besides underline foemthe active menumitems sinsce that would conflict with the horizontal bar. maybe hightigt or reverse it, make it obvious."*
+
+> *"give me an obsidian template, has all the yaml field with comment and field values. can add it to the repo"*
+
+**Course Corrections & Technical Remediation:**
+
+- <strong>Nav Underline vs. Header Horizon Bar Conflict</strong>:
+- The previous active navigation indicator used a colored bottom border (<code>border-bottom: 2px solid var(--link)</code>). Placing a horizontal bar below the header resulted in visually clashing parallel lines.
+- Jim requested a wider horizontal basic grey bar below the menu, and switching the active menu item from an underline to an obvious reversed highlight pill.
+- <strong>Obsidian Authoring Frontmatter Ambiguity</strong>:
+- Authoring posts in Obsidian required remembering or searching for frontmatter conventions (<code>type</code>, <code>previous_types</code>, <code>category</code>, <code>status</code>, <code>summary</code>, <code>tags</code>).
+- Jim requested an official, comprehensive Obsidian template file with all YAML fields, detailed field comments, and allowed values added directly to the repository.
+
+---
+
+## Color Flair & Photo Border Architectural Design (Issue #6)
+*2026-09-12*
+
+**Jim's Direct Prompts:**
+
+> *"after that do ticket 6 add a touchnofmcolor flair, but just design and a few potential screen shots, document in the issue ticket"*
+
+> *"try more spatial variations not colors, linesmthinner, sides only, top only, lookmforminspiration, just a splash, colors from,my photos, nature."*
+
+**Course Corrections & Technical Remediation:**
+
+- <strong>Desire for Visual Color Flair</strong>:
+- The site's minimalist warm-paper aesthetic is clean, but Jim wants to introduce controlled, intentional color flair drawn directly from his Chicago sky and Lake Michigan photography without introducing visual clutter or violating the site's editorial feel.
+- <strong>Zero-JavaScript "Click Border to View Full Photo" Requirement</strong>:
+- Jim requested that clicking anywhere on the screen border jump directly to the full-screen photo. With Rule 3 strictly disallowing client-side JavaScript, this must be solved purely via semantic HTML5 and modern CSS without interfering with inner text selection, links, or scrolling.
+- <strong>Context-Aware Photo Page Neutrality</strong>:
+- On photo-rich pages like <code>photos.html</code>, a vibrant colored border risks clashing with the photos. As Jim noted, these pages should automatically switch to a basic neutral grey border.
+
+---
+
+## Verbatim Dev Prompts Timeline & Automated Milestone Sync (Issue #7)
+*2026-09-12*
+
+**Jim's Direct Prompts:**
+
+> *"go ahead and do issuem#7 dev prompts but not the haiku part, just the shift to simple prompt text. after that do ticket 6 add a touchnofmcolor flair, but just design and a few potential screen shots, document in the issue ticket"*
+
+**Course Corrections & Technical Remediation:**
+
+- <strong>Artificial Ornamentation & Missing Authentic Steering</strong>:
+- The initial prompt history timeline included AI-generated haikus and decorative cards ("AI slop") rather than Jim's authentic, verbatim prompts.
+- Recent releases (v0.6.0 through v0.6.5) and critical steering moments (remediations, corrections, agent errors) were missing from the public timeline.
+- <strong>Manual Maintenance Overhead</strong>:
+- Adding prompts manually to <code>prompt-history.md</code> was error-prone and unscalable across frequent milestones.
+
+---
 
 ## Dynamic Mobile Dropdown Menu in Portrait Mode (Release v0.6.5)
 *2026-09-12*

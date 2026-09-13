@@ -2,6 +2,52 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Tightened Header Spacing, Compact Active Nav & Segmented Controls (v0.6.9)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"no but remove menuitem from the template if we don't realy use it."*
+> - *"on site page (and all pages) there is too much vertical spacing in the header, reduce spacing above, between and below, should be pretty tight with the grey bar. Make the selected highlight on menu items shorter, don't need all that padding and margins."*
+> - *"on home page in phone profile view the menu dropdown and theme icons don't look quite integrated with the line, need to remove spacing under, get the theme icons closer together looking like a unit (maybe a very very subtle background group (but don't add any physical spacing)"*
+
+### Problem & Diagnosis
+1. **Excessive Vertical Spacing in Header**:
+   - The desktop header had wide vertical gaps: 2.5rem body top padding, 0.85rem branding margin, 1.5rem header bottom padding, and 3.0rem header bottom margin.
+   - The active navigation highlight pill had tall top/bottom padding and a 38px min-height on desktop, making it feel bulky and oversized relative to the editorial type.
+2. **Mobile Portrait (< 640px) Integration**:
+   - In phone portrait mode, the `.mobile-nav-summary` dropdown and theme switcher buttons (`.control-btn`) floated with excess space above the 3px grey horizon line.
+   - The theme/contrast/text-size buttons appeared as disparate floating icons rather than a unified, integrated control capsule.
+3. **Template & Menu Cleanup**:
+   - `templates/obsidian-post-template.md` had an unused section for standalone page menu settings (`menu: true`, `menu_order`, `menu_title`).
+   - `theme/templates/base.html` contained redundant fallback loops checking for `p.menu` on pages when navigation is centrally and reliably defined in `MENUITEMS`.
+
+### Root Cause & Technical Analysis
+- The generous Bear Blog-inspired padding (2.5rem–3.0rem) created too much dead space above and below the horizontal border bar, pushing the content too far down the fold.
+- Desktop navigation links do not require a 38px touch target; a compact 0.12rem 0.55rem padding with a 1.2 line-height yields a crisp ~24px pill that hugs the text comfortably. (Mobile dropdown links retain `min-height: 38px` to maintain WCAG 2.5.5 touch target compliance).
+- Grouping `.site-controls` into a cohesive segmented capsule (`background-color: var(--bg-subtle); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1px; gap: 1px;`) creates a single tactile unit that visually balances the `.mobile-nav-summary` dropdown on mobile portrait and sits flush on the horizon line without consuming extra horizontal space.
+
+### Solution & Standard Procedure
+1. **Tightened Header Spacing**:
+   - Desktop `body`: `padding: 1.25rem 2rem 3rem;` (was 2.5rem). Supersize `body`: `1.5rem 3rem 4rem;`. Tablets: `1.25rem 1.75rem 2.5rem;`. Mobile portrait: `0.85rem 1rem 2rem;`.
+   - `.site-branding`: `margin-bottom: 0.35rem;` (was 0.85rem).
+   - Desktop `header.site-header`: `padding-bottom: 0.45rem; margin-bottom: 1.5rem;` (was 1.5rem / 3.0rem).
+   - Mobile `header.site-header`: `padding-bottom: 0.35rem; margin-bottom: 0.85rem;` (was 0.65rem / 1.25rem).
+2. **Compact Navigation Highlight Pill**:
+   - `nav.site-nav a` (desktop): Removed `min-height: 38px;`, set `padding: 0.12rem 0.55rem; line-height: 1.2;`.
+   - Active state `nav.site-nav a[aria-current="page"], nav.site-nav a.active`: `padding: 0.12rem 0.55rem;` with reversed contrast pill.
+3. **Integrated Segmented Control Capsule**:
+   - `.site-controls`: Grouped as a segmented unit with subtle border and background (`gap: 1px`, `background-color: var(--bg-subtle)`, `border: 1px solid var(--border-subtle)`, `border-radius: 6px`, `padding: 1px`).
+   - `.control-btn`: Tightened to `25px x 25px` square buttons (`border: none;`), harmonizing with the `.mobile-nav-summary` dropdown.
+4. **Template & Menu Simplification**:
+   - Removed Section 7 (`STANDALONE PAGE MENU SETTINGS`) from `templates/obsidian-post-template.md`.
+   - Cleaned `theme/templates/base.html` to drive desktop and mobile navigation purely from `MENUITEMS`.
+5. **Testing, Synchronization & Versioning**:
+   - Synchronized `assets/css/style.css` to `theme/static/css/style.css` and `theme/css/style.css`.
+   - Verified 51/51 pytest tests pass cleanly via `uv run pytest -v`.
+   - Recompiled static site via `uv run pelican content -s pelicanconf.py -o output -d`.
+   - Bumped project version to `0.6.9` across `pyproject.toml`, `content/pages/about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
+---
+
 ## 2026-09-13 — Pelican Conventions Rule, Optional Summary & Menu Architecture (v0.6.8)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

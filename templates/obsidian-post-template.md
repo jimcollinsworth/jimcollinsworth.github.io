@@ -76,12 +76,6 @@ status: published
 # image_alt: "Detailed accessible description of the image"
 # image_caption: "Descriptive caption rendered beneath the figure"
 
-# 7. STANDALONE PAGE MENU SETTINGS (Pages Only — Leave commented for posts)
-# ------------------------------------------------------------------------------
-# If this file is placed in content/pages/ and you want it in the site nav bar:
-# menu: true
-# menu_order: 10
-# menu_title: "My Page"
 ---
 
 <div class="page-intro">
