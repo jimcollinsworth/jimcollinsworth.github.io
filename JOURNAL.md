@@ -6,6 +6,7 @@
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:
 > - *"after that do ticket 6 add a touchnofmcolor flair, but just design and a few potential screen shots, document in the issue ticket"*
+> - *"try more spatial variations not colors, linesmthinner, sides only, top only, lookmforminspiration, just a splash, colors from,my photos, nature."*
 > - Ticket #6 Text: *"Time to add some color to the website. Want to use colors from underlying photos of the sky and paint strokes. On most pages I think just a simple 10 pixel colored border around the entire page. 10 is a guess, we can try different sizes, even fir different resolutions or orientation. Border can be wider on bigger displays. Use build tool to create smal patches from my photos which are then used as background for the screen border. Click on the boarder to jump to full screen photo. Can do one specific photo first, but then code in some variations. Underlines in matching color of use patch? For photo rich pages we go to a basic Grey border."*
 
 ### Problem & Diagnosis
@@ -26,11 +27,13 @@
 1. **Palette Extraction**:
    - Developed `scratch/extract_colors.py` using Playwright Canvas sampling to compute RGB/Hex averages for sky, horizon, and water bands across Jim's photos.
 2. **Prototypes Evaluated**:
-   - Option A: Sunset Fire Amber (`#d64900`) on Home (`index.html`) across Desktop (14px) and Mobile (8px).
-   - Option B: Lakefront Cerulean Blue (`#23496d`) on Posts (`posts.html`).
-   - Option C: Sliced Photo-Patch Horizon Texture from `sky-lakefront.jpg` on About (`about.html`).
-   - Option D: Twilight Ember (`#e28743`) on Home in Dark Mode.
-   - Option E: Neutral Studio Grey (`#808387`) on Photos Gallery (`photos.html`) across Desktop and Mobile.
+   - **Initial 4-Sided Borders**: Sunset Fire Amber (`#d64900`), Lakefront Cerulean (`#23496d`), Photo-Patch texture, Dark Mode Twilight Ember (`#e28743`), Neutral Grey (`#808387`).
+   - **Spatial Variations & Thinner Lines (Jim's Direction)**:
+     - *Top Only (3px)*: Panoramic horizon gradient (Lake blue to sunset amber) pinned to viewport top. 0px content disruption.
+     - *Sides Only (3px)*: Dual vertical rails in Lake Michigan Cerulean (`#23496d`), leaving top and bottom open.
+     - *Left Spine Only (4px)*: Asymmetric vertical bookbinding/journal rail in Marigold Amber (`#d77400`, from `flower-macro.jpg`).
+     - *Header Splash Rule (3px)*: Natural horizon rule beneath site header separating navigation from editorial prose.
+     - *Corner Splash (3px)*: Top-left L-bracket registration notch.
 3. **Harmonic Link Underlines**:
    - Text hyperlinks inherit `text-decoration-color: var(--flair-color)`, tying inline copy visually to the perimeter frame.
 4. **Documented in GitHub Issue #6**:
