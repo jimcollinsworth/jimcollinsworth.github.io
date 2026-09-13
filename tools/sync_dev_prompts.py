@@ -102,19 +102,53 @@ def parse_journal() -> tuple[list[dict], int]:
     return milestones, total_prompt_count
 
 
+def format_date(d_str: str) -> str:
+    """Format YYYY-MM-DD into 'Sept 13 2026'."""
+    if not d_str:
+        return ""
+    try:
+        parts = d_str.split("-")
+        year = parts[0]
+        month = int(parts[1])
+        day = int(parts[2])
+        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
+        return f"{months[month - 1]} {day} {year}"
+    except Exception:
+        return d_str
+
+
 def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int) -> str:
-    """Generate clean, plaintext prompt timeline without over-produced styling."""
+    """Generate clean prompt timeline honoring Jim's layout rules."""
+    ICON_MINE = '<svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>'
+    ICON_AI = '<svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>'
+    
+    latest_date_str = milestones[0]["date"] if milestones and milestones[0].get("date") else "2026-09-13"
+    latest_formatted = format_date(latest_date_str)
+
     md = []
     md.append("---")
-    md.append('title: "Development Prompts & Instruction Timeline"')
+    md.append('title: "Development Prompts"')
     md.append('slug: "prompt-history"')
     md.append('category: "Mine"')
     md.append('author: "Jim Collinsworth"')
     md.append("---")
     md.append("")
+    md.append('<header class="post-header-full">')
+    md.append('  <div class="post-header-row">')
+    md.append('    <div class="post-header-left">')
+    md.append('      <a href="about-this-site.html" class="post-back-arrow" title="Back to About This Site" aria-label="Back to About This Site">&larr;</a>')
+    md.append(f'      <span class="category-badge dual-badge" title="Provenance: Jim Collinsworth &bull; AI Pair" aria-label="Category: Mine and AI">{ICON_MINE}{ICON_AI}</span>')
+    md.append('      <h1 class="post-title">Development Prompts</h1>')
+    md.append('    </div>')
+    md.append('    <div class="post-header-right">')
+    md.append(f'      <time datetime="{latest_date_str}">{latest_formatted}</time>')
+    md.append('    </div>')
+    md.append('  </div>')
+    md.append('</header>')
+    md.append("")
     md.append('<div class="page-intro">')
     md.append("  <p>")
-    md.append(f"    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>{total_prompts} prompts</strong> from Jim across {len(milestones)} milestones, alongside concise summaries of actions taken.")
+    md.append(f"    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>{total_prompts} prompts</strong> from Jim across {len(milestones)} milestones, alongside concise summaries of actions taken.")
     md.append("  </p>")
     md.append("</div>")
     md.append("")
@@ -122,31 +156,52 @@ def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int)
     for m in milestones:
         title = m['title']
         date_str = m['date']
-        md.append(f"## {title}")
-        if date_str:
-            md.append(f"*{date_str}*")
+        
+        # Link to relevant GitHub release tag or releases overview
+        ver_match = re.search(r"v\d+\.\d+(?:\.\d+)?", title)
+        if ver_match:
+            tag = ver_match.group(0)
+            rel_link = f"https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/{tag}"
+        else:
+            rel_link = "https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases"
+
+        date_html = f'<time datetime="{date_str}" class="milestone-date">{format_date(date_str)}</time>' if date_str else ''
+
+        md.append('<div class="milestone-header">')
+        md.append(f'  <h2 class="milestone-title"><a href="{rel_link}" target="_blank" rel="noopener">{title}</a></h2>')
+        if date_html:
+            md.append(f'  {date_html}')
+        md.append('</div>')
         md.append("")
 
-        # Jim's Prompts: simple full-width text with Mine attribution and Jim label
-        md.append("**Jim (Mine):**")
-        md.append("")
+        # Jim's Prompts: mine icon with Jim label
+        md.append('<div class="prompt-entry">')
+        md.append(f'  <div class="prompt-speaker"><span class="category-badge" title="Provenance: Mine">{ICON_MINE}</span> <strong>Jim:</strong></div>')
+        md.append('  <div class="prompt-quotes">')
         for p in m["prompts"]:
-            md.append(p.strip())
-            md.append("")
+            sanitized_p = re.sub(r"<(/?[a-zA-Z0-9]+[^>]*)>", r"&lt;\1&gt;", p.strip())
+            sanitized_p = re.sub(r"`([^`]+)`", r"<code>\1</code>", sanitized_p)
+            md.append(f'    <p>{sanitized_p}</p>')
+        md.append('  </div>')
+        md.append('</div>')
+        md.append("")
 
-        # LLM Response: concise, balanced length, no nested tags
+        # LLM Response: AI icon with edge-to-edge greyed out block
         if m["actions"]:
-            md.append("**Response:**")
-            md.append("")
+            md.append('<div class="prompt-response-block">')
+            md.append('  <div class="prompt-response-inner">')
+            md.append(f'    <div class="response-speaker"><span class="category-badge" title="Provenance: AI">{ICON_AI}</span> <strong>Response:</strong></div>')
+            md.append('    <ul class="response-actions">')
             for a in m["actions"]:
                 sanitized_a = re.sub(r"<(/?[a-zA-Z0-9]+[^>]*)>", r"&lt;\1&gt;", a)
-                md.append(f"- {sanitized_a}")
+                sanitized_a = re.sub(r"`([^`]+)`", r"<code>\1</code>", sanitized_a)
+                md.append(f'      <li>{sanitized_a}</li>')
+            md.append('    </ul>')
+            md.append('  </div>')
+            md.append('</div>')
             md.append("")
 
-        md.append("---")
-        md.append("")
-
-    md.append('<div style="margin-top: 1.5rem;">')
+    md.append('<div style="margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">')
     md.append('  <a href="about-this-site.html">&larr; Return to About This Site</a> &bull;')
     md.append('  <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases" target="_blank" rel="noopener">View GitHub Releases History &rarr;</a>')
     md.append("</div>")

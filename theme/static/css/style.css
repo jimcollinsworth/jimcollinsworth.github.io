@@ -176,6 +176,7 @@ html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 body {
@@ -188,6 +189,7 @@ body {
   line-height: var(--line-height-body);
   transition: background-color 0.2s ease, color 0.2s ease;
   overflow-wrap: break-word;
+  overflow-x: clip;
 }
 
 /* Fluid & Responsive Media Defaults (Never overflow viewport or container) */
@@ -1292,18 +1294,18 @@ article p, .page-intro p, .post-desc, .book-notes {
 
 .post-header-full .post-title {
   font-family: var(--font-sans);
-  font-size: 1.45rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  font-weight: 600;
   letter-spacing: -0.015em;
   margin: 0;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .post-back-arrow {
   color: var(--accent);
   text-decoration: none;
   font-family: var(--font-sans);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
@@ -1326,8 +1328,155 @@ article p, .page-intro p, .post-desc, .book-notes {
     gap: 0.35rem;
   }
   .post-header-full .post-title {
-    font-size: 1.25rem;
+    font-size: 1.05rem;
   }
+}
+
+/* Development Prompts & Instruction Timeline */
+.milestone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+}
+
+.milestone-title {
+  font-family: var(--font-sans);
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.milestone-title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.milestone-title a:hover {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+.milestone-date {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.prompt-entry {
+  margin-bottom: 0.75rem;
+}
+
+.prompt-speaker {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--text);
+  margin-top: 0.85rem;
+  margin-bottom: 0.45rem;
+}
+
+.prompt-speaker strong {
+  font-weight: 600;
+}
+
+.prompt-quotes {
+  margin-left: 0.15rem;
+  margin-bottom: 0.85rem;
+}
+
+.prompt-quotes p {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.prompt-quotes p:last-child {
+  margin-bottom: 0;
+}
+
+/* Edge-to-Edge Response Block */
+.prompt-response-block {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: var(--bg-subtle);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 1.15rem 0 1.25rem;
+  margin-top: 0.85rem;
+  margin-bottom: 2.25rem;
+}
+
+.prompt-response-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (min-width: 1360px) {
+  .prompt-response-inner {
+    padding: 0 3rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .prompt-response-inner {
+    padding: 0 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .prompt-response-inner {
+    padding: 0 1rem;
+  }
+}
+
+.response-speaker {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.response-speaker strong {
+  font-weight: 600;
+}
+
+.response-actions {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.response-actions li {
+  margin-bottom: 0.35rem;
+}
+
+.response-actions li:last-child {
+  margin-bottom: 0;
 }
 
 /* Framed App Screenshot */

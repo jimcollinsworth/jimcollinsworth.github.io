@@ -6,6 +6,16 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 35: Prompt History Visual Title, Full-Bleed Response Blocks, Provenance Icons & Release Links (Completed - Release v0.7.3)**
+  - Added full post-style title row to `prompt-history.html`: back arrow, dual provenance badge (`[Mine]` `[AI]`), title `Development Prompts`, and right-justified unbolded date `Sept 13 2026`.
+  - Scaled `.post-header-full .post-title` to smaller font size `1.15rem` (`font-weight: 600`), unifying blog lists, detail pages, and standalone pages.
+  - Replaced text `(Mine)` on prompts with the feather/pen `[Mine]` provenance icon + `Jim:`.
+  - Added chip/cpu `[AI]` provenance icon + `Response:` to response blocks.
+  - Created full-bleed edge-to-edge response styling (`width: 100vw; margin-left: calc(50% - 50vw);`) with subtle grey background (`var(--bg-subtle)`), constrained inner container, and `overflow-x: clip;` on `html` and `body`.
+  - Formatted release milestone titles in smaller font (`1.08rem`, `font-weight: 600`) as clickable links to relevant GitHub release tags.
+  - Rebuilt static site with Pelican; passed all 51 automated tests (`pytest -v`).
+  - Bumped version to `v0.7.3` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 - [x] **Milestone 34: Post Header Consolidation, Framed App Mockups, Full-Screen Photo Links & Zero-JS UI Streamlining (Completed - Release v0.7.2)**
   - Apps Hub: linked card titles directly to app posts; removed redundant "Read App Post &rarr;" buttons and removed "Embedded View &rarr;" button.
   - Decommissioned obsolete embedded page `pipeline-tools.md` via `git rm`.
