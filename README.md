@@ -55,6 +55,8 @@ jimcollinsworth.github.io/
 │       ├── content_authoring.pdf # Printable PDF: Frontmatter & thought evolution
 │       └── content_authoring.md  # Markdown: Semantic layout & component mapping
 ├── releases/                     # Historical release documents (v0.1 to v0.5.5)
+├── templates/                    # Authoring templates for Obsidian & editors
+│   └── obsidian-post-template.md # Comprehensive post template with commented YAML
 ├── tests/
 │   ├── test_pelican_e2e.py       # End-to-end test suite (build, links, zero-JS, formatting)
 │   ├── test_accessibility.py     # WCAG AAA / ARIA / high-contrast audit

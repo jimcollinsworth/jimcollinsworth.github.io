@@ -6,6 +6,17 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 22: Header Horizon Bar, Reversed Active Nav & Obsidian Post Template (Completed - Release v0.6.7)**
+  - Implemented 4px basic grey horizontal horizon bar (`--border-header: #b5b0a6` light / `#44494e` dark) beneath `header.site-header` on desktop, scaled to 3px on mobile and phone landscape.
+  - Re-architected active navigation indicator from a conflicting bottom border to a high-contrast reversed pill (`background-color: var(--text); color: var(--bg) !important; font-weight: 600; border-radius: 4px; padding: 0.25rem 0.65rem; border-bottom: none;`).
+  - Removed `border-bottom` on all navigation links to eliminate visual clash with the horizontal header bar and prevent hover jitter.
+  - Aligned mobile dynamic dropdown menu active item styling with reversed pill treatment.
+  - Created `templates/obsidian-post-template.md` at repo root with comprehensive commented YAML frontmatter (documenting `title`, `date`, `slug`, `category`, `type`, `previous_types`, `tags`, `status`, `summary`, `image`, `menu` settings) and an editorial Markdown starter layout.
+  - Verified 100% parity between `assets/css/style.css` and `theme/static/css/style.css`.
+  - Rebuilt static site and ran automated test suite (51/51 tests passing).
+  - Captured 16 responsive screenshots across all 8 viewports in light and dark modes.
+  - Synchronized `pyproject.toml`, `about-this-site.md`, and bumped version to `v0.6.7`.
+
 - [x] **Milestone 21: Color Flair & Photo Border Architectural Design (Designed & Documented - Issue #6)**
   - Sampled color palettes directly from sky and Lake Michigan photography (`sky-twilight.jpg`, `sky-lakefront.jpg`, `sky-clouds.jpg`) using Playwright Canvas extraction.
   - Architected pure Zero-JS semantic 4-edge `<aside>` perimeter frame enabling click-to-view full-screen photo without interfering with reading canvas or scrolling.

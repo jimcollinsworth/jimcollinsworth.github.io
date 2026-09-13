@@ -2,6 +2,55 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-12 — Header Horizon Bar, Reversed Active Nav & Obsidian Post Template (v0.6.7)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"just the horizontal header bar below the menu, maybe a few pixels wider, basic grey for now. lets use something besides underline foemthe active menumitems sinsce that would conflict with the horizontal bar. maybe hightigt or reverse it, make it obvious."*
+> - *"give me an obsidian template, has all the yaml field with comment and field values. can add it to the repo"*
+
+### Problem & Diagnosis
+1. **Nav Underline vs. Header Horizon Bar Conflict**:
+   - The previous active navigation indicator used a colored bottom border (`border-bottom: 2px solid var(--link)`). Placing a horizontal bar below the header resulted in visually clashing parallel lines.
+   - Jim requested a wider horizontal basic grey bar below the menu, and switching the active menu item from an underline to an obvious reversed highlight pill.
+2. **Obsidian Authoring Frontmatter Ambiguity**:
+   - Authoring posts in Obsidian required remembering or searching for frontmatter conventions (`type`, `previous_types`, `category`, `status`, `summary`, `tags`).
+   - Jim requested an official, comprehensive Obsidian template file with all YAML fields, detailed field comments, and allowed values added directly to the repository.
+
+### Root Cause & Technical Analysis
+- A bottom border on an inline navigation link visually competes with a full-width header separator rule directly below it.
+- Inverting the active link's colors (`background-color: var(--text); color: var(--bg) !important; font-weight: 600; border-radius: 4px; padding: 0.25rem 0.65rem; border-bottom: none;`) creates an unmistakable, modern pill button that works symmetrically in both light mode (dark charcoal pill with light text) and dark mode (cream/white pill with dark text).
+- Removing `border-bottom` on all navigation links eliminates border jitter on hover and lets the 4px horizontal header bar (`--border-header: #b5b0a6` light / `#44494e` dark) serve as an unencumbered architectural horizon.
+- In mobile screens (`< 640px` and phone landscape), the header bar scales gracefully to 3px to maintain compact vertical proportions, and the active dropdown item in `.mobile-nav-menu` matches the reversed pill style.
+- Placing `templates/obsidian-post-template.md` at repository root provides a discoverable template file that Jim can open in Obsidian or copy without interfering with Pelican's build (Pelican only processes `content/posts` and `content/pages`).
+
+### Solution & Standard Procedure
+1. **CSS Token & Header Bar Styling**:
+   - Added `--border-header: #b5b0a6` (light) and `--border-header: #44494e` (dark) to `:root` and `@media (prefers-color-scheme: dark)`.
+   - Desktop `header.site-header`: `border-bottom: 4px solid var(--border-header);`.
+   - Mobile portrait and phone landscape `header.site-header`: `border-bottom: 3px solid var(--border-header);`.
+2. **Reversed Active Navigation Pill**:
+   - `nav.site-nav a`: Removed bottom border; added `border-radius: 4px`, `min-height: 38px`, `padding: 0.25rem 0.65rem`, and hover background `var(--bg-subtle)`.
+   - `nav.site-nav a[aria-current="page"], nav.site-nav a.active`: Reversed contrast pill (`color: var(--bg) !important; background-color: var(--text) !important; font-weight: 600; border-bottom: none;`).
+   - `.mobile-nav-menu a[aria-current="page"]`: Matches reversed pill styling (`color: var(--bg) !important; background-color: var(--text) !important;`).
+3. **Synchronized Theme Styles**:
+   - Copied `assets/css/style.css` to `theme/static/css/style.css` and verified parity with `git diff --no-index`.
+4. **Comprehensive Obsidian Post Template**:
+   - Created `templates/obsidian-post-template.md` documenting:
+     - Core metadata (`title`, `date`, `slug`)
+     - Provenance categories (`Mine`, `Me`, `AI`, `Ours`, `Theirs`)
+     - Format & evolution lifecycle codes (`NOTE`, `ESSAY`, `PROJ`, `VIEW`, `BOOK`, `TIL`, `SPEC`, `IDEA`, `WIP`, and `previous_types`)
+     - Multi-label tags (`tags: [...]`)
+     - Publishing states (`published`, `draft`, `hidden`)
+     - Summary teaser, hero media, and page menu settings
+     - Markdown starter layout with lede paragraph, section headings, semantic `<figure>` with `<figcaption>`, callouts (`> [!NOTE]`), and code blocks.
+5. **Testing & Verification**:
+   - Executed `uv run pelican content -s pelicanconf.py -o output -d`.
+   - Ran `uv run pytest -v` (51/51 tests passing, including touch target and ARIA checks).
+   - Generated full 16-screenshot responsive suite via `tools/screenshots.py`.
+   - Bumped site version to `0.6.7` across `pyproject.toml` and `about-this-site.md`.
+
+---
+
 ## 2026-09-12 — Color Flair & Photo Border Architectural Design (Issue #6)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:
