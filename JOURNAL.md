@@ -2,6 +2,48 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Root Build Artifact Removal, Directory Organization & Nikola Cleanup (v0.6.11)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"looking at repo file organization, seems like we have too much in the root but i'm not sure. why is there html in root, shouldn't all the built site content be in it's own directory?"*
+> - *"where do the source posts and pages go (all the markdown from obsidian), seems like there are a couple locations in the repo."*
+> - *"we have old doit files from previous nikola implementation, delete these and any other files not used, google? do this as a fix branch"*
+
+### Problem & Diagnosis
+1. **Root Directory Clutter & Redundant HTML**:
+   - The repository root contained 37 obsolete files and directories from early build workflows: `index.html`, `about.html`, `posts.html`, `links.html`, `ai.html`, `photos.html`, `apps.html`, `about-this-site.html`, `prompt-history.html`, `contact.html`, `googledaf3f946832f8abf.html`, `category/`, `posts/`, `images/`, `assets/`, `.nojekyll`, `favicon.ico`, and `favicon.svg`.
+   - These files were generated when Pelican was originally run with output directed to the repository root (`pelican -o .`), before CI/CD began deploying strictly from `output/`.
+2. **Ambiguity Over Source Markdown Locations**:
+   - Source Markdown files were present across multiple paths: `content/posts/`, `content/pages/`, `archive/content/`, `docs/`, and `releases/`.
+3. **Legacy Nikola / Doit Traces**:
+   - Residual references to Nikola builds (`nikola-baseline-build/` in `.gitignore`) and duplicate verification tokens (`googledaf3f946832f8abf.html`) remained in the repository root.
+
+### Root Cause & Technical Analysis
+- In the original deployment configuration prior to automated GitHub Actions (`.github/workflows/deploy.yml`), Pelican compiled to the repository root so GitHub Pages could serve files from the root directory.
+- With modern GitHub Actions Pages deployment (`actions/upload-pages-artifact@v3 (path: 'output')`), all compiled assets are generated strictly into `output/` and tested in `output/`. The HTML and directory copies in the repository root were orphaned build artifacts.
+- The Google Search Console file (`googledaf3f946832f8abf.html`) and favicons reside in `content/extra/` and are mapped via `pelicanconf.py`'s `EXTRA_PATH_METADATA` directly into `output/`. The copies in root were unneeded duplicates.
+- Canonical content source locations:
+  - `content/posts/`: Active Markdown posts and essays authored by Jim or created from Obsidian.
+  - `content/pages/`: Active standalone pages (`about.md`, `about-this-site.md`, `apps.md`, etc.).
+  - `archive/content/`: Inactive historical notes from the pre-Pelican Nikola era.
+
+### Solution & Standard Procedure
+1. **Branch & Staged Cleanup**:
+   - Created dedicated fix branch `fix/repo-cleanup`.
+   - Removed 37 stale build artifacts, redundant root HTML files, duplicate image directories (`images/`, `assets/`), and obsolete build intermediates via `git rm -r -f`.
+2. **Source of Truth Confirmed**:
+   - Verified that all active Obsidian Markdown content resides in `content/posts/` and `content/pages/`.
+   - Confirmed Google verification token resides in `content/extra/googledaf3f946832f8abf.html` and compiles directly into `output/googledaf3f946832f8abf.html`.
+3. **Legacy Traces Removed**:
+   - Removed `nikola-baseline-build/` from `.gitignore`.
+4. **Verification & Version Synchronization**:
+   - Recompiled Pelican site (`uv run pelican content -s pelicanconf.py -o output -d`).
+   - Ran complete automated test suite (`uv run pytest -v`): all 51 tests passed.
+   - Synchronized prompt tracking with `tools/sync_dev_prompts.py` (46 prompts across 16 milestones).
+   - Bumped version to `0.6.11` across `pyproject.toml`, `content/pages/about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
+---
+
 ## 2026-09-13 — Prohibition of Ungrounded Adjectives & Fluff Removal (v0.6.10)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

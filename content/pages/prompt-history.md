@@ -5,9 +5,32 @@ slug: "prompt-history"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>43 prompts</strong> from Jim across 15 releases, alongside recorded agent errors and solutions.
+    <strong>Development Prompts</strong> lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>46 prompts</strong> from Jim across 16 releases, alongside recorded agent errors and solutions.
   </p>
 </div>
+
+## Root Build Artifact Removal, Directory Organization & Nikola Cleanup (v0.6.11)
+*2026-09-13*
+
+**Jim's Direct Prompts:**
+
+> *"looking at repo file organization, seems like we have too much in the root but i&#x27;m not sure. why is there html in root, shouldn&#x27;t all the built site content be in it&#x27;s own directory?"*
+
+> *"where do the source posts and pages go (all the markdown from obsidian), seems like there are a couple locations in the repo."*
+
+> *"we have old doit files from previous nikola implementation, delete these and any other files not used, google? do this as a fix branch"*
+
+**Course Corrections & Technical Remediation:**
+
+- <strong>Root Directory Clutter & Redundant HTML</strong>:
+- The repository root contained 37 obsolete files and directories from early build workflows: <code>index.html</code>, <code>about.html</code>, <code>posts.html</code>, <code>links.html</code>, <code>ai.html</code>, <code>photos.html</code>, <code>apps.html</code>, <code>about-this-site.html</code>, <code>prompt-history.html</code>, <code>contact.html</code>, <code>googledaf3f946832f8abf.html</code>, <code>category/</code>, <code>posts/</code>, <code>images/</code>, <code>assets/</code>, <code>.nojekyll</code>, <code>favicon.ico</code>, and <code>favicon.svg</code>.
+- These files were generated when Pelican was originally run with output directed to the repository root (<code>pelican -o .</code>), before CI/CD began deploying strictly from <code>output/</code>.
+- <strong>Ambiguity Over Source Markdown Locations</strong>:
+- Source Markdown files were present across multiple paths: <code>content/posts/</code>, <code>content/pages/</code>, <code>archive/content/</code>, <code>docs/</code>, and <code>releases/</code>.
+- <strong>Legacy Nikola / Doit Traces</strong>:
+- Residual references to Nikola builds (<code>nikola-baseline-build/</code> in <code>.gitignore</code>) and duplicate verification tokens (<code>googledaf3f946832f8abf.html</code>) remained in the repository root.
+
+---
 
 ## Prohibition of Ungrounded Adjectives & Fluff Removal (v0.6.10)
 *2026-09-13*

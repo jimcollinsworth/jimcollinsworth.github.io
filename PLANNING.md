@@ -6,6 +6,12 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 26: Root Build Artifact Removal, Directory Organization & Nikola Cleanup (Completed - Release v0.6.11)**
+  - Removed 37 obsolete build artifacts, root HTML files, duplicate directories (`category/`, `posts/`, `images/`, `assets/`), and intermediate files from the repository root.
+  - Confirmed canonical source layout for Markdown (`content/posts/`, `content/pages/`) and historical archives (`archive/content/`).
+  - Removed obsolete `nikola-baseline-build/` entry from `.gitignore`.
+  - Rebuilt Pelican static site and verified all 51 automated unit, accessibility, and responsive tests pass. Bumped version to `v0.6.11`.
+
 - [x] **Milestone 25: Prohibition of Ungrounded Adjectives & Fluff Removal (Completed - Release v0.6.10)**
   - Codified Section 18 in `AGENTS.md` and `.agents/agent_rules.md` prohibiting ungrounded adjectives, adverbs, superlatives, and marketing fluff without direct, verifiable empirical evidence.
   - Replaced flagged marketing text in `README.md` with factual Option 1A text: *"jimcollinsworth.github.io is Jim Collinsworth's personal website and journal, built using the Pelican static site generator with HTML5 and CSS, containing zero client-side JavaScript."*

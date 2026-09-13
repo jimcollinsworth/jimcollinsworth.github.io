@@ -48,13 +48,14 @@ jimcollinsworth.github.io/
 ├── theme/                        # Custom Pelican Jinja2 theme
 │   ├── templates/                # base.html, index.html, article.html, page.html, etc.
 │   └── static/css/style.css      # Central stylesheet (zero pills, dark/light mode)
+├── archive/                      # Historical Nikola archives, original full-resolution photos, drafts
 ├── docs/
 │   └── cheatsheets/              # Architecture & Content Authoring Cheat Sheets (PDF & Markdown)
 │       ├── architecture_flow.pdf # Printable PDF: Publishing pipeline & data flows
 │       ├── architecture_flow.md  # Markdown: Architecture diagrams & governance
 │       ├── content_authoring.pdf # Printable PDF: Frontmatter & thought evolution
 │       └── content_authoring.md  # Markdown: Semantic layout & component mapping
-├── releases/                     # Historical release documents (v0.1 to v0.5.5)
+├── releases/                     # Historical release documents (v0.1 to v0.6.11)
 ├── templates/                    # Authoring templates for Obsidian & editors
 │   └── obsidian-post-template.md # Comprehensive post template with commented YAML
 ├── tests/
