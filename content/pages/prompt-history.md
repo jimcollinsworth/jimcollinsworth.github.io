@@ -7,9 +7,24 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>67 prompts</strong> from Jim across 19 milestones, alongside concise summaries of actions taken.
+    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>68 prompts</strong> from Jim across 20 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
+
+## Pipeline Tools App Page & Hugging Face Spaces Integration (v0.6.16)
+*2026-09-13*
+
+**Jim (Mine):**
+
+i recently updated pipeline-tools project to deploy to hugging face, so we have a version of the app up there to link to, and ideally embed into our apps pages. https://huggingface.co/spaces/jimcollinsworth/pipeline-tools. create a new apps page for this app and set things up so users can try it out right from my site. in this case the pipeline-tool app is not part of the site repo, it's external but still mine.
+
+**Response:**
+
+- Dedicated Pipeline Tools Page: Created `content/pages/pipeline-tools.md` with Stream `Mine` attribution (authored by Jim Collinsworth).
+- Responsive Embed Container: Added `.app-embed-container` and `.app-embed-iframe` in `theme/static/css/style.css` (850px height on desktop, 650px on mobile/tablet).
+- Apps Hub & Navigation Integration: Added a showcase card for Pipeline Tools in `content/pages/apps.md` and updated the architecture table.
+
+---
 
 ## Desktop 2-Row/2-Column Layout & Menu Left Margin Alignment (v0.6.15)
 *2026-09-13*

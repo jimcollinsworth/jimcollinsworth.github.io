@@ -6,6 +6,14 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 31: Pipeline Tools App Page & Hugging Face Spaces Integration (Completed - Release v0.6.16)**
+  - Created dedicated application page `content/pages/pipeline-tools.md` with Stream `Mine` attribution (Jim Collinsworth).
+  - Integrated direct iframe embed (`https://jimcollinsworth-pipeline-tools.hf.space`) with breadcrumbs back to the Apps hub.
+  - Added responsive CSS embed container (`.app-embed-container` and `.app-embed-iframe`) in `theme/static/css/style.css` (850px height desktop, 650px mobile/tablet).
+  - Added showcase card for Pipeline Tools in `content/pages/apps.md` and updated architecture table.
+  - Configured navigation active state in `theme/templates/base.html` to highlight Apps tab when on `pipeline-tools.html`.
+  - Rebuilt static site with Pelican; passed all 51 automated tests (`pytest -v`).
+
 - [x] **Milestone 30: Desktop 2-Row/2-Column Layout & Menu Left Margin Alignment (Completed - Release v0.6.15)**
   - Applied `margin-left: -0.55rem;` to `nav.site-nav`, achieving flush vertical alignment between "Jim", the first menu label, the 4px horizontal bar, and body content.
   - Standardized `font-weight: 600;` across all navigation links to eliminate horizontal character width shifts when toggling active tabs.

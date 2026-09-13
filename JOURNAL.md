@@ -2,6 +2,35 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Pipeline Tools App Page & Hugging Face Spaces Integration (v0.6.16)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"i recently updated pipeline-tools project to deploy to hugging face, so we have a version of the app up there to link to, and ideally embed into our apps pages. https://huggingface.co/spaces/jimcollinsworth/pipeline-tools. create a new apps page for this app and set things up so users can try it out right from my site. in this case the pipeline-tool app is not part of the site repo, it's external but still mine."*
+
+### Problem & Diagnosis
+1. **External Application Integration**:
+   - Jim updated the external `pipeline-tools` project (`jimcollinsworth/pipeline-tools`, Stream: `Mine`) with a live deployment to Hugging Face Spaces.
+   - The personal site lacked a dedicated app page and embed container allowing visitors to use the pipeline workbench directly from the site.
+2. **Apps Hub Directory Completeness**:
+   - The Apps hub (`content/pages/apps.md`) did not list Pipeline Tools alongside the Photo Viewer and Keyword Explorer.
+
+### Root Cause & Technical Analysis
+- The personal site operates under a strict zero client-side JavaScript policy for published content pages.
+- Standard HTML `<iframe>` embedding cleanly isolates external client application execution without loading script tags on the parent page or violating test policies.
+
+### Solution & Standard Procedure
+1. **Dedicated Pipeline Tools Page**:
+   - Created `content/pages/pipeline-tools.md` with Stream `Mine` attribution (authored by Jim Collinsworth).
+   - Included technical overview, deployment links to Hugging Face Spaces and GitHub, and direct iframe embed of `https://jimcollinsworth-pipeline-tools.hf.space`.
+   - Added breadcrumb navigation back to `apps.html`.
+2. **Responsive Embed Container**:
+   - Added `.app-embed-container` and `.app-embed-iframe` in `theme/static/css/style.css` (850px height on desktop, 650px on mobile/tablet).
+3. **Apps Hub & Navigation Integration**:
+   - Added a showcase card for Pipeline Tools in `content/pages/apps.md` and updated the architecture table.
+   - Configured `theme/templates/base.html` to highlight the `Apps` navigation tab when viewing `pipeline-tools.html`.
+4. **Verification**:
+   - Rebuilt site with Pelican, verified all 51 automated tests passed, and bumped version to `v0.6.16`.
+
 ## 2026-09-13 — Desktop 2-Row/2-Column Layout & Menu Left Margin Alignment (v0.6.15)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

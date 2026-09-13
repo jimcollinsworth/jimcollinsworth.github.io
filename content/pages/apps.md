@@ -55,16 +55,42 @@ slug: "apps"
     </div>
   </div>
 
+  <div class="dashboard-card" style="border: 1px solid var(--border-color); border-radius: 6px; padding: 1.5rem; background: var(--card-bg); display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700;">
+        <span class="category-badge" title="Category: Mine" aria-label="Category: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> Interactive Workbench &bull; Data Pipelines
+      </div>
+      <h2 style="font-size: 1.4rem; margin: 0.4rem 0 0.75rem;">
+        Pipeline Tools (Hugging Face)
+      </h2>
+      <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1rem;">
+        A web-based data pipeline and transformation workbench deployed to Hugging Face Spaces. Ingests data files, executes validation and enhancement models, inspects contextual schemas, and exports structured datasets.
+      </p>
+    </div>
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+      <a href="pipeline-tools.html" class="app-launch-btn">
+        Try Interactive App &rarr;
+      </a>
+      <a href="https://huggingface.co/spaces/jimcollinsworth/pipeline-tools" class="app-data-btn" target="_blank" rel="noopener">
+        Hugging Face Space &nearr;
+      </a>
+      <a href="https://github.com/jimcollinsworth/pipeline-tools" class="app-data-btn" target="_blank" rel="noopener">
+        GitHub Source &nearr;
+      </a>
+    </div>
+  </div>
+
 </div>
 
 ---
 
-## Static Data Architecture (`content/data/`)
+## Static Data & Deployment Architecture
 
-All mini-apps are backed by centralized static data sources housed in the `content/data/` directory:
+All mini-apps are backed by centralized static data sources housed in `content/data/` or external cloud services:
 
-| Data Source | Format | Consumer Application | Purpose |
+| Data Source / Deployment | Format / Host | Consumer Application | Purpose |
 | :--- | :--- | :--- | :--- |
+| `jimcollinsworth/pipeline-tools` | Hugging Face Spaces | Pipeline Tools | Interactive data pipeline, quality inspection, and enhancement workbench. |
 | `content/data/photos.json` | JSON | Photo Viewer | Indexed photo manifest with dates, locations, Google Drive URLs, and camera telemetry. |
 | `content/data/photos.md` | Markdown | Static Reader | Tabular markdown version of photo index for human review and Obsidian linking. |
 | `content/data/site-index.json` | JSON | Keyword Explorer | Multi-facet content index spanning categories, stages, origins, and tags. |

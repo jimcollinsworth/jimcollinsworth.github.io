@@ -68,6 +68,32 @@
   background: var(--bg-subtle);
 }
 
+/* Interactive Embedded Application Container */
+.app-embed-container {
+  position: relative;
+  width: 100%;
+  height: 850px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 1.5rem 0 2rem;
+  background-color: var(--bg-card);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.app-embed-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .app-embed-container {
+    height: 650px;
+  }
+}
+
 /* Manual Theme Toggle (Pure CSS :has) */
 /* When in default Light mode, checking #theme-toggle switches to Dark */
 body:has(#theme-toggle:checked) {
