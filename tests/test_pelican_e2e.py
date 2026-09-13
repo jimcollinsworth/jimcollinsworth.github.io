@@ -116,29 +116,29 @@ def test_category_membership_and_type_evolution():
     assert "M.E. (Mental Entity / My Essence)" in mine_category, "M.E. should appear in Mine category"
     assert "Modern Wing Encounters" in ours_category, "Modern Wing should appear in Ours category"
 
-    # Post-type short codes verification (evolved from removed per Jim's instruction)
+    # Post-type short codes verification (no brackets, icon-only category per Jim's instruction)
     piano_html = (OUTPUT_DIR / "posts" / "digital-piano-enhancements.html").read_text(encoding="utf-8")
-    assert '<span class="post-type">[PROJ]</span>' in piano_html
+    assert '<span class="post-type">PROJ</span>' in piano_html
     assert "(evolved from" not in piano_html
     assert 'class="category-badge"' in piano_html
-    assert 'Mine</span>' in piano_html
+    assert 'aria-label="Category: Mine"' in piano_html
 
     me_html = (OUTPUT_DIR / "posts" / "m-e-offline-ai-companion.html").read_text(encoding="utf-8")
-    assert '<span class="post-type">[IDEA]</span>' in me_html
+    assert '<span class="post-type">IDEA</span>' in me_html
     assert 'class="category-badge"' in me_html
-    assert 'Mine</span>' in me_html
+    assert 'aria-label="Category: Mine"' in me_html
 
     sleep_html = (OUTPUT_DIR / "posts" / "sleep-movement-evaluation-plan.html").read_text(encoding="utf-8")
-    assert '<span class="post-type">[SPEC]</span>' in sleep_html
+    assert '<span class="post-type">SPEC</span>' in sleep_html
     assert "(evolved from" not in sleep_html
     assert 'class="category-badge"' in sleep_html
-    assert 'Mine</span>' in sleep_html
+    assert 'aria-label="Category: Mine"' in sleep_html
 
     art_html = (OUTPUT_DIR / "posts" / "art-institute-chicago-modern-wing.html").read_text(encoding="utf-8")
-    assert '<span class="post-type">[VIEW]</span>' in art_html
+    assert '<span class="post-type">VIEW</span>' in art_html
     assert "(evolved from" not in art_html
     assert 'class="category-badge"' in art_html
-    assert 'Ours</span>' in art_html
+    assert 'aria-label="Category: Ours"' in art_html
 
 
 def test_no_duplicate_page_titles():

@@ -2,6 +2,63 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Compact Blog Layout, Right-Justified Metadata & Header Refinements (v0.6.13)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"here are 3 widths potrait view, in one an extra line occurs, the menu should have switched to a single item."*
+> - *"also the menu highlight in expanded line mode should probably be visually similar to the menu hightight in single item single line mode."*
+> - *"for the blog list make the titles font smaller, it's highlighted already thats good. remove the text me, mine... just show the icons. I want the icon first then title, then type then date. ideally type and date are right justified. everything in same type face. remove brackets from type and no dots"*
+> - *"for 'unknown author' must be ai providence"*
+> - *"remove the 'all posts' 'all photos' and put small links next to the associated header. \"recent photos (->all)\""*
+> - *"add icons to me, mine, ai...."*
+> - *"and i see adjectives that are not supported, check these, check your rules to avoid unsupported in context terms."*
+
+### Problem & Diagnosis
+1. **Header Wrapping on Medium Portrait Viewports**:
+   - In portrait view at intermediate widths (~641px–768px), the 8 desktop navigation links and controls exceeded container width, wrapping controls onto a 3rd row.
+2. **Nav Highlight Visual Disparity**:
+   - Expanded desktop navigation used an inverted solid block highlight (`color: var(--bg); background-color: var(--text)`), which differed visually from the subtle rounded border badge used by the single-item dropdown button (`.mobile-nav-summary`).
+3. **Blog List Metadata Density & Formatting**:
+   - Post list titles were oversized (`1.25rem`–`1.45rem`).
+   - Category badges displayed redundant text labels (`Me`, `Mine`, etc.) next to icons.
+   - Metadata was rendered on a second line below the title with square brackets `[TYPE]` and bullet separators (`•`).
+   - Placeholder author entries in `links.md` and `index.html` were labeled `Author Name` rather than attributed to the `AI` provenance stream.
+4. **Header Inline Navigation vs. Section Bottom Links**:
+   - Standalone bottom links (`View all posts →`, `Explore all photos →`, `Browse all links →`) consumed vertical space.
+5. **Missing Category Icons in Documentation**:
+   - `content/pages/about.md` listed streams as plain bullet text without their corresponding SVG icons.
+6. **Rule 18 Adjective Compliance**:
+   - Evaluative modifiers ("multi-disciplinary maker", "masterclass", "dramatic", "completely") were present in templates and posts.
+
+### Root Cause & Technical Analysis
+- The `@media (max-width: 640px)` media query did not cover tablet portrait widths (641px–768px), causing desktop nav to activate before there was sufficient width to host all 8 items and controls on one row.
+- Post titles and metadata lacked flex alignment to anchor `[ICON] [TITLE]` to the left and `[TYPE] [DATE]` to the right.
+
+### Solution & Standard Procedure
+1. **Header Breakpoint Adjustment**:
+   - Updated the compact navigation breakpoint in `style.css` from `max-width: 640px` to `max-width: 768px`, ensuring portrait viewports up to 768px use the single-item dropdown button and keep the header on a single row.
+2. **Harmonized Navigation Highlight**:
+   - Replaced solid black active block in `style.css` with subtle border, `var(--bg-subtle)`, and rounded 6px corners matching `.mobile-nav-summary`.
+3. **Blog List Flex Reordering**:
+   - Implemented `.post-header-row`, `.post-header-left` (`[ICON] [TITLE]`), and `.post-header-right` (`[TYPE] [DATE]`, right-justified).
+   - Removed brackets from type and removed bullet dots across `index.html`, `archives.html`, `category.html`, and `article.html`.
+   - Scaled down `.post-title` font size to `1.05rem` in `var(--font-sans)`.
+   - Removed `<span class="category-label">` from `category_icon.html` to render pure accessible SVG icons.
+4. **AI Provenance Attribution**:
+   - Attributed placeholder entries in `links.md` and `index.html` to the `AI` provenance stream with `icon-ai` badge.
+5. **Inline Section Header Links**:
+   - Added `(→all)` inline links next to `Recent Stream`, `Photo Spotlight`, and `Recent Links` `<h2>` headings; removed bottom standalone links.
+6. **Category Icons on About Page**:
+   - Added SVG category icons to `Me`, `Mine`, `AI`, `Ours`, and `Theirs` in `content/pages/about.md`.
+7. **Rule 18 Audit**:
+   - Removed ungrounded adjectives and evaluative modifiers across `index.html`, `about.md`, `about-this-site.md`, `ai.md`, `apps.md`, and content posts.
+8. **Automated Verification & Versioning**:
+   - Recompiled Pelican site (`uv run pelican content -s pelicanconf.py -o output -d`).
+   - Ran test suite (`uv run pytest -v`): all 51 tests passed.
+   - Bumped version to `0.6.13` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
+---
+
 ## 2026-09-13 — Prompt History Mine Attribution & Steering Dialog Streamlining (v0.6.12)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

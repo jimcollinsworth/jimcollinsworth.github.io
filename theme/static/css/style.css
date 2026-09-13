@@ -226,8 +226,8 @@ img, picture, video, canvas {
   }
 }
 
-/* Mobile (< 640px) */
-@media (max-width: 640px) {
+/* Mobile & Compact Navigation (< 768px) */
+@media (max-width: 768px) {
   html {
     font-size: 94%;
   }
@@ -646,24 +646,28 @@ nav.site-nav a {
   font-weight: 500;
   display: inline-flex;
   align-items: center;
-  padding: 0.12rem 0.55rem;
+  padding: 0.2rem 0.55rem;
   line-height: 1.2;
-  border-radius: 4px;
+  border: 1px solid transparent;
+  border-radius: 6px;
   border-bottom: none;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 nav.site-nav a:hover {
   color: var(--link);
   background-color: var(--bg-subtle);
+  border-color: var(--border-subtle);
 }
 
 nav.site-nav a[aria-current="page"],
 nav.site-nav a.active {
-  color: var(--bg) !important;
-  background-color: var(--text) !important;
+  color: var(--text) !important;
+  background-color: var(--bg-subtle) !important;
+  border: 1px solid var(--border);
+  border-radius: 6px;
   font-weight: 600;
-  padding: 0.12rem 0.55rem;
+  padding: 0.2rem 0.55rem;
   border-bottom: none;
 }
 
@@ -986,13 +990,95 @@ article p, .page-intro p, .post-desc, .book-notes {
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.post-item.featured .post-title {
-  font-size: 1.45rem;
-  line-height: 1.25;
+.post-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  width: 100%;
+}
+
+.post-header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.post-header-left .category-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  vertical-align: middle;
+  position: relative;
+  top: 1px;
+}
+
+.post-header-left .post-title,
+.post-header .post-title {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.post-item.featured .post-header-left .post-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.post-header-right {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  margin-left: auto;
+  text-align: right;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.post-header-right .post-type {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+
+.post-header-right time {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+
+.header-all-link {
+  font-size: 0.82rem;
+  font-weight: normal;
+  font-family: var(--font-sans);
+  margin-left: 0.35rem;
+  letter-spacing: normal;
+}
+
+.header-all-link a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.header-all-link a:hover {
+  text-decoration: underline;
 }
 
 .post-item.featured .post-desc {
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .post-header, .book-header {
@@ -1006,11 +1092,11 @@ article p, .page-intro p, .post-desc, .book-notes {
 
 .post-title, .book-title {
   font-family: var(--font-sans);
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.05rem;
+  font-weight: 600;
   letter-spacing: -0.015em;
   margin: 0;
-  line-height: 1.25;
+  line-height: 1.3;
   overflow-wrap: break-word;
 }
 
@@ -1039,10 +1125,10 @@ article p, .page-intro p, .post-desc, .book-notes {
 }
 
 .post-type {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   color: var(--text-muted);
 }
 
@@ -1081,7 +1167,7 @@ article p, .page-intro p, .post-desc, .book-notes {
     margin-bottom: 1.75rem;
   }
   .post-title, .book-title {
-    font-size: 1.15rem;
+    font-size: 1.02rem;
   }
   .post-detail {
     display: none; /* Keep phone feeds concise and easily scannable */

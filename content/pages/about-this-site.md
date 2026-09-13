@@ -23,9 +23,9 @@ slug: "about-this-site"
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
     <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Site Version &amp; Releases</div>
     <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem;">
-      <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases" target="_blank" rel="noopener">v0.6.12 &bull; Release Notes &rarr;</a>
+      <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases" target="_blank" rel="noopener">v0.6.13 &bull; Release Notes &rarr;</a>
     </div>
-    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Full historical release notes v0.1 &ndash; v0.6.12</div>
+    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Full historical release notes v0.1 &ndash; v0.6.13</div>
   </div>
 
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
@@ -53,7 +53,7 @@ slug: "about-this-site"
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
     <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Steering Prompts</div>
     <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem;">
-      <a href="prompt-history.html">50 Prompts &rarr;</a>
+      <a href="prompt-history.html">57 Prompts &rarr;</a>
     </div>
     <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Direct human guidance &amp; remediation</div>
   </div>
@@ -87,8 +87,8 @@ Site development and infrastructure management are conducted through collaborati
   3. `JOURNAL.md` &mdash; Chronological decision log and change records.
 
 ### Prompt &amp; Instruction Timeline
-Every architectural transition, design system rule, and convention on this site was directed through human instructions and critical course corrections from Jim.
-- [**Explore the Prompt History &amp; Instruction Timeline &rarr;**](prompt-history.html) &mdash; Detailed timeline of Jim's instructions, error remediations, and resulting architectural pivots synced to each version release.
+Every architectural transition, design system rule, and convention on this site was directed through human instructions and course corrections from Jim.
+- [**Explore the Prompt History &amp; Instruction Timeline &rarr;**](prompt-history.html) &mdash; Timeline of Jim's instructions, error remediations, and resulting architectural pivots synced to each version release.
 
 ---
 
@@ -104,7 +104,7 @@ Every architectural transition, design system rule, and convention on this site 
 [ Pelican + ObsidianMarkdownReader (pelicanconf.py) ]
                     │
                     ▼
-[ Automated Validation (pytest -v: 30+ Tests) ]
+[ Automated Validation (pytest -v: 51 Tests) ]
                     │
                     ▼
 [ Git Push -> GitHub Actions CI/CD -> GitHub Pages CDN ]

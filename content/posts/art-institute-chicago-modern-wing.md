@@ -17,13 +17,13 @@ evolution: "2026-08-14:til > 2026-09-09:inquiry"
 
 <div class="page-intro">
   <p>
-    An afternoon study inside the Modern Wing at the Art Institute of Chicago. The interplay between Renzo Piano’s double-cantilevered "flying carpet" roof screen and the sculptural surfaces below offers a masterclass in daylight modulation.
+    An afternoon study inside the Modern Wing at the Art Institute of Chicago. The interplay between Renzo Piano’s double-cantilevered "flying carpet" roof screen and the sculptural surfaces below modulates daylight across the galleries.
   </p>
 </div>
 
 ## The Flying Carpet: Daylighting as Material
 
-Visiting the Modern Wing on an overcast afternoon reveals something direct sunlight obscures: the ceiling louvers diffuse northern lake light into a matte, shadowless wash. In contemporary exhibition spaces, artificial fixtures often dominate with high-CRI halogen pin-spots that create dramatic hot spots. Piano’s design does the inverse—it prioritizes ambient sky coherence over dramatic pin-lighting.
+Visiting the Modern Wing on an overcast afternoon reveals something direct sunlight obscures: the ceiling louvers diffuse northern lake light into a matte, shadowless wash. In contemporary exhibition spaces, artificial fixtures often dominate with halogen pin-spots that create localized high-contrast illumination. Piano’s design prioritizes ambient sky diffusion over directional pin-lighting.
 
 <figure>
   <img src="../images/sky-lakefront.jpg" alt="Lakefront ambient diffused daylight" loading="lazy">

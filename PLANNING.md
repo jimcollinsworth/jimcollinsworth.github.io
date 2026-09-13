@@ -6,6 +6,18 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 28: Compact Blog Layout, Right-Justified Metadata & Header Refinements (Completed - Release v0.6.13)**
+  - Increased compact navigation breakpoint from 640px to 768px in `theme/static/css/style.css`, eliminating 3-line header wrapping on medium portrait viewports.
+  - Harmonized active navigation highlight in expanded line mode with the single-item dropdown button (`border: 1px solid var(--border)`, `background: var(--bg-subtle)`, rounded 6px).
+  - Redesigned blog list entry layout to `[ICON] [TITLE]` on left and right-justified `[TYPE] [DATE]` on right, formatted in `var(--font-sans)` with unbracketed types and no bullet dots.
+  - Scaled down post title font size to `1.05rem` (featured `1.15rem`).
+  - Removed category text labels from `category_icon.html` to render pure accessible SVG icons.
+  - Replaced placeholder authors in `links.md` and `index.html` with `AI` provenance stream attribution.
+  - Converted bottom section links (`View all posts →`, `Explore all photos →`, `Browse all links →`) to inline `(→all)` header links.
+  - Embedded SVG category icons next to `Me`, `Mine`, `AI`, `Ours`, and `Theirs` in `content/pages/about.md`.
+  - Scrubbed ungrounded adjectives and evaluative modifiers across templates and content per Rule 18.
+  - Rebuilt Pelican site, verified 51/51 automated tests passing, and bumped version to `v0.6.13`.
+
 - [x] **Milestone 27: Prompt History Mine Attribution & Steering Dialog Streamlining (Completed - Release v0.6.12)**
   - Configured `Mine` stream and Jim Collinsworth author attribution on `content/pages/prompt-history.md` frontmatter and header.
   - Formatted steering prompts with `**Jim (Mine):**` dialog labels and concise responses.

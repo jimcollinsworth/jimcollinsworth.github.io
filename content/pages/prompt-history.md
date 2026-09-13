@@ -7,9 +7,36 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>50 prompts</strong> from Jim across 16 milestones, alongside concise summaries of actions taken.
+    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>57 prompts</strong> from Jim across 17 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
+
+## Compact Blog Layout, Right-Justified Metadata & Header Refinements (v0.6.13)
+*2026-09-13*
+
+**Jim (Mine):**
+
+here are 3 widths potrait view, in one an extra line occurs, the menu should have switched to a single item.
+
+also the menu highlight in expanded line mode should probably be visually similar to the menu hightight in single item single line mode.
+
+for the blog list make the titles font smaller, it's highlighted already thats good. remove the text me, mine... just show the icons. I want the icon first then title, then type then date. ideally type and date are right justified. everything in same type face. remove brackets from type and no dots
+
+for 'unknown author' must be ai providence
+
+remove the 'all posts' 'all photos' and put small links next to the associated header. \"recent photos (->all)\
+
+add icons to me, mine, ai....
+
+and i see adjectives that are not supported, check these, check your rules to avoid unsupported in context terms.
+
+**Response:**
+
+- Header Breakpoint Adjustment: Updated the compact navigation breakpoint in `style.css` from `max-width: 640px` to `max-width: 768px`, ensuring portrait viewports up to 768px use the single-item dropdown button and keep the header on a single row.
+- Harmonized Navigation Highlight: Replaced solid black active block in `style.css` with subtle border, `var(--bg-subtle)`, and rounded 6px corners matching `.mobile-nav-summary`.
+- Blog List Flex Reordering: Implemented `.post-header-row`, `.post-header-left` (`[ICON] [TITLE]`), and `.post-header-right` (`[TYPE] [DATE]`, right-justified).
+
+---
 
 ## Prompt History Mine Attribution & Steering Dialog Streamlining (v0.6.12)
 *2026-09-13*

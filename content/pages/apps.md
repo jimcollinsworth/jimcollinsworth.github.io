@@ -67,4 +67,4 @@ All mini-apps are backed by centralized static data sources housed in the `conte
 | :--- | :--- | :--- | :--- |
 | `content/data/photos.json` | JSON | Photo Viewer | Indexed photo manifest with dates, locations, Google Drive URLs, and camera telemetry. |
 | `content/data/photos.md` | Markdown | Static Reader | Tabular markdown version of photo index for human review and Obsidian linking. |
-| `content/data/site-index.json` | JSON | Keyword Explorer | Complete multi-facet content index spanning categories, stages, origins, and tags. |
+| `content/data/site-index.json` | JSON | Keyword Explorer | Multi-facet content index spanning categories, stages, origins, and tags. |
