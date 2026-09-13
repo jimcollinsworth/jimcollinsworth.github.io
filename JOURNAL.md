@@ -2,6 +2,45 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Big Display Typography Scaling & Full-Screen App Header Unification (v0.7.1)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"i think on big displays 'jim collinsworth' and 'out of my lane' can be a bit bigger"*
+> - *"and is the pipeline-tools hugging face app running in full screen mode like the other 2 apps now with the same header bar?"*
+> - *"why can't i see the left and right edges,"*
+
+### Problem & Diagnosis
+1. **Desktop Branding Presence on Big Displays**:
+   - On wide desktop displays (1360px to 1920px+), the site title ("Jim Collinsworth") at `1.35rem` and tagline ("Out of My Lane") at `1.15rem` were visually understated relative to the 1380px layout container width and reading copy.
+2. **Cropped Visual Evidence in Walkthrough**:
+   - The closeup header screenshot in `walkthrough.md` was clipped at `x: 300, width: 1320` across a 1920px viewport, shaving off 300px on both sides and cutting off the outer container edges, leaving "n Collinsworth" on the left and "Out of My L" on the right.
+3. **App Header Consistency**:
+   - The standalone full-screen application wrapper for Pipeline Tools had minor styling and button discrepancies compared to Photo Viewer and Keyword Explorer (`.brand-link` with button border vs plain text accent link `&larr; Back to Apps`, missing Theme and Fullscreen toggle buttons).
+
+### Root Cause & Technical Analysis
+- The `@media (min-width: 1360px)` supersize desktop query increased `--max-width` to 1380px and body padding to `1.5rem 3rem 4rem`, but lacked specific font size overrides for `.site-title` and `.site-tagline`.
+- Standardizing base desktop `.site-title` to `1.55rem` and `.site-tagline` to `1.25rem`, with big display overrides to `1.95rem` and `1.45rem`, maintains baseline alignment (`align-items: baseline`) while providing appropriate visual presence.
+- Aligning `content/apps/pipeline-tools/index.html` markup to `.brand a.back-link`, `<h1>`, and standard `.btn` elements provides uniform UI across all three standalone applications.
+
+### Solution & Standard Procedure
+1. **Typography Scaling in CSS (`theme/static/css/style.css`)**:
+   - Scaled base desktop `.site-title` from `1.35rem` to `1.55rem`.
+   - Scaled base desktop `.site-tagline` from `1.15rem` to `1.25rem`.
+   - Added `@media (min-width: 1360px)` overrides: `.site-title { font-size: 1.95rem; }` and `.site-tagline { font-size: 1.45rem; }`.
+   - Scaled `.site-tagline` under `#text-size-toggle:checked` to `1.65rem !important`.
+2. **App Header Standardization in pipeline-tools**:
+   - Standardized left navigation to back-link anchor (&larr; Back to Apps) with colored accent and underline on hover.
+   - Standardized app title to serif bold h1 header.
+   - Standardized action buttons using shared `.btn` classes.
+   - Added Theme toggle and browser Fullscreen toggle buttons matching Photo Viewer.
+3. **Uncropped Full-Width Screenshot Captures**:
+   - Developed `scratch/capture_fullwidth_header_and_apps.py` capturing uncropped 1920px width viewports (`preview_header_fullwidth_1920_light.png` and `preview_header_fullwidth_1920_dark.png`), showing full left and right outer container margins and alignment.
+   - Captured side-by-side header bar comparisons across all three applications.
+4. **Verification & Versioning**:
+   - Synchronized `pyproject.toml` and `content/pages/about-this-site.md` to `v0.7.1`.
+   - Synced `content/pages/prompt-history.md` via `tools/sync_dev_prompts.py` (77 prompts across 22 milestones).
+   - Passed all 51 automated tests (`uv run pytest -v`).
+
 ## 2026-09-13 — Site v0.7.0: App Posts, Full-Screen App Container & Dual AI/Mine Provenance (v0.7.0)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

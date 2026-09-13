@@ -7,9 +7,28 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>74 prompts</strong> from Jim across 21 milestones, alongside concise summaries of actions taken.
+    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>77 prompts</strong> from Jim across 22 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
+
+## Big Display Typography Scaling & Full-Screen App Header Unification (v0.7.1)
+*2026-09-13*
+
+**Jim (Mine):**
+
+i think on big displays 'jim collinsworth' and 'out of my lane' can be a bit bigger
+
+and is the pipeline-tools hugging face app running in full screen mode like the other 2 apps now with the same header bar?
+
+why can't i see the left and right edges,
+
+**Response:**
+
+- Typography Scaling in CSS (`theme/static/css/style.css`): Scaled base desktop `.site-title` from `1.35rem` to `1.55rem`.
+- App Header Standardization in pipeline-tools: Standardized left navigation to back-link anchor (&larr; Back to Apps) with colored accent and underline on hover.
+- Uncropped Full-Width Screenshot Captures: Developed `scratch/capture_fullwidth_header_and_apps.py` capturing uncropped 1920px width viewports (`preview_header_fullwidth_1920_light.png` and `preview_header_fullwidth_1920_dark.png`), showing full left and right outer container margins and alignment.
+
+---
 
 ## Site v0.7.0: App Posts, Full-Screen App Container & Dual AI/Mine Provenance (v0.7.0)
 *2026-09-13*
@@ -279,7 +298,7 @@ an improvement but need the dynamic menu in portrate mode thats possible right?
 
 **Response:**
 
-- Semantic HTML5 `<details>` & `<summary>` Integration: In `theme/templates/base.html`, added `<details class="mobile-nav-dropdown">` alongside `<nav class="site-nav desktop-nav">`.
+- Semantic HTML5 `&lt;details&gt;` & `&lt;summary&gt;` Integration: In `theme/templates/base.html`, added `&lt;details class="mobile-nav-dropdown"&gt;` alongside `&lt;nav class="site-nav desktop-nav"&gt;`.
 - Strictly Single-Row Mobile Portrait Header: Changed `header.site-header` in `@media (max-width: 640px)` to `display: flex; flex-direction: row; justify-content: space-between; align-items: center;`.
 - Floating Navigation Menu Card: Absolutely positioned `.mobile-nav-menu` under the dropdown button with `var(--bg-card)`, subtle border, and shadow.
 
@@ -393,7 +412,7 @@ lets commit and push, publish, update release number
 **Response:**
 
 - Multi-Lane & Type Parsing in `pelicanconf.py`: Updated `ObsidianMarkdownReader` to parse YAML `lanes`, `type`, and `previous_types`.
-- Template & CSS Updates: `theme/templates/article.html`, `archives.html`, `category.html`, `index.html`: Rendered `[TYPE]`, `(evolved from ...)`, and multiple lane links enclosed in `<span class="post-lanes">` to preserve clean typography without whitespace anomalies before commas.
+- Template & CSS Updates: `theme/templates/article.html`, `archives.html`, `category.html`, `index.html`: Rendered `[TYPE]`, `(evolved from ...)`, and multiple lane links enclosed in `&lt;span class="post-lanes"&gt;` to preserve clean typography without whitespace anomalies before commas.
 - Category Cleanup: Purged `lanes/ideas.html` and `lanes/projects.html`.
 
 ---

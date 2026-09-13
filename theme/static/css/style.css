@@ -261,6 +261,12 @@ img, picture, video, canvas {
   body {
     padding: 1.5rem 3rem 4rem;
   }
+  .site-title {
+    font-size: 1.95rem;
+  }
+  .site-tagline {
+    font-size: 1.45rem;
+  }
 }
 
 /* Tablets (640px - 1024px) */
@@ -540,7 +546,7 @@ header.site-header {
 
 .site-title {
   font-family: var(--font-sans);
-  font-size: 1.35rem;
+  font-size: 1.55rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin: 0;
@@ -558,7 +564,7 @@ header.site-header {
 
 .site-tagline {
   font-family: var(--font-sans);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: var(--text-muted);
   letter-spacing: -0.01em;
@@ -2189,7 +2195,7 @@ body:has(#text-size-toggle:checked) .site-title {
 }
 
 body:has(#text-size-toggle:checked) .site-tagline {
-  font-size: 1.35rem !important;
+  font-size: 1.65rem !important;
   margin-top: 0.35rem !important;
 }
 

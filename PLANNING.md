@@ -6,6 +6,16 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 33: Big Display Typography Scaling & Full-Screen App Header Unification (Completed - Release v0.7.1)**
+  - Scaled site title ("Jim Collinsworth") to `1.95rem` and tagline ("Out of My Lane") to `1.45rem` on big displays (`@media (min-width: 1360px)`).
+  - Scaled base desktop site title to `1.55rem` and tagline to `1.25rem`.
+  - Scaled tagline in text-size toggle mode to `1.65rem`.
+  - Harmonized top header bar markup and CSS in `content/apps/pipeline-tools/index.html` with `photo-viewer` and `keyword-search` (plain text accent `← Back to Apps` link, serif bold title, and `btn` action classes).
+  - Added theme toggle and browser full-screen request buttons to `content/apps/pipeline-tools/index.html`.
+  - Captured uncropped full-width (1920px) header evidence showing both left and right outer container margins and alignment.
+  - Bumped version to `v0.7.1` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+  - Passed all 51 automated tests in `pytest -v`.
+
 - [x] **Milestone 32: Site v0.7.0: App Posts, Full-Screen App Container & Dual AI/Mine Provenance (Completed - Release v0.7.0)**
   - Bound Featured Post summary dynamically on `index.html` via `featured.summary`.
   - Promoted Pipeline Tools to active Featured Post (`content/posts/pipeline-tools-workbench.md`).
