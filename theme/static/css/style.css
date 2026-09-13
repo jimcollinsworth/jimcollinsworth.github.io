@@ -68,6 +68,24 @@
   background: var(--bg-subtle);
 }
 
+/* Category & Provenance Badges */
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: -1px;
+}
+
+.category-badge.dual-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.category-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /* Interactive Embedded Application Container */
 .app-embed-container {
   position: relative;

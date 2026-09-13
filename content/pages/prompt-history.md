@@ -7,9 +7,32 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>68 prompts</strong> from Jim across 20 milestones, alongside concise summaries of actions taken.
+    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>73 prompts</strong> from Jim across 21 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
+
+## Site v0.7.0: App Posts, Full-Screen App Container & Dual AI/Mine Provenance (v0.7.0)
+*2026-09-13*
+
+**Jim (Mine):**
+
+wow bump the version up to .7 looking good.
+
+i want to make pipeline tools app post the featured post - each app needs a post I author, and then links to run in full screen mode, and links to github repo readme, hugging face space, other links. get these posts created if not aready created.
+
+make the pipeline-tool app run in full screen mode just like the other 2. explain approach issues. could also have a link to full app in spaces. where is all this configured for build? is it in the app blog post metadata? in apps directory config? also, fair to say that all apps going forward will mainly be AI authored so lets respect that providence, how about ai providence with me as author (2 icons would be great in this case but don't know how prevalent that use case is. I (mine) will author the app post, but ai does 95% (or 99%))
+
+remove the "Interactive Application • Visual Media" from apps list, whatever that label is, remove it. app should list - providence icon, title (in the same smaller font we use for title in blog lists, seems like the same header level would be used).
+
+we need a photo/screen print for each app, probably in the app blog posting. i assume every post can have a default photo and maybe thumbnail used for various display purposes. thow in screen shots for each of the 3 apps in their initial posts.
+
+**Response:**
+
+- Dynamic Featured Post: Bound the Featured Post description on `theme/templates/index.html` to `{{ featured.summary }}`.
+- Dedicated App Posts & High-Resolution Screenshots: Captured screenshots using Playwright to `content/images/`: `pipeline-tools-app.png`, `photo-viewer-app.png`, and `keyword-explorer-app.png`.
+- Full-Screen Pipeline Tools App (`content/apps/pipeline-tools/index.html`): Created a standalone full-viewport wrapper with a 56px top app bar (`← Back to Apps`, title, Spaces link, GitHub link, App Post link) and 100% viewport iframe.
+
+---
 
 ## Pipeline Tools App Page & Hugging Face Spaces Integration (v0.6.16)
 *2026-09-13*

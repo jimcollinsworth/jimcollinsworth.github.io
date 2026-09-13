@@ -80,7 +80,10 @@ def test_post_pages_exist():
         "art-institute-chicago-modern-wing.html",
         "cordoba-stage-guitar.html",
         "digital-piano-enhancements.html",
+        "keyword-explorer-taxonomy.html",
         "m-e-offline-ai-companion.html",
+        "photo-viewer-drive-manifest-explorer.html",
+        "pipeline-tools-workbench.html",
         "sleep-movement-evaluation-plan.html",
         "ulu-knife-handle.html",
     ]
@@ -92,6 +95,7 @@ def test_post_pages_exist():
 def test_category_archive_pages_exist():
     """Verify that provenance category pages exist in output/category/ and lanes/ is absent."""
     expected_categories = [
+        "ai.html",
         "mine.html",
         "ours.html",
     ]
@@ -227,6 +231,7 @@ def test_apps_and_static_data():
     expected_artifacts = [
         OUTPUT_DIR / "apps" / "photo-viewer" / "index.html",
         OUTPUT_DIR / "apps" / "keyword-search" / "index.html",
+        OUTPUT_DIR / "apps" / "pipeline-tools" / "index.html",
         OUTPUT_DIR / "data" / "photos.json",
         OUTPUT_DIR / "data" / "photos.md",
         OUTPUT_DIR / "data" / "site-index.json",
