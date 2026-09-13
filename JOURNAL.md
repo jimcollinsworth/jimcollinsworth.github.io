@@ -2,6 +2,32 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Provenance Icon Title Prefix & Intro Arrow Link (v0.6.14)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"move the providence icon in recent links over to title prefix, should apply everywhere."*
+> - *"change more about me to just -> or link icon"*
+
+### Problem & Diagnosis
+1. **Link Provenance Icon Positioning**:
+   - In `Recent Links` (`theme/templates/index.html` and `content/pages/links.md`), the category provenance icon was not positioned as an inline prefix to the title, unlike `Recent Stream` and `Featured Post`.
+2. **Intro Blurb Navigation Text**:
+   - The homepage intro blurb ended with verbose text `More about me →` rather than a compact arrow link `→`.
+
+### Root Cause & Technical Analysis
+- `Recent Links` items previously used separate title and metadata blocks rather than a flex-aligned row matching `.post-header-row`.
+- `style.css` lacked `.book-header-row`, `.book-header-left`, and `.book-header-right` selectors.
+
+### Solution & Standard Procedure
+1. **Unified Provenance Prefix Across All Links**:
+   - Refactored `index.html` and `links.md` so that `Recent Links` items use `.book-header-row` with `.book-header-left` containing the `AI` provenance icon prefixing the title, and `.book-header-right` containing author (`AI`) and formatted date right-justified.
+   - Updated `theme/static/css/style.css` to bind `.book-header-row`, `.book-header-left`, `.book-header-right`, and `.book-author` to the flex alignment rules.
+2. **Compact Intro Arrow Link**:
+   - Updated the homepage intro blurb to conclude with an arrow link to `about.html` (`&rarr;`) styled with class `.about-arrow`.
+   - Added `.about-arrow` styling in `theme/static/css/style.css`.
+3. **Verification**:
+   - Built site with Pelican; passed all 51 automated tests (`pytest -v`). Captured responsive visual screenshots across desktop and 680px portrait.
+
 ## 2026-09-13 — Compact Blog Layout, Right-Justified Metadata & Header Refinements (v0.6.13)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

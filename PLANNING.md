@@ -6,6 +6,15 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 29: Provenance Icon Title Prefix & Intro Arrow Link (Completed - Release v0.6.14)**
+  - Unified provenance icon positioning across `Recent Links` (`index.html` and `links.md`) so that the provenance icon prefixes the title, matching `Recent Stream` and `Featured Post`.
+  - Added `.book-header-row`, `.book-header-left`, and `.book-header-right` flex styles to `theme/static/css/style.css` to align `[ICON] [TITLE]` on left and right-justified author (`AI`) and date on right.
+  - Replaced `More about me →` in homepage intro blurb with compact arrow link to `about.html` (`&rarr;`) styled with `.about-arrow`.
+  - Replaced inline `(→all)` header links with clean `(ALL)` links on `index.html`.
+  - Removed redundant `Read full post →` from featured post block on `index.html`.
+  - Synchronized `JOURNAL.md`, `pyproject.toml`, and `content/pages/about-this-site.md` to `0.6.14`.
+  - Rebuilt static site with Pelican; passed all 51 automated tests (`pytest -v`).
+
 - [x] **Milestone 28: Compact Blog Layout, Right-Justified Metadata & Header Refinements (Completed - Release v0.6.13)**
   - Increased compact navigation breakpoint from 640px to 768px in `theme/static/css/style.css`, eliminating 3-line header wrapping on medium portrait viewports.
   - Harmonized active navigation highlight in expanded line mode with the single-item dropdown button (`border: 1px solid var(--border)`, `background: var(--bg-subtle)`, rounded 6px).

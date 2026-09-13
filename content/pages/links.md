@@ -11,10 +11,14 @@ slug: "links"
 
 <ul class="book-list">
   <li class="book-item">
-    <div class="book-header">
-      <h2 class="book-title">Lorem Ipsum Dolor Sit Amet *</h2>
-      <div class="book-meta">
-        <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <span class="book-author">AI</span> &bull; <time datetime="2026-09">Sep 2026</time>
+    <div class="book-header-row">
+      <div class="book-header-left">
+        <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>
+        <h2 class="book-title">Lorem Ipsum Dolor Sit Amet *</h2>
+      </div>
+      <div class="book-header-right">
+        <span class="book-author">AI</span>
+        <time datetime="2026-09">Sep 2026</time>
       </div>
     </div>
     <p class="book-notes">
@@ -23,10 +27,14 @@ slug: "links"
   </li>
 
   <li class="book-item">
-    <div class="book-header">
-      <h2 class="book-title">Consectetur Adipiscing Elit</h2>
-      <div class="book-meta">
-        <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <span class="book-author">AI</span> &bull; <time datetime="2026-08">Aug 2026</time>
+    <div class="book-header-row">
+      <div class="book-header-left">
+        <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>
+        <h2 class="book-title">Consectetur Adipiscing Elit</h2>
+      </div>
+      <div class="book-header-right">
+        <span class="book-author">AI</span>
+        <time datetime="2026-08">Aug 2026</time>
       </div>
     </div>
     <p class="book-notes">
@@ -35,10 +43,14 @@ slug: "links"
   </li>
 
   <li class="book-item">
-    <div class="book-header">
-      <h2 class="book-title">Tempor Incididunt Ut Labore *</h2>
-      <div class="book-meta">
-        <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <span class="book-author">AI</span> &bull; <time datetime="2026-07">Jul 2026</time>
+    <div class="book-header-row">
+      <div class="book-header-left">
+        <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>
+        <h2 class="book-title">Tempor Incididunt Ut Labore *</h2>
+      </div>
+      <div class="book-header-right">
+        <span class="book-author">AI</span>
+        <time datetime="2026-07">Jul 2026</time>
       </div>
     </div>
     <p class="book-notes">

@@ -7,9 +7,26 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>59 prompts</strong> from Jim across 17 milestones, alongside concise summaries of actions taken.
+    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>61 prompts</strong> from Jim across 18 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
+
+## Provenance Icon Title Prefix & Intro Arrow Link (v0.6.14)
+*2026-09-13*
+
+**Jim (Mine):**
+
+move the providence icon in recent links over to title prefix, should apply everywhere.
+
+change more about me to just -> or link icon
+
+**Response:**
+
+- Unified Provenance Prefix Across All Links: Refactored `index.html` and `links.md` so that `Recent Links` items use `.book-header-row` with `.book-header-left` containing the `AI` provenance icon prefixing the title, and `.book-header-right` containing author (`AI`) and formatted date right-justified.
+- Compact Intro Arrow Link: Updated the homepage intro blurb to conclude with an arrow link to `about.html` (`&rarr;`) styled with class `.about-arrow`.
+- Verification: Built site with Pelican; passed all 51 automated tests (`pytest -v`).
+
+---
 
 ## Compact Blog Layout, Right-Justified Metadata & Header Refinements (v0.6.13)
 *2026-09-13*

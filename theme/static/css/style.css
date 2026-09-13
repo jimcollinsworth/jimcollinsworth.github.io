@@ -990,7 +990,8 @@ article p, .page-intro p, .post-desc, .book-notes {
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.post-header-row {
+.post-header-row,
+.book-header-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -999,7 +1000,8 @@ article p, .page-intro p, .post-desc, .book-notes {
   width: 100%;
 }
 
-.post-header-left {
+.post-header-left,
+.book-header-left {
   display: flex;
   align-items: baseline;
   gap: 0.45rem;
@@ -1007,7 +1009,8 @@ article p, .page-intro p, .post-desc, .book-notes {
   flex: 1 1 auto;
 }
 
-.post-header-left .category-badge {
+.post-header-left .category-badge,
+.book-header-left .category-badge {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
@@ -1017,7 +1020,9 @@ article p, .page-intro p, .post-desc, .book-notes {
 }
 
 .post-header-left .post-title,
-.post-header .post-title {
+.post-header .post-title,
+.book-header-left .book-title,
+.book-header .book-title {
   font-family: var(--font-sans);
   font-size: 1.05rem;
   font-weight: 600;
@@ -1031,7 +1036,8 @@ article p, .page-intro p, .post-desc, .book-notes {
   font-weight: 700;
 }
 
-.post-header-right {
+.post-header-right,
+.book-header-right {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
@@ -1044,7 +1050,8 @@ article p, .page-intro p, .post-desc, .book-notes {
   color: var(--text-muted);
 }
 
-.post-header-right .post-type {
+.post-header-right .post-type,
+.book-header-right .book-author {
   font-family: var(--font-sans);
   font-weight: 600;
   text-transform: uppercase;
@@ -1052,7 +1059,8 @@ article p, .page-intro p, .post-desc, .book-notes {
   color: var(--text-muted);
 }
 
-.post-header-right time {
+.post-header-right time,
+.book-header-right time {
   font-family: var(--font-sans);
   font-weight: 400;
   text-transform: uppercase;
@@ -1079,6 +1087,19 @@ article p, .page-intro p, .post-desc, .book-notes {
   color: var(--link-hover);
 }
 
+.about-arrow {
+  display: inline-block;
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+
+.about-arrow:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
 .post-item.featured .post-desc {
   font-size: 0.95rem;
 }
@@ -1102,12 +1123,12 @@ article p, .page-intro p, .post-desc, .book-notes {
   overflow-wrap: break-word;
 }
 
-.post-title a, .book-title {
+.post-title a, .book-title, .book-title a {
   color: var(--link);
   text-decoration: none;
 }
 
-.post-title a:hover {
+.post-title a:hover, .book-title a:hover {
   color: var(--link-hover);
   text-decoration: underline;
 }

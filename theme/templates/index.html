@@ -4,7 +4,7 @@
 {% block content %}
 <div class="intro-blurb">
   <p>
-    Welcome. I'm Jim Collinsworth &mdash; retired after 50 years with software and clients, exploring software, data, tai chi, classical guitar, piano, woodworking, and local AI. <a href="{{ SITEURL }}/about.html">More about me &rarr;</a>
+    Welcome. I'm Jim Collinsworth &mdash; retired after 50 years with software and clients, exploring software, data, tai chi, classical guitar, piano, woodworking, and local AI. <a href="{{ SITEURL }}/about.html" class="about-arrow" title="About Jim" aria-label="About Jim">&rarr;</a>
   </p>
 </div>
 
@@ -46,10 +46,14 @@
       <h2>Recent Links <span class="header-all-link">(<a href="{{ SITEURL }}/links.html">ALL</a>)</span></h2>
       <ul class="book-list">
         <li class="book-item">
-          <div class="book-header">
-            <h3 class="book-title"><a href="{{ SITEURL }}/links.html">Lorem Ipsum Dolor Sit Amet *</a></h3>
-            <div class="book-meta">
-              {{ category_icon('AI') }} <span class="book-author">AI</span> &bull; <time datetime="2026-09">Sep 2026</time>
+          <div class="book-header-row">
+            <div class="book-header-left">
+              {{ category_icon('AI') }}
+              <h3 class="book-title"><a href="{{ SITEURL }}/links.html">Lorem Ipsum Dolor Sit Amet *</a></h3>
+            </div>
+            <div class="book-header-right">
+              <span class="book-author">AI</span>
+              <time datetime="2026-09">Sep 2026</time>
             </div>
           </div>
           <p class="book-notes">
@@ -57,10 +61,14 @@
           </p>
         </li>
         <li class="book-item">
-          <div class="book-header">
-            <h3 class="book-title"><a href="{{ SITEURL }}/links.html">Consectetur Adipiscing Elit</a></h3>
-            <div class="book-meta">
-              {{ category_icon('AI') }} <span class="book-author">AI</span> &bull; <time datetime="2026-08">Aug 2026</time>
+          <div class="book-header-row">
+            <div class="book-header-left">
+              {{ category_icon('AI') }}
+              <h3 class="book-title"><a href="{{ SITEURL }}/links.html">Consectetur Adipiscing Elit</a></h3>
+            </div>
+            <div class="book-header-right">
+              <span class="book-author">AI</span>
+              <time datetime="2026-08">Aug 2026</time>
             </div>
           </div>
           <p class="book-notes">
