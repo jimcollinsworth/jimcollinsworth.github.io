@@ -6,6 +6,12 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 27: Prompt History Mine Attribution & Steering Dialog Streamlining (Completed - Release v0.6.12)**
+  - Configured `Mine` stream and Jim Collinsworth author attribution on `content/pages/prompt-history.md` frontmatter and header.
+  - Formatted steering prompts with `**Jim (Mine):**` dialog labels and concise responses.
+  - Documented active zero-JS Google verification and filed Issue #10 for future tracking exploration.
+  - Rebuilt Pelican static site and confirmed 51/51 test suites pass. Bumped version to `v0.6.12`.
+
 - [x] **Milestone 26: Root Build Artifact Removal, Directory Organization & Nikola Cleanup (Completed - Release v0.6.11)**
   - Removed 37 obsolete build artifacts, root HTML files, duplicate directories (`category/`, `posts/`, `images/`, `assets/`), and intermediate files from the repository root.
   - Confirmed canonical source layout for Markdown (`content/posts/`, `content/pages/`) and historical archives (`archive/content/`).

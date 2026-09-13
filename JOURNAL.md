@@ -2,6 +2,46 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Prompt History Mine Attribution & Steering Dialog Streamlining (v0.6.12)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"how do we do google site verification (or is it on now?) and keeping with no javascript. what google tracking services can we use, or someone else? create a ticket for future, might need a touch of js eventually."*
+> - *"the output doc view is limited to half the screen, should be full width."*
+> - *"on site prompts, make my prompts simple full width text and they are the start/primary part, then cut way back on the llm response length, make prompts and responses more equal in length, cut out all the extra formatting, quoting, KISS"*
+> - *"add the mine attribution and 'jim' to the prompts. merge and publish"*
+
+### Problem & Diagnosis
+1. **Missing Authorship & Provenance Attribution**:
+   - The prompt history page lacked provenance attribution associating Jim's direct steering prompts with the `Mine` content stream.
+   - The prompts lacked explicit identification of the author (`Jim`), making the dialogue structure ambiguous.
+2. **Google Tracking & Verification Clarity**:
+   - Needed clarification regarding whether Google site verification was active and zero-JS compliant.
+   - Required documenting tracking options (zero-JS search console vs. minimal-JS analytics) in a dedicated tracking issue.
+3. **Verbose Formatting on Prompt Timeline**:
+   - Initial timeline implementation used heavy blockquotes, italics, quotes, and long diagnostic problem lists.
+
+### Root Cause & Technical Analysis
+- In `content/pages/prompt-history.md`, omitting `category: "Mine"` frontmatter failed to categorize Jim's human guidance under the site's documented provenance model (`about.md`).
+- Prefixing prompts with `**Jim (Mine):**` directly identifies the human author and provenance stream, creating a balanced dialog against `**Response:**`.
+
+### Solution & Standard Procedure
+1. **Provenance Attribution & Dialog Labeling**:
+   - Configured `category: "Mine"` and `author: "Jim Collinsworth"` in `content/pages/prompt-history.md` frontmatter.
+   - Added `(Stream: Mine • Author: Jim Collinsworth)` in page intro.
+   - Added `**Jim (Mine):**` label to each prompt block in `tools/sync_dev_prompts.py`.
+2. **KISS Formatting & Balanced Length**:
+   - Rendered prompts as full-width paragraphs without blockquotes or wrapping quotation marks.
+   - Reduced LLM responses to concise 2–3 item action lists derived from milestone solutions.
+3. **Google Analytics & Tracking Architecture**:
+   - Confirmed active zero-JS Google verification via `content/extra/googledaf3f946832f8abf.html` -> `output/googledaf3f946832f8abf.html`.
+   - Created GitHub Issue #10 to track zero-JS and minimal-JS analytics evaluation.
+4. **Verification & Deployment**:
+   - Recompiled Pelican site (`uv run pelican content -s pelicanconf.py -o output -d`).
+   - Ran automated test suite (`uv run pytest -v`): all 51 tests passed.
+   - Bumped version to `0.6.12` across `pyproject.toml`, `content/pages/about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
+---
+
 ## 2026-09-13 — Root Build Artifact Removal, Directory Organization & Nikola Cleanup (v0.6.11)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

@@ -1,16 +1,41 @@
 ---
 title: "Development Prompts & Instruction Timeline"
 slug: "prompt-history"
+category: "Mine"
+author: "Jim Collinsworth"
 ---
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>46 prompts</strong> from Jim across 15 milestones, alongside concise summaries of actions taken.
+    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>50 prompts</strong> from Jim across 16 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
 
+## Prompt History Mine Attribution & Steering Dialog Streamlining (v0.6.12)
+*2026-09-13*
+
+**Jim (Mine):**
+
+how do we do google site verification (or is it on now?) and keeping with no javascript. what google tracking services can we use, or someone else? create a ticket for future, might need a touch of js eventually.
+
+the output doc view is limited to half the screen, should be full width.
+
+on site prompts, make my prompts simple full width text and they are the start/primary part, then cut way back on the llm response length, make prompts and responses more equal in length, cut out all the extra formatting, quoting, KISS
+
+add the mine attribution and 'jim' to the prompts. merge and publish
+
+**Response:**
+
+- Provenance Attribution & Dialog Labeling: Configured `category: "Mine"` and `author: "Jim Collinsworth"` in `content/pages/prompt-history.md` frontmatter.
+- KISS Formatting & Balanced Length: Rendered prompts as full-width paragraphs without blockquotes or wrapping quotation marks.
+- Google Analytics & Tracking Architecture: Confirmed active zero-JS Google verification via `content/extra/googledaf3f946832f8abf.html` -> `output/googledaf3f946832f8abf.html`.
+
+---
+
 ## Root Build Artifact Removal, Directory Organization & Nikola Cleanup (v0.6.11)
 *2026-09-13*
+
+**Jim (Mine):**
 
 looking at repo file organization, seems like we have too much in the root but i'm not sure. why is there html in root, shouldn't all the built site content be in it's own directory?
 
@@ -28,6 +53,8 @@ we have old doit files from previous nikola implementation, delete these and any
 
 ## Prohibition of Ungrounded Adjectives & Fluff Removal (v0.6.10)
 *2026-09-13*
+
+**Jim (Mine):**
 
 why is the 375px image so large and fonts so big, hard to compare to other screen shots.
 
@@ -48,6 +75,8 @@ create a branch for fluff-removal, remove all fluff from all content in the site
 ## Tightened Header Spacing, Compact Active Nav & Segmented Controls (v0.6.9)
 *2026-09-13*
 
+**Jim (Mine):**
+
 no but remove menuitem from the template if we don't realy use it.
 
 on site page (and all pages) there is too much vertical spacing in the header, reduce spacing above, between and below, should be pretty tight with the grey bar. Make the selected highlight on menu items shorter, don't need all that padding and margins.
@@ -65,6 +94,8 @@ on home page in phone profile view the menu dropdown and theme icons don't look 
 ## Pelican Conventions Rule, Optional Summary & Menu Architecture (v0.6.8)
 *2026-09-13*
 
+**Jim (Mine):**
+
 nope don't need summary, want to follow pelican conventions if possible (make an agents.md rule)
 
 can a blog post be a menu? do the custom pages (about.md) have a menu:true
@@ -79,6 +110,8 @@ can a blog post be a menu? do the custom pages (about.md) have a menu:true
 
 ## Header Horizon Bar, Reversed Active Nav & Obsidian Post Template (v0.6.7)
 *2026-09-12*
+
+**Jim (Mine):**
 
 just the horizontal header bar below the menu, maybe a few pixels wider, basic grey for now. lets use something besides underline foemthe active menumitems sinsce that would conflict with the horizontal bar. maybe hightigt or reverse it, make it obvious.
 
@@ -95,6 +128,8 @@ give me an obsidian template, has all the yaml field with comment and field valu
 ## Color Flair & Photo Border Architectural Design (Issue #6)
 *2026-09-12*
 
+**Jim (Mine):**
+
 after that do ticket 6 add a touchnofmcolor flair, but just design and a few potential screen shots, document in the issue ticket
 
 try more spatial variations not colors, linesmthinner, sides only, top only, lookmforminspiration, just a splash, colors from,my photos, nature.
@@ -110,6 +145,8 @@ try more spatial variations not colors, linesmthinner, sides only, top only, loo
 ## Verbatim Dev Prompts Timeline & Automated Milestone Sync (Issue #7)
 *2026-09-12*
 
+**Jim (Mine):**
+
 go ahead and do issuem#7 dev prompts but not the haiku part, just the shift to simple prompt text. after that do ticket 6 add a touchnofmcolor flair, but just design and a few potential screen shots, document in the issue ticket
 
 **Response:**
@@ -123,6 +160,8 @@ go ahead and do issuem#7 dev prompts but not the haiku part, just the shift to s
 ## Dynamic Mobile Dropdown Menu in Portrait Mode (Release v0.6.5)
 *2026-09-12*
 
+**Jim (Mine):**
+
 an improvement but need the dynamic menu in portrate mode thats possible right?
 
 **Response:**
@@ -135,6 +174,8 @@ an improvement but need the dynamic menu in portrate mode thats possible right?
 
 ## Compact Mobile Header, Streamlined Dates & Dense Post Listings (Release v0.6.4)
 *2026-09-12*
+
+**Jim (Mine):**
 
 getting close buy phone is,still too packed. on landscape mode fully half the screen ismwasted for the header, must be one line max for phone, can hide out of my lane if needed on small devices. should be a dynamic hiding menu at some point and justmshow current menu name, withmdrop down.
 
@@ -155,6 +196,8 @@ and then merge push and publish
 ## Responsive Image Containment, Edge-to-Edge Photo Stream & Release v0.6.3
 *2026-09-12*
 
+**Jim (Mine):**
+
 in photomalbumms the photosmproperly span the window, might even be able to remove left right padding for photos. but thempost on modern wing the photosmare full sized,,muchnwidermthan screen. inmgeneral they should fit to screen width
 
 **Response:**
@@ -167,6 +210,8 @@ in photomalbumms the photosmproperly span the window, might even be able to remo
 
 ## 'Me' Category, Downlow Iconography, Configurable Menu & Release v0.6.2
 *2026-09-12*
+
+**Jim (Mine):**
 
 we also have me as a category, this is stuff about me maybe written about me by me, maybe my fit bit data, or bookmarks
 
@@ -193,6 +238,8 @@ feather quill, use robot head instaed of sparkle
 ## Provenance Categories (Mine, AI Generated, Ours, Theirs), Streams Navigation & Release v0.6.1
 *2026-09-12*
 
+**Jim (Mine):**
+
 changing terminology a bit, too much emphasis currently on lanes. Really? All it should be is a possibility. Tagline, and then lanes are simply just pages like I have a page on tai. Chi and a page on music in those pages. We'll link too one or many posts based on some filtering criteria
 
 remove most references to lanes, lanes are simply custom pages, we will have a tai chi page, with my tai chi posts, links and summary, and a science page... then we just need keywordsi think. where do the pelecan concepts fit again
@@ -211,6 +258,8 @@ me like about, biodata, mine, ai generated, ours, theirs, lets go with those cat
 
 ## Multi-Lane Taxonomy, Post-Type Evolution, Zero-JS Commenting Pipeline & Release v0.6.0
 *2026-09-11*
+
+**Jim (Mine):**
 
 ok toomany, remove thrd,pmrt, quote,lab, psper, snip. keep rest, updatd docss and assign types to existing content. displat the types short code along with date month yr, and lanes for each post
 
@@ -239,6 +288,8 @@ lets commit and push, publish, update release number
 ## Persistent Learning (`/learn`), Human Prompt Highlighting in Journal & Release v0.5.9
 *2026-09-10*
 
+**Jim (Mine):**
+
 ok do a /learn, update journal highligh my instructions, questions, corrections, advise, update release numbermerge push and publish
 
 **Response:**
@@ -251,6 +302,8 @@ ok do a /learn, update journal highligh my instructions, questions, corrections,
 
 ## Tagline Lanes Link, Footer Lane Navigator, AI Promoted Lane, Links Rename & Homepage Bio (v0.5.8)
 *2026-09-10*
+
+**Jim (Mine):**
 
 i like the make the distinction of me, mine, ours and others could event be menu/page titles. me is the about page along with contacts, what i'm doing now; mine is my own original content, apps, photos (not of art); and then ours with would be nature, hikes, museums, art; and others are books, urls, blogs, articals and my comments/review/mention. i would post my photos of art in others or ours, that one is not entirely clear could go either way. finally want to make ai a major page - basically it's one of the out of my lane 'lanes' pages, but promoted to the top menu. maybe we have an easy way to mark a lane page to show at top level menu, vs a list/tag cloud of all the lanes (maybe 20). but a menu of 'me mine ours others' may be too cute. so lets do about, https://macwright.com/ is probably the best structure wise and content and layout for me. document some of these thoughs but i thik the only change we need is to remove events, i will just have an 'art' post, and change shelf to something else - links is fine for now. and add ai and lanes as 2 more pages, with ai being a lane, and lanes being a description an dindex to all the lanes.
 
