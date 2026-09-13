@@ -64,44 +64,42 @@ def parse_journal() -> tuple[list[dict], int]:
                 for q in quotes:
                     prompts.append(q.strip())
 
+        if not prompts:
+            continue
+
         total_prompt_count += len(prompts)
 
-        # Extract Problem & Diagnosis
-        problem_match = re.search(r"### Problem & Diagnosis\s*\n(.*?)(?=\n###|\n---|\Z)", sec, re.DOTALL)
-        problem_text = problem_match.group(1).strip() if problem_match else ""
+        # Extract concise actions from Solution & Standard Procedure or Decisions & Actions Taken
+        sol_match = re.search(r"### (?:Solution[^\n]*|Decisions & Actions Taken)\s*\n(.*?)(?=\n###|\n---|\Z)", sec, re.DOTALL)
+        sol_text = sol_match.group(1).strip() if sol_match else ""
 
-        # Extract Solution & Standard Procedure
-        solution_match = re.search(r"### Solution & Standard Procedure\s*\n(.*?)(?=\n###|\n---|\Z)", sec, re.DOTALL)
-        solution_text = solution_match.group(1).strip() if solution_match else ""
+        actions = []
+        items = re.findall(r"^\d+\.\s*\*\*(.*?)\*\*:\s*(.*)", sol_text, re.MULTILINE)
+        if items:
+            for name, desc in items[:3]:
+                first_line = desc.strip().split("\n")[0].strip()
+                first_line = re.sub(r"^[-*]\s*", "", first_line)
+                first_sent = first_line.split(". ")[0].strip().rstrip(".")
+                actions.append(f"{name}: {first_sent}.")
+        else:
+            bullets = re.findall(r"^[-*]\s*(.*)", sol_text, re.MULTILINE)
+            if bullets:
+                for b in bullets[:2]:
+                    first_line = b.strip().split("\n")[0].strip()
+                    actions.append(first_line)
+            elif sol_text:
+                first_line = sol_text.split("\n")[0].strip()
+                if first_line:
+                    actions.append(first_line)
 
-        # Extract Root Cause & Technical Analysis
-        root_cause_match = re.search(r"### Root Cause & Technical Analysis\s*\n(.*?)(?=\n###|\n---|\Z)", sec, re.DOTALL)
-        root_cause_text = root_cause_match.group(1).strip() if root_cause_match else ""
-
-        if prompts or problem_text:
-            milestones.append({
-                "date": date_str,
-                "title": title_str,
-                "prompts": prompts,
-                "problem": problem_text,
-                "root_cause": root_cause_text,
-                "solution": solution_text,
-            })
+        milestones.append({
+            "date": date_str,
+            "title": title_str,
+            "prompts": prompts,
+            "actions": actions,
+        })
 
     return milestones, total_prompt_count
-
-
-import html
-
-def sanitize_html_content(text: str) -> str:
-    """Format markdown bold and code for safe rendering inside raw HTML tags."""
-    # Convert bold **text** to <strong>text</strong>
-    text = re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", text)
-    # Convert backtick code `code` to <code>escaped</code>
-    text = re.sub(r"`([^`]+)`", lambda m: f"<code>{html.escape(m.group(1))}</code>", text)
-    # Escape any stray angle brackets that look like HTML tags
-    text = re.sub(r"<(?!/?(?:strong|em|code|span|a\b))([^>]+)>", r"&lt;\1&gt;", text)
-    return text
 
 
 def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int) -> str:
@@ -114,7 +112,7 @@ def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int)
     md.append("")
     md.append('<div class="page-intro">')
     md.append("  <p>")
-    md.append(f"    <strong>Development Prompts</strong> lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>{total_prompts} prompts</strong> from Jim across {len(milestones)} releases, alongside recorded agent errors and solutions.")
+    md.append(f"    <strong>Development Prompts</strong> lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>{total_prompts} prompts</strong> from Jim across {len(milestones)} milestones, alongside concise summaries of actions taken.")
     md.append("  </p>")
     md.append("</div>")
     md.append("")
@@ -127,43 +125,22 @@ def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int)
             md.append(f"*{date_str}*")
         md.append("")
 
-        # Jim's Prompts
-        if m["prompts"]:
-            md.append("**Jim's Direct Prompts:**")
+        # Jim's Prompts: simple full-width text, start/primary part, no blockquotes, no italics, no quotes
+        for p in m["prompts"]:
+            md.append(p.strip())
             md.append("")
-            for p in m["prompts"]:
-                escaped_p = html.escape(p)
-                md.append(f'> *"{escaped_p}"*')
-                md.append("")
 
-        # Factual Summary & Remediation
-        if m["problem"] or m["solution"]:
-            md.append("**Course Corrections & Technical Remediation:**")
+        # LLM Response: concise, balanced length, no nested tags
+        if m["actions"]:
+            md.append("**Response:**")
             md.append("")
-            prob_lines = [l.strip() for l in m["problem"].split("\n") if l.strip()]
-            for line in prob_lines:
-                cleaned_line = re.sub(r"^\d+\.\s*", "", line)
-                if cleaned_line.startswith("- "):
-                    cleaned_line = cleaned_line[2:]
-                sanitized_line = sanitize_html_content(cleaned_line)
-                md.append(f"- {sanitized_line}")
+            for a in m["actions"]:
+                md.append(f"- {a}")
             md.append("")
 
         md.append("---")
         md.append("")
 
-    md.append('<div style="margin-top: 1.5rem;">')
-    md.append('  <a href="about-this-site.html">&larr; Return to About This Site</a> &bull;')
-    md.append('  <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases" target="_blank" rel="noopener">View GitHub Releases History &rarr;</a>')
-    md.append("</div>")
-    md.append("")
-
-    return "\n".join(md)
-
-    md.append("</div>")
-    md.append("")
-    md.append("---")
-    md.append("")
     md.append('<div style="margin-top: 1.5rem;">')
     md.append('  <a href="about-this-site.html">&larr; Return to About This Site</a> &bull;')
     md.append('  <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases" target="_blank" rel="noopener">View GitHub Releases History &rarr;</a>')
@@ -184,3 +161,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
