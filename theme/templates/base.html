@@ -26,7 +26,7 @@
         {% endif %}
         {% if MENUITEMS %}
           {% for title, url, match_key in MENUITEMS %}
-            {% if (output_file == match_key) or (page and page.slug == match_key) or (match_key == 'posts.html' and (article or category)) or (match_key == 'apps' and page and page.slug in ['pipeline-tools']) %}
+            {% if (output_file == match_key) or (page and page.slug == match_key) or (match_key == 'posts.html' and (article or category)) %}
               {% set ns.active_title = title %}
             {% endif %}
           {% endfor %}
@@ -34,7 +34,7 @@
 
         <nav class="site-nav desktop-nav" aria-label="Main Navigation">
           {% for title, url, match_key in MENUITEMS %}
-            <a href="{{ SITEURL }}{{ url }}"{% if (output_file == match_key) or (page and page.slug == match_key) or (match_key == 'posts.html' and (article or category)) or (match_key == 'apps' and page and page.slug in ['pipeline-tools']) %} class="active" aria-current="page"{% endif %}>{{ title }}</a>
+            <a href="{{ SITEURL }}{{ url }}"{% if (output_file == match_key) or (page and page.slug == match_key) or (match_key == 'posts.html' and (article or category)) %} class="active" aria-current="page"{% endif %}>{{ title }}</a>
           {% endfor %}
         </nav>
 
@@ -47,7 +47,7 @@
           </summary>
           <nav class="mobile-nav-menu" aria-label="Mobile Navigation">
             {% for title, url, match_key in MENUITEMS %}
-              <a href="{{ SITEURL }}{{ url }}"{% if (output_file == match_key) or (page and page.slug == match_key) or (match_key == 'posts.html' and (article or category)) or (match_key == 'apps' and page and page.slug in ['pipeline-tools']) %} class="active" aria-current="page"{% endif %}>{{ title }}</a>
+              <a href="{{ SITEURL }}{{ url }}"{% if (output_file == match_key) or (page and page.slug == match_key) or (match_key == 'posts.html' and (article or category)) %} class="active" aria-current="page"{% endif %}>{{ title }}</a>
             {% endfor %}
           </nav>
         </details>
@@ -100,9 +100,6 @@
         <a href="{{ SITEURL }}/contact.html">Contact</a>
         <a href="https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8" target="_blank" rel="noopener">Google Photos <span class="sr-only">(opens external photo album in new tab)</span></a>
       </nav>
-      <div>
-        Content &copy; Jim Collinsworth. Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
-      </div>
     </footer>
   </div>
 </body>

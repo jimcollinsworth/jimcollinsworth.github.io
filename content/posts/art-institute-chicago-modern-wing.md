@@ -26,7 +26,9 @@ evolution: "2026-08-14:til > 2026-09-09:inquiry"
 Visiting the Modern Wing on an overcast afternoon reveals something direct sunlight obscures: the ceiling louvers diffuse northern lake light into a matte, shadowless wash. In contemporary exhibition spaces, artificial fixtures often dominate with halogen pin-spots that create localized high-contrast illumination. Piano’s design prioritizes ambient sky diffusion over directional pin-lighting.
 
 <figure>
-  <img src="../images/sky-lakefront.jpg" alt="Lakefront ambient diffused daylight" loading="lazy">
+  <a href="../images/sky-lakefront.jpg" class="photo-link" title="Click to view full screen">
+    <img src="../images/sky-lakefront.jpg" alt="Lakefront ambient diffused daylight" loading="lazy">
+  </a>
   <figcaption>Diffused ambient northern sky illumination across the third-floor galleries.</figcaption>
 </figure>
 
@@ -35,7 +37,9 @@ Visiting the Modern Wing on an overcast afternoon reveals something direct sunli
 The gallery sequencing moves visitors from dense, intimate alcoves into broad, double-height volumes overlooking Millennium Park. This contrast resets the eye. When viewing large-scale abstract expressionist canvases or mid-century bronze sculptures, the eye requires breathing room between intense color fields.
 
 <figure>
-  <img src="../images/sky-formation.jpg" alt="Structural framing and geometric perspective" loading="lazy">
+  <a href="../images/sky-formation.jpg" class="photo-link" title="Click to view full screen">
+    <img src="../images/sky-formation.jpg" alt="Structural framing and geometric perspective" loading="lazy">
+  </a>
   <figcaption>Linear steel members and clear glazing frame exterior tree canopies against white limestone.</figcaption>
 </figure>
 

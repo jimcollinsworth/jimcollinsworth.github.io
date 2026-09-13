@@ -7,7 +7,7 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>77 prompts</strong> from Jim across 22 milestones, alongside concise summaries of actions taken.
+    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>84 prompts</strong> from Jim across 23 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
 
@@ -448,6 +448,33 @@ remove lanes page, add a link to that from the out of my lane title. and we can 
 - Templates & HTML Structure: `theme/templates/base.html`:.
 - Content & Pages: Created `content/pages/ai.md` (`slug: ai`, `title: AI`).
 - Styling (`style.css`): Added `.site-tagline a` subtle color and hover underline styles.
+
+---
+
+## Milestone 23: Post Header Consolidation, Framed App Mockups, Full-Screen Photo Links & Zero-JS UI Streamlining (v0.7.2)
+*2026-09-13*
+
+**Jim (Mine):**
+
+as with other pages we don't need a read app post button, the post title should jump there. remove the embedded view for pipeline-tool
+
+remove copywrite notice on bottom page, entire line. any attribution will be in about me and about site pages
+
+unbold the post types, and reduce the spacing between main sections like feature post and recent links
+
+content explorer post page (and other) make title line consistent with list, icon(s) in front of title, type and date right justified and unbolded.
+
+back to posts line is very screen wastful, a entire line. find a way to do this without using an entire line, just a back icon somewhere in header or floating on content.
+
+the content explorer screen image is missleading it looks like part of post. make the screen size smaller and maybe a accent border so it's obvious it's a screen shot. Put the launch link at the beginning, using the same nice button as the apps list does.
+
+for photos in general, clicking on any photo goes full screen, do for gallery and all places
+
+**Response:**
+
+- Apps Page & Post Titles (`content/pages/apps.md`): Linked all card titles directly to their respective posts (`posts/photo-viewer-drive-manifest-explorer.html`, `posts/keyword-explorer-taxonomy.html`, `posts/pipeline-tools-workbench.html`).
+- Removed Obsolete Embedded Page: Executed `git rm content/pages/pipeline-tools.md` and removed references from `theme/templates/base.html` and `pipeline-tools-workbench.md`.
+- Removed Footer Copyright: Removed the `&lt;div&gt;Content &copy; Jim Collinsworth...&lt;/div&gt;` line from `theme/templates/base.html`.
 
 ---
 

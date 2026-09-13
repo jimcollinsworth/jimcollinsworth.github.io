@@ -20,8 +20,16 @@ summary: "A client-side visual discovery widget that cross-filters site content 
   </p>
 </div>
 
-<figure>
-  <img src="../images/keyword-explorer-app.png" alt="Content Taxonomy & Keyword Explorer interface displaying category filters, thought stages, and keyword tag pills" loading="lazy">
+<p style="margin: 1rem 0 1.75rem;">
+  <a href="../apps/keyword-search/index.html" class="app-launch-btn">Launch Full-Screen App &rarr;</a>
+</p>
+
+<figure class="screenshot-frame">
+  <div class="screenshot-container">
+    <a href="../images/keyword-explorer-app.png" class="photo-link" title="Click to view full screen">
+      <img src="../images/keyword-explorer-app.png" alt="Content Taxonomy & Keyword Explorer interface displaying category filters, thought stages, and keyword tag pills" loading="lazy">
+    </a>
+  </div>
   <figcaption>Content Taxonomy &amp; Keyword Explorer with real-time faceted filters and multi-label tags.</figcaption>
 </figure>
 

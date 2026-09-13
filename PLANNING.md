@@ -6,6 +6,18 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 34: Post Header Consolidation, Framed App Mockups, Full-Screen Photo Links & Zero-JS UI Streamlining (Completed - Release v0.7.2)**
+  - Apps Hub: linked card titles directly to app posts; removed redundant "Read App Post &rarr;" buttons and removed "Embedded View &rarr;" button.
+  - Decommissioned obsolete embedded page `pipeline-tools.md` via `git rm`.
+  - Removed footer copyright notice line from `theme/templates/base.html`.
+  - Unbolded post types (`font-weight: 400`) and tightened vertical spacing between main homepage sections.
+  - Post header row consolidation: integrated inline `&larr;` back arrow, provenance category badge, title on left, and right-justified unbolded type/date on right, eliminating the standalone back link row.
+  - App post layout: added top primary accent `Launch Full-Screen App &rarr;` button immediately after intro text; framed screenshot inside `figure.screenshot-frame` with accent border, rounded corners, and shadow.
+  - Full-screen photo viewing: wrapped images with `a.photo-link` (with `cursor: zoom-in`) across gallery, homepage spotlight, article posts, and app screenshots.
+  - Rebuilt static site with Pelican; passed all 51 automated tests (`pytest -v`).
+  - Captured full-width uncropped screenshots (1920x1080) for visual verification.
+  - Bumped version to `v0.7.2` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 - [x] **Milestone 33: Big Display Typography Scaling & Full-Screen App Header Unification (Completed - Release v0.7.1)**
   - Scaled site title ("Jim Collinsworth") to `1.95rem` and tagline ("Out of My Lane") to `1.45rem` on big displays (`@media (min-width: 1360px)`).
   - Scaled base desktop site title to `1.55rem` and tagline to `1.25rem`.

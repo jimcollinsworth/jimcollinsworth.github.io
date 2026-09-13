@@ -1449,3 +1449,58 @@ The site previously relied on Nikola, a Python-based static site generator with 
    - Verified that all HTML files contain 0 `<script>` tags.
    - Verified that all internal page and image links resolve cleanly to existing local files.
    - Validated standard `<!DOCTYPE html>` structure and closed tags.
+
+---
+
+## 2026-09-13 — Milestone 23: Post Header Consolidation, Framed App Mockups, Full-Screen Photo Links & Zero-JS UI Streamlining (v0.7.2)
+
+### Jim's Guidance & Direction
+
+> [!NOTE] Jim's Instructions & Guidance:
+> - "as with other pages we don't need a read app post button, the post title should jump there. remove the embedded view for pipeline-tool"
+> - "remove copywrite notice on bottom page, entire line. any attribution will be in about me and about site pages"
+> - "unbold the post types, and reduce the spacing between main sections like feature post and recent links"
+> - "content explorer post page (and other) make title line consistent with list, icon(s) in front of title, type and date right justified and unbolded."
+> - "back to posts line is very screen wastful, a entire line. find a way to do this without using an entire line, just a back icon somewhere in header or floating on content."
+> - "the content explorer screen image is missleading it looks like part of post. make the screen size smaller and maybe a accent border so it's obvious it's a screen shot. Put the launch link at the beginning, using the same nice button as the apps list does."
+> - "for photos in general, clicking on any photo goes full screen, do for gallery and all places"
+
+### Problem & Diagnosis
+1. **Redundant Buttons on Apps Page**: The Apps Hub (`apps.md`) had duplicate calls to action ("Read App Post →" and "Launch Full-Screen App →") alongside a redundant embedded iframe button for Pipeline Tools.
+2. **Obsolete Embedded Page**: The dedicated embedded page `pipeline-tools.md` was redundant with the full-screen interactive app (`apps/pipeline-tools/index.html`).
+3. **Footer Clutter**: The footer copyright line was taking up vertical space; legal/attribution belongs in About Me and About Site.
+4. **Visual Weight & Section Spacing**: Bold post type indicators (`font-weight: 600`) drew excessive visual attention away from titles. Section margins between Featured Post and Recent Links caused unnecessary vertical scrolling.
+5. **Post Header Inconsistency & Screen Waste**: Post pages contained a standalone `← Back to Posts` line consuming a whole row. Post titles lacked the provenance icon and right-justified unbolded metadata shown on post list pages.
+6. **App Post Screenshot Confusion**: Screenshots inside app posts stretched to 100% width with subtle borders, making screenshots look like live web controls. The launch button was located at the very bottom of the post.
+7. **Photo Exploration**: Photo figures in the gallery, homepage spotlight, and article posts lacked full-screen viewing links.
+
+### Root Cause & Technical Analysis
+- The post template (`article.html`) rendered a `<div class="back-nav"><a href="...">← Back to Posts</a></div>` block above the article heading, consuming vertical space.
+- Post headers in `article.html` did not utilize the flex-based `.post-header-row` structure established in `theme/templates/index.html`.
+- Generic `<figure>` styling in `style.css` rendered all images at full container width (`max-width: 100%`) without visual demarcation separating application screenshots from page UI.
+- Image elements were unlinked `<img ...>` tags without anchor wrappers to full-resolution assets.
+
+### Solution & Standard Procedure
+1. **Apps Page & Post Titles (`content/pages/apps.md`)**:
+   - Linked all card titles directly to their respective posts (`posts/photo-viewer-drive-manifest-explorer.html`, `posts/keyword-explorer-taxonomy.html`, `posts/pipeline-tools-workbench.html`).
+   - Removed all "Read App Post →" buttons and removed the "Embedded View →" button.
+2. **Removed Obsolete Embedded Page**:
+   - Executed `git rm content/pages/pipeline-tools.md` and removed references from `theme/templates/base.html` and `pipeline-tools-workbench.md`.
+3. **Removed Footer Copyright**:
+   - Removed the `<div>Content &copy; Jim Collinsworth...</div>` line from `theme/templates/base.html`.
+4. **Unbolded Post Types & Tighter Section Spacing (`theme/static/css/style.css`)**:
+   - Changed `.post-header-right .post-type`, `.book-header-right .book-author`, and `.post-type` to `font-weight: 400`.
+   - Tightened `.post-item.featured` padding and margin; reduced `.post-item` bottom margin to `1.35rem`; reduced section heading margins in `.desktop-two-col`.
+5. **Streamlined Post Header (`theme/templates/article.html` & `category.html`)**:
+   - Structured `<header class="post-header-full">` with `.post-header-row`: left column includes inline `<a class="post-back-arrow">←</a>`, provenance category badge, and `<h1 class="post-title">`; right column displays unbolded uppercase post type and date.
+   - Updated `category.html` to integrate `<a class="post-back-arrow">←</a>` directly alongside `<h2>Category: ...</h2>`.
+6. **Framed App Screenshots & Top Launch Button (`content/posts/*.md`)**:
+   - Added primary accent button `<a href="..." class="app-launch-btn">Launch Full-Screen App &rarr;</a>` right below the lead paragraph across all app posts.
+   - Created `figure.screenshot-frame` with `max-width: 640px`, centered margin, `border: 2px solid var(--accent);`, rounded corners, and shadow.
+7. **Full-Screen Photo Viewing Across Site**:
+   - Wrapped images in `<a href="..." class="photo-link" title="Click to view full screen">` across `content/pages/photos.md`, `theme/templates/index.html` (spotlight), `content/posts/art-institute-chicago-modern-wing.md`, and all app post screenshots with `cursor: zoom-in`.
+8. **Automated Testing, Verification & Versioning**:
+   - Rebuilt Pelican static output; verified all 51 automated tests pass (`uv run pytest -v`).
+   - Re-synced steering prompts via `tools/sync_dev_prompts.py` (77 prompts cataloged).
+   - Bumped project version to `0.7.2` in `pyproject.toml` and `about-this-site.md`.
+   - Captured full-width uncropped screenshots at 1920x1080 for visual verification.

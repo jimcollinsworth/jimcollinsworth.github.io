@@ -20,8 +20,16 @@ summary: "A client-side photo viewer that parses tabular markdown and JSON manif
   </p>
 </div>
 
-<figure>
-  <img src="../images/photo-viewer-app.png" alt="Photo Viewer & Drive Explorer interface showing photo filmstrip and Sony A7 IV telemetry details" loading="lazy">
+<p style="margin: 1rem 0 1.75rem;">
+  <a href="../apps/photo-viewer/index.html" class="app-launch-btn">Launch Full-Screen App &rarr;</a>
+</p>
+
+<figure class="screenshot-frame">
+  <div class="screenshot-container">
+    <a href="../images/photo-viewer-app.png" class="photo-link" title="Click to view full screen">
+      <img src="../images/photo-viewer-app.png" alt="Photo Viewer & Drive Explorer interface showing photo filmstrip and Sony A7 IV telemetry details" loading="lazy">
+    </a>
+  </div>
   <figcaption>Photo Viewer &amp; Drive Manifest Explorer with filmstrip navigation and camera metadata inspector.</figcaption>
 </figure>
 

@@ -21,8 +21,16 @@ summary: "An interactive multimodal data pipeline and transformation workbench d
   </p>
 </div>
 
-<figure>
-  <img src="../images/pipeline-tools-app.png" alt="Pipeline Tools v1.3 Multimodal Workbench interface showing directory scanner and Pixeltable ingestion targets" loading="lazy">
+<p style="margin: 1rem 0 1.75rem;">
+  <a href="../apps/pipeline-tools/index.html" class="app-launch-btn">Launch Full-Screen App &rarr;</a>
+</p>
+
+<figure class="screenshot-frame">
+  <div class="screenshot-container">
+    <a href="../images/pipeline-tools-app.png" class="photo-link" title="Click to view full screen">
+      <img src="../images/pipeline-tools-app.png" alt="Pipeline Tools v1.3 Multimodal Workbench interface showing directory scanner and Pixeltable ingestion targets" loading="lazy">
+    </a>
+  </div>
   <figcaption>Pipeline Tools v1.3 Multimodal Workbench running on Hugging Face Spaces.</figcaption>
 </figure>
 
@@ -43,4 +51,3 @@ summary: "An interactive multimodal data pipeline and transformation workbench d
 - **Hugging Face Space**: [Open Space in Hugging Face &nearr;](https://huggingface.co/spaces/jimcollinsworth/pipeline-tools)
 - **Direct Application Host**: [jimcollinsworth-pipeline-tools.hf.space &nearr;](https://jimcollinsworth-pipeline-tools.hf.space)
 - **Source Code & Documentation**: [GitHub Repository & README &nearr;](https://github.com/jimcollinsworth/pipeline-tools)
-- **In-Page Embedded View**: [Pipeline Tools Site Page &rarr;](../pipeline-tools.html)

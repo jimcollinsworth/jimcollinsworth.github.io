@@ -1024,6 +1024,14 @@ article p, .page-intro p, .post-desc, .book-notes {
   }
 }
 
+.desktop-two-col section h2 {
+  margin-top: 1.15rem;
+}
+
+.desktop-two-col section:first-child h2 {
+  margin-top: 0.25rem;
+}
+
 /* Links Page 2-Row / 2-Column Responsive Layout */
 .links-intro-row {
   display: block;
@@ -1146,12 +1154,12 @@ article p, .page-intro p, .post-desc, .book-notes {
 }
 
 .post-item, .book-item {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.35rem;
 }
 
 .post-item.featured {
-  padding-bottom: 2rem;
-  margin-bottom: 2.75rem;
+  padding-bottom: 1.15rem;
+  margin-bottom: 1.25rem;
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -1218,7 +1226,7 @@ article p, .page-intro p, .post-desc, .book-notes {
 .post-header-right .post-type,
 .book-header-right .book-author {
   font-family: var(--font-sans);
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--text-muted);
@@ -1263,6 +1271,116 @@ article p, .page-intro p, .post-desc, .book-notes {
 .about-arrow:hover {
   color: var(--link-hover);
   text-decoration: underline;
+}
+
+/* Post Detail Header & Inline Back Navigation */
+.post-header-full {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.post-header-full .post-header-row {
+  margin-bottom: 0;
+  align-items: baseline;
+}
+
+.post-header-full .post-header-left {
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.post-header-full .post-title {
+  font-family: var(--font-sans);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.post-back-arrow {
+  color: var(--accent);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding-right: 0.25rem;
+  transition: transform 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.post-back-arrow:hover {
+  transform: translateX(-3px);
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .post-header-full .post-header-row {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .post-header-full .post-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Framed App Screenshot */
+figure.screenshot-frame {
+  max-width: 640px;
+  margin: 1.5rem auto 2rem;
+  text-align: center;
+}
+
+figure.screenshot-frame .screenshot-container {
+  display: inline-block;
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+  background: var(--bg-card);
+  line-height: 0;
+  max-width: 100%;
+  transition: border-color 0.15s ease;
+}
+
+figure.screenshot-frame .screenshot-container:hover {
+  border-color: var(--accent-hover);
+}
+
+figure.screenshot-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: none;
+  border-radius: 0;
+}
+
+figure.screenshot-frame figcaption {
+  margin-top: 0.65rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Photo Links for Fullscreen Viewing */
+a.photo-link {
+  display: block;
+  cursor: zoom-in;
+  text-decoration: none;
+}
+
+a.photo-link img {
+  transition: opacity 0.15s ease;
+}
+
+a.photo-link:hover img {
+  opacity: 0.94;
 }
 
 .post-item.featured .post-desc {
@@ -1315,7 +1433,7 @@ article p, .page-intro p, .post-desc, .book-notes {
 .post-type {
   font-family: var(--font-sans);
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.03em;
   color: var(--text-muted);
 }

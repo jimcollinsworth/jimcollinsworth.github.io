@@ -4,11 +4,14 @@
 {% block title %}{{ category }} Posts &mdash; {{ SITENAME }}{% endblock %}
 
 {% block content %}
-<div class="back-nav">
-  <a href="{{ SITEURL }}/posts.html">&larr; All Posts</a>
-</div>
-
-<h2>Category: {{ category }}</h2>
+<header class="post-header-full">
+  <div class="post-header-row">
+    <div class="post-header-left">
+      <a href="{{ SITEURL }}/posts.html" class="post-back-arrow" title="All Posts" aria-label="All Posts">&larr;</a>
+      <h2 style="font-size: 1.45rem; font-weight: 700; margin: 0; padding: 0; border-bottom: none;">Category: {{ category }}</h2>
+    </div>
+  </div>
+</header>
 
 <ul class="post-list">
   {% for article in articles %}

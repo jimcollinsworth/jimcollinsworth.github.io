@@ -16,7 +16,7 @@ slug: "apps"
       <div style="display: flex; align-items: baseline; gap: 0.45rem; margin-bottom: 0.75rem;">
         <span class="category-badge dual-badge" title="Provenance: AI Codebase &bull; Jim Collinsworth Stewardship" aria-label="Category: AI and Mine"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: 2px;"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span>
         <h3 style="font-size: 1.05rem; font-weight: 600; font-family: var(--font-sans); margin: 0; line-height: 1.35;">
-          Photo Viewer &amp; Drive Manifest Explorer
+          <a href="posts/photo-viewer-drive-manifest-explorer.html" style="color: var(--text); text-decoration: none;">Photo Viewer &amp; Drive Manifest Explorer</a>
         </h3>
       </div>
       <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1rem;">
@@ -26,9 +26,6 @@ slug: "apps"
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
       <a href="apps/photo-viewer/index.html" class="app-launch-btn" target="_blank" rel="noopener">
         Launch Full-Screen App &rarr;
-      </a>
-      <a href="posts/photo-viewer-drive-manifest-explorer.html" class="app-data-btn">
-        Read App Post &rarr;
       </a>
       <a href="data/photos.json" class="app-data-btn" target="_blank" rel="noopener">
         View Data JSON &nearr;
@@ -41,7 +38,7 @@ slug: "apps"
       <div style="display: flex; align-items: baseline; gap: 0.45rem; margin-bottom: 0.75rem;">
         <span class="category-badge dual-badge" title="Provenance: AI Codebase &bull; Jim Collinsworth Stewardship" aria-label="Category: AI and Mine"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: 2px;"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span>
         <h3 style="font-size: 1.05rem; font-weight: 600; font-family: var(--font-sans); margin: 0; line-height: 1.35;">
-          Content Taxonomy &amp; Keyword Explorer
+          <a href="posts/keyword-explorer-taxonomy.html" style="color: var(--text); text-decoration: none;">Content Taxonomy &amp; Keyword Explorer</a>
         </h3>
       </div>
       <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1rem;">
@@ -51,9 +48,6 @@ slug: "apps"
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
       <a href="apps/keyword-search/index.html" class="app-launch-btn" target="_blank" rel="noopener">
         Launch Full-Screen App &rarr;
-      </a>
-      <a href="posts/keyword-explorer-taxonomy.html" class="app-data-btn">
-        Read App Post &rarr;
       </a>
       <a href="data/site-index.json" class="app-data-btn" target="_blank" rel="noopener">
         View Index JSON &nearr;
@@ -66,7 +60,7 @@ slug: "apps"
       <div style="display: flex; align-items: baseline; gap: 0.45rem; margin-bottom: 0.75rem;">
         <span class="category-badge dual-badge" title="Provenance: AI Codebase &bull; Jim Collinsworth Stewardship" aria-label="Category: AI and Mine"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: 2px;"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span>
         <h3 style="font-size: 1.05rem; font-weight: 600; font-family: var(--font-sans); margin: 0; line-height: 1.35;">
-          Pipeline Tools (Hugging Face)
+          <a href="posts/pipeline-tools-workbench.html" style="color: var(--text); text-decoration: none;">Pipeline Tools (Hugging Face)</a>
         </h3>
       </div>
       <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1rem;">
@@ -76,12 +70,6 @@ slug: "apps"
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
       <a href="apps/pipeline-tools/index.html" class="app-launch-btn" target="_blank" rel="noopener">
         Launch Full-Screen App &rarr;
-      </a>
-      <a href="posts/pipeline-tools-workbench.html" class="app-data-btn">
-        Read App Post &rarr;
-      </a>
-      <a href="pipeline-tools.html" class="app-data-btn">
-        Embedded View &rarr;
       </a>
       <a href="https://huggingface.co/spaces/jimcollinsworth/pipeline-tools" class="app-data-btn" target="_blank" rel="noopener">
         Hugging Face Space &nearr;

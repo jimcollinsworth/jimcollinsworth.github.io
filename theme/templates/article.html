@@ -1,24 +1,23 @@
 {% extends "base.html" %}
-{% from "category_icon.html" import category_icon %}
+{% from "category_icon.html" import category_icon, article_provenance %}
 
 {% block title %}{{ article.title }} &mdash; {{ SITENAME }}{% endblock %}
 
 {% block content %}
-<div class="back-nav">
-  <a href="{{ SITEURL }}/posts.html">&larr; Back to Posts</a>
-</div>
-
 <article class="post">
   <header class="post-header-full">
-    <h1 class="post-title">{{ article.title }}</h1>
-    <div class="meta">
-      {% if article.category %}
-      {{ category_icon(article.category, article.author) }}
-      {% endif %}
-      {% if article.type %}
-      <span class="post-type">{{ article.type|upper }}</span>
-      {% endif %}
-      <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %y') }}</time>
+    <div class="post-header-row">
+      <div class="post-header-left">
+        <a href="{{ SITEURL }}/posts.html" class="post-back-arrow" title="Back to Posts" aria-label="Back to Posts">&larr;</a>
+        {{ article_provenance(article) }}
+        <h1 class="post-title">{{ article.title }}</h1>
+      </div>
+      <div class="post-header-right">
+        {% if article.type %}
+        <span class="post-type">{{ article.type|upper }}</span>
+        {% endif %}
+        <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %y') }}</time>
+      </div>
     </div>
   </header>
 
