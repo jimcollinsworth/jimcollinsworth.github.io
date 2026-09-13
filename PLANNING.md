@@ -6,6 +6,12 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 25: Prohibition of Ungrounded Adjectives & Fluff Removal (Completed - Release v0.6.10)**
+  - Codified Section 18 in `AGENTS.md` and `.agents/agent_rules.md` prohibiting ungrounded adjectives, adverbs, superlatives, and marketing fluff without direct, verifiable empirical evidence.
+  - Replaced flagged marketing text in `README.md` with factual Option 1A text: *"jimcollinsworth.github.io is Jim Collinsworth's personal website and journal, built using the Pelican static site generator with HTML5 and CSS, containing zero client-side JavaScript."*
+  - Scrubbed ungrounded adjectives across `README.md`, `content/pages/about-this-site.md`, `content/pages/apps.md`, `content/pages/ai.md`, `tools/sync_dev_prompts.py`, `templates/obsidian-post-template.md`, and historical problem statements in `JOURNAL.md`.
+  - Rebuilt static site and verified 51/51 pytest test suites pass. Bumped version to `v0.6.10`.
+
 - [x] **Milestone 24: Tightened Header Spacing, Compact Active Nav & Segmented Controls (Completed - Release v0.6.9)**
   - Reduced excessive vertical padding above the header (`body` top padding reduced from 2.5rem to 1.25rem on desktop, 1.5rem on supersize, 1.25rem on tablets, 0.85rem on mobile).
   - Tightened vertical spacing between branding and navigation (`margin-bottom: 0.35rem;`).

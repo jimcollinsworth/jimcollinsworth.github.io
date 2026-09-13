@@ -226,4 +226,16 @@ Every commit and meaningful change set must increment the project version:
 > - **Optional Summary Policy**: Follow Pelican's convention where `summary` is strictly optional in content files. Authors are not required to provide a manual `summary:` line in frontmatter; when omitted, Pelican automatically derives the summary from the post body using standard word/paragraph truncation (`SUMMARY_MAX_LENGTH`).
 > - **No Metadata Bloat**: Keep frontmatter minimal, clean, and transparent. Do not add arbitrary, speculative, or unrequested metadata keys to posts or templates.
 
+---
+
+## 18. Prohibition of Ungrounded Adjectives, Adverbs & Marketing Fluff (Strict)
+
+> [!CAUTION]
+> **Zero Fluff & Strict Factual Grounding**:
+> - The agent must **NEVER use adjectives, adverbs, superlatives, or evaluative modifiers without direct, verifiable empirical evidence** supporting each specific word.
+> - **Banned Words & Phrases**: Words such as *intentionally simple, durable, uncompromising, digital sustainability, clean engineering, robust, seamless, elegant, flawless, immaculate, meticulously, beautifully, modern, optimal, powerful*.
+> - **Factual Precision Standard**: Write strictly with unadorned nouns, verbs, and verifiable metrics (e.g., "zero client-side JavaScript", "51 passing tests", "3px solid line", "375px viewport"). If a claim cannot be measured, cited, or proven from the code, omit the modifier entirely.
+> - **Universal Scope**: This rule applies strictly across all site content, governance documents (`README.md`, `PLANNING.md`, `JOURNAL.md`, `ROADMAP.md`), developer walkthroughs, commit messages, and agent chat communications.
+
+
 

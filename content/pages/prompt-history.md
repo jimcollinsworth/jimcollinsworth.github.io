@@ -5,9 +5,32 @@ slug: "prompt-history"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> is an unadorned, chronological chronicle of human-directed pair programming for <code>jimcollinsworth.github.io</code>. Extracted directly from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>, it captures <strong>39 direct steering prompts</strong> across 14 releases and milestones. Prompts are presented in Jim's simple, verbatim words, paired with concise release summaries and notes on what the agent did wrong and how it was corrected.
+    <strong>Development Prompts</strong> lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>43 prompts</strong> from Jim across 15 releases, alongside recorded agent errors and solutions.
   </p>
 </div>
+
+## Prohibition of Ungrounded Adjectives & Fluff Removal (v0.6.10)
+*2026-09-13*
+
+**Jim's Direct Prompts:**
+
+> *"why is the 375px image so large and fonts so big, hard to compare to other screen shots."*
+
+> *"here is some site text you generated &#x27;This site is an intentionally simple, durable personal web space. It has been built with an uncompromising commitment to long-term digital sustainability, reading comfort, and clean engineering&#x27; it is a great example of the type of content i never want created. absolutely none of the adjectives, superlatives like &#x27;intentionally simple, durable, uncompromising, digital sustainability, clean engineering&#x27; none have any basis, from now on do not use adjectives, adverbs without direct evidence and support for each specific word. incorporate this rule into agents.md. lets get this rule correct, quiz me first on how you interpret and implement"*
+
+> *"option 1a is fine, no fluff there just facts, data, and option and option 2a for sure."*
+
+> *"create a branch for fluff-removal, remove all fluff from all content in the site unless you know it was directly authored by me, shouldn&#x27;t me much at all."*
+
+**Course Corrections & Technical Remediation:**
+
+- <strong>Unsubstantiated Modifiers & Marketing Fluff</strong>:
+- The agent generated text in <code>README.md</code> and page intros containing ungrounded adjectives and buzzwords ("intentionally simple", "durable", "uncompromising commitment", "digital sustainability", "clean engineering").
+- These subjective qualifiers lack empirical basis, detracting from the factual tone of the site.
+- <strong>Device Screenshot Magnification Distortion</strong>:
+- A 375px phone portrait capture scaled up to 100% container width in markdown rendered at ~200% magnification, while a 1280px desktop capture was scaled down to ~60%, creating false size comparisons.
+
+---
 
 ## Tightened Header Spacing, Compact Active Nav & Segmented Controls (v0.6.9)
 *2026-09-13*
@@ -85,12 +108,12 @@ slug: "prompt-history"
 
 **Course Corrections & Technical Remediation:**
 
-- <strong>Desire for Visual Color Flair</strong>:
-- The site's minimalist warm-paper aesthetic is clean, but Jim wants to introduce controlled, intentional color flair drawn directly from his Chicago sky and Lake Michigan photography without introducing visual clutter or violating the site's editorial feel.
+- <strong>Color Flair Requirement</strong>:
+- Jim directed introducing color flair drawn directly from his Chicago sky and Lake Michigan photography without introducing visual clutter.
 - <strong>Zero-JavaScript "Click Border to View Full Photo" Requirement</strong>:
-- Jim requested that clicking anywhere on the screen border jump directly to the full-screen photo. With Rule 3 strictly disallowing client-side JavaScript, this must be solved purely via semantic HTML5 and modern CSS without interfering with inner text selection, links, or scrolling.
+- Jim requested that clicking anywhere on the screen border jump directly to the full-screen photo. With Rule 3 disallowing client-side JavaScript, this was solved via HTML5 and CSS without interfering with text selection, links, or scrolling.
 - <strong>Context-Aware Photo Page Neutrality</strong>:
-- On photo-rich pages like <code>photos.html</code>, a vibrant colored border risks clashing with the photos. As Jim noted, these pages should automatically switch to a basic neutral grey border.
+- On photo-rich pages like <code>photos.html</code>, a colored border risks clashing with photos. These pages switch to a basic neutral grey border.
 
 ---
 
@@ -123,7 +146,7 @@ slug: "prompt-history"
 - <strong>Multi-Row Header Wrapping in Mobile Portrait</strong>:
 - On physical smartphones in portrait orientation (360px–414px width), 8 separate navigation links (<code>Home</code>, <code>About</code>, <code>Posts</code>, <code>AI</code>, <code>Links</code>, <code>Photos</code>, <code>Apps</code>, <code>Site</code>) could not fit on a single line, wrapping across 3–4 rows and pushing the page content down.
 - <strong>Zero-JavaScript Constraint</strong>:
-- In accordance with site technical principles (Rule 3: Zero JavaScript), client-side JavaScript or <code>&lt;script&gt;</code> toggles are strictly forbidden. The dynamic dropdown menu must function 100% using native semantic HTML5 disclosure and modern CSS.
+- In accordance with site technical principles (Rule 3: Zero JavaScript), client-side JavaScript or <code>&lt;script&gt;</code> toggles are strictly forbidden. The dynamic dropdown menu must function using native HTML5 <code>&lt;details&gt;</code> and CSS.
 
 ---
 
@@ -259,7 +282,7 @@ slug: "prompt-history"
 - <strong>Taxonomy Conflation</strong>: Posts previously used a single <code>category</code> field that mixed subject domains (<code>Music</code>, <code>Health</code>, <code>Making</code>) with developmental stages and formats (<code>Ideas</code>, <code>Projects</code>). Furthermore, posts were artificially constrained to a single category, preventing articles from spanning related disciplines (such as Digital Piano modifications touching both <code>Music</code> and <code>Making</code>).
 - <strong>Post Lifecycle Tracking</strong>: Need an explicit way to convey the current format of a post alongside its conceptual history (e.g., an entry starting as an <code>[IDEA]</code>, progressing to <code>[WIP]</code>, and culminating in a completed <code>[PROJ]</code>).
 - <strong>Spam-Safe, Zero-JS Interaction</strong>: Desire a reader feedback and commenting channel without violating the site's strict Zero-JS policy, while avoiding GitHub issue tracker spam defacement and ensuring Jim retains visibility into all submissions ("garbage and good stuff").
-- <strong>Mandatory AI Attribution</strong>: Need an uncompromising policy to transparently credit AI models whenever they contribute to content or code artifacts.
+- <strong>Mandatory AI Attribution</strong>: Need a strict policy to transparently credit AI models whenever they contribute to content or code artifacts.
 
 ---
 

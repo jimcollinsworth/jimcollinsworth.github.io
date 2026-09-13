@@ -5,7 +5,7 @@ slug: "about-this-site"
 
 <div class="page-intro">
   <p>
-    <strong>About This Site</strong> outlines the technical architecture, infrastructure, tooling, and design principles behind <code>jimcollinsworth.github.io</code>. It is built as a fast, durable, zero-JavaScript static site designed for long-term reading comfort and low-maintenance longevity.
+    <strong>About This Site</strong> outlines the technical architecture, infrastructure, tooling, and design principles behind <code>jimcollinsworth.github.io</code>. It is built with Pelican, HTML5, and CSS, containing zero client-side JavaScript on content pages.
   </p>
 </div>
 
@@ -23,9 +23,9 @@ slug: "about-this-site"
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
     <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Site Version &amp; Releases</div>
     <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem;">
-      <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases" target="_blank" rel="noopener">v0.6.9 &bull; Release Notes &rarr;</a>
+      <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases" target="_blank" rel="noopener">v0.6.10 &bull; Release Notes &rarr;</a>
     </div>
-    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Full historical release notes v0.1 &ndash; v0.6.9</div>
+    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Full historical release notes v0.1 &ndash; v0.6.10</div>
   </div>
 
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
@@ -53,7 +53,7 @@ slug: "about-this-site"
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
     <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Steering Prompts</div>
     <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem;">
-      <a href="prompt-history.html">39 Prompts &rarr;</a>
+      <a href="prompt-history.html">43 Prompts &rarr;</a>
     </div>
     <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Direct human guidance &amp; remediation</div>
   </div>
@@ -63,13 +63,13 @@ slug: "about-this-site"
 
 ## The Technology Stack
 
-- **LLM &amp; Agent Harness**: [Google Antigravity](https://deepmind.google/) advanced agentic AI pair programming platform running Google DeepMind models with autonomous tool integration, proactive test execution, and strict governance constraints.
-- **Static Site Generator**: [Pelican](https://getpelican.com/) (Python static generator) compiling Markdown with custom YAML frontmatter into clean HTML5.
+- **LLM &amp; Agent Harness**: [Google Antigravity](https://deepmind.google/) agentic coding platform running Google DeepMind models with tool integration, test execution, and governance constraints.
+- **Static Site Generator**: [Pelican](https://getpelican.com/) (Python static generator) compiling Markdown with custom YAML frontmatter into HTML5.
 - **Tabular &amp; Info Data Architecture**: Centralized static data directory (`content/data/`) housing structured JSON, CSV, and tabular data feeds for applications and site indexing.
-- **Interactive Application Sandbox**: Dedicated standalone mini-applications (`content/apps/`) built with standards-compliant HTML5/CSS/JS, querying local static datasets and external APIs while preserving a 100% Zero-JS guarantee for all editorial reading content.
-- **Python Environment &amp; Package Manager**: [uv](https://astral.sh/uv) fast Python package resolver and runner with Python 3.13.
+- **Interactive Application Sandbox**: Standalone mini-applications (`content/apps/`) built with HTML5, CSS, and JavaScript, querying static datasets in `content/data/` while preserving zero client-side JavaScript on reading pages.
+- **Python Environment &amp; Package Manager**: [uv](https://astral.sh/uv) Python package resolver and runner with Python 3.13.
 - **Templating**: Jinja2 semantic templates in `theme/templates/`.
-- **Styling**: Single pure CSS stylesheet (`theme/static/css/style.css`) featuring modern CSS Grid, fluid container scaling (1080px / 1380px), responsive orientation modes, and pure-CSS theme switchers (`body:has(:checked)`).
+- **Styling**: Single CSS stylesheet (`theme/static/css/style.css`) featuring CSS Grid, container scaling (1080px / 1380px), responsive orientation modes, and CSS theme switchers (`body:has(:checked)`).
 - **Test Automation**: [pytest](https://docs.pytest.org/) and [Playwright](https://playwright.dev/) headless browser test suite (`tests/`) validating build output, zero-JS compliance, WCAG AAA accessibility, and 8 responsive viewports.
 
 ---

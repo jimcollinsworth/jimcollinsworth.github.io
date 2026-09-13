@@ -12,7 +12,7 @@ title: "Title of Your Post"
 # Publication date in YYYY-MM-DD or YYYY-MM-DD HH:MM format.
 date: 2026-09-13
 
-# Clean URL identifier (e.g., 'posts/my-post-slug.html').
+# URL identifier (e.g., 'posts/my-post-slug.html').
 # If omitted, Pelican auto-derives the slug from the title.
 slug: "my-post-slug"
 
@@ -80,13 +80,13 @@ status: published
 
 <div class="page-intro">
   <p>
-    Opening lede or thesis paragraph introducing the topic with slightly enlarged editorial type.
+    Introductory paragraph introducing the topic.
   </p>
 </div>
 
 ## Section Heading
 
-Body prose goes here. Write clean, distraction-free markdown. Paragraphs are capped at comfortable reading line lengths with precise vertical rhythm.
+Body prose goes here. Paragraphs are styled using style.css.
 
 ### Subsection Heading
 
@@ -105,7 +105,7 @@ Further details, observations, or technical analysis.
 ### Code Snippet Example
 
 ```bash
-# Clean, reproducible CLI commands
+# Standard CLI commands
 uv run pelican content -s pelicanconf.py -o output
 uv run pytest -v
 ```

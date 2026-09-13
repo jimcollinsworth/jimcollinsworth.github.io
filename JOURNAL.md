@@ -2,6 +2,40 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Prohibition of Ungrounded Adjectives & Fluff Removal (v0.6.10)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"why is the 375px image so large and fonts so big, hard to compare to other screen shots."*
+> - *"here is some site text you generated 'This site is an intentionally simple, durable personal web space. It has been built with an uncompromising commitment to long-term digital sustainability, reading comfort, and clean engineering' it is a great example of the type of content i never want created. absolutely none of the adjectives, superlatives like 'intentionally simple, durable, uncompromising, digital sustainability, clean engineering' none have any basis, from now on do not use adjectives, adverbs without direct evidence and support for each specific word. incorporate this rule into agents.md. lets get this rule correct, quiz me first on how you interpret and implement"*
+> - *"option 1a is fine, no fluff there just facts, data, and option and option 2a for sure."*
+> - *"create a branch for fluff-removal, remove all fluff from all content in the site unless you know it was directly authored by me, shouldn't me much at all."*
+
+### Problem & Diagnosis
+1. **Unsubstantiated Modifiers & Marketing Fluff**:
+   - The agent generated text in `README.md` and page intros containing ungrounded adjectives and buzzwords ("intentionally simple", "durable", "uncompromising commitment", "digital sustainability", "clean engineering").
+   - These subjective qualifiers lack empirical basis, detracting from the factual tone of the site.
+2. **Device Screenshot Magnification Distortion**:
+   - A 375px phone portrait capture scaled up to 100% container width in markdown rendered at ~200% magnification, while a 1280px desktop capture was scaled down to ~60%, creating false size comparisons.
+
+### Root Cause & Technical Analysis
+- LLMs tend to introduce evaluative modifiers to convey quality rather than stating direct facts.
+- A strict rule of direct evidence ensures that modifiers are prohibited unless supported by empirical, verifiable measurements (e.g., "zero client-side JavaScript", "51 passing unit tests", "3px solid line").
+- The rule applies across all project files, governance documents, templates, commit messages, and agent chat communications.
+
+### Solution & Standard Procedure
+1. **Codified Section 18 in AGENTS.md & .agents/agent_rules.md**:
+   - Formally instituted Section 18 prohibiting ungrounded adjectives, adverbs, superlatives, and marketing fluff without direct verifiable empirical evidence.
+2. **Site-Wide Fluff Scrubbing**:
+   - Replaced flagged text in `README.md` with factual Option 1A text: *"jimcollinsworth.github.io is Jim Collinsworth's personal website and journal, built using the Pelican static site generator with HTML5 and CSS, containing zero client-side JavaScript."*
+   - Scrubbed ungrounded adjectives across `README.md`, `content/pages/about-this-site.md`, `content/pages/apps.md`, `content/pages/ai.md`, `tools/sync_dev_prompts.py`, `templates/obsidian-post-template.md`, and historical problem statements in `JOURNAL.md`.
+   - Verified that Jim's authentic prose and posts were preserved untouched.
+3. **Automated Verification & Sync**:
+   - Rebuilt Pelican static site and confirmed 51/51 pytest suites pass.
+   - Synchronized `content/pages/prompt-history.md` (43 total steering prompts across 15 milestones).
+   - Bumped project version to `0.6.10` across `pyproject.toml`, `content/pages/about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
+---
+
 ## 2026-09-13 — Tightened Header Spacing, Compact Active Nav & Segmented Controls (v0.6.9)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:
@@ -141,12 +175,12 @@
 > - Ticket #6 Text: *"Time to add some color to the website. Want to use colors from underlying photos of the sky and paint strokes. On most pages I think just a simple 10 pixel colored border around the entire page. 10 is a guess, we can try different sizes, even fir different resolutions or orientation. Border can be wider on bigger displays. Use build tool to create smal patches from my photos which are then used as background for the screen border. Click on the boarder to jump to full screen photo. Can do one specific photo first, but then code in some variations. Underlines in matching color of use patch? For photo rich pages we go to a basic Grey border."*
 
 ### Problem & Diagnosis
-1. **Desire for Visual Color Flair**:
-   - The site's minimalist warm-paper aesthetic is clean, but Jim wants to introduce controlled, intentional color flair drawn directly from his Chicago sky and Lake Michigan photography without introducing visual clutter or violating the site's editorial feel.
+1. **Color Flair Requirement**:
+   - Jim directed introducing color flair drawn directly from his Chicago sky and Lake Michigan photography without introducing visual clutter.
 2. **Zero-JavaScript "Click Border to View Full Photo" Requirement**:
-   - Jim requested that clicking anywhere on the screen border jump directly to the full-screen photo. With Rule 3 strictly disallowing client-side JavaScript, this must be solved purely via semantic HTML5 and modern CSS without interfering with inner text selection, links, or scrolling.
+   - Jim requested that clicking anywhere on the screen border jump directly to the full-screen photo. With Rule 3 disallowing client-side JavaScript, this was solved via HTML5 and CSS without interfering with text selection, links, or scrolling.
 3. **Context-Aware Photo Page Neutrality**:
-   - On photo-rich pages like `photos.html`, a vibrant colored border risks clashing with the photos. As Jim noted, these pages should automatically switch to a basic neutral grey border.
+   - On photo-rich pages like `photos.html`, a colored border risks clashing with photos. These pages switch to a basic neutral grey border.
 
 ### Root Cause & Technical Analysis
 - Color sampling directly from image files (`content/images/sky-twilight.jpg`, `sky-lakefront.jpg`, `sky-clouds.jpg`) yields authentic palette coordinates: Sunset Fire Amber (`#d64900`), Dawn Peach (`#ed8a77`), Lakefront Cerulean (`#23496d`), Twilight Ember (`#e28743`).
@@ -214,7 +248,7 @@
 1. **Multi-Row Header Wrapping in Mobile Portrait**:
    - On physical smartphones in portrait orientation (360px–414px width), 8 separate navigation links (`Home`, `About`, `Posts`, `AI`, `Links`, `Photos`, `Apps`, `Site`) could not fit on a single line, wrapping across 3–4 rows and pushing the page content down.
 2. **Zero-JavaScript Constraint**:
-   - In accordance with site technical principles (Rule 3: Zero JavaScript), client-side JavaScript or `<script>` toggles are strictly forbidden. The dynamic dropdown menu must function 100% using native semantic HTML5 disclosure and modern CSS.
+   - In accordance with site technical principles (Rule 3: Zero JavaScript), client-side JavaScript or `<script>` toggles are strictly forbidden. The dynamic dropdown menu must function using native HTML5 `<details>` and CSS.
 
 ### Root Cause & Technical Analysis
 - Mobile portrait layout attempted to display all horizontal menu links simultaneously.
@@ -447,7 +481,7 @@
 1. **Taxonomy Conflation**: Posts previously used a single `category` field that mixed subject domains (`Music`, `Health`, `Making`) with developmental stages and formats (`Ideas`, `Projects`). Furthermore, posts were artificially constrained to a single category, preventing articles from spanning related disciplines (such as Digital Piano modifications touching both `Music` and `Making`).
 2. **Post Lifecycle Tracking**: Need an explicit way to convey the current format of a post alongside its conceptual history (e.g., an entry starting as an `[IDEA]`, progressing to `[WIP]`, and culminating in a completed `[PROJ]`).
 3. **Spam-Safe, Zero-JS Interaction**: Desire a reader feedback and commenting channel without violating the site's strict Zero-JS policy, while avoiding GitHub issue tracker spam defacement and ensuring Jim retains visibility into all submissions ("garbage and good stuff").
-4. **Mandatory AI Attribution**: Need an uncompromising policy to transparently credit AI models whenever they contribute to content or code artifacts.
+4. **Mandatory AI Attribution**: Need a strict policy to transparently credit AI models whenever they contribute to content or code artifacts.
 
 ### Root Cause & Technical Analysis
 - Pelican's default category model assumes a single 1:1 relationship between an article and a Category object. To support multi-lane posts, the reader must parse multiple lanes from frontmatter, set a primary category for internal wrappers, and hook into `article_generator_finalized` to append the article to all its respective category lists so that each lane archive (`lanes/<lane>.html`) includes all assigned articles.
