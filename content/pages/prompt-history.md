@@ -7,7 +7,7 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>57 prompts</strong> from Jim across 17 milestones, alongside concise summaries of actions taken.
+    <strong>Development Prompts</strong> (Stream: <em>Mine</em> &bull; Author: <em>Jim Collinsworth</em>) lists steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>59 prompts</strong> from Jim across 17 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
 
@@ -29,6 +29,10 @@ remove the 'all posts' 'all photos' and put small links next to the associated h
 add icons to me, mine, ai....
 
 and i see adjectives that are not supported, check these, check your rules to avoid unsupported in context terms.
+
+so close but replace ->all with just the word (ALL), underlined link. although a nice icon would be preferable if obvious.
+
+on featured post, don't need read full post since post title does that
 
 **Response:**
 

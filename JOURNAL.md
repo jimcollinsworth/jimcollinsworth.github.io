@@ -12,6 +12,8 @@
 > - *"remove the 'all posts' 'all photos' and put small links next to the associated header. \"recent photos (->all)\""*
 > - *"add icons to me, mine, ai...."*
 > - *"and i see adjectives that are not supported, check these, check your rules to avoid unsupported in context terms."*
+> - *"so close but replace ->all with just the word (ALL), underlined link. although a nice icon would be preferable if obvious."*
+> - *"on featured post, don't need read full post since post title does that"*
 
 ### Problem & Diagnosis
 1. **Header Wrapping on Medium Portrait Viewports**:
@@ -24,10 +26,12 @@
    - Metadata was rendered on a second line below the title with square brackets `[TYPE]` and bullet separators (`•`).
    - Placeholder author entries in `links.md` and `index.html` were labeled `Author Name` rather than attributed to the `AI` provenance stream.
 4. **Header Inline Navigation vs. Section Bottom Links**:
-   - Standalone bottom links (`View all posts →`, `Explore all photos →`, `Browse all links →`) consumed vertical space.
-5. **Missing Category Icons in Documentation**:
+   - Standalone bottom links (`View all posts →`, `Explore all photos →`, `Browse all links →`) consumed vertical space. The initial `(→all)` syntax contained an arrow symbol rather than an underlined clean word link.
+5. **Redundant Post Link on Featured Post**:
+   - `Read full post →` duplicated the action already performed by clicking the featured post title.
+6. **Missing Category Icons in Documentation**:
    - `content/pages/about.md` listed streams as plain bullet text without their corresponding SVG icons.
-6. **Rule 18 Adjective Compliance**:
+7. **Rule 18 Adjective Compliance**:
    - Evaluative modifiers ("multi-disciplinary maker", "masterclass", "dramatic", "completely") were present in templates and posts.
 
 ### Root Cause & Technical Analysis
@@ -47,12 +51,14 @@
 4. **AI Provenance Attribution**:
    - Attributed placeholder entries in `links.md` and `index.html` to the `AI` provenance stream with `icon-ai` badge.
 5. **Inline Section Header Links**:
-   - Added `(→all)` inline links next to `Recent Stream`, `Photo Spotlight`, and `Recent Links` `<h2>` headings; removed bottom standalone links.
-6. **Category Icons on About Page**:
+   - Replaced bottom links with inline `(ALL)` links next to `Recent Stream`, `Photo Spotlight`, and `Recent Links` `<h2>` headings, styled with `text-decoration: underline`.
+6. **Featured Post Cleanup**:
+   - Removed redundant `Read full post →` paragraph from featured post on `index.html`.
+7. **Category Icons on About Page**:
    - Added SVG category icons to `Me`, `Mine`, `AI`, `Ours`, and `Theirs` in `content/pages/about.md`.
-7. **Rule 18 Audit**:
+8. **Rule 18 Audit**:
    - Removed ungrounded adjectives and evaluative modifiers across `index.html`, `about.md`, `about-this-site.md`, `ai.md`, `apps.md`, and content posts.
-8. **Automated Verification & Versioning**:
+9. **Automated Verification & Versioning**:
    - Recompiled Pelican site (`uv run pelican content -s pelicanconf.py -o output -d`).
    - Ran test suite (`uv run pytest -v`): all 51 tests passed.
    - Bumped version to `0.6.13` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.

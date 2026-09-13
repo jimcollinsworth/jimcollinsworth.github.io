@@ -1061,20 +1061,22 @@ article p, .page-intro p, .post-desc, .book-notes {
 }
 
 .header-all-link {
-  font-size: 0.82rem;
-  font-weight: normal;
+  font-size: 0.78rem;
+  font-weight: 600;
   font-family: var(--font-sans);
-  margin-left: 0.35rem;
-  letter-spacing: normal;
+  margin-left: 0.4rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
 }
 
 .header-all-link a {
   color: var(--link);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .header-all-link a:hover {
-  text-decoration: underline;
+  color: var(--link-hover);
 }
 
 .post-item.featured .post-desc {
