@@ -20,7 +20,7 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>94 prompts</strong> from Jim across 27 milestones, alongside concise summaries of actions taken.
+    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>99 prompts</strong> from Jim across 28 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
 
@@ -707,6 +707,33 @@ author: "Jim Collinsworth"
     <ul class="response-actions">
       <li>Codified Mandatory Image Formatting Standards in Section 13: Updated <code>AGENTS.md</code> and <code>.agents/agent_rules.md</code> Section 13 to mandate:.</li>
       <li>Versioning & Documentation: Bumped version to <code>v0.7.4.02</code> across <code>pyproject.toml</code>, <code>about-this-site.md</code>, <code>JOURNAL.md</code>, and <code>PLANNING.md</code>.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="milestone-header">
+  <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.7.5" target="_blank" rel="noopener">Content Refinements, Provenance Relocation & App Nomenclature (Release v0.7.5)</a></h2>
+  <time datetime="2026-09-14" class="milestone-date">Sept 14 2026</time>
+</div>
+
+<div class="prompt-entry">
+  <div class="prompt-speaker"><span class="category-badge" title="Provenance: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> <strong>Jim:</strong></div>
+  <div class="prompt-quotes">
+    <p>remove local from local ai in home page</p>
+    <p>Change the title if the app post to multimodal data pipeline-tool</p>
+    <p>remove this from about me This site operates under a strict Zero-JavaScript policy. Reader submissions from posts and inquiries are routed through a private Google Apps Script & Google Sheets pipeline, triaged and synthesized using local LLM tooling, and compiled into static editorial digests without exposing the site to client-side scripts or public comment spam.</p>
+    <p>move content streams section from the about me into the top of the about site page. The individual items are good in the descriptions, add hikes. events. museums , tours and such examples. but the intro paragraph needs to be changed. . This is about Providence and my desire to attempt to separate and identify AI or others contributions from my small writings on the site.</p>
+    <p>The preview links have broken before, so figure out why that has slipped through a few times and update appropriate agent rules to keep it from happening again. Publish and push otherwise.</p>
+  </div>
+</div>
+
+<div class="prompt-response-block">
+  <div class="prompt-response-inner">
+    <div class="response-speaker"><span class="category-badge" title="Provenance: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <strong>Response:</strong></div>
+    <ul class="response-actions">
+      <li>Homepage Bio Update: Edited <code>theme/templates/index.html</code> to change "local AI" to "AI".</li>
+      <li>Post Title Update: Updated <code>content/posts/pipeline-tools-workbench.md</code> title frontmatter to <code>"Multimodal Data Pipeline-Tool"</code>.</li>
+      <li>About Me Page Cleanup: Removed the <code>## Content Streams & Categorization</code> section and the Zero-JavaScript comment pipeline paragraph from <code>content/pages/about.md</code>.</li>
     </ul>
   </div>
 </div>

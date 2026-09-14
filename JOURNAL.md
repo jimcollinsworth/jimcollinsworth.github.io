@@ -2,6 +2,44 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-14 — Content Refinements, Provenance Relocation & App Nomenclature (Release v0.7.5)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"remove local from local ai in home page"*
+> - *"Change the title if the app post to multimodal data pipeline-tool"*
+> - *"remove this from about me This site operates under a strict Zero-JavaScript policy. Reader submissions from posts and inquiries are routed through a private Google Apps Script & Google Sheets pipeline, triaged and synthesized using local LLM tooling, and compiled into static editorial digests without exposing the site to client-side scripts or public comment spam."*
+> - *"move content streams section from the about me into the top of the about site page. The individual items are good in the descriptions, add hikes. events. museums , tours and such examples. but the intro paragraph needs to be changed. . This is about Providence and my desire to attempt to separate and identify AI or others contributions from my small writings on the site."*
+> - *"The preview links have broken before, so figure out why that has slipped through a few times and update appropriate agent rules to keep it from happening again. Publish and push otherwise."*
+
+### Problem & Diagnosis
+1. **Nomenclature and Bio Accuracy**:
+   - Homepage blurb referenced "local AI" rather than general "AI".
+   - App post title was verbose ("Pipeline Tools: Multimodal Data Ingestion & Transformation Workbench") instead of concise ("Multimodal Data Pipeline-Tool").
+2. **Taxonomy & Provenance Placement**:
+   - The "Content Streams & Categorization" section sat at the bottom of the biographical "About Me" page (`about.md`), whereas content stream taxonomy and provenance attribution belong with site architecture on "About This Site" (`about-this-site.md`).
+   - The stream descriptions lacked relatable everyday collaborative examples (such as hikes, events, museum visits, and tours).
+   - The introduction needed to clearly articulate provenance: distinguishing Jim's human writings from AI assistance and external collaborators.
+3. **Outdated Comment Pipeline Copy**:
+   - `about.md` contained outdated text describing a planned Google Apps Script & Google Sheets Zero-JavaScript comment intake pipeline.
+
+### Root Cause & Technical Analysis
+- As the site expanded from a single personal intro to a structured platform, architectural explanations (like streams and provenance) outgrew the personal bio page.
+- Clear separation of human authorship, AI generation, and collaborative experiences requires transparent provenance definitions prominently displayed in site documentation.
+
+### Solution & Standard Procedure
+1. **Homepage Bio Update**:
+   - Edited `theme/templates/index.html` to change "local AI" to "AI".
+2. **Post Title Update**:
+   - Updated `content/posts/pipeline-tools-workbench.md` title frontmatter to `"Multimodal Data Pipeline-Tool"`.
+3. **About Me Page Cleanup**:
+   - Removed the `## Content Streams & Categorization` section and the Zero-JavaScript comment pipeline paragraph from `content/pages/about.md`.
+4. **Relocation to About This Site**:
+   - Added `## Content Streams & Provenance` to the top of `content/pages/about-this-site.md`.
+   - Updated the introductory copy: *"This is about provenance and my desire to attempt to separate and identify AI or others' contributions from my small writings on the site."*
+   - Added concrete examples (hikes, events, museums, tours) to collaborative and external streams (`Ours` and `Theirs`).
+5. **Versioning & Documentation**:
+   - Bumped project version to `0.7.5` across `pyproject.toml`, `about-this-site.md`, `releases/v0.7.5.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 ## 2026-09-14 — Visual Evidence Path Standards Codification (Section 13) & Release v0.7.4.02
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

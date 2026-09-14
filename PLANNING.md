@@ -6,6 +6,14 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 39: Content Refinements, Provenance Relocation & App Nomenclature (Completed - Release v0.7.5)**
+  - Homepage bio: removed "local" from "local AI" blurb in `theme/templates/index.html` ("...woodworking, and AI.").
+  - Multimodal Data Pipeline-Tool: updated post title in `content/posts/pipeline-tools-workbench.md` to `"Multimodal Data Pipeline-Tool"`.
+  - About Me cleanup: removed `## Content Streams & Categorization` section and zero-JS comment pipeline paragraph from `content/pages/about.md`.
+  - About This Site: added `## Content Streams & Provenance` to the top of `content/pages/about-this-site.md`, updated intro copy to highlight provenance and authorship transparency, and enriched stream descriptions with hikes, events, museums, and tours examples.
+  - Synchronized dev prompt timeline (`content/pages/prompt-history.md`) to 99 steering prompts across 28 milestones.
+  - Bumped version to `v0.7.5` across `pyproject.toml`, `about-this-site.md`, `releases/v0.7.5.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 - [x] **Milestone 38: Visual Evidence Path Standards Codification (Section 13) & Release v0.7.4.02 (Completed - Release v0.7.4.02)**
   - Diagnosed recurring "Preview not available" errors in artifact previews: relative paths fail in artifact viewer, and Windows backslashes break URL parsing.
   - Codified binding standards in Section 13 of `AGENTS.md` and `.agents/agent_rules.md`: zero relative paths, forward slashes only, artifact directory storage, and pre-flight verification.

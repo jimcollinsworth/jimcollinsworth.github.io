@@ -1,5 +1,5 @@
 ---
-title: "Pipeline Tools: Multimodal Data Ingestion & Transformation Workbench"
+title: "Multimodal Data Pipeline-Tool"
 slug: "pipeline-tools-workbench"
 date: "2026-09-13"
 category: "AI"

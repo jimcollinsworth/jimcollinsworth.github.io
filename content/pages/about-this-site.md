@@ -9,6 +9,18 @@ slug: "about-this-site"
   </p>
 </div>
 
+## Content Streams & Provenance
+
+This is about provenance and my desire to attempt to separate and identify AI or others' contributions from my small writings on the site. Behind the scenes, content is organized by origin and perspective rather than rigid subject silos:
+
+- <span class="category-badge" title="Category: Me" aria-label="Category: Me"><svg class="category-icon icon-me" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span> **Me**: Notes about myself, personal biodata (activity, sleep, health tracking), personal bookmarks, and things written about me by me.
+- <span class="category-badge" title="Category: Mine" aria-label="Category: Mine"><svg class="category-icon icon-mine" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> **Mine**: Original essays, technical notes, software, and physical making projects authored directly by me.
+- <span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> **AI**: Explorations and code generated or co-authored with artificial intelligence.
+- <span class="category-badge" title="Category: Ours" aria-label="Category: Ours"><svg class="category-icon icon-ours" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-3-3.87"></path><path d="M7 21v-2a4 4 0 0 1 3-3.87"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span> **Ours**: Collaborative works and shared experiences created or documented jointly with family, peers, and friends &mdash; such as hikes, events, museum visits, tours, and joint projects (or human and AI collaboration).
+- <span class="category-badge" title="Category: Theirs" aria-label="Category: Theirs"><svg class="category-icon icon-theirs" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path></svg></span> **Theirs**: Curated external references, exhibitions, events, museum tours, quotes, and third-party works.
+
+---
+
 ## DevOps & Infrastructure Dashboard
 
 <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
@@ -23,9 +35,9 @@ slug: "about-this-site"
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
     <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Site Version &amp; Releases</div>
     <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem;">
-      <a href="prompt-history.html">v0.7.4.02 &bull; Release Notes &rarr;</a>
+      <a href="prompt-history.html">v0.7.5 &bull; Release Notes &rarr;</a>
     </div>
-    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Chronological milestones v0.1 &ndash; v0.7.4.02 &bull; <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/tags" target="_blank" rel="noopener">GitHub Tags</a></div>
+    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Chronological milestones v0.1 &ndash; v0.7.5 &bull; <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/tags" target="_blank" rel="noopener">GitHub Tags</a></div>
   </div>
 
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
@@ -53,7 +65,7 @@ slug: "about-this-site"
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
     <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Steering Prompts</div>
     <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem;">
-      <a href="prompt-history.html">94 Prompts &rarr;</a>
+      <a href="prompt-history.html">99 Prompts &rarr;</a>
     </div>
     <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Direct human guidance &amp; remediation</div>
   </div>
