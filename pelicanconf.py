@@ -39,7 +39,7 @@ TIMEZONE = 'America/Chicago'
 DEFAULT_LANG = 'en'
 
 # Source directory layout
-ARTICLE_PATHS = ['posts']
+ARTICLE_PATHS = ['posts', 'ideas']
 PAGE_PATHS = ['pages']
 STATIC_PATHS = ['images', 'extra', 'apps', 'data']
 
@@ -123,7 +123,7 @@ class ObsidianMarkdownReader(MarkdownReader):
         if ObsidianMarkdownReader._file_map is None:
             ObsidianMarkdownReader._file_map = self._build_file_map(content_root)
         file_map = ObsidianMarkdownReader._file_map
-        is_post = 'posts' in Path(self._source_path).parts
+        is_post = 'posts' in Path(self._source_path).parts or 'ideas' in Path(self._source_path).parts
         link_prefix = '../' if is_post else ''
 
         # 1. Resolve Obsidian Wikilinks: [[target|label]] or [[target]]
@@ -163,8 +163,7 @@ class ObsidianMarkdownReader(MarkdownReader):
         return text
 
     def _wrap_figures(self, html: str) -> str:
-        is_post = 'posts' in Path(self._source_path).parts
-
+        is_post = 'posts' in Path(self._source_path).parts or 'ideas' in Path(self._source_path).parts
         def fig_repl(m: re.Match) -> str:
             full_tag = m.group(0)
             img_match = re.search(r'<img\s+([^>]*alt="([^"]+)"[^>]*)>', full_tag)
@@ -293,6 +292,15 @@ class ObsidianMarkdownReader(MarkdownReader):
             metadata['menu_order'] = extra_meta['menu_order']
         if 'menu_title' in extra_meta:
             metadata['menu_title'] = extra_meta['menu_title']
+
+        # Route ideas to output/ideas/{slug}.html
+        if 'ideas' in Path(source_path).parts:
+            slug = metadata.get('slug', '')
+            if not slug and 'title' in metadata:
+                slug = re.sub(r'[^a-z0-9]+', '-', str(metadata['title']).lower()).strip('-')
+            if slug:
+                metadata['url'] = f'ideas/{slug}.html'
+                metadata['save_as'] = f'ideas/{slug}.html'
 
         return content, metadata
 

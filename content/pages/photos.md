@@ -2,9 +2,9 @@
 title: "Photos"
 slug: "photos"
 template: "photos"
+photos_title: "Chicago Lakefront & Sky Studies"
+summary: "Visual studies of Chicago lakefront morning skies, sunset gradients, and botanic macro geometry."
 ---
-
-[OutOfMyLane Google Photos album &rarr;](https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8)
 
 ![Lake Michigan sky &mdash; Chicago lakefront morning study](images/sky-lakefront.jpg)
 

@@ -1813,6 +1813,88 @@ figcaption {
   text-align: left;
 }
 
+/* Photos Page Header */
+.photos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.photos-header-left {
+  flex: 1;
+}
+
+.photos-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 0.4rem;
+  color: var(--text);
+}
+
+.photos-summary {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.photos-header-right {
+  flex-shrink: 0;
+}
+
+.google-photos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.86rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.google-photos-badge:hover {
+  background: var(--border-subtle);
+  border-color: var(--link);
+  color: var(--link);
+}
+
+.google-photos-icon {
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+@media (max-width: 640px) {
+  .photos-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .photos-title {
+    font-size: 1.15rem;
+  }
+  .photos-summary {
+    font-size: 0.88rem;
+  }
+  .google-photos-badge {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* MacWright-Style Photo Stream & Adaptive Grid */
 .photo-stream,
 .photo-gallery-page {

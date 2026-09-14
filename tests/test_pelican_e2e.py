@@ -96,6 +96,30 @@ def test_post_pages_exist():
         assert target.exists(), f"Expected post {post} in output/posts/"
 
 
+def test_idea_pages_exist():
+    """Verify that idea articles compile to output/ideas/ and not output/posts/."""
+    expected_ideas = [
+        "4d-earthquake-animation.html",
+        "bike-handlebar-utility-shelf.html",
+        "history-book-mapper.html",
+        "im-an-ai-doomsayer-now.html",
+        "im-vibe-coding-now.html",
+        "lake-michigan-microclimate-correlator.html",
+        "offline-footnote-weaver.html",
+        "what-played-then.html",
+    ]
+    ideas_dir = OUTPUT_DIR / "ideas"
+    assert ideas_dir.exists(), "output/ideas/ directory should exist"
+    for idea in expected_ideas:
+        target = ideas_dir / idea
+        assert target.exists(), f"Expected idea {idea} in output/ideas/"
+
+    # Ensure idea slugs do NOT appear in output/posts/
+    posts_dir = OUTPUT_DIR / "posts"
+    for idea in expected_ideas:
+        assert not (posts_dir / idea).exists(), f"Idea {idea} should NOT be in output/posts/"
+
+
 def test_category_archive_pages_exist():
     """Verify that provenance category pages exist in output/category/ and lanes/ is absent."""
     expected_categories = [
@@ -288,20 +312,32 @@ def test_ideas_stream_isolated_and_dense():
 
 
 def test_pure_markdown_content_sources():
-    """Verify that all author-facing Markdown content files contain zero raw HTML tags."""
+    """
+    Verify that all author-facing Markdown content files contain zero raw HTML tags.
+    Note: Can be disabled or modified if optional inline HTML in Markdown sources is desired later.
+    """
     content_dir = REPO_ROOT / "content"
     md_files = [
         f for f in content_dir.rglob("*.md")
         if f.name != "prompt-history.md" and "data" not in f.parts
     ]
-    assert len(md_files) >= 15, "Expected at least 15 Markdown content files"
+    assert len(md_files) >= 20, f"Expected at least 20 Markdown content files, found {len(md_files)}"
 
-    raw_html_pattern = re.compile(r"<(div|figure|p|span|section|aside|header)\b", re.IGNORECASE)
+    # Match any raw HTML opening/closing tag outside frontmatter
+    raw_html_pattern = re.compile(r"<\/?[a-zA-Z][^>]*>", re.IGNORECASE)
     for md_file in md_files:
         text = md_file.read_text(encoding="utf-8")
-        match = raw_html_pattern.search(text)
+        # Strip YAML frontmatter
+        if text.startswith("---"):
+            parts = text.split("---", 2)
+            body = parts[2] if len(parts) >= 3 else text
+        else:
+            body = text
+        # Strip fenced code blocks from check
+        body_no_code = re.sub(r"```[\s\S]*?```", "", body)
+        match = raw_html_pattern.search(body_no_code)
         assert not match, (
-            f"Found forbidden raw HTML <{match.group(1)}> in {md_file.relative_to(REPO_ROOT)}"
+            f"Found forbidden raw HTML '{match.group(0)}' in {md_file.relative_to(REPO_ROOT)}"
         )
 
 
