@@ -20,7 +20,7 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>104 prompts</strong> from Jim across 30 milestones, alongside concise summaries of actions taken.
+    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>105 prompts</strong> from Jim across 31 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
 
@@ -783,6 +783,29 @@ author: "Jim Collinsworth"
       <li>Ported Architecture Concepts: Added Section 8 "Amateur Pursuit Personas & Cross-Disciplinary Exploration" to <code>ROADMAP.md</code>.</li>
       <li>Laptop Branch Cleanup Guidance: Provided exact commands for Jim to synchronize and clean his laptop environment without merge conflicts.</li>
       <li>Remote Branch Deletion: Deleted stale remote branch <code>origin/feature/mobile-1line-header-dense-layout</code>.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="milestone-header">
+  <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.7.7" target="_blank" rel="noopener">Homepage Layout: Photo Spotlight Reordered After Featured Post (Release v0.7.7)</a></h2>
+  <time datetime="2026-09-14" class="milestone-date">Sept 14 2026</time>
+</div>
+
+<div class="prompt-entry">
+  <div class="prompt-speaker"><span class="category-badge" title="Provenance: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> <strong>Jim:</strong></div>
+  <div class="prompt-quotes">
+    <p>one more thing, lets put the photo spotlight after the featured post. then merge,  push and publish it all</p>
+  </div>
+</div>
+
+<div class="prompt-response-block">
+  <div class="prompt-response-inner">
+    <div class="response-speaker"><span class="category-badge" title="Provenance: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <strong>Response:</strong></div>
+    <ul class="response-actions">
+      <li>Template Restructuring: Relocated <code>&lt;section&gt; &lt;h2&gt;Photo Spotlight...</code> from <code>.sidebar-column</code> into <code>.main-column</code> directly beneath <code>Featured Post</code> and preceding <code>Recent Links</code>.</li>
+      <li>Automated Testing & Build Verification: Compiled static site via Pelican (<code>0.13s</code>).</li>
+      <li>DevOps & Timeline Synchronization: Synchronized dev prompt timeline (<code>content/pages/prompt-history.md</code>) to 105 steering prompts across 31 milestones.</li>
     </ul>
   </div>
 </div>

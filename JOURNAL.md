@@ -2,6 +2,31 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-14 — Homepage Layout: Photo Spotlight Reordered After Featured Post (Release v0.7.7)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"one more thing, lets put the photo spotlight after the featured post. then merge,  push and publish it all"*
+
+### Problem & Diagnosis
+1. **Homepage Visual Balance**:
+   - The Photo Spotlight section was positioned at the bottom of the secondary sidebar column beneath the 3-item Recent Stream.
+   - On desktop screens, this elongated the right column while leaving the left primary column shorter with only the Featured Post and 2 book notes.
+   - On mobile screens, the photo spotlight appeared after both the featured post, bookshelf notes, and recent articles.
+
+### Root Cause & Technical Analysis
+- In `theme/templates/index.html`, Photo Spotlight was nested inside `.sidebar-column`. Moving it directly below Featured Post in `.main-column` balances the desktop two-column grid heights and brings visual photographic media into immediate prominence on both desktop and mobile viewports.
+
+### Solution & Standard Procedure
+1. **Template Restructuring**:
+   - Relocated `<section> <h2>Photo Spotlight...` from `.sidebar-column` into `.main-column` directly beneath `Featured Post` and preceding `Recent Links`.
+   - Removed the preceding `<hr>` separator from `.sidebar-column`.
+2. **Automated Testing & Build Verification**:
+   - Compiled static site via Pelican (`0.13s`).
+   - Verified 52/52 automated tests in `pytest -v` across accessibility, layout rendering, and responsiveness.
+3. **DevOps & Timeline Synchronization**:
+   - Synchronized dev prompt timeline (`content/pages/prompt-history.md`) to 105 steering prompts across 31 milestones.
+   - Bumped version to `v0.7.7` across `pyproject.toml`, `releases/v0.7.7.md`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 ## 2026-09-14 — Ported Amateur Personas, Metadata Matrix & Vertical Density Standards (Release v0.7.6.01)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

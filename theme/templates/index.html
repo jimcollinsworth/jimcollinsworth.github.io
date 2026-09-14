@@ -10,7 +10,7 @@
 
 {% set standard_articles = articles|rejectattr('type', 'equalto', 'IDEA')|list %}
 <div class="desktop-two-col">
-  <!-- Main Column: Featured Long-form & Bookshelf Spotlight -->
+  <!-- Main Column: Featured Long-form & Photo Spotlight -->
   <div class="main-column">
     <section>
       <h2>Featured Post</h2>
@@ -40,6 +40,18 @@
         </div>
       </article>
       {% endif %}
+    </section>
+
+    <section>
+      <h2>Photo Spotlight <span class="header-all-link">(<a href="{{ SITEURL }}/photos.html">ALL</a>)</span></h2>
+      <div class="photo-stream">
+        <figure>
+          <a href="{{ SITEURL }}/images/sky-lakefront.jpg" class="photo-link" title="Click to view full screen">
+            <img src="{{ SITEURL }}/images/sky-lakefront.jpg" alt="Lake Michigan horizon study" loading="lazy">
+          </a>
+          <figcaption>Lake Michigan horizon &mdash; Chicago lakefront morning study</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section>
@@ -79,7 +91,7 @@
     </section>
   </div>
 
-  <!-- Sidebar Column: Recent Stream & Photo Spotlight -->
+  <!-- Sidebar Column: Recent Stream -->
   <div class="sidebar-column">
     <section>
       <h2>Recent Stream <span class="header-all-link">(<a href="{{ SITEURL }}/posts.html">ALL</a>)</span></h2>
@@ -112,20 +124,6 @@
         {% endfor %}
       </ul>
       {% endif %}
-    </section>
-
-    <hr>
-
-    <section>
-      <h2>Photo Spotlight <span class="header-all-link">(<a href="{{ SITEURL }}/photos.html">ALL</a>)</span></h2>
-      <div class="photo-stream">
-        <figure>
-          <a href="{{ SITEURL }}/images/sky-lakefront.jpg" class="photo-link" title="Click to view full screen">
-            <img src="{{ SITEURL }}/images/sky-lakefront.jpg" alt="Lake Michigan horizon study" loading="lazy">
-          </a>
-          <figcaption>Lake Michigan horizon &mdash; Chicago lakefront morning study</figcaption>
-        </figure>
-      </div>
     </section>
   </div>
 </div>

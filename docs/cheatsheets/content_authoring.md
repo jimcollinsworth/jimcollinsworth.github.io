@@ -118,7 +118,7 @@ flowchart TD
   DEV --> OR{"Orientation and Width"}
 
   OR -->|Portrait / Under 960px| PORT["Single-Column Reading Flow<br/>- Focused vertical prose stream<br/>- Maximum reading comfort"]
-  OR -->|Landscape / 960px and Up| LAND["2-Column Magazine Grid (.desktop-two-col)<br/>- Left: Featured Article + Reads<br/>- Right: Recent Stream + Spotlight"]
+  OR -->|Landscape / 960px and Up| LAND["2-Column Magazine Grid (.desktop-two-col)<br/>- Left: Featured Article + Photo Spotlight + Reads<br/>- Right: Recent Stream"]
 
   DEV --> DENS{"Viewport Width"}
   DENS -->|Desktop / 640px and Up| DET["Progressive Detail (.post-detail)<br/>- Full excerpts and complete metadata"]

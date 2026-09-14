@@ -6,6 +6,14 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 42: Homepage Layout: Photo Spotlight Reordered After Featured Post (Completed - Release v0.7.7)**
+  - Homepage Grid Balance: moved `Photo Spotlight` from `.sidebar-column` into `.main-column` immediately following `Featured Post` in `theme/templates/index.html`.
+  - Column Balance: created balanced vertical column heights on desktop (Featured Post + Photo Spotlight + Recent Links on left, Recent Stream on right).
+  - Mobile Reading Flow: aligned mobile flow to Welcome Intro &rarr; Featured Post &rarr; Photo Spotlight &rarr; Recent Links &rarr; Recent Stream.
+  - Automated Testing: verified static build and passed 52/52 automated tests (`pytest -v`).
+  - Synchronized dev prompt timeline (`content/pages/prompt-history.md`) to 105 steering prompts across 31 milestones.
+  - Bumped version to `v0.7.7` across `pyproject.toml`, `about-this-site.md`, `releases/v0.7.7.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 - [x] **Milestone 41: Ported Amateur Personas, Metadata Matrix & Vertical Density Standards (Completed - Release v0.7.6.01)**
   - Remote Branch Triage: audited `feature/mobile-1line-header-dense-layout`; determined mobile header code was already merged in `v0.6.4`–`v0.6.7`, while documentation concepts were valuable to preserve.
   - Amateur Pursuit Personas: added Section 8 to `ROADMAP.md` covering Jim's 6 exploration personas (*The Sunday Woodwright*, *The Lakefront Cyclist*, *The Amateur Instrumentalist*, *The Local Biome Naturalist*, *The Civic Transit Tracker*, *The Zero-JS Web Craftsman*).
