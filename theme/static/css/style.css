@@ -368,10 +368,10 @@ img, picture, video, canvas {
     margin-top: 1rem;
     margin-bottom: 0.25rem;
   }
-  article p, .page-intro p {
+  article p, .page-intro p, .page-body > p:first-of-type, .post-content > p:first-of-type {
     margin-bottom: 0.75rem;
   }
-  .page-intro {
+  .page-intro, .page-body > p:first-of-type, .post-content > p:first-of-type {
     margin-bottom: 0.85rem;
     padding-bottom: 0.5rem;
     font-size: 0.92rem;
@@ -515,7 +515,7 @@ img, picture, video, canvas {
     margin-top: 1rem;
     margin-bottom: 0.3rem;
   }
-  .page-intro {
+  .page-intro, .page-body > p:first-of-type, .post-content > p:first-of-type {
     margin-bottom: 0.75rem;
     padding-bottom: 0.4rem;
   }
@@ -1517,6 +1517,121 @@ figure.screenshot-frame figcaption {
   color: var(--text-muted);
 }
 
+/* Post Content Figure & App Screenshot */
+.post-content figure {
+  max-width: 640px;
+  margin: 1.5rem auto 2rem;
+  text-align: center;
+}
+
+.post-content figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+}
+
+.post-content figure figcaption {
+  margin-top: 0.65rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Apps Grid & Cards */
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.app-card {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.app-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.app-card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.app-card-title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.app-card-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+}
+
+.app-card-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Dashboard Grid & Cards */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.dashboard-card {
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: 4px;
+  background: var(--bg-card);
+}
+
+.dashboard-card .card-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.dashboard-card .card-val {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0.4rem;
+}
+
+.dashboard-card .card-val.card-accent {
+  color: var(--accent);
+}
+
+.dashboard-card .card-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
 /* Photo Links for Fullscreen Viewing */
 a.photo-link {
   display: block;
@@ -1633,8 +1748,10 @@ a.photo-link:hover img {
   }
 }
 
-/* Page Intro Block */
-.page-intro {
+/* Page Intro Block & Lead Paragraphs */
+.page-intro,
+.page-body > p:first-of-type,
+.post-content > p:first-of-type {
   font-size: 1.05rem;
   line-height: 1.6;
   color: var(--text);
@@ -1697,32 +1814,40 @@ figcaption {
 }
 
 /* MacWright-Style Photo Stream & Adaptive Grid */
-.photo-stream {
+.photo-stream,
+.photo-gallery-page {
   display: flex;
   flex-direction: column;
   gap: 2.75rem;
   margin: 2rem 0;
 }
 
-.photo-stream.gallery-grid {
+.photo-stream.gallery-grid,
+.photo-gallery-page {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
 }
 
 @media (min-width: 1024px) {
-  .photo-stream.gallery-grid {
+  .photo-stream.gallery-grid,
+  .photo-gallery-page {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
   }
+  .photo-gallery-page > p:first-of-type {
+    grid-column: 1 / -1;
+  }
 }
 
-.photo-stream figure {
+.photo-stream figure,
+.photo-gallery-page figure {
   margin: 0;
 }
 
-.photo-stream img {
+.photo-stream img,
+.photo-gallery-page img {
   width: 100%;
   height: auto;
   border-radius: 4px;
@@ -1731,13 +1856,15 @@ figcaption {
 }
 
 @media (orientation: portrait) {
-  .photo-stream img {
+  .photo-stream img,
+  .photo-gallery-page img {
     max-height: 72vh;
     object-fit: cover;
   }
 }
 
-.photo-stream figcaption {
+.photo-stream figcaption,
+.photo-gallery-page figcaption {
   font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--text-muted);
@@ -1747,29 +1874,42 @@ figcaption {
 
 /* Edge-to-Edge Photo Stream: Remove Left/Right Gutters on Portable Viewports */
 @media (max-width: 1024px) {
-  .photo-stream {
+  .photo-stream,
+  .photo-gallery-page {
     margin-left: -1.75rem;
     margin-right: -1.75rem;
     width: calc(100% + 3.5rem);
   }
-  .photo-stream img {
+  .photo-stream img,
+  .photo-gallery-page img {
     border-radius: 0;
     border-left: none;
     border-right: none;
   }
-  .photo-stream figcaption {
+  .photo-stream figcaption,
+  .photo-gallery-page figcaption {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+  .photo-gallery-page > p:first-of-type {
     padding-left: 1.75rem;
     padding-right: 1.75rem;
   }
 }
 
 @media (max-width: 640px) {
-  .photo-stream {
+  .photo-stream,
+  .photo-gallery-page {
     margin-left: -1rem;
     margin-right: -1rem;
     width: calc(100% + 2rem);
   }
-  .photo-stream figcaption {
+  .photo-stream figcaption,
+  .photo-gallery-page figcaption {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .photo-gallery-page > p:first-of-type {
     padding-left: 1rem;
     padding-right: 1rem;
   }

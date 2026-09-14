@@ -14,10 +14,6 @@ tags:
 summary: "A lightweight script correlating public Lake Michigan buoy telemetry and barometric pressure with lakefront walk logs."
 ---
 
-<div class="page-intro">
-  <p>
-    A concept for a zero-dependency offline data script that pulls NOAA buoy observations (water temperature, wave height, wind vectors) and correlates them with outdoor lakefront walking notes.
-  </p>
-</div>
+A concept for a zero-dependency offline data script that pulls NOAA buoy observations (water temperature, wave height, wind vectors) and correlates them with outdoor lakefront walking notes.
 
 Concept outlines and implementation notes to follow.

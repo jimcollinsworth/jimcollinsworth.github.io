@@ -13,10 +13,6 @@ tags:
 summary: "Use map layers or 3D framework/game engine to visualize seismic event dynamics across space and time."
 ---
 
-<div class="page-intro">
-  <p>
-    Use map layers or a 3D framework / game engine to visualize earthquake occurrences and depths across space and time.
-  </p>
-</div>
+Use map layers or a 3D framework / game engine to visualize earthquake occurrences and depths across space and time.
 
 Notes and observations to follow.

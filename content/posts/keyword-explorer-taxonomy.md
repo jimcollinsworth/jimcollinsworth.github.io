@@ -1,4 +1,4 @@
----
+﻿---
 title: "Content Taxonomy & Keyword Explorer"
 slug: "keyword-explorer-taxonomy"
 date: "2026-09-12"
@@ -14,24 +14,11 @@ tags:
 summary: "A client-side visual discovery widget that cross-filters site content across domains, thought evolution stages, authorship origins, and multi-label keyword tags."
 ---
 
-<div class="page-intro">
-  <p>
-    The <strong>Content Taxonomy &amp; Keyword Explorer</strong> provides faceted discovery across the essays, projects, and notes on <code>jimcollinsworth.github.io</code>. It allows filtering across multiple dimensions simultaneously with real-time text matching.
-  </p>
-</div>
+The **Content Taxonomy & Keyword Explorer** provides faceted discovery across the essays, projects, and notes on `jimcollinsworth.github.io`. It allows filtering across multiple dimensions simultaneously with real-time text matching.
 
-<p style="margin: 1rem 0 1.75rem;">
-  <a href="../apps/keyword-search/index.html" class="app-launch-btn">Launch Full-Screen App &rarr;</a>
-</p>
+[Launch Full-Screen App &rarr;](../apps/keyword-search/index.html){: .app-launch-btn }
 
-<figure class="screenshot-frame">
-  <div class="screenshot-container">
-    <a href="../images/keyword-explorer-app.png" class="photo-link" title="Click to view full screen">
-      <img src="../images/keyword-explorer-app.png" alt="Content Taxonomy & Keyword Explorer interface displaying category filters, thought stages, and keyword tag pills" loading="lazy">
-    </a>
-  </div>
-  <figcaption>Content Taxonomy &amp; Keyword Explorer with real-time faceted filters and multi-label tags.</figcaption>
-</figure>
+![Content Taxonomy & Keyword Explorer with real-time faceted filters and multi-label tags.](../images/keyword-explorer-app.png)
 
 ## Faceted Discovery Dimensions
 

@@ -6,6 +6,15 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 44: Pure Markdown Content Migration, Automatic Link Resolution & Dedicated Blueprints (Completed - Release v0.7.8)**
+  - Automated Link Resolution: upgraded `ObsidianMarkdownReader` in `pelicanconf.py` to automatically resolve Markdown `.md` links and Obsidian `[[wikilinks]]` to Pelican `{filename}` directives.
+  - Automated Figure Wrapping: transformed Markdown images into semantic, responsive `<figure>` + `<figcaption>` elements with cross-directory path normalization.
+  - Pure Markdown Content: removed all raw HTML wrappers (`<div class="page-intro">`), card containers, and SVG icons across `content/pages/` and `content/posts/`.
+  - Dedicated Blueprints: created `about-this-site.html`, `apps.html`, `photos.html`, and `links.html` templates in `theme/templates/`.
+  - CSS Lead Paragraphs: added `.page-body > p:first-of-type, .post-content > p:first-of-type` styling in `theme/static/css/style.css`.
+  - Automated Testing: added 2 new tests verifying pure Markdown sources and link/figure resolution (54/54 tests passing).
+  - Version Bump: updated to `v0.7.8` across `pyproject.toml`, `about-this-site.md`, `releases/v0.7.8.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 - [x] **Milestone 43: Photo Asset Size Management Policy & Zero Full-Resolution In-Repo Standards (Completed - Release v0.7.7.01)**
   - GitHub Issue #3 Update: documented zero full-resolution in-repo policy, two local display tiers (thumbnails & medium), direct Google Photos / Drive URL resolution, and automated build step pipeline.
   - Agent Rules Codified: added Section 19 to `AGENTS.md` and `.agents/agent_rules.md` prohibiting commit of files > 500 KB or camera RAWs and requiring automated optimization for incoming photos.

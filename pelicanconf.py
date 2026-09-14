@@ -100,11 +100,108 @@ DELETE_OUTPUT_DIR = True
 class ObsidianMarkdownReader(MarkdownReader):
     """
     Reader for Obsidian Markdown files with YAML front-matter delimiters (---).
-    Automatically parses YAML metadata (provenance category, format short code,
-    lifecycle evolution lineage, and keyword tags) and formats it for Pelican.
+    Automatically parses YAML metadata, resolves Obsidian wikilinks and Markdown .md
+    links to Pelican intra-site references, wraps standalone images into figures,
+    and formats metadata for Pelican.
     """
     enabled = True
     file_extensions = ['md', 'markdown']
+    _file_map: dict[str, str] | None = None
+
+    @classmethod
+    def _build_file_map(cls, content_root: Path) -> dict[str, str]:
+        file_map: dict[str, str] = {}
+        for p in content_root.rglob('*.md'):
+            rel = p.relative_to(content_root).as_posix()
+            file_map[p.name] = rel
+            file_map[p.stem] = rel
+            file_map[rel] = rel
+        return file_map
+
+    def _resolve_links(self, text: str) -> str:
+        content_root = Path(self.settings.get('PATH', 'content')).resolve()
+        if ObsidianMarkdownReader._file_map is None:
+            ObsidianMarkdownReader._file_map = self._build_file_map(content_root)
+        file_map = ObsidianMarkdownReader._file_map
+        is_post = 'posts' in Path(self._source_path).parts
+        link_prefix = '../' if is_post else ''
+
+        # 1. Resolve Obsidian Wikilinks: [[target|label]] or [[target]]
+        def wikilink_sub(m: re.Match) -> str:
+            target = m.group(1).strip()
+            label = m.group(2).strip() if m.group(2) else target
+            clean_target = target.removesuffix('.md').removesuffix('.markdown')
+            if clean_target == 'posts':
+                return f'[{label}]({link_prefix}posts.html)'
+            resolved = file_map.get(target) or file_map.get(clean_target) or file_map.get(f'{clean_target}.md')
+            if resolved:
+                return f'[{label}]({{filename}}/{resolved})'
+            return f'[{label}]({target})'
+
+        text = re.sub(r'\[\[([^\]|]+)(?:\|([^\]]+))?\]\]', wikilink_sub, text)
+
+        # 2. Resolve standard Markdown links: [label](target.md) or [label](path/to/target.md)
+        def mdlink_sub(m: re.Match) -> str:
+            label = m.group(1)
+            target = m.group(2).strip()
+            if target.startswith(('http://', 'https://', 'mailto:', '#', '{filename}')):
+                return m.group(0)
+            clean = target.split('#')[0].split('?')[0]
+            if clean in ('posts.md', 'posts.markdown', 'posts'):
+                frag = target[len(clean):]
+                return f'[{label}]({link_prefix}posts.html{frag})'
+            if clean.endswith(('.md', '.markdown')):
+                clean_name = Path(clean).name
+                clean_stem = Path(clean).stem
+                resolved = file_map.get(clean) or file_map.get(clean_name) or file_map.get(clean_stem)
+                if resolved:
+                    frag = target[len(clean):]
+                    return f'[{label}]({{filename}}/{resolved}{frag})'
+            return m.group(0)
+
+        text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', mdlink_sub, text)
+        return text
+
+    def _wrap_figures(self, html: str) -> str:
+        is_post = 'posts' in Path(self._source_path).parts
+
+        def fig_repl(m: re.Match) -> str:
+            full_tag = m.group(0)
+            img_match = re.search(r'<img\s+([^>]*alt="([^"]+)"[^>]*)>', full_tag)
+            if not img_match:
+                return full_tag
+            alt = img_match.group(2).strip()
+            src_match = re.search(r'src="([^"]+)"', full_tag)
+            if not src_match:
+                return full_tag
+            src = src_match.group(1).strip()
+            if is_post and src.startswith('images/'):
+                src = '../' + src
+            elif not is_post and src.startswith('../images/'):
+                src = src[3:]
+
+            return (
+                f'<figure>\n'
+                f'  <a href="{src}" class="photo-link" title="Click to view full screen">\n'
+                f'    <img src="{src}" alt="{alt}" loading="lazy">\n'
+                f'  </a>\n'
+                f'  <figcaption>{alt}</figcaption>\n'
+                f'</figure>'
+            )
+
+        return re.sub(r'<p>\s*<img\s+[^>]*alt="[^"]+"[^>]*\s*/?>\s*</p>', fig_repl, html)
+
+    def _decorate_provenance_badges(self, html: str) -> str:
+        category_svgs = {
+            'Me': '<span class="category-badge" title="Category: Me" aria-label="Category: Me"><svg class="category-icon icon-me" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>',
+            'Mine': '<span class="category-badge" title="Category: Mine" aria-label="Category: Mine"><svg class="category-icon icon-mine" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span>',
+            'AI': '<span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>',
+            'Ours': '<span class="category-badge" title="Category: Ours" aria-label="Category: Ours"><svg class="category-icon icon-ours" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-3-3.87"></path><path d="M7 21v-2a4 4 0 0 1 3-3.87"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>',
+            'Theirs': '<span class="category-badge" title="Category: Theirs" aria-label="Category: Theirs"><svg class="category-icon icon-theirs" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path></svg></span>',
+        }
+        for cat_name, badge_html in category_svgs.items():
+            html = html.replace(f'<li><strong>{cat_name}</strong>:', f'<li>{badge_html} <strong>{cat_name}</strong>:')
+        return html
 
     def read(self, source_path: str) -> tuple[str, dict[str, Any]]:
         self._source_path = source_path
@@ -163,14 +260,22 @@ class ObsidianMarkdownReader(MarkdownReader):
                     elif isinstance(raw_prev, str):
                         extra_meta['previous_types'] = [x.strip().upper() for x in raw_prev.split(',') if x.strip()]
 
+                # Automatic link resolution for Obsidian Markdown links
+                resolved_body = self._resolve_links(body)
+
                 headers: list[str] = []
                 for k, v in parsed.items():
                     if isinstance(v, list):
                         headers.append(f'{k}: ' + ', '.join(str(i) for i in v))
                     else:
                         headers.append(f'{k}: {v}')
-                text = '\n'.join(headers) + '\n\n' + body
+                text = '\n'.join(headers) + '\n\n' + resolved_body
+            else:
+                text = self._resolve_links(text)
+
             content = self._md.convert(text)
+            content = self._wrap_figures(content)
+            content = self._decorate_provenance_badges(content)
 
         if hasattr(self._md, 'Meta'):
             metadata = self._parse_metadata(self._md.Meta)

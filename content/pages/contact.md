@@ -1,13 +1,9 @@
----
+﻿---
 title: "Contact"
 slug: "contact"
 ---
 
-<div class="page-intro">
-  <p>
-    <strong>Contact &amp; Correspondence</strong> &mdash; Reach out with thoughts, collaborations, or questions regarding any of the explorations across <em>Out of My Lane</em>.
-  </p>
-</div>
+**Contact &amp; Correspondence** &mdash; Reach out with thoughts, collaborations, or questions regarding any of the explorations across *Out of My Lane*.
 
 ## Direct Contact
 

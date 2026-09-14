@@ -12,10 +12,6 @@ tags:
 summary: "Custom utility shelf for bike handlebars featuring MagLock phone mounting and Bluetooth integration."
 ---
 
-<div class="page-intro">
-  <p>
-    Physical making and fabrication project: a bike handlebar utility shelf with MagLock phone mounting and Bluetooth integration.
-  </p>
-</div>
+Physical making and fabrication project: a bike handlebar utility shelf with MagLock phone mounting and Bluetooth integration.
 
 Notes and observations to follow.

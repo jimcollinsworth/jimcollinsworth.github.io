@@ -2,6 +2,46 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-14 — Pure Markdown Content Migration, Automatic Link Resolution & Dedicated Blueprints (Release v0.7.8)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"i can't get this link to work in markdown, should i link to the html or markdown"*
+> - *"wait, why is there html at all in the markdown, this is the input from obsidian that gets converted to html, from the source /content directory to the /output directory. markdown inter document links get converted to html links by pelican, isn't that the case?"*
+> - *"remove the raw html wrappers and really all raw html from all markdown content files, insert appropriate front matter with our pelican and site metadata standards add the automatic link resolution, don't change anything on the page directories/folder structure"*
+
+### Problem & Diagnosis
+1. **Broken Markdown Link Parsing**:
+   - In `content/pages/about-this-site.md`, the introductory paragraph was wrapped inside a raw HTML block (`<div class="page-intro"><p>...</p></div>`). Python-Markdown disables Markdown link parsing inside raw HTML tags, leaving `[Development Prompts](prompt-history.md)` unlinked as literal text.
+2. **HTML Noise in Obsidian Vault**:
+   - Multiple content pages and posts contained raw HTML elements (`<div class="page-intro">`, `<figure>`, `<figcaption>`, inline SVG icons, raw dashboard grids) that compromised readability and editing in Obsidian.
+3. **Missing Intra-Site Link Translation**:
+   - Stock Pelican requires explicit `{filename}` directives to resolve relative `.md` files into `.html` output URLs. Authors writing standard Markdown links (`[label](file.md)`) or Obsidian wikilinks (`[[target]]`) received broken or unresolved links.
+
+### Root Cause & Technical Analysis
+- The content directory is Jim's input source from Obsidian. Having raw HTML wrappers violated the principle of clean Markdown separation.
+- By intercepting Markdown in Pelican's custom `ObsidianMarkdownReader`, intra-site `.md` links and wikilinks can be automatically mapped to `{filename}` directives using a pre-built content file registry, while standalone images (`![alt](src)`) can be transformed into semantic, responsive `<figure>` elements.
+
+### Solution & Standard Procedure
+1. **Automated Intra-Site Link Resolution (`pelicanconf.py`)**:
+   - Extended `ObsidianMarkdownReader` with `_build_file_map()` and `_resolve_links()`. Automatically translates `[label](target.md)` and `[[target|label]]` into `{filename}` directives so Pelican calculates exact relative HTML URLs.
+   - Handled `posts.md` and `posts` references to resolve cleanly to relative `posts.html`.
+2. **Automated Figure Wrapping (`pelicanconf.py`)**:
+   - Added `_wrap_figures()` to automatically transform Markdown images (`![alt](src)`) into `<figure><a class="photo-link"><img ...></a><figcaption>alt</figcaption></figure>`.
+   - Automatically normalized image paths (`images/...` to `../images/...` for posts) to ensure asset integrity across directories.
+3. **Dedicated Jinja2 Blueprints (`theme/templates/`)**:
+   - Created `theme/templates/about-this-site.html` (renders Markdown content + appends structured DevOps & Infrastructure Dashboard).
+   - Created `theme/templates/apps.html` (renders Markdown content + application cards).
+   - Created `theme/templates/photos.html` (renders Markdown image stream inside responsive `.photo-gallery-page` 2-column grid).
+   - Created `theme/templates/links.html` (renders curated links 2-column layout).
+4. **CSS Lead-Paragraph Styling (`theme/static/css/style.css`)**:
+   - Added `.page-body > p:first-of-type, .post-content > p:first-of-type` to lead intro styles across mobile, landscape, and desktop viewports, eliminating the need for `<div class="page-intro">`.
+5. **Pure Markdown Content Migration (`content/`)**:
+   - Removed all raw HTML wrappers, card divs, and SVG icons from `content/pages/` and `content/posts/`.
+   - Updated `tools/sync_dev_prompts.py` to output pure Markdown paragraphs for prompt history intro.
+6. **Automated Testing**:
+   - Added `test_pure_markdown_content_sources()` and `test_markdown_link_and_figure_resolution()` to `tests/test_pelican_e2e.py`.
+   - All 54 tests passing.
+
 ## 2026-09-14 — Photo Asset Size Management Policy & Zero Full-Resolution In-Repo Standards (Release v0.7.7.01)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

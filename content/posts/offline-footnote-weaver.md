@@ -13,10 +13,6 @@ tags:
 summary: "An offline pipeline script scanning markdown posts for recurring entities and books to suggest contextual margin notes without runtime overhead."
 ---
 
-<div class="page-intro">
-  <p>
-    An exploratory pipeline concept for static site maintenance: an offline Python script that scans Markdown sources to detect shared entities, book citations, and cross-post themes.
-  </p>
-</div>
+An exploratory pipeline concept for static site maintenance: an offline Python script that scans Markdown sources to detect shared entities, book citations, and cross-post themes.
 
 Concept outlines and implementation notes to follow.

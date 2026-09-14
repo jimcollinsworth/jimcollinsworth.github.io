@@ -286,3 +286,38 @@ def test_ideas_stream_isolated_and_dense():
     assert "Offline Cross-Reference Footnote Weaver" not in posts_html
     assert "Offline Cross-Reference Footnote Weaver" not in index_html
 
+
+def test_pure_markdown_content_sources():
+    """Verify that all author-facing Markdown content files contain zero raw HTML tags."""
+    content_dir = REPO_ROOT / "content"
+    md_files = [
+        f for f in content_dir.rglob("*.md")
+        if f.name != "prompt-history.md" and "data" not in f.parts
+    ]
+    assert len(md_files) >= 15, "Expected at least 15 Markdown content files"
+
+    raw_html_pattern = re.compile(r"<(div|figure|p|span|section|aside|header)\b", re.IGNORECASE)
+    for md_file in md_files:
+        text = md_file.read_text(encoding="utf-8")
+        match = raw_html_pattern.search(text)
+        assert not match, (
+            f"Found forbidden raw HTML <{match.group(1)}> in {md_file.relative_to(REPO_ROOT)}"
+        )
+
+
+def test_markdown_link_and_figure_resolution():
+    """Verify that ObsidianMarkdownReader resolves .md links and wraps figures into HTML."""
+    about_site_html = (OUTPUT_DIR / "about-this-site.html").read_text(encoding="utf-8")
+    assert 'href="./prompt-history.html"' in about_site_html or 'href="prompt-history.html"' in about_site_html
+    assert "Development Prompts" in about_site_html
+
+    about_html = (OUTPUT_DIR / "about.html").read_text(encoding="utf-8")
+    assert 'href="./posts.html#music"' in about_html or 'href="posts.html#music"' in about_html
+    assert 'href="./links.html"' in about_html or 'href="links.html"' in about_html
+
+    art_html = (OUTPUT_DIR / "posts" / "art-institute-chicago-modern-wing.html").read_text(encoding="utf-8")
+    assert "<figure>" in art_html
+    assert "<figcaption>" in art_html
+    assert "Diffused ambient northern sky illumination" in art_html
+
+

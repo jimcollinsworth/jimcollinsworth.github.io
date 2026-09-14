@@ -18,11 +18,7 @@ author: "Jim Collinsworth"
   </div>
 </header>
 
-<div class="page-intro">
-  <p>
-    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>106 prompts</strong> from Jim across 32 milestones, alongside concise summaries of actions taken.
-  </p>
-</div>
+Steering prompts and technical corrections for `jimcollinsworth.github.io`, chronologically extracted from `JOURNAL.md` via `tools/sync_dev_prompts.py`. It contains **106 prompts** from Jim across 32 milestones, alongside concise summaries of actions taken.
 
 <div class="milestone-header">
   <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.5.8" target="_blank" rel="noopener">Tagline Lanes Link, Footer Lane Navigator, AI Promoted Lane, Links Rename & Homepage Bio (v0.5.8)</a></h2>

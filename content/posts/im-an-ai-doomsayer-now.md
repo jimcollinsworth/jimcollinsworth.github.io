@@ -12,10 +12,6 @@ tags:
 summary: "Exploring cautionary perspectives on runaway acceleration, societal shifts, and technological dependence."
 ---
 
-<div class="page-intro">
-  <p>
-    An unpolished concept examining cautionary arguments regarding technological acceleration, cognitive atrophy, and institutional dependencies.
-  </p>
-</div>
+An unpolished concept examining cautionary arguments regarding technological acceleration, cognitive atrophy, and institutional dependencies.
 
 Notes and observations to follow.

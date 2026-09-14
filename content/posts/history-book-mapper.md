@@ -13,10 +13,6 @@ tags:
 summary: "A conceptual tool to map historical narratives, overlapping timelines, and geographic contexts from reading lists."
 ---
 
-<div class="page-intro">
-  <p>
-    An unpolished project concept to cross-reference historical reading lists, aligning narrative timelines with interactive geographical context.
-  </p>
-</div>
+An unpolished project concept to cross-reference historical reading lists, aligning narrative timelines with interactive geographical context.
 
 Notes and observations to follow.
