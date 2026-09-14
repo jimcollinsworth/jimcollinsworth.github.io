@@ -2,6 +2,32 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-14 — Visual Evidence Path Standards Codification (Section 13) & Release v0.7.4.02
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"The preview links have broken before, so figure out why that has slipped through a few times and update appropriate agent rules to keep it from happening again. Publish and push otherwise."*
+
+### Problem & Diagnosis
+1. **Recurring "Preview Not Available" Errors in Artifacts**:
+   - In previous sessions, screenshot images embedded in `walkthrough.md` occasionally failed to load in the Antigravity artifact viewer, displaying a broken image or "Preview not available".
+2. **Path Inconsistencies**:
+   - Agents intermittently wrote relative filenames (e.g., `![Dashboard](preview.png)`) or used Windows backslashes (`\`), which fail URL parsing in webview renderers.
+
+### Root Cause & Technical Analysis
+- The Antigravity artifact viewer does not resolve relative image links against the active conversation artifact directory.
+- Windows filesystem paths containing backslashes are corrupted by markdown escape-character handling.
+- Section 13 in `AGENTS.md` mandated inline screenshots for UI changes but lacked explicit, binding path formatting and storage invariants.
+
+### Solution & Standard Procedure
+1. **Codified Mandatory Image Formatting Standards in Section 13**:
+   - Updated `AGENTS.md` and `.agents/agent_rules.md` Section 13 to mandate:
+     1. **Zero Relative Paths**: All screenshot embeds in artifacts (`walkthrough.md`) must use full absolute paths.
+     2. **Forward Slashes Only**: All paths must use forward slashes (e.g. `C:/Users/jimco/...`).
+     3. **Artifact Directory Storage**: All images must reside directly in `<appDataDir>/brain/<conversation-id>/`.
+     4. **Pre-Flight Verification**: Mandatory verification of image path syntax before presenting reports.
+2. **Versioning & Documentation**:
+   - Bumped version to `v0.7.4.02` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 ## 2026-09-13 — Chronological Prompt History, On-Site Release Notes Linking & Version v0.7.4.01
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

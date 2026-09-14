@@ -6,6 +6,11 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 38: Visual Evidence Path Standards Codification (Section 13) & Release v0.7.4.02 (Completed - Release v0.7.4.02)**
+  - Diagnosed recurring "Preview not available" errors in artifact previews: relative paths fail in artifact viewer, and Windows backslashes break URL parsing.
+  - Codified binding standards in Section 13 of `AGENTS.md` and `.agents/agent_rules.md`: zero relative paths, forward slashes only, artifact directory storage, and pre-flight verification.
+  - Bumped version to `v0.7.4.02` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 - [x] **Milestone 37: Chronological Prompt History, On-Site Release Notes Linking & Version v0.7.4.01 (Completed - Release v0.7.4.01)**
   - Ordered Development Prompts (`prompt-history.html`) chronologically from earliest to latest via `tools/sync_dev_prompts.py`.
   - Linked Site Version card on `about-this-site.html` directly to `prompt-history.html` for native milestone review, and linked subtitle to `GitHub Tags`.

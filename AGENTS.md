@@ -175,6 +175,12 @@ Every commit and meaningful change set must increment the project version:
 > - Whenever work involves user interface changes, layout restructurings, styling adjustments, or visual mode updates, the agent must **always provide one or two visual screenshots directly in the report / walkthrough** presented to Jim.
 > - The agent must display this visual evidence before asking Jim for approval to push to remote branches or merge to `main`.
 > - Never claim UI changes are ready for push or release without giving Jim immediate visual evidence to inspect.
+>
+> **Mandatory Image Formatting & Path Resolution Standards (To Prevent "Preview Not Available" Errors)**:
+> 1. **Zero Relative Paths**: The Antigravity artifact viewer cannot resolve relative image paths (e.g. `![Dashboard](preview.png)`). All screenshot embeds in artifacts (`walkthrough.md`) MUST use the full absolute filesystem path.
+> 2. **Forward Slashes Only**: Windows backslashes (`\`) break URL parsing in markdown and chat viewers. All paths MUST use forward slashes (e.g. `C:/Users/jimco/.gemini/antigravity/brain/<conv-id>/<name>.png`).
+> 3. **Artifact Directory Storage**: All screenshot images MUST be saved directly into the active artifact directory (`<appDataDir>/brain/<conversation-id>/`). Never reference scratch scripts or temporary directories in artifact markdown.
+> 4. **Pre-Flight Verification**: Before submitting a walkthrough to Jim, the agent must inspect the artifact file to confirm every `![caption](path)` link uses a valid, existing absolute forward-slash path.
 
 ---
 

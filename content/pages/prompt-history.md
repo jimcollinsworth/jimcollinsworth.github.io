@@ -13,14 +13,14 @@ author: "Jim Collinsworth"
       <h1 class="post-title">Development Prompts</h1>
     </div>
     <div class="post-header-right">
-      <time datetime="2026-09-13">Sept 13 2026</time>
+      <time datetime="2026-09-14">Sept 14 2026</time>
     </div>
   </div>
 </header>
 
 <div class="page-intro">
   <p>
-    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>93 prompts</strong> from Jim across 26 milestones, alongside concise summaries of actions taken.
+    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>94 prompts</strong> from Jim across 27 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
 
@@ -685,6 +685,28 @@ author: "Jim Collinsworth"
       <li>Chronological Milestone Ordering: Updated <code>tools/sync_dev_prompts.py</code> to reverse the parsed milestone list (<code>list(reversed(milestones))</code>), displaying prompt history chronologically from earliest (v0.5.8, Sept 10 2026) to latest (v0.7.4, Sept 13 2026).</li>
       <li>On-Site Release Notes Linking: Changed the primary link in the Site Version card on <code>about-this-site.md</code> to point directly to <code>prompt-history.html</code> so visitors read full milestone notes natively on the site.</li>
       <li>Releases Directory Synchronization: Created missing release notes files in <code>releases/</code>: <code>v0.7.1.md</code>, <code>v0.7.2.md</code>, <code>v0.7.3.md</code>, and <code>v0.7.4.md</code>.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="milestone-header">
+  <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.7.4" target="_blank" rel="noopener">Visual Evidence Path Standards Codification (Section 13) & Release v0.7.4.02</a></h2>
+  <time datetime="2026-09-14" class="milestone-date">Sept 14 2026</time>
+</div>
+
+<div class="prompt-entry">
+  <div class="prompt-speaker"><span class="category-badge" title="Provenance: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> <strong>Jim:</strong></div>
+  <div class="prompt-quotes">
+    <p>The preview links have broken before, so figure out why that has slipped through a few times and update appropriate agent rules to keep it from happening again. Publish and push otherwise.</p>
+  </div>
+</div>
+
+<div class="prompt-response-block">
+  <div class="prompt-response-inner">
+    <div class="response-speaker"><span class="category-badge" title="Provenance: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <strong>Response:</strong></div>
+    <ul class="response-actions">
+      <li>Codified Mandatory Image Formatting Standards in Section 13: Updated <code>AGENTS.md</code> and <code>.agents/agent_rules.md</code> Section 13 to mandate:.</li>
+      <li>Versioning & Documentation: Bumped version to <code>v0.7.4.02</code> across <code>pyproject.toml</code>, <code>about-this-site.md</code>, <code>JOURNAL.md</code>, and <code>PLANNING.md</code>.</li>
     </ul>
   </div>
 </div>
