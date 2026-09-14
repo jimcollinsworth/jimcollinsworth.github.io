@@ -2,6 +2,38 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Chronological Prompt History, On-Site Release Notes Linking & Version v0.7.4.01
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"on t hr website site page is says verdion .7.4 but the link goes to release 0.5.9 whats up with our release notes?"*
+> - *"slso make the dev prompts chronological"*
+
+### Problem & Diagnosis
+1. **GitHub Releases vs Git Tags Discrepancy**:
+   - The Site Version card on `about-this-site.html` linked externally to `https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases`. That GitHub page showed `v0.5.9` at the top because later versions (`v0.6.0` through `v0.7.4`) existed as Git tags (`/tags`) but had not been formally published as GitHub Release objects.
+2. **Reverse Chronological Prompts**:
+   - `prompt-history.html` displayed milestones in reverse chronological order (newest first, oldest last) rather than forward chronological progression.
+3. **Outdated Metric**:
+   - The Steering Prompts card on `about-this-site.html` was hardcoded to 77 prompts instead of the current 91 prompts.
+
+### Root Cause & Technical Analysis
+- GitHub's `/releases` UI filters exclusively for published release objects; tags created via `git tag` only appear on `/tags` unless drafted and published on GitHub.
+- `tools/sync_dev_prompts.py` read `JOURNAL.md` top-down and emitted milestones without reversing the list into chronological order.
+
+### Solution & Standard Procedure
+1. **Chronological Milestone Ordering**:
+   - Updated `tools/sync_dev_prompts.py` to reverse the parsed milestone list (`list(reversed(milestones))`), displaying prompt history chronologically from earliest (v0.5.8, Sept 10 2026) to latest (v0.7.4, Sept 13 2026).
+2. **On-Site Release Notes Linking**:
+   - Changed the primary link in the Site Version card on `about-this-site.md` to point directly to `prompt-history.html` so visitors read full milestone notes natively on the site.
+   - Added direct link to `GitHub Tags` (`/tags`) in the card subtitle.
+   - Synchronized prompt count to `91 Prompts →`.
+3. **Releases Directory Synchronization**:
+   - Created missing release notes files in `releases/`: `v0.7.1.md`, `v0.7.2.md`, `v0.7.3.md`, and `v0.7.4.md`.
+4. **Verification & Versioning**:
+   - Bumped version to `0.7.4.01` in `pyproject.toml` and `about-this-site.md`.
+   - Rebuilt Pelican site and verified all 51 automated tests pass in `pytest -v`.
+   - Captured full 1920x1080 visual evidence of updated cards and chronological prompts.
+
 ## 2026-09-13 — Custom Domain DNS Mapping & CNAME Configuration (v0.7.4)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

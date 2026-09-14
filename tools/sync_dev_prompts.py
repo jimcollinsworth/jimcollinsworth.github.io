@@ -125,6 +125,9 @@ def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int)
     latest_date_str = milestones[0]["date"] if milestones and milestones[0].get("date") else "2026-09-13"
     latest_formatted = format_date(latest_date_str)
 
+    # Order milestones chronologically (oldest to newest)
+    chronological_milestones = list(reversed(milestones))
+
     md = []
     md.append("---")
     md.append('title: "Development Prompts"')
@@ -148,12 +151,12 @@ def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int)
     md.append("")
     md.append('<div class="page-intro">')
     md.append("  <p>")
-    md.append(f"    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>{total_prompts} prompts</strong> from Jim across {len(milestones)} milestones, alongside concise summaries of actions taken.")
+    md.append(f"    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>{total_prompts} prompts</strong> from Jim across {len(milestones)} milestones, alongside concise summaries of actions taken.")
     md.append("  </p>")
     md.append("</div>")
     md.append("")
 
-    for m in milestones:
+    for m in chronological_milestones:
         title = m['title']
         date_str = m['date']
         

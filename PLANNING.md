@@ -6,6 +6,15 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 37: Chronological Prompt History, On-Site Release Notes Linking & Version v0.7.4.01 (Completed - Release v0.7.4.01)**
+  - Ordered Development Prompts (`prompt-history.html`) chronologically from earliest to latest via `tools/sync_dev_prompts.py`.
+  - Linked Site Version card on `about-this-site.html` directly to `prompt-history.html` for native milestone review, and linked subtitle to `GitHub Tags`.
+  - Synchronized Steering Prompts card to `91 Prompts →`.
+  - Added missing release notes documents in `releases/`: `v0.7.1.md`, `v0.7.2.md`, `v0.7.3.md`, and `v0.7.4.md`.
+  - Rebuilt static site with Pelican; passed all 51 automated tests (`pytest -v`).
+  - Captured uncropped 1920x1080 visual evidence.
+  - Bumped version to `v0.7.4.01` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 - [x] **Milestone 36: Custom Domain DNS Mapping & CNAME Configuration (Completed - Release v0.7.4)**
   - Diagnosed mobile resolution anomaly on `jimcollinsworth.com`: identified GoDaddy domain forwarding with masking serving an HTML 4 frameset lacking `<meta name="viewport">`.
   - Reconfigured GoDaddy DNS records: 4 apex `A` records to GitHub Pages IPs (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and `www` `CNAME` pointing to `jimcollinsworth.github.io`.
