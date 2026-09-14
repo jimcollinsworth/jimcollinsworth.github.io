@@ -20,7 +20,7 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>102 prompts</strong> from Jim across 29 milestones, alongside concise summaries of actions taken.
+    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>104 prompts</strong> from Jim across 30 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
 
@@ -759,6 +759,30 @@ author: "Jim Collinsworth"
       <li>Template & Feed Isolation: Created <code>theme/templates/ideas.html</code> with an ultra-condensed listing rendering <code>category_icon</code> alongside the idea title link.</li>
       <li>Smart Back Navigation: Updated <code>theme/templates/article.html</code> so back arrows on idea detail pages return to <code>/ideas.html</code>.</li>
       <li>Seeded Initial Concepts: Authored Jim's 6 ideas (<code>category: Mine</code>): *"I'm vibe coding now"*, *"I'm an AI doomsayer now"*, *"History book mapper"*, *"4D Earthquake Animation"*, *"What Played Then (vs.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="milestone-header">
+  <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.7.6" target="_blank" rel="noopener">Ported Amateur Personas, Metadata Matrix & Vertical Density Standards (Release v0.7.6.01)</a></h2>
+  <time datetime="2026-09-14" class="milestone-date">Sept 14 2026</time>
+</div>
+
+<div class="prompt-entry">
+  <div class="prompt-speaker"><span class="category-badge" title="Provenance: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> <strong>Jim:</strong></div>
+  <div class="prompt-quotes">
+    <p>can you look at this branch in github feature/mobile-1line-header-dense-layout   i was doing this work on another machine. merge it in if still appropriate</p>
+    <p>proceed, and what do i do on my laptop that has the local branch</p>
+  </div>
+</div>
+
+<div class="prompt-response-block">
+  <div class="prompt-response-inner">
+    <div class="response-speaker"><span class="category-badge" title="Provenance: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <strong>Response:</strong></div>
+    <ul class="response-actions">
+      <li>Ported Architecture Concepts: Added Section 8 "Amateur Pursuit Personas & Cross-Disciplinary Exploration" to <code>ROADMAP.md</code>.</li>
+      <li>Laptop Branch Cleanup Guidance: Provided exact commands for Jim to synchronize and clean his laptop environment without merge conflicts.</li>
+      <li>Remote Branch Deletion: Deleted stale remote branch <code>origin/feature/mobile-1line-header-dense-layout</code>.</li>
     </ul>
   </div>
 </div>

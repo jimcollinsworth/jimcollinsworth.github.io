@@ -63,6 +63,13 @@ Inspired by:
 - High-quality system font stack with graceful fallbacks (e.g., Georgia / Charter / serif for editorial prose, system sans-serif for navigation and metadata, monospace for code snippets and data tables).
 - Images formatted with `<figure>` and `<figcaption>` to celebrate photography with intentional context.
 
+### Elimination of Redundant Action Links & Vertical Density (Strict)
+- Never create standalone trailing link lines like 'Read full post →', 'More about me →', 'Browse all links →', or 'View all posts →' consuming vertical space.
+- The item or post title is always the primary click target.
+- For Section Headings, place compact section-level links (e.g. `(ALL)`) inline directly adjacent to the `<h2>` heading.
+- For introductory bios, integrate links inline (e.g. appending a concise trailing `&rarr;` on the same line).
+- In post lists, maintain dense single-line scannability with month-year dates (`Sep 26`) rather than verbose day-level dates.
+
 ---
 
 ## 5. Content Organization, Provenance Categories & Custom Topic Pages

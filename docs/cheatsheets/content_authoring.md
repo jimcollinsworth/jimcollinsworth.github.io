@@ -50,7 +50,18 @@ flowchart TD
 
 ---
 
-## 3. Standard Pelican YAML Frontmatter Template
+## 3. Metadata Mapping: Pelican Engine vs. Obsidian Authoring vs. Site Concept
+
+| Level | Site Concept | Pelican Keyword | Obsidian Property | Multiplicity | Native Pelican Behavior |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Provenance** | **Stream** (Mine, AI, Ours, Theirs, Me) | `category` | `category` | **Strictly One** | Generates `/category/{slug}.html`, drives category icons, and maps authorship origin. |
+| **Format** | **Post Type** (ESSAY, PROJ, APP, TIL, IDEA) | `type` *(custom)* | `type` (dropdown/text) | **One** | Uppercased shortcode in Jinja2 (`article.type`) altering layout, styling, and navigation without plugins. |
+| **Topics** | **Keywords / Topics** (python, audio, tai-chi) | `tags` | `tags` (list) | **Multiple** | Generates `article.tags` list in Jinja2; powers topical indexing and Obsidian tag graph. |
+| **Lifecycle** | **Publishing State** (Draft vs. Live) | `status` | `status` | **One** | `published` &rarr; live site; `draft` &rarr; isolated in `output/drafts/` (hidden from live index). |
+
+---
+
+## 4. Standard Pelican YAML Frontmatter Template
 
 ```yaml
 ---

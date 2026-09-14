@@ -6,6 +6,15 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 41: Ported Amateur Personas, Metadata Matrix & Vertical Density Standards (Completed - Release v0.7.6.01)**
+  - Remote Branch Triage: audited `feature/mobile-1line-header-dense-layout`; determined mobile header code was already merged in `v0.6.4`–`v0.6.7`, while documentation concepts were valuable to preserve.
+  - Amateur Pursuit Personas: added Section 8 to `ROADMAP.md` covering Jim's 6 exploration personas (*The Sunday Woodwright*, *The Lakefront Cyclist*, *The Amateur Instrumentalist*, *The Local Biome Naturalist*, *The Civic Transit Tracker*, *The Zero-JS Web Craftsman*).
+  - Metadata Mapping Architecture: added matrix mapping Pelican engine keys to Obsidian authoring and site presentation in `README.md` and `docs/cheatsheets/content_authoring.md`.
+  - Elimination of Redundant Action Links & Vertical Density: codified binding rule in Section 4 of `AGENTS.md` and `.agents/agent_rules.md`.
+  - Automated Testing: verified static build and passed 52/52 automated tests (`pytest -v`).
+  - Synchronized dev prompt timeline (`content/pages/prompt-history.md`) to 104 steering prompts across 30 milestones.
+  - Bumped version to `v0.7.6.01` across `pyproject.toml`, `about-this-site.md`, `releases/v0.7.6.01.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 - [x] **Milestone 40: Condensed Ideas Stream & Provenance Filtering (Completed - Release v0.7.6)**
   - Ideas Stream: created `/ideas.html` with high-density, metadata-free title list and provenance badges.
   - Feed Isolation: excluded `type: IDEA` from homepage featured post, recent stream, and `posts.html` archive list.

@@ -233,18 +233,27 @@ Per `.agents/agent_rules.md`:
 
 This guide defines content formats, Markdown syntax, and how elements map to the site's semantic styling classes in `theme/static/css/style.css`:
 
-### 1. Content Formats & Writing Types
+### 1. Metadata Mapping: Pelican Engine vs. Obsidian Authoring vs. Site Concept
+
+| Level | Site Concept | Pelican Keyword | Obsidian Property | Multiplicity | Native Pelican Behavior |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Provenance** | **Stream** (Mine, AI, Ours, Theirs, Me) | `category` | `category` | **Strictly One** | Generates `/category/{slug}.html`, drives category icons, and maps authorship origin. |
+| **Format** | **Post Type** (ESSAY, PROJ, APP, TIL, IDEA) | `type` *(custom)* | `type` (dropdown/text) | **One** | Uppercased shortcode in Jinja2 (`article.type`) altering layout, styling, and navigation without plugins. |
+| **Topics** | **Keywords / Topics** (python, audio, tai-chi) | `tags` | `tags` (list) | **Multiple** | Generates `article.tags` list in Jinja2; powers topical indexing and Obsidian tag graph. |
+| **Lifecycle** | **Publishing State** (Draft vs. Live) | `status` | `status` | **One** | `published` &rarr; live site; `draft` &rarr; isolated in `output/drafts/` (hidden from live index). |
+
+### 2. Content Formats & Writing Types
 
 | Format | Definition & Characteristics | Location |
 | :--- | :--- | :--- |
 | **Post / Essay** | Long-form, deep-dive exploration with full context, narrative analysis, and takeaways. | `content/posts/` |
 | **Project** | Active, multi-step engineering, coding, or physical build with milestones and deliverables. | `content/posts/` |
 | **TIL ("Today I Learned")** | Concise, 1–3 paragraph technical nugget, CLI fix, or quick realization. | Short post in `content/posts/` |
-| **Idea / Seedling** | Raw backlog item, question (*"How does that work?"*), or untested hypothesis. | `content/posts/` (Ideas lane) or `PLANNING.md` |
-| **Read / Book Synthesis** | Curated book reflection with core mental models and takeaways. | `content/pages/reads.md` |
+| **Idea / Seedling** | Raw backlog item, question (*"How does that work?"*), or untested hypothesis. | `content/posts/` (Ideas stream) |
+| **Shelf / Book Synthesis** | Curated book reflection with core mental models and takeaways. | `content/pages/shelf.md` |
 | **Comment / Annotation** | Brief personal reaction or footnote attached to a quote, book, or photo. | Inline callouts (`> Blockquote`) |
 
-### 2. Document Structure & Typography
+### 3. Document Structure & Typography
 
 | Element / Component | Markdown / HTML Syntax | CSS Class / Selector | Visual & Styling Behavior |
 | :--- | :--- | :--- | :--- |

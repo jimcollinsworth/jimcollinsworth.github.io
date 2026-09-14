@@ -2,6 +2,39 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-14 — Ported Amateur Personas, Metadata Matrix & Vertical Density Standards (Release v0.7.6.01)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"can you look at this branch in github feature/mobile-1line-header-dense-layout   i was doing this work on another machine. merge it in if still appropriate"*
+> - *"proceed, and what do i do on my laptop that has the local branch"*
+
+### Problem & Diagnosis
+1. **Divergent Remote Feature Branch**:
+   - Jim had worked on a separate machine on `feature/mobile-1line-header-dense-layout`, which branched from `v0.5.9`.
+   - A direct `git merge` would cause massive merge conflicts and regress 15 releases of progress (`v0.6.0` through `v0.7.6`).
+2. **Valuable Unmerged Concepts**:
+   - The branch contained valuable documentation not present on `main`:
+     1. Tongue-in-cheek Amateur Pursuit Personas in `ROADMAP.md`.
+     2. Metadata Mapping Matrix in `README.md` and authoring cheat sheets.
+     3. Strict Vertical Density & Click-Target principle in `AGENTS.md` and `.agents/agent_rules.md`.
+
+### Root Cause & Technical Analysis
+- The mobile header and dropdown navigation originally prototyped on that branch had already been completed and tested on `main` in `v0.6.4` through `v0.6.7`.
+- Cherry-picking and adapting the enduring documentation concepts directly into current documents avoids code regression while capturing the authoring guidance.
+
+### Solution & Standard Procedure
+1. **Ported Architecture Concepts**:
+   - Added Section 8 "Amateur Pursuit Personas & Cross-Disciplinary Exploration" to `ROADMAP.md`.
+   - Added "Metadata Mapping: Pelican Engine vs. Obsidian Authoring vs. Site Concept" table to `README.md` and `docs/cheatsheets/content_authoring.md`.
+   - Codified "Elimination of Redundant Action Links & Vertical Density (Strict)" in `AGENTS.md` and `.agents/agent_rules.md`.
+2. **Laptop Branch Cleanup Guidance**:
+   - Provided exact commands for Jim to synchronize and clean his laptop environment without merge conflicts.
+3. **Remote Branch Deletion**:
+   - Deleted stale remote branch `origin/feature/mobile-1line-header-dense-layout`.
+4. **Testing & Versioning**:
+   - Verified static build and passed all 52 automated tests in `uv run pytest -v`.
+   - Bumped version to `0.7.6.01` across `pyproject.toml`, `releases/v0.7.6.01.md`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 ## 2026-09-14 — Condensed Ideas Stream & Provenance Filtering (Release v0.7.6)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

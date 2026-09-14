@@ -186,15 +186,31 @@ As Jim's investigations expand across retirement, the site can support up to ~20
 
 ---
 
-## 8. How Ideas Move from Roadmap to Production
+## 8. Amateur Pursuit Personas & Cross-Disciplinary Exploration
+
+Jim explored phrasing pursuit lanes using active persona nouns&mdash;framed as enthusiastic amateurs exploring without professional boundaries:
+- **`Musician`** (Guitar, Piano, Music Theory, Audio Production)
+- **`Scientist`** (Life sciences, sleep data, physiology, barometric and lake observation)
+- **`Futurist`** (AI ethics, agent workflows, synthetic systems)
+- **`Software Engineer`** (Python, data pipelines, architecture, open source tools)
+- **`Artist / Crafter`** (Woodworking, knife making, photography, drawing)
+- **`Engineer`** (Electronics, DIY hardware, acoustics)
+- **`Somaticist / Practitioner`** (Tai Chi, Alexander Technique, movement therapy, biomechanics)
+
+*Category & Taxonomy Integration*: While Pelican maps primary provenance origin to a single `category` stream (Mine, AI, Ours, Theirs, Me), topical personas and thematic intersections are bridged using `tags` and post `type` (such as `IDEA`, `PROJECT`, `APP`, `ESSAY`, `TIL`) without cluttering navigation.
+
+---
+
+## 9. How Ideas Move from Roadmap to Production
 
 ```text
 [ROADMAP.md]                  [PLANNING.md]                 [BUILD & TEST]              [JOURNAL.md]
 Creative Brainstorming   -->  Active Sprint Backlog    -->  Pelican + Playwright   -->  Documented Milestones
-Ideas & Possibilities         Near-Term Milestones          42 Automated Tests          Permanent Decision Log
+Ideas & Possibilities         Near-Term Milestones          52 Automated Tests          Permanent Decision Log
 ```
 
 1. **Ideation**: Discussed freely in `ROADMAP.md`.
 2. **Prioritization**: Jim selects an initiative to move into `PLANNING.md` as an active milestone.
 3. **Implementation & Testing**: Built using standard Python CLI tools (`uv`), validated by the test suite and Playwright visual audits.
 4. **Permanent Record**: Archived into `JOURNAL.md` as a completed milestone with lessons learned.
+
