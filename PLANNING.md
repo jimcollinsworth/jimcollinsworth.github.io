@@ -6,6 +6,13 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 43: Photo Asset Size Management Policy & Zero Full-Resolution In-Repo Standards (Completed - Release v0.7.7.01)**
+  - GitHub Issue #3 Update: documented zero full-resolution in-repo policy, two local display tiers (thumbnails & medium), direct Google Photos / Drive URL resolution, and automated build step pipeline.
+  - Agent Rules Codified: added Section 19 to `AGENTS.md` and `.agents/agent_rules.md` prohibiting commit of files > 500 KB or camera RAWs and requiring automated optimization for incoming photos.
+  - Architecture Documentation: updated `README.md` Section 4 and `ROADMAP.md` Section 3.C with photo asset sizing tiers and ingest pipeline details.
+  - DevOps & Timeline: synchronized prompt history to 106 steering prompts across 32 milestones.
+  - Bumped version to `v0.7.7.01` across `pyproject.toml`, `about-this-site.md`, `releases/v0.7.7.01.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 - [x] **Milestone 42: Homepage Layout: Photo Spotlight Reordered After Featured Post (Completed - Release v0.7.7)**
   - Homepage Grid Balance: moved `Photo Spotlight` from `.sidebar-column` into `.main-column` immediately following `Featured Post` in `theme/templates/index.html`.
   - Column Balance: created balanced vertical column heights on desktop (Featured Post + Photo Spotlight + Recent Links on left, Recent Stream on right).

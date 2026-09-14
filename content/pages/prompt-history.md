@@ -20,7 +20,7 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>105 prompts</strong> from Jim across 31 milestones, alongside concise summaries of actions taken.
+    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>106 prompts</strong> from Jim across 32 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
 
@@ -806,6 +806,29 @@ author: "Jim Collinsworth"
       <li>Template Restructuring: Relocated <code>&lt;section&gt; &lt;h2&gt;Photo Spotlight...</code> from <code>.sidebar-column</code> into <code>.main-column</code> directly beneath <code>Featured Post</code> and preceding <code>Recent Links</code>.</li>
       <li>Automated Testing & Build Verification: Compiled static site via Pelican (<code>0.13s</code>).</li>
       <li>DevOps & Timeline Synchronization: Synchronized dev prompt timeline (<code>content/pages/prompt-history.md</code>) to 105 steering prompts across 31 milestones.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="milestone-header">
+  <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.7.7" target="_blank" rel="noopener">Photo Asset Size Management Policy & Zero Full-Resolution In-Repo Standards (Release v0.7.7.01)</a></h2>
+  <time datetime="2026-09-14" class="milestone-date">Sept 14 2026</time>
+</div>
+
+<div class="prompt-entry">
+  <div class="prompt-speaker"><span class="category-badge" title="Provenance: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> <strong>Jim:</strong></div>
+  <div class="prompt-quotes">
+    <p>ok, going forward need to make sure we manage the photo sizes that end up in the repo, the full resolution will be direct google photo url. so only smaller photos (medium size and a thumbnail) get into repo and site. maybe a built step. update the photo viewer ticket, and elsewhere</p>
+  </div>
+</div>
+
+<div class="prompt-response-block">
+  <div class="prompt-response-inner">
+    <div class="response-speaker"><span class="category-badge" title="Provenance: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <strong>Response:</strong></div>
+    <ul class="response-actions">
+      <li>GitHub Issue #3 Updated: Added architectural comment to Issue #3 (*"photos app"*) documenting the zero full-resolution in-repo policy, two local display tiers (thumbnails and medium display assets), direct Google Photos / Drive URL resolution, and automated build step pipeline.</li>
+      <li>Agent Rules Codified: Added Section 19 to <code>AGENTS.md</code> and <code>.agents/agent_rules.md</code> prohibiting commit of files > 500 KB or camera RAWs into the repo and requiring automated optimization for incoming photos.</li>
+      <li>Documentation Updated: Added Section 4 "Photo Asset Size Management & Sizing Tiers" to <code>README.md</code>.</li>
     </ul>
   </div>
 </div>

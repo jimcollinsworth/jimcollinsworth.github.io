@@ -250,5 +250,19 @@ Every commit and meaningful change set must increment the project version:
 > - **Factual Precision Standard**: Write strictly with unadorned nouns, verbs, and verifiable metrics (e.g., "zero client-side JavaScript", "51 passing tests", "3px solid line", "375px viewport"). If a claim cannot be measured, cited, or proven from the code, omit the modifier entirely.
 > - **Universal Scope**: This rule applies strictly across all site content, governance documents (`README.md`, `PLANNING.md`, `JOURNAL.md`, `ROADMAP.md`), developer walkthroughs, commit messages, and agent chat communications.
 
+---
+
+## 19. Photo Asset Size Management & Zero Full-Resolution In-Repo Rule (Strict)
+
+> [!CAUTION]
+> **Strict Limits on Repository Photo Assets**:
+> - The agent must **NEVER commit full-resolution original photographs, camera RAW files, or uncompressed image files (> 500 KB)** into the Git repository.
+> - **External Storage for Full Resolution**: Full-resolution assets, mega-zoom source files, and camera originals must resolve exclusively to external Google Photos (or Google Drive) direct URLs.
+> - **Two Local Web Display Tiers Only**: The repository hosts strictly two web-optimized size tiers:
+>   1. **Thumbnails**: Compact previews (~400px width / ~30–50 KB) for filmstrips, grid cards, and mobile galleries.
+>   2. **Medium Web Images**: Screen-optimized reading images (~1200–1600px width / ~150–300 KB) for post reading measures, homepage spotlights, and single-photo detail views.
+> - **Automated Ingestion / Build Step**: All new images introduced to the repository must be processed through an automated optimization or build step (e.g. Python Pillow pipeline) to strip unnecessary metadata and enforce dimensions and file-size constraints before commit.
+
+
 
 

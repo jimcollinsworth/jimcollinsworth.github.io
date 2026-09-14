@@ -69,10 +69,16 @@ These are high-potential concepts, experiments, and passion projects raised in d
 ### C. High-Volume Photo Navigation & Archive Explorer
 - **Concept**: Jim captures dozens to hundreds of photographs across Lake Michigan morning walks, Chicago skies, botanical macros, woodworking projects, and sunsets.
 - **Current State**: Curated key photos are placed in `content/images/` and embedded in `<figure>` tags, with links out to full Google Photos albums (e.g. [OutOfMyLane Google Photos album](https://photos.app.goo.gl/yGTTSd3hnw1pqCPo8)).
+- **Repository Size Management & Dual-Tier Ingest**:
+  - **Zero Full-Resolution in Repo**: Camera RAW captures and full-resolution originals (> 500 KB) are never stored in the Git repository to prevent repository bloat and slow clone speeds.
+  - **Direct External URL Resolution**: Full-resolution zoom and raw inspection resolve directly to external Google Photos / Drive URLs.
+  - **Two Local Display Tiers**: Ingest pipeline generates strictly two web-optimized sizes stored in the repo:
+    1. *Thumbnail*: ~400px width (~30–50 KB) for filmstrips, grid cards, and mobile views.
+    2. *Medium Web*: ~1200–1600px width (~150–300 KB) for post reading measure, homepage spotlight, and photo detail pages.
 - **Future Vision**:
-  - A dedicated photo navigation mini-app capable of indexing high-resolution archives.
+  - A dedicated photo navigation mini-app capable of indexing high-resolution archives from Google Takeout manifests.
   - EXIF metadata extraction (camera settings, lens, exposure, timestamp, sunrise/sunset alignment).
-  - Faceted visual filtering by pursuit lane, season, lighting conditions, and tags without bloating the git repo (using cloud storage or external static asset hosting).
+  - Automated build step (Python Pillow) optimizing incoming photos into standard thumbnail and medium tiers.
 
 ### D. M.E. (Mental Entity / My Essence) Companion Integration
 - **Concept**: A completely local, offline personal AI companion carried on your person with an adaptive memory architecture (documented in Jim's post *M.E. (Mental Entity / My Essence)*).

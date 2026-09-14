@@ -288,6 +288,14 @@ This guide defines content formats, Markdown syntax, and how elements map to the
   - **Landscape**: Side-by-side multi-column presentation.
 - **Zero-JS Policy**: HTML5 + CSS. Zero client-side scripts, zero cookies, zero trackers on reading pages.
 
+### 4. Photo Asset Size Management & Sizing Tiers
+
+- **Zero RAW in Repo**: Camera RAW captures and full-resolution original files (> 500 KB) are never stored in the Git repository. Full resolution resolves externally via direct Google Photos / Drive URLs.
+- **Two Local Display Tiers**:
+  1. **Thumbnail**: ~400px width (~30–50 KB) for filmstrips, grid cards, and mobile views.
+  2. **Medium Web**: ~1200–1600px width (~150–300 KB) for post reading measure, homepage spotlight, and photo detail pages.
+- **Automated Ingestion**: New photo assets pass through an automated build or optimization step to strip unneeded EXIF bloat and constrain dimensions prior to repo commit.
+
 ---
 
 ## License

@@ -2,6 +2,34 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-14 — Photo Asset Size Management Policy & Zero Full-Resolution In-Repo Standards (Release v0.7.7.01)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"ok, going forward need to make sure we manage the photo sizes that end up in the repo, the full resolution will be direct google photo url. so only smaller photos (medium size and a thumbnail) get into repo and site. maybe a built step. update the photo viewer ticket, and elsewhere"*
+
+### Problem & Diagnosis
+1. **Repository Bloat & Clone Latency**:
+   - Camera originals (8–10 MB each) in `archive/original_photos/` and historical gallery commits inflated `.git` download size to ~90–112 MB.
+   - Recloning on secondary devices (such as laptops) required downloading heavy binary history unrelated to site code and text.
+2. **Missing Ingestion Boundaries**:
+   - No explicit size ceiling was codified preventing large full-resolution media from being committed to the repo.
+
+### Root Cause & Technical Analysis
+- Git is designed for text and code; binary photo assets do not compress efficiently across commit revisions.
+- Decoupling display preview tiers from archival storage keeps the Git repository compact and fast while preserving access to full-resolution assets via external cloud storage URLs (Google Photos or Google Drive).
+
+### Solution & Standard Procedure
+1. **GitHub Issue #3 Updated**:
+   - Added architectural comment to Issue #3 (*"photos app"*) documenting the zero full-resolution in-repo policy, two local display tiers (thumbnails and medium display assets), direct Google Photos / Drive URL resolution, and automated build step pipeline.
+2. **Agent Rules Codified**:
+   - Added Section 19 to `AGENTS.md` and `.agents/agent_rules.md` prohibiting commit of files > 500 KB or camera RAWs into the repo and requiring automated optimization for incoming photos.
+3. **Documentation Updated**:
+   - Added Section 4 "Photo Asset Size Management & Sizing Tiers" to `README.md`.
+   - Updated Section 3.C "High-Volume Photo Navigation & Archive Explorer" in `ROADMAP.md`.
+4. **DevOps & Timeline Synchronization**:
+   - Synchronized prompt history to 106 steering prompts across 32 milestones.
+   - Bumped version to `v0.7.7.01` across `pyproject.toml`, `releases/v0.7.7.01.md`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 ## 2026-09-14 — Homepage Layout: Photo Spotlight Reordered After Featured Post (Release v0.7.7)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:
