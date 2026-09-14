@@ -6,6 +6,15 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 40: Condensed Ideas Stream & Provenance Filtering (Completed - Release v0.7.6)**
+  - Ideas Stream: created `/ideas.html` with high-density, metadata-free title list and provenance badges.
+  - Feed Isolation: excluded `type: IDEA` from homepage featured post, recent stream, and `posts.html` archive list.
+  - Smart Navigation: configured back arrow in `theme/templates/article.html` to return to `/ideas.html` when viewing an idea post.
+  - Initial Concepts: authored Jim's 3 ideas (*"I'm vibe coding now"*, *"I'm an AI doomsayer now"*, *"History book mapper"*) with `category: Mine`, and 2 AI ideas (*"Offline Cross-Reference Footnote Weaver"*, *"Lake Michigan Microclimate Correlator"*) with `category: AI` (`LLM-Gemini3.8`).
+  - Automated Testing: added `test_ideas_stream_isolated_and_dense` verifying feed isolation across 52 automated tests.
+  - Synchronized dev prompt timeline (`content/pages/prompt-history.md`) to 101 steering prompts across 29 milestones.
+  - Bumped version to `v0.7.6` across `pyproject.toml`, `about-this-site.md`, `releases/v0.7.6.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 - [x] **Milestone 39: Content Refinements, Provenance Relocation & App Nomenclature (Completed - Release v0.7.5)**
   - Homepage bio: removed "local" from "local AI" blurb in `theme/templates/index.html` ("...woodworking, and AI.").
   - Multimodal Data Pipeline-Tool: updated post title in `content/posts/pipeline-tools-workbench.md` to `"Multimodal Data Pipeline-Tool"`.

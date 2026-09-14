@@ -61,6 +61,7 @@ def test_core_pages_exist():
         "photos.html",
         "apps.html",
         "about-this-site.html",
+        "ideas.html",
         "prompt-history.html",
         "contact.html",
         "favicon.svg",
@@ -267,3 +268,21 @@ def test_link_and_asset_integrity():
                 continue
             target_path = (f.parent / src).resolve()
             assert target_path.exists(), f"Broken image in {rel_path}: '{src}' -> {target_path} not found"
+
+
+def test_ideas_stream_isolated_and_dense():
+    """Verify that type: IDEA articles appear on ideas.html and are isolated from posts.html and index.html."""
+    ideas_html = (OUTPUT_DIR / "ideas.html").read_text(encoding="utf-8")
+    posts_html = (OUTPUT_DIR / "posts.html").read_text(encoding="utf-8")
+    index_html = (OUTPUT_DIR / "index.html").read_text(encoding="utf-8")
+
+    # Assert ideas are listed on ideas.html
+    assert "History book mapper" in ideas_html
+    assert "Offline Cross-Reference Footnote Weaver" in ideas_html
+
+    # Assert ideas do NOT appear in main posts archive or index stream
+    assert "History book mapper" not in posts_html
+    assert "History book mapper" not in index_html
+    assert "Offline Cross-Reference Footnote Weaver" not in posts_html
+    assert "Offline Cross-Reference Footnote Weaver" not in index_html
+

@@ -2,6 +2,40 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-14 — Condensed Ideas Stream & Provenance Filtering (Release v0.7.6)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"i want to add our 'future' concept to the site, or just upcoming might be a better term. or planned. this would be posts, rants, goals, apps, anything that really hasn't been started but i want to list as a teaser, collect input, keep it on my radar. i don't want to list these everywhere, it's more downlow and limited, or on demand. so maybe a status like published, draft, hidden, future, or just 'upcoming' in the date field, or what else? thoughts"*
+> - *"actually i probably like ideas better than radar, radar implies others work i'm looking at, not my own. kiss. I intend to put tens, hundred ideas out there, just going to blast them in, so keep the view very condensed, packed in, no meta data, just title. add a few of yours to. be sure to mark yours with ai providence and mine with my providence icon. ideas: I'm vibe coding now, I'm an AI doomsayer now, History book mapper"*
+
+### Problem & Diagnosis
+1. **Teaser & Seedling Visibility**:
+   - Jim required a lightweight mechanism to post unpolished concepts, rants, goals, and app ideas without cluttering the primary chronological blog archive (`posts.html`) or homepage feeds.
+2. **High-Density Presentation**:
+   - As tens or hundreds of ideas are added, standard post cards with summaries, dates, and tag clouds would cause overwhelming vertical scroll. The listing needed an ultra-dense, packed-in layout displaying strictly titles with provenance icons.
+3. **Attribution & Provenance**:
+   - Clear distinction between Jim's original concepts (`category: Mine`) and AI-proposed ideas (`category: AI`, authored by `LLM-Gemini3.8`).
+
+### Root Cause & Technical Analysis
+- Utilizing Pelican's existing `type: IDEA` frontmatter avoided introducing custom metadata layers.
+- Filtering `type == 'IDEA'` out of `index.html` and `archives.html` isolated seedlings from polished long-form writing while keeping static URL compilation active for each individual idea.
+
+### Solution & Standard Procedure
+1. **Template & Feed Isolation**:
+   - Created `theme/templates/ideas.html` with an ultra-condensed listing rendering `category_icon` alongside the idea title link.
+   - Filtered out `type: IDEA` from `theme/templates/index.html` (featured post and recent stream) and `theme/templates/archives.html`.
+   - Added subtle lead-in link to `ideas.html` in `posts.html`.
+2. **Smart Back Navigation**:
+   - Updated `theme/templates/article.html` so back arrows on idea detail pages return to `/ideas.html`.
+3. **Seeded Initial Concepts**:
+   - Authored Jim's 3 ideas: *"I'm vibe coding now"*, *"I'm an AI doomsayer now"*, and *"History book mapper"* (`category: Mine`).
+   - Authored 2 AI ideas: *"Offline Cross-Reference Footnote Weaver"* and *"Lake Michigan Microclimate Correlator"* (`category: AI`, author: `LLM-Gemini3.8`).
+4. **CSS & Styling**:
+   - Added compact CSS rules in `theme/static/css/style.css` for `.ideas-container`, `.ideas-list`, and `.idea-item`.
+5. **Testing & Versioning**:
+   - Added automated test `test_ideas_stream_isolated_and_dense` asserting isolation from `posts.html` and `index.html` (52 total passing tests).
+   - Bumped project version to `0.7.6` across `pyproject.toml`, `releases/v0.7.6.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 ## 2026-09-14 — Content Refinements, Provenance Relocation & App Nomenclature (Release v0.7.5)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

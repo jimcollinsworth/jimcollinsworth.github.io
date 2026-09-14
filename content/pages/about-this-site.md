@@ -19,6 +19,8 @@ This is about provenance and my desire to attempt to separate and identify AI or
 - <span class="category-badge" title="Category: Ours" aria-label="Category: Ours"><svg class="category-icon icon-ours" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-3-3.87"></path><path d="M7 21v-2a4 4 0 0 1 3-3.87"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span> **Ours**: Collaborative works and shared experiences created or documented jointly with family, peers, and friends &mdash; such as hikes, events, museum visits, tours, and joint projects (or human and AI collaboration).
 - <span class="category-badge" title="Category: Theirs" aria-label="Category: Theirs"><svg class="category-icon icon-theirs" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path></svg></span> **Theirs**: Curated external references, exhibitions, events, museum tours, quotes, and third-party works.
 
+Unpolished concepts, seedlings, and prompts across these streams are collected in the high-density [Ideas](ideas.html) stream.
+
 ---
 
 ## DevOps & Infrastructure Dashboard
@@ -35,9 +37,9 @@ This is about provenance and my desire to attempt to separate and identify AI or
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
     <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Site Version &amp; Releases</div>
     <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem;">
-      <a href="prompt-history.html">v0.7.5 &bull; Release Notes &rarr;</a>
+      <a href="prompt-history.html">v0.7.6 &bull; Release Notes &rarr;</a>
     </div>
-    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Chronological milestones v0.1 &ndash; v0.7.5 &bull; <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/tags" target="_blank" rel="noopener">GitHub Tags</a></div>
+    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Chronological milestones v0.1 &ndash; v0.7.6 &bull; <a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/tags" target="_blank" rel="noopener">GitHub Tags</a></div>
   </div>
 
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
@@ -65,7 +67,7 @@ This is about provenance and my desire to attempt to separate and identify AI or
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
     <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Steering Prompts</div>
     <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem;">
-      <a href="prompt-history.html">99 Prompts &rarr;</a>
+      <a href="prompt-history.html">101 Prompts &rarr;</a>
     </div>
     <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Direct human guidance &amp; remediation</div>
   </div>

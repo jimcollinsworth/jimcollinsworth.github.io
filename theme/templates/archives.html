@@ -6,12 +6,12 @@
 {% block content %}
 <div class="page-intro">
   <p>
-    Notes, technical deep dives, project logs, and observations.
+    Notes, technical deep dives, project logs, and observations. For unpolished concepts and future seedlings, see <a href="{{ SITEURL }}/ideas.html">Ideas &rarr;</a>
   </p>
 </div>
 
 <ul class="post-list">
-  {% for article in dates %}
+  {% for article in dates if article.type != 'IDEA' %}
   <li class="post-item">
     <div class="post-header-row">
       <div class="post-header-left">

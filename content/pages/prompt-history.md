@@ -20,7 +20,7 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>99 prompts</strong> from Jim across 28 milestones, alongside concise summaries of actions taken.
+    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>101 prompts</strong> from Jim across 29 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
 
@@ -734,6 +734,30 @@ author: "Jim Collinsworth"
       <li>Homepage Bio Update: Edited <code>theme/templates/index.html</code> to change "local AI" to "AI".</li>
       <li>Post Title Update: Updated <code>content/posts/pipeline-tools-workbench.md</code> title frontmatter to <code>"Multimodal Data Pipeline-Tool"</code>.</li>
       <li>About Me Page Cleanup: Removed the <code>## Content Streams & Categorization</code> section and the Zero-JavaScript comment pipeline paragraph from <code>content/pages/about.md</code>.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="milestone-header">
+  <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.7.6" target="_blank" rel="noopener">Condensed Ideas Stream & Provenance Filtering (Release v0.7.6)</a></h2>
+  <time datetime="2026-09-14" class="milestone-date">Sept 14 2026</time>
+</div>
+
+<div class="prompt-entry">
+  <div class="prompt-speaker"><span class="category-badge" title="Provenance: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> <strong>Jim:</strong></div>
+  <div class="prompt-quotes">
+    <p>i want to add our 'future' concept to the site, or just upcoming might be a better term. or planned. this would be posts, rants, goals, apps, anything that really hasn't been started but i want to list as a teaser, collect input, keep it on my radar. i don't want to list these everywhere, it's more downlow and limited, or on demand. so maybe a status like published, draft, hidden, future, or just 'upcoming' in the date field, or what else? thoughts</p>
+    <p>actually i probably like ideas better than radar, radar implies others work i'm looking at, not my own. kiss. I intend to put tens, hundred ideas out there, just going to blast them in, so keep the view very condensed, packed in, no meta data, just title. add a few of yours to. be sure to mark yours with ai providence and mine with my providence icon. ideas: I'm vibe coding now, I'm an AI doomsayer now, History book mapper</p>
+  </div>
+</div>
+
+<div class="prompt-response-block">
+  <div class="prompt-response-inner">
+    <div class="response-speaker"><span class="category-badge" title="Provenance: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <strong>Response:</strong></div>
+    <ul class="response-actions">
+      <li>Template & Feed Isolation: Created <code>theme/templates/ideas.html</code> with an ultra-condensed listing rendering <code>category_icon</code> alongside the idea title link.</li>
+      <li>Smart Back Navigation: Updated <code>theme/templates/article.html</code> so back arrows on idea detail pages return to <code>/ideas.html</code>.</li>
+      <li>Seeded Initial Concepts: Authored Jim's 3 ideas: *"I'm vibe coding now"*, *"I'm an AI doomsayer now"*, and *"History book mapper"* (<code>category: Mine</code>).</li>
     </ul>
   </div>
 </div>

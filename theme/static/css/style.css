@@ -2559,3 +2559,55 @@ body:has(#contrast-toggle:checked):has(#text-size-toggle:checked) nav.footer-nav
   padding: 0.5rem 0 !important;
 }
 
+/* ==========================================================================
+   Condensed Ideas Stream (/ideas.html)
+   ========================================================================== */
+
+.ideas-container {
+  margin: 1.5rem 0 3rem;
+  max-width: 76ch;
+}
+
+.ideas-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.idea-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px dotted var(--border-color);
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+.idea-item:last-child {
+  border-bottom: none;
+}
+
+.idea-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  top: 1px;
+}
+
+.idea-title-link {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.idea-title-link:hover {
+  text-decoration: underline;
+  color: var(--accent);
+}
+
+

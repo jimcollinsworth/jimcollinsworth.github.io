@@ -8,13 +8,14 @@
   </p>
 </div>
 
+{% set standard_articles = articles|rejectattr('type', 'equalto', 'IDEA')|list %}
 <div class="desktop-two-col">
   <!-- Main Column: Featured Long-form & Bookshelf Spotlight -->
   <div class="main-column">
     <section>
       <h2>Featured Post</h2>
-      {% if articles %}
-      {% set featured = articles[0] %}
+      {% if standard_articles %}
+      {% set featured = standard_articles[0] %}
       <article class="post-item featured">
         <div class="post-header-row">
           <div class="post-header-left">
@@ -82,9 +83,9 @@
   <div class="sidebar-column">
     <section>
       <h2>Recent Stream <span class="header-all-link">(<a href="{{ SITEURL }}/posts.html">ALL</a>)</span></h2>
-      {% if articles and articles|length > 1 %}
+      {% if standard_articles and standard_articles|length > 1 %}
       <ul class="post-list">
-        {% for article in articles[1:4] %}
+        {% for article in standard_articles[1:4] %}
         <li class="post-item">
           <div class="post-header-row">
             <div class="post-header-left">
