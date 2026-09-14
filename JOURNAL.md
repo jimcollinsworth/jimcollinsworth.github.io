@@ -7,6 +7,7 @@
 > [!NOTE] Jim's Prompts, Instructions & Steering:
 > - *"i want to add our 'future' concept to the site, or just upcoming might be a better term. or planned. this would be posts, rants, goals, apps, anything that really hasn't been started but i want to list as a teaser, collect input, keep it on my radar. i don't want to list these everywhere, it's more downlow and limited, or on demand. so maybe a status like published, draft, hidden, future, or just 'upcoming' in the date field, or what else? thoughts"*
 > - *"actually i probably like ideas better than radar, radar implies others work i'm looking at, not my own. kiss. I intend to put tens, hundred ideas out there, just going to blast them in, so keep the view very condensed, packed in, no meta data, just title. add a few of yours to. be sure to mark yours with ai providence and mine with my providence icon. ideas: I'm vibe coding now, I'm an AI doomsayer now, History book mapper"*
+> - *"yes, merge and publish. but a few more ideas from me to add: 4d earthquake animation - use map layers or 3d framework/game engine; what played then (vs playing now)- tracks every show/ad/product/song, open/crowdsourced/ai identification - signature contains what, when, channel; bike handlebar utility shelf - maglock for phones, bluetooth"*
 
 ### Problem & Diagnosis
 1. **Teaser & Seedling Visibility**:
@@ -28,8 +29,8 @@
 2. **Smart Back Navigation**:
    - Updated `theme/templates/article.html` so back arrows on idea detail pages return to `/ideas.html`.
 3. **Seeded Initial Concepts**:
-   - Authored Jim's 3 ideas: *"I'm vibe coding now"*, *"I'm an AI doomsayer now"*, and *"History book mapper"* (`category: Mine`).
-   - Authored 2 AI ideas: *"Offline Cross-Reference Footnote Weaver"* and *"Lake Michigan Microclimate Correlator"* (`category: AI`, author: `LLM-Gemini3.8`).
+   - Authored Jim's 6 ideas (`category: Mine`): *"I'm vibe coding now"*, *"I'm an AI doomsayer now"*, *"History book mapper"*, *"4D Earthquake Animation"*, *"What Played Then (vs. Playing Now)"*, and *"Bike Handlebar Utility Shelf"*.
+   - Authored 2 AI ideas (`category: AI`, author: `LLM-Gemini3.8`): *"Offline Cross-Reference Footnote Weaver"* and *"Lake Michigan Microclimate Correlator"*.
 4. **CSS & Styling**:
    - Added compact CSS rules in `theme/static/css/style.css` for `.ideas-container`, `.ideas-list`, and `.idea-item`.
 5. **Testing & Versioning**:

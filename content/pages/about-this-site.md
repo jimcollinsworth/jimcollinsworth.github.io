@@ -67,7 +67,7 @@ Unpolished concepts, seedlings, and prompts across these streams are collected i
   <div class="dashboard-card" style="border: 1px solid var(--border-color); padding: 1rem; border-radius: 4px;">
     <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Steering Prompts</div>
     <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem;">
-      <a href="prompt-history.html">101 Prompts &rarr;</a>
+      <a href="prompt-history.html">102 Prompts &rarr;</a>
     </div>
     <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Direct human guidance &amp; remediation</div>
   </div>

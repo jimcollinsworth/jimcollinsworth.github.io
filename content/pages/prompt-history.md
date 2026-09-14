@@ -20,7 +20,7 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>101 prompts</strong> from Jim across 29 milestones, alongside concise summaries of actions taken.
+    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, chronologically extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>102 prompts</strong> from Jim across 29 milestones, alongside concise summaries of actions taken.
   </p>
 </div>
 
@@ -748,6 +748,7 @@ author: "Jim Collinsworth"
   <div class="prompt-quotes">
     <p>i want to add our 'future' concept to the site, or just upcoming might be a better term. or planned. this would be posts, rants, goals, apps, anything that really hasn't been started but i want to list as a teaser, collect input, keep it on my radar. i don't want to list these everywhere, it's more downlow and limited, or on demand. so maybe a status like published, draft, hidden, future, or just 'upcoming' in the date field, or what else? thoughts</p>
     <p>actually i probably like ideas better than radar, radar implies others work i'm looking at, not my own. kiss. I intend to put tens, hundred ideas out there, just going to blast them in, so keep the view very condensed, packed in, no meta data, just title. add a few of yours to. be sure to mark yours with ai providence and mine with my providence icon. ideas: I'm vibe coding now, I'm an AI doomsayer now, History book mapper</p>
+    <p>yes, merge and publish. but a few more ideas from me to add: 4d earthquake animation - use map layers or 3d framework/game engine; what played then (vs playing now)- tracks every show/ad/product/song, open/crowdsourced/ai identification - signature contains what, when, channel; bike handlebar utility shelf - maglock for phones, bluetooth</p>
   </div>
 </div>
 
@@ -757,7 +758,7 @@ author: "Jim Collinsworth"
     <ul class="response-actions">
       <li>Template & Feed Isolation: Created <code>theme/templates/ideas.html</code> with an ultra-condensed listing rendering <code>category_icon</code> alongside the idea title link.</li>
       <li>Smart Back Navigation: Updated <code>theme/templates/article.html</code> so back arrows on idea detail pages return to <code>/ideas.html</code>.</li>
-      <li>Seeded Initial Concepts: Authored Jim's 3 ideas: *"I'm vibe coding now"*, *"I'm an AI doomsayer now"*, and *"History book mapper"* (<code>category: Mine</code>).</li>
+      <li>Seeded Initial Concepts: Authored Jim's 6 ideas (<code>category: Mine</code>): *"I'm vibe coding now"*, *"I'm an AI doomsayer now"*, *"History book mapper"*, *"4D Earthquake Animation"*, *"What Played Then (vs.</li>
     </ul>
   </div>
 </div>
