@@ -2,6 +2,41 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-13 — Custom Domain DNS Mapping & CNAME Configuration (v0.7.4)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"The site resolution is different when I look at jimcollinsworth.com versus jimcollinsworth.github.io why"*
+> - *"heres it now, before changes"*
+> - *"i made the dns changes"*
+
+### Problem & Diagnosis
+1. **Discrepancy in Mobile Resolution & Layout**:
+   - Navigating to `https://jimcollinsworth.com` on a mobile device rendered the two-column desktop layout zoomed out with miniaturized text, whereas `https://jimcollinsworth.github.io` rendered the responsive single-column layout with compact navigation.
+2. **Missing Deep-Link Navigation & Address Bar Updates**:
+   - Navigating internal links while on `jimcollinsworth.com` kept the browser address bar frozen at `jimcollinsworth.com/`.
+
+### Root Cause & Technical Analysis
+- Running `curl.exe -s https://jimcollinsworth.com` revealed that GoDaddy was configured with **"Domain Forwarding with Masking"** (stealth forwarding).
+- GoDaddy's proxy served an HTML 4.01 `<frameset>` embedding `<frame src="https://jimcollinsworth.github.io">` without a `<meta name="viewport" content="width=device-width, initial-scale=1">` tag in the parent document.
+- In the absence of a viewport meta tag, mobile browsers defaulted to a virtual desktop viewport of 980px and scaled down the canvas. Because the frame width was 980px, responsive CSS media queries (`@media (max-width: 640px)`) never evaluated to `true`.
+
+### Solution & Standard Procedure
+1. **GoDaddy DNS Reconfiguration**:
+   - Replaced GoDaddy's proxy `A` records with 4 GitHub Pages apex `A` records:
+     - `185.199.108.153`
+     - `185.199.109.153`
+     - `185.199.110.153`
+     - `185.199.111.153`
+   - Updated the `www` `CNAME` record to point to `jimcollinsworth.github.io`.
+2. **Pelican CNAME Integration**:
+   - Created `content/extra/CNAME` containing `jimcollinsworth.com`.
+   - Registered `'extra/CNAME': {'path': 'CNAME'}` in `EXTRA_PATH_METADATA` in `pelicanconf.py` so Pelican automatically produces `output/CNAME` on every build.
+3. **Automated Verification**:
+   - Updated `tests/test_pelican_e2e.py` to assert `output/CNAME` existence and correct domain content.
+   - Verified 51/51 automated tests pass in `uv run pytest -v`.
+4. **Versioning**:
+   - Synchronized `pyproject.toml` and `about-this-site.md` to `0.7.4`.
+
 ## 2026-09-13 — Prompt History Visual Title, Full-Bleed Response Blocks, Provenance Icons & Release Links (v0.7.3)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

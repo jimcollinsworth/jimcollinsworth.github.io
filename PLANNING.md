@@ -6,6 +6,14 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 36: Custom Domain DNS Mapping & CNAME Configuration (Completed - Release v0.7.4)**
+  - Diagnosed mobile resolution anomaly on `jimcollinsworth.com`: identified GoDaddy domain forwarding with masking serving an HTML 4 frameset lacking `<meta name="viewport">`.
+  - Reconfigured GoDaddy DNS records: 4 apex `A` records to GitHub Pages IPs (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and `www` `CNAME` pointing to `jimcollinsworth.github.io`.
+  - Added `content/extra/CNAME` containing `jimcollinsworth.com` and mapped it in `pelicanconf.py` `EXTRA_PATH_METADATA` so Pelican outputs `output/CNAME`.
+  - Added automated test in `tests/test_pelican_e2e.py` asserting `output/CNAME` existence and correct domain content.
+  - Rebuilt static site with Pelican; passed all 51 automated tests (`pytest -v`).
+  - Bumped version to `v0.7.4` across `pyproject.toml`, `about-this-site.md`, `JOURNAL.md`, and `PLANNING.md`.
+
 - [x] **Milestone 35: Prompt History Visual Title, Full-Bleed Response Blocks, Provenance Icons & Release Links (Completed - Release v0.7.3)**
   - Added full post-style title row to `prompt-history.html`: back arrow, dual provenance badge (`[Mine]` `[AI]`), title `Development Prompts`, and right-justified unbolded date `Sept 13 2026`.
   - Scaled `.post-header-full .post-title` to smaller font size `1.15rem` (`font-weight: 600`), unifying blog lists, detail pages, and standalone pages.

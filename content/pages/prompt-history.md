@@ -20,8 +20,33 @@ author: "Jim Collinsworth"
 
 <div class="page-intro">
   <p>
-    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>88 prompts</strong> from Jim across 24 milestones, alongside concise summaries of actions taken.
+    Steering prompts and technical corrections for <code>jimcollinsworth.github.io</code>, extracted from <code>JOURNAL.md</code> via <code>tools/sync_dev_prompts.py</code>. It contains <strong>91 prompts</strong> from Jim across 25 milestones, alongside concise summaries of actions taken.
   </p>
+</div>
+
+<div class="milestone-header">
+  <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.7.4" target="_blank" rel="noopener">Custom Domain DNS Mapping & CNAME Configuration (v0.7.4)</a></h2>
+  <time datetime="2026-09-13" class="milestone-date">Sept 13 2026</time>
+</div>
+
+<div class="prompt-entry">
+  <div class="prompt-speaker"><span class="category-badge" title="Provenance: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> <strong>Jim:</strong></div>
+  <div class="prompt-quotes">
+    <p>The site resolution is different when I look at jimcollinsworth.com versus jimcollinsworth.github.io why</p>
+    <p>heres it now, before changes</p>
+    <p>i made the dns changes</p>
+  </div>
+</div>
+
+<div class="prompt-response-block">
+  <div class="prompt-response-inner">
+    <div class="response-speaker"><span class="category-badge" title="Provenance: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <strong>Response:</strong></div>
+    <ul class="response-actions">
+      <li>GoDaddy DNS Reconfiguration: Replaced GoDaddy's proxy <code>A</code> records with 4 GitHub Pages apex <code>A</code> records:.</li>
+      <li>Pelican CNAME Integration: Created <code>content/extra/CNAME</code> containing <code>jimcollinsworth.com</code>.</li>
+      <li>Automated Verification: Updated <code>tests/test_pelican_e2e.py</code> to assert <code>output/CNAME</code> existence and correct domain content.</li>
+    </ul>
+  </div>
 </div>
 
 <div class="milestone-header">

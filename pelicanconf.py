@@ -49,6 +49,7 @@ EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'},
     'extra/googledaf3f946832f8abf.html': {'path': 'googledaf3f946832f8abf.html'},
     'extra/.nojekyll': {'path': '.nojekyll'},
+    'extra/CNAME': {'path': 'CNAME'},
 }
 
 # Clean URL structure

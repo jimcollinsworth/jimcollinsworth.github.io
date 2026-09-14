@@ -65,10 +65,13 @@ def test_core_pages_exist():
         "contact.html",
         "favicon.svg",
         "favicon.ico",
+        "CNAME",
     ]
     for page in expected_pages:
         target = OUTPUT_DIR / page
         assert target.exists(), f"Expected {page} to exist in output/"
+
+    assert (OUTPUT_DIR / "CNAME").read_text(encoding="utf-8").strip() == "jimcollinsworth.com"
 
     # lanes.html must not exist
     assert not (OUTPUT_DIR / "lanes.html").exists(), "lanes.html should be retired"
