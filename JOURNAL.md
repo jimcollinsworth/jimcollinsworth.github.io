@@ -2,6 +2,55 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-15 — Date Architecture Simplification: Date as Real-World Occurrence (Release v0.7.9.01)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"we have talked about event_date - the date whatever occured - tour, hike, class, posting. but the word event just isn't quite right. we will have 3 dates on things- date created, date updated, and date occurred (maybe?) give me 5 more options, include pelican conventions"*
+> - *"on the other hand i could just treat date as occurred, and just have date and modified. but i and the site treat date as the occurred date, modified would actually be more like the post date. much easier, no change yet to ux."*
+> - *"ok add these clarifications to readme, templates and such."*
+
+### Problem & Diagnosis
+- Evaluated options for capturing when a real-world activity occurred (hike, museum visit, photo study, concert, instrument maintenance) vs. when the note was written and published.
+- Considered adding custom frontmatter keys (`occurred`, `captured`, `experienced`, `happened`, `session`).
+
+### Root Cause & Technical Analysis
+- Under Rule 17 (Standard Pelican Conventions & Minimalist Metadata), standardizing on Pelican's native `date` and `modified` avoids custom parsing layers while accurately aligning the site's chronological streams with real-world events.
+- `date`: Represents the primary chronological anchor (when the real-world experience occurred).
+- `modified`: Represents the optional revision/publication timestamp (when the note was written, edited, or updated on the web).
+
+### Solution & Standard Procedure
+1. **Authoring Documentation Updated**:
+   - Updated `README.md` metadata mapping table to define `date` as Occurrence Date and `modified` as Post/Update Date.
+   - Updated `templates/obsidian-post-template.md` with explicit comments and converted the template body to 100% pure Markdown.
+   - Updated `docs/cheatsheets/content_authoring.md` and `.agents/skills/pelican-obsidian-bridge/SKILL.md` frontmatter examples.
+2. **Zero UX / Template Overhead**:
+   - Existing Pelican sorting by `date` naturally displays posts according to real-life event chronology without requiring custom plugins or template modifications.
+
+## 2026-09-14 — Photos Header, Dedicated Ideas Directory & Pure Markdown Enforcement (Release v0.7.9)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"got to be a nicer way to do the google photos link - google photos icon for one and this should be on right far side, the left side should be a title/summary for these photos."*
+> - *"move ideas out of posts and into an /ideas directory"*
+> - *"a couple more future ideas - LLM as Ouija board, alchemy"*
+> - *"then lets make sure all the html is gone from our markdown source files. add a test to do that although we might disable later if we want to support optional html in the markdown sources. run all tests"*
+
+### Problem & Diagnosis
+1. **Photos Page Layout**: Needed a structured header row pairing a left-aligned visual study title/summary with a styled Google Photos external album badge featuring an official SVG icon.
+2. **Ideas Directory Separation**: Idea stubs needed isolation into a dedicated `content/ideas/` folder compiled to `output/ideas/{slug}.html`.
+3. **Pure Markdown Source Enforcement**: Needed strict automated verification that zero raw HTML tags exist in any author-facing Markdown content files.
+
+### Solution & Standard Procedure
+1. **Photos Page Header (`theme/templates/photos.html`, `content/pages/photos.md`, `style.css`)**:
+   - Added `.photos-header` flex row: left column displays `page.photos_title` and `page.summary|striptags`; right column displays `.google-photos-badge` with official 4-petal pinwheel SVG.
+   - Added responsive CSS stacking at `≤640px`.
+2. **Ideas Migration & URL Routing (`content/ideas/`, `pelicanconf.py`)**:
+   - Moved 8 idea files from `content/posts/` to `content/ideas/` and added 2 new idea stubs (`llm-as-ouija-board.md`, `alchemy.md`).
+   - Configured `ARTICLE_PATHS = ['posts', 'ideas']` and reader routing so ideas build to `output/ideas/{slug}.html`.
+3. **Automated Testing & Pure Markdown Guard**:
+   - Added `test_idea_pages_exist()` in `tests/test_pelican_e2e.py`.
+   - Strengthened `test_pure_markdown_content_sources()` to strictly verify zero raw HTML tags across all 37 `.md` content files.
+   - 55/55 tests passing.
+
 ## 2026-09-14 — Pure Markdown Content Migration, Automatic Link Resolution & Dedicated Blueprints (Release v0.7.8)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

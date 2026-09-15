@@ -240,6 +240,8 @@ This guide defines content formats, Markdown syntax, and how elements map to the
 | **Provenance** | **Stream** (Mine, AI, Ours, Theirs, Me) | `category` | `category` | **Strictly One** | Generates `/category/{slug}.html`, drives category icons, and maps authorship origin. |
 | **Format** | **Post Type** (ESSAY, PROJ, APP, TIL, IDEA) | `type` *(custom)* | `type` (dropdown/text) | **One** | Uppercased shortcode in Jinja2 (`article.type`) altering layout, styling, and navigation without plugins. |
 | **Topics** | **Keywords / Topics** (python, audio, tai-chi) | `tags` | `tags` (list) | **Multiple** | Generates `article.tags` list in Jinja2; powers topical indexing and Obsidian tag graph. |
+| **Chronology** | **Occurrence Date** (When life happened) | `date` | `date` (YYYY-MM-DD) | **One** | Primary timeline anchor for sorting all post streams, feeds, and archive listings. Represents when the hike, museum visit, concert, photo, or build occurred in real life. |
+| **Revision** | **Post / Modified Date** (When written/updated) | `modified` | `modified` (YYYY-MM-DD) | **Optional** | Secondary timestamp recording when the note was written, revised, or published to the web. |
 | **Lifecycle** | **Publishing State** (Draft vs. Live) | `status` | `status` | **One** | `published` &rarr; live site; `draft` &rarr; isolated in `output/drafts/` (hidden from live index). |
 
 ### 2. Content Formats & Writing Types

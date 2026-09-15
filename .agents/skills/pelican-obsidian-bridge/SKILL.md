@@ -38,7 +38,8 @@ Obsidian notes typically begin with standard YAML metadata:
 ```markdown
 ---
 Title: Cordoba Stage Guitar Setup
-Date: 2026-09-07
+Date: 2026-09-07       # Occurrence Date (when the guitar setup took place)
+Modified: 2026-09-09   # (Optional) Modification / Publication date
 Category: Music
 Tags: guitar, nylon-string, gear
 Slug: cordoba-stage-guitar

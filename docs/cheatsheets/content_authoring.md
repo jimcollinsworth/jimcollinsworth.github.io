@@ -67,8 +67,8 @@ flowchart TD
 ---
 title: "Cordoba Stage Classical Guitar Setup"
 slug: "cordoba-stage-guitar"
-date: 2026-03-24
-modified: 2026-09-09
+date: 2026-03-24         # Occurrence Date (when the guitar setup occurred in real life)
+modified: 2026-09-09     # (Optional) Post / Update Date (when published/refined)
 
 # 1. Primary Classification (The 12 Core Domains)
 category: Music          # Music, Software, Health, Making, Art, Law,

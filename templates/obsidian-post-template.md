@@ -9,8 +9,14 @@
 # Title of the post or essay. Wrap in quotes if it contains colons or special chars.
 title: "Title of Your Post"
 
-# Publication date in YYYY-MM-DD or YYYY-MM-DD HH:MM format.
+# Occurrence Date in YYYY-MM-DD format (when the hike, concert, photo, build,
+# observation, or activity actually took place in real life). Pelican uses this as
+# the primary chronological timeline anchor across all streams and archives.
 date: 2026-09-13
+
+# (Optional) Modification / Publication date (YYYY-MM-DD). Set when writing,
+# refining, or publishing updates to the post if different from the occurrence date.
+# modified: 2026-09-15
 
 # URL identifier (e.g., 'posts/my-post-slug.html').
 # If omitted, Pelican auto-derives the slug from the title.
@@ -66,39 +72,20 @@ status: published
 # automatically derives the excerpt from the beginning of your post body text.
 # summary: "A concise 1–2 sentence summary of this post for index listings and search snippets."
 
-# 6. REVISION & HERO MEDIA (Optional)
-# ------------------------------------------------------------------------------
-# Last modification date (YYYY-MM-DD). If updated later, set this date:
-# modified: 2026-09-15
-
-# (Optional) Hero or preview image path relative to content/ or output/:
-# image: images/example-photo.jpg
-# image_alt: "Detailed accessible description of the image"
-# image_caption: "Descriptive caption rendered beneath the figure"
-
 ---
 
-<div class="page-intro">
-  <p>
-    Introductory paragraph introducing the topic.
-  </p>
-</div>
+Introductory lead paragraph introducing the topic. The first paragraph of the post is automatically styled with editorial lead typography.
 
 ## Section Heading
 
-Body prose goes here. Paragraphs are styled using style.css.
+Body prose goes here. Paragraphs are styled using standard Markdown.
 
 ### Subsection Heading
 
 Further details, observations, or technical analysis.
 
-<!-- Image with context caption (supports lazy loading & high-contrast mode) -->
-<figure>
-  <img src="../images/example.jpg" alt="Descriptive visual content description" loading="lazy">
-  <figcaption>Contextual description of the photograph or diagram.</figcaption>
-</figure>
+![Descriptive visual content description](images/example.jpg)
 
-<!-- Obsidian / GitHub style callout quote -->
 > [!NOTE]
 > Key principle, mental model, or takeaway note to highlight for the reader.
 
