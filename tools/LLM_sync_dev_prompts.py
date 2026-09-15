@@ -1,6 +1,6 @@
 """
-tools/sync_dev_prompts.py
-=========================
+tools/LLM_sync_dev_prompts.py
+=============================
 Parses JOURNAL.md to extract Jim's direct steering prompts, agent errors/corrections,
 and architectural milestones, generating a structured JSON dataset in content/data/dev-prompts.json.
 

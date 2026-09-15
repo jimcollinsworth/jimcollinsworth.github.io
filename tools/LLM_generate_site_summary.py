@@ -1,6 +1,6 @@
 """
-tools/generate_site_summary.py
-==============================
+tools/LLM_generate_site_summary.py
+==================================
 Generates a structured 8-stanza summary (haiku style) of the site evolution
 from JOURNAL.md and git history, honoring Jim's requirements:
 - Exactly 8 stanzas.
