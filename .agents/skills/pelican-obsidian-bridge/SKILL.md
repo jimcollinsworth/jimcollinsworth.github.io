@@ -24,6 +24,8 @@ Point Obsidian directly at this repository's `content/` directory:
    - **Files & links → Default location for new attachments**: `In the folder specified below` &rarr; set to `attachments`.
    - **Files & links → New link format**: `Relative path to file`.
    - **Files & links → Use [[Wikilinks]]**: Can be left **ON** if using Pelican's wikilink extension/plugin, or turned **OFF** to write standard Markdown links `[Label](note.md)`.
+   - **Core plugins → Templates → Template folder location**: Set to `templates` (`content/templates/`).
+   - Use the Python CLI generator `uv run python tools/LLM_generate_obsidian_templates.py` to regenerate or maintain frontmatter templates.
 
 ---
 
