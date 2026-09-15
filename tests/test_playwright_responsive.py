@@ -327,5 +327,28 @@ def test_navigation_mode_switching_by_viewport(browser_context):
     ctx_port.close()
 
 
+def test_photos_header_and_stream_margin_alignment(browser_context: Any) -> None:
+    """Verify that on photos.html at mobile viewport, photos-header aligns with container while photos bleed to edge."""
+    target_file = OUTPUT_DIR / "photos.html"
+    assert target_file.exists()
+    ctx = browser_context.new_context(viewport={"width": 390, "height": 844})
+    page = ctx.new_page()
+    try:
+        page.goto(f"file:///{target_file.resolve().as_posix()}")
+        page.wait_for_load_state("networkidle")
+
+        header_left = page.evaluate("() => document.querySelector('.site-header').getBoundingClientRect().left")
+        photos_header_left = page.evaluate("() => document.querySelector('.photos-header').getBoundingClientRect().left")
+        assert abs(header_left - photos_header_left) <= 2, (
+            f"photos-header left ({photos_header_left}) does not match site-header left ({header_left})"
+        )
+
+        first_img_left = page.evaluate("() => document.querySelector('.photo-stream img').getBoundingClientRect().left")
+        assert first_img_left <= 2, f"First photo image left ({first_img_left}) is not edge-to-edge (expected <= 2px)"
+    finally:
+        ctx.close()
+
+
+
 
 

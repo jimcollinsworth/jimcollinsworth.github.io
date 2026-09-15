@@ -2,6 +2,45 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-15 — Margin Alignment, Edge-to-Edge Photo Bleed, Apps Table Removal, AI Props & About Site Restructuring (Release v0.7.11)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"The left and right margins are kind of messed up. The photos should have no margin, but everything else should have an aligned margin. On the second page, that static site information is incorrect, remove it entirely. It also is displayed in a table that is wider than the screen. Acceptable in some cases, but we need to have a left-right scroll bar when that occurs."*
+> - *"Love the haiku. Let's make that the second thing on the about site page. Remove anti-gravity programming section and workflow and licensing. Dramatically reduce the text content and be much more concise on the entire page. And add to the very first paragraph that AI is being used to develop this website under my guidance, but definitely give the AI props for what it's doing."*
+
+### Problem & Diagnosis
+1. **Misaligned Margins on Photos Page**:
+   - The `.photo-gallery-page` wrapper was included in mobile negative margin selectors (`margin-left: -1rem; margin-right: -1rem;`), causing `.photos-header` (title, summary, Google Photos badge) to touch the left screen edge while the site header retained standard `1rem` padding.
+2. **Obsolete Static Data Table on Apps Hub**:
+   - `content/pages/apps.md` contained an outdated "Static Data & Deployment Architecture" section and table that overflowed small screens.
+3. **Table Horizontal Scroll Support**:
+   - Wide data tables lacked automatic horizontal touch scrolling wrappers for mobile devices.
+4. **About This Site Verbosity & Section Order**:
+   - `content/pages/about-this-site.md` contained verbose pairing descriptions, workflow diagrams, and licensing sections. The 8-stanza AI haiku summary was positioned at the bottom of the page rather than near the top.
+
+### Root Cause & Technical Analysis
+- Negative margins intended for zero-margin edge-to-edge photo display must be strictly scoped to `.photo-stream` rather than page-level `<article>` containers.
+- Tables in Markdown need automated AST/HTML post-processing in `ObsidianMarkdownReader` to wrap rendered `<table>` elements in `<div class="table-container">` with `overflow-x: auto`.
+- Splitting `page.content` at the first `<h2>` in `theme/templates/about-this-site.html` allows direct placement of the AI Haiku Summary immediately following the lead introductory paragraph.
+
+### Solution & Standard Procedure
+1. **Scoped Photo Bleed & Container Alignment (`style.css`, `photos.html`)**:
+   - Scoped negative margins exclusively to `.photo-stream` on mobile and tablet viewports.
+   - Padded `.photo-stream figcaption` to match standard body padding.
+2. **Apps Hub Cleanup (`content/pages/apps.md`)**:
+   - Removed obsolete static data architecture section and table from `apps.md`.
+3. **Responsive Table Scrolling (`pelicanconf.py`, `style.css`)**:
+   - Implemented `_wrap_tables` in `ObsidianMarkdownReader` to wrap `<table>` tags in `<div class="table-container">`.
+   - Added `overflow-x: auto; -webkit-overflow-scrolling: touch;` in `style.css`.
+4. **About Site Streamlining & Haiku Reordering (`about-this-site.md`, `about-this-site.html`)**:
+   - Added explicit credit to AI pair programming under Jim's direction in the lead paragraph.
+   - Removed verbose workflow, licensing, and Antigravity sections.
+   - Positioned the 8-stanza `Summary (written by AI)` haiku grid directly after the lead intro paragraph.
+5. **Testing & Verification**:
+   - Verified 58/58 passing tests (`uv run pytest -v`).
+   - Rebuilt static site via Pelican.
+   - Captured multi-resolution visual evidence across viewports.
+
 ## 2026-09-15 — Chat Bubbles, AI Summary Generator, Mobile Header Streamlining & Timestamp Precision (Release v0.7.10)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

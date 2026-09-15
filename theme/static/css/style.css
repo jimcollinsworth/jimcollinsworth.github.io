@@ -2078,40 +2078,27 @@ figcaption {
 }
 
 /* MacWright-Style Photo Stream & Adaptive Grid */
-.photo-stream,
-.photo-gallery-page {
-  display: flex;
-  flex-direction: column;
-  gap: 2.75rem;
-  margin: 2rem 0;
-}
-
-.photo-stream.gallery-grid,
-.photo-gallery-page {
+.photo-stream {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  margin: 2rem 0;
 }
 
 @media (min-width: 1024px) {
-  .photo-stream.gallery-grid,
-  .photo-gallery-page {
+  .photo-stream.gallery-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
   }
-  .photo-gallery-page > p:first-of-type {
-    grid-column: 1 / -1;
-  }
 }
 
-.photo-stream figure,
-.photo-gallery-page figure {
+.photo-stream figure {
   margin: 0;
+  width: 100%;
 }
 
-.photo-stream img,
-.photo-gallery-page img {
+.photo-stream img {
   width: 100%;
   height: auto;
   border-radius: 4px;
@@ -2120,15 +2107,13 @@ figcaption {
 }
 
 @media (orientation: portrait) {
-  .photo-stream img,
-  .photo-gallery-page img {
+  .photo-stream img {
     max-height: 72vh;
     object-fit: cover;
   }
 }
 
-.photo-stream figcaption,
-.photo-gallery-page figcaption {
+.photo-stream figcaption {
   font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--text-muted);
@@ -2136,46 +2121,45 @@ figcaption {
   text-align: left;
 }
 
-/* Edge-to-Edge Photo Stream: Remove Left/Right Gutters on Portable Viewports */
+/* Edge-to-Edge Photo Stream: Zero Margin for Photos on Mobile Viewports */
 @media (max-width: 1024px) {
-  .photo-stream,
-  .photo-gallery-page {
+  .photo-stream {
     margin-left: -1.75rem;
     margin-right: -1.75rem;
     width: calc(100% + 3.5rem);
   }
-  .photo-stream img,
-  .photo-gallery-page img {
+  .photo-stream img {
     border-radius: 0;
     border-left: none;
     border-right: none;
   }
-  .photo-stream figcaption,
-  .photo-gallery-page figcaption {
-    padding-left: 1.75rem;
-    padding-right: 1.75rem;
-  }
-  .photo-gallery-page > p:first-of-type {
+  .photo-stream figcaption {
     padding-left: 1.75rem;
     padding-right: 1.75rem;
   }
 }
 
-@media (max-width: 640px) {
-  .photo-stream,
-  .photo-gallery-page {
+@media (max-width: 768px) {
+  .photo-stream {
     margin-left: -1rem;
     margin-right: -1rem;
     width: calc(100% + 2rem);
   }
-  .photo-stream figcaption,
-  .photo-gallery-page figcaption {
+  .photo-stream figcaption {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  .photo-gallery-page > p:first-of-type {
-    padding-left: 1rem;
-    padding-right: 1rem;
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .photo-stream {
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    width: calc(100% + 2.5rem);
+  }
+  .photo-stream figcaption {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 }
 
@@ -2193,25 +2177,55 @@ figcaption {
   margin-bottom: 0;
 }
 
-/* Tables */
+/* Responsive Scrollable Tables */
+.table-container,
+.table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
+  scrollbar-width: thin;
+}
+
 table {
   width: 100%;
+  min-width: 100%;
   border-collapse: collapse;
-  margin: 1.5rem 0;
+  margin: 0;
   font-family: var(--font-sans);
   font-size: 0.88rem;
+}
+
+/* Standalone tables fallback */
+article > table,
+.page-body > table,
+.post-content > table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  margin: 1.5rem 0;
+}
+
+.table-container table {
+  display: table;
+  margin: 0;
 }
 
 th, td {
   padding: 0.65rem 0.75rem;
   text-align: left;
   border-bottom: 1px solid var(--border);
+  vertical-align: top;
 }
 
 th {
   font-weight: 600;
   border-bottom: 2px solid var(--border);
   color: var(--text);
+  background-color: var(--bg-subtle);
+  white-space: nowrap;
 }
 
 /* Footer */

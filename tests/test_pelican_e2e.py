@@ -357,3 +357,28 @@ def test_markdown_link_and_figure_resolution():
     assert "Diffused ambient northern sky illumination" in art_html
 
 
+def test_apps_page_does_not_contain_obsolete_static_data_table():
+    """Verify that apps.html contains only intro copy and app cards, without the obsolete static data table."""
+    apps_html = (OUTPUT_DIR / "apps.html").read_text(encoding="utf-8")
+    assert "Static Data & Deployment Architecture" not in apps_html
+    assert '<table' not in apps_html
+    assert 'class="apps-grid"' in apps_html
+    assert 'Photo Viewer' in apps_html
+
+
+def test_table_container_responsive_wrapping():
+    """Verify that markdown tables are automatically wrapped in .table-container for touch scrolling."""
+    for f in OUTPUT_DIR.rglob("*.html"):
+        content = f.read_text(encoding="utf-8")
+        if "<table" in content:
+            assert '<div class="table-container">' in content, f"Table in {f.name} is not wrapped in .table-container"
+
+    from pelicanconf import ObsidianMarkdownReader
+    reader = ObsidianMarkdownReader.__new__(ObsidianMarkdownReader)
+    html_input = "<p>Intro</p><table><thead><tr><th>Header 1</th><th>Header 2</th></tr></thead><tbody><tr><td>Data 1</td><td>Data 2</td></tr></tbody></table><p>Outro</p>"
+    wrapped = reader._wrap_tables(html_input)
+    assert '<div class="table-container">\n<table>' in wrapped
+
+
+
+

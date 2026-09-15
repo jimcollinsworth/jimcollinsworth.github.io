@@ -6,6 +6,13 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 48: Margin Alignment, Edge-to-Edge Photo Bleed, Apps Table Removal, AI Props & About Site Restructuring (Completed - Release v0.7.11)**
+  - Scoped Photo Bleed: removed `.photo-gallery-page` from negative margins, keeping `.photos-header` aligned with container and scoping edge-to-edge bleed strictly to `.photo-stream`.
+  - Apps Hub Cleanup: removed obsolete `Static Data & Deployment Architecture` table from `content/pages/apps.md`.
+  - Table Touch Scrolling: added `_wrap_tables` in `ObsidianMarkdownReader` to wrap `<table>` tags in `<div class="table-container">` with `overflow-x: auto`.
+  - About Site Restructuring: added AI pair programming credit to lead intro, removed verbose sections, and placed the 8-stanza AI Haiku summary immediately after the lead paragraph.
+  - Automated Testing & Version: added 3 new tests (58/58 passing) and bumped version to `v0.7.11`.
+
 - [x] **Milestone 47: Chat Bubbles, AI Summary Generator, Mobile Header Streamlining & Timestamp Precision (Completed - Release v0.7.10)**
   - Conversational Chat Bubbles: updated `tools/sync_dev_prompts.py` to wrap turns in `.chat-thread`, styling user prompts in `.chat-user` with warm accent border and AI actions in `.chat-ai` with `LLM-Gemini3.8` attribution.
   - AI Summary Generator: created `tools/generate_site_summary.py` to compile an 8-stanza haiku summary from `JOURNAL.md` into `content/data/site-summary.json`, rendering on `about-this-site.html`.

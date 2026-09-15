@@ -110,6 +110,11 @@ else:
 # Recent releases data with exact timestamps
 RECENT_RELEASES = [
     {
+        "version": "v0.7.11",
+        "timestamp": "Sept 15 2026, 11:08 AM CDT",
+        "summary": "Margin alignment across viewports, edge-to-edge photo bleed, static data table removal from apps & table scrollbars",
+    },
+    {
         "version": "v0.7.10",
         "timestamp": "Sept 15 2026, 9:38 AM CDT",
         "summary": "Chat bubbles for prompts, AI haiku summary generator, mobile header simplification & compact buttons",
@@ -240,6 +245,13 @@ class ObsidianMarkdownReader(MarkdownReader):
 
         return re.sub(r'<p>\s*<img\s+[^>]*alt="[^"]+"[^>]*\s*/?>\s*</p>', fig_repl, html)
 
+    def _wrap_tables(self, html: str) -> str:
+        def table_repl(m: re.Match) -> str:
+            table_html = m.group(0)
+            return f'<div class="table-container">\n{table_html}\n</div>'
+
+        return re.sub(r'<table\b[^>]*>.*?</table>', table_repl, html, flags=re.DOTALL)
+
     def _decorate_provenance_badges(self, html: str) -> str:
         category_svgs = {
             'Me': '<span class="category-badge" title="Category: Me" aria-label="Category: Me"><svg class="category-icon icon-me" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>',
@@ -324,6 +336,7 @@ class ObsidianMarkdownReader(MarkdownReader):
 
             content = self._md.convert(text)
             content = self._wrap_figures(content)
+            content = self._wrap_tables(content)
             content = self._decorate_provenance_badges(content)
 
         if hasattr(self._md, 'Meta'):
