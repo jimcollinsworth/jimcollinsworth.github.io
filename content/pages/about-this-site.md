@@ -4,9 +4,9 @@ slug: "about-this-site"
 template: "about-this-site"
 ---
 
-**About This Site** outlines the technical architecture and infrastructure behind `jimcollinsworth.github.io`. This website is built through pair programming with artificial intelligence under my direct architectural guidance &mdash; with the AI assistant managing static site generation, Jinja2 theme templates, responsive CSS layouts, and comprehensive test automation. The site serves pure HTML and CSS with zero client-side JavaScript on reading pages. All steering prompts, technical decisions, and course corrections are logged on [Development Prompts](prompt-history.md).
+[Mine] **About This Site** outlines the technical architecture and infrastructure behind `jimcollinsworth.github.io`. This website is built through pair programming with artificial intelligence under my direct architectural guidance &mdash; with the AI assistant managing static site generation, Jinja2 theme templates, responsive CSS layouts, and comprehensive test automation. The site serves pure HTML and CSS with zero client-side JavaScript on reading pages. All steering prompts, technical decisions, and course corrections are logged on [Development Prompts](prompt-history.md).
 
-## Content Streams & Provenance
+## [Mine] Content Streams & Provenance
 
 Content is organized by authorship origin and perspective rather than subject silos:
 
@@ -20,7 +20,7 @@ Raw seedling concepts across all streams are collected in the high-density [Idea
 
 ---
 
-## Technology Stack
+## [Mine] Technology Stack
 
 - **Static Site Engine**: [Pelican](https://getpelican.com/) (Python) compiling Markdown with custom YAML frontmatter into static HTML5.
 - **Styling & Layout**: Single CSS stylesheet (`theme/static/css/style.css`) featuring modern CSS Grid, container scaling, dark/light modes, and zero-JS display controls.

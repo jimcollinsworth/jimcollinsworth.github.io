@@ -1,11 +1,11 @@
-﻿---
+---
 title: "Contact"
 slug: "contact"
 ---
 
-**Contact &amp; Correspondence** &mdash; Reach out with thoughts, collaborations, or questions regarding any of the explorations across *Out of My Lane*.
+[Mine] **Contact &amp; Correspondence** &mdash; Reach out with thoughts, collaborations, or questions regarding any of the explorations across *Out of My Lane*.
 
-## Direct Contact
+## [Mine] Direct Contact
 
 - **Email**: [jimcollinsworth@gmail.com](mailto:jimcollinsworth@gmail.com)
 - **Source &amp; Discussions**: [github.com/jimcollinsworth](https://github.com/jimcollinsworth)
@@ -13,7 +13,7 @@ slug: "contact"
 
 ---
 
-## Topics of Mutual Interest
+## [Mine] Topics of Mutual Interest
 
 Feel free to connect on topics relating to:
 - **Software &amp; AI**: Agentic pair programming workflows, local/offline LLMs, architecture, static site tooling.

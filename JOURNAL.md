@@ -2,6 +2,42 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-15 — Intra-Page Provenance Attribution, Pure Markdown Shortcuts & Rule Codification (Release v0.7.12)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"nice! want better attribution within a page for example we can say that most page summaries are written by me, i'll take that responsibility so the summary or page intro, whatever is first should be marked with a mine symbol, my thoughts and text, my photos.... lets make this a hard rule, try to enforce/remind whenever possible."*
+> - *"but then the following content is either mine or ai or someone else so add the icon there also . so for the site page, insted of 'summary (written by ai) it's simply : ai icon - site history haiku'"*
+
+### Problem & Diagnosis
+1. **Intra-Page Authorship Ambiguity**:
+   - While site-level categories tracked overall post streams, individual pages lacked granular, section-level provenance badges. Readers could not immediately identify which introductory summaries, paragraphs, or components were directly authored by Jim versus generated or co-authored with AI.
+2. **Haiku Summary Header Labeling**:
+   - The site summary heading was previously labeled `Summary (written by AI)`, which was verbose and did not use the standard provenance iconography.
+3. **Markdown Authoring Ergonomics**:
+   - Authors needed a concise, pure Markdown syntax to insert provenance icons directly in Obsidian without typing raw HTML spans or SVG elements.
+
+### Root Cause & Technical Analysis
+- Markdown source files must stay 100% pure Markdown (Rule 2 & Rule 17). AST/HTML post-processing in `pelicanconf.py` (`_decorate_provenance_badges`) allows converting simple Markdown tags (`[Mine]`, `[AI]`, `[Me]`, `[Ours]`, `[Theirs]`, `[AI+Mine]`) into accessible SVG badges during build.
+- Codifying Section 20 across `AGENTS.md` and `.agents/agent_rules.md` ensures that all future page creation and edits strictly enforce `[Mine]` on lead intros and appropriate provenance badges on AI sections.
+
+### Solution & Standard Procedure
+1. **Pure Markdown Shortcut Processing (`pelicanconf.py`)**:
+   - Enhanced `_decorate_provenance_badges` in `ObsidianMarkdownReader` to parse and convert `[Mine]`, `[AI]`, `[Me]`, `[Ours]`, `[Theirs]`, `[AI+Mine]`, and `[Mine+AI]` into accessible SVG badges with tooltips across headings, paragraphs, and list items.
+2. **Intra-Page Badges on Content Pages (`content/pages/`)**:
+   - Added `[Mine]` provenance badges to lead intros and section headings across `about-this-site.md`, `apps.md`, `about.md`, `links.md`, `ai.md`, and `contact.md`.
+3. **Template Badges (`theme/templates/`)**:
+   - Added `[Mine]` badge to `.photos-title` in `photos.html` and `.page-intro` in `ideas.html`.
+   - Updated AI haiku summary heading to `[AI] Site History Haiku` in `about-this-site.html`.
+   - Updated `tools/generate_site_summary.py` and `content/data/site-summary.json`.
+4. **CSS Baseline Alignment (`theme/static/css/style.css`)**:
+   - Added CSS styling for `.category-badge` and `.category-icon` inside `h1`–`h3` headings and inline paragraphs.
+5. **Rule Codification (`AGENTS.md`, `.agents/agent_rules.md`, `README.md`)**:
+   - Codified Section 20 ("Intra-Page Provenance & Section-Level Attribution Standards").
+   - Updated `README.md` with shortcut syntax and attribution rules.
+6. **Testing & Verification**:
+   - Added `test_intra_page_provenance_and_markdown_shortcuts` in `tests/test_pelican_e2e.py`. All 59 tests passing.
+   - Captured multi-resolution visual evidence across viewports.
+
 ## 2026-09-15 — Margin Alignment, Edge-to-Edge Photo Bleed, Apps Table Removal, AI Props & About Site Restructuring (Release v0.7.11)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

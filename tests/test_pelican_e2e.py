@@ -380,5 +380,34 @@ def test_table_container_responsive_wrapping():
     assert '<div class="table-container">\n<table>' in wrapped
 
 
+def test_intra_page_provenance_and_markdown_shortcuts():
+    """Verify that pure Markdown provenance shortcuts ([Mine], [AI], [Me]) compile to SVG badges."""
+    about_site_html = (OUTPUT_DIR / "about-this-site.html").read_text(encoding="utf-8")
+    assert 'icon-mine' in about_site_html
+    assert 'icon-ai' in about_site_html
+    assert 'Site History Haiku' in about_site_html
+    assert '[Mine]' not in about_site_html, "[Mine] shortcut should be converted to SVG badge"
+    assert '[AI]' not in about_site_html, "[AI] shortcut should be converted to SVG badge"
+
+    apps_html = (OUTPUT_DIR / "apps.html").read_text(encoding="utf-8")
+    assert 'icon-mine' in apps_html
+    assert '[Mine]' not in apps_html
+
+    photos_html = (OUTPUT_DIR / "photos.html").read_text(encoding="utf-8")
+    assert 'icon-mine' in photos_html
+
+    from pelicanconf import ObsidianMarkdownReader
+    reader = ObsidianMarkdownReader.__new__(ObsidianMarkdownReader)
+    test_html = "<h2>[Mine] My Heading</h2><p>[AI] AI Content</p><p>[AI+Mine] Dual Stewardship</p>"
+    decorated = reader._decorate_provenance_badges(test_html)
+    assert 'icon-mine' in decorated
+    assert 'icon-ai' in decorated
+    assert 'dual-badge' in decorated
+    assert '[Mine]' not in decorated
+    assert '[AI]' not in decorated
+    assert '[AI+Mine]' not in decorated
+
+
+
 
 

@@ -1,11 +1,11 @@
-﻿---
+---
 title: "AI"
 slug: "ai"
 ---
 
-Artificial intelligence is one of my central exploration domains. My focus is on local, offline AI models, personal cognitive companions, agentic workflows, and software systems.
+[Mine] Artificial intelligence is one of my central exploration domains. My focus is on local, offline AI models, personal cognitive companions, agentic workflows, and software systems.
 
-## Areas of Exploration
+## [Mine] Areas of Exploration
 
 ### 1. Local & Offline AI Companions
 Building personal AI systems that run entirely on local silicon without third-party cloud dependence, data harvesting, or continuous subscriptions:

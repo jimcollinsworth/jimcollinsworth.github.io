@@ -263,6 +263,23 @@ Every commit and meaningful change set must increment the project version:
 >   2. **Medium Web Images**: Screen-optimized reading images (~1200–1600px width / ~150–300 KB) for post reading measures, homepage spotlights, and single-photo detail views.
 > - **Automated Ingestion / Build Step**: All new images introduced to the repository must be processed through an automated optimization or build step (e.g. Python Pillow pipeline) to strip unnecessary metadata and enforce dimensions and file-size constraints before commit.
 
+---
+
+## 20. Intra-Page Provenance & Section-Level Attribution Standards (Strict)
+
+> [!IMPORTANT]
+> **Granular Intra-Page Provenance & Lead Intro Attribution**:
+> 1. **Lead Intros and Summaries Attributed to Jim (`[Mine]`)**:
+>    - Page summaries, lead introduction paragraphs, and initial framing text across all site pages are authored by Jim ("my thoughts and text, my photos") unless explicitly specified otherwise.
+>    - The lead summary or introduction paragraph (whatever appears first on a page) must be explicitly marked with the `[Mine]` provenance badge.
+> 2. **Section and Block-Level Attribution**:
+>    - Distinct subsequent sections or content blocks within a page must carry their specific provenance badge (`[Mine]`, `[AI]`, `[Me]`, `[Ours]`, `[Theirs]`, or `[AI+Mine]`).
+>    - For example, AI-generated components, haiku summaries, or synthesized logs must be prefaced with the `[AI]` badge (e.g. `[AI] Site History Haiku` or inline badge before AI-generated content).
+> 3. **Pure Markdown Shortcuts**:
+>    - Authors and agents write clean, semantic Markdown shortcuts (`[Mine]`, `[AI]`, `[Me]`, `[Ours]`, `[Theirs]`, `[AI+Mine]`, `[Mine+AI]`) directly in Markdown source files.
+>    - Pelican's `ObsidianMarkdownReader` automatically compiles these shortcuts into accessible SVG provenance icons.
+
+
 
 
 

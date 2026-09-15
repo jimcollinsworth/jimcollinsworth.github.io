@@ -189,7 +189,7 @@ def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int)
     md.append('  </div>')
     md.append('</header>')
     md.append("")
-    md.append(f"Steering prompts and technical corrections for `jimcollinsworth.github.io`, chronologically extracted from `JOURNAL.md` via `tools/sync_dev_prompts.py`. It contains **{total_prompts} prompts** from Jim across {len(milestones)} milestones, alongside concise summaries of actions taken.")
+    md.append(f"[Mine+AI] Steering prompts and technical corrections for `jimcollinsworth.github.io`, chronologically extracted from `JOURNAL.md` via `tools/sync_dev_prompts.py`. It contains **{total_prompts} prompts** from Jim across {len(milestones)} milestones, alongside concise summaries of actions taken.")
     md.append("")
 
     release_timestamps = get_release_timestamps()

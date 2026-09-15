@@ -3028,4 +3028,41 @@ body:has(#contrast-toggle:checked):has(#text-size-toggle:checked) nav.footer-nav
   color: var(--accent);
 }
 
+/* ==========================================================================
+   Category & Provenance Badges (Intra-Page and Metadata)
+   ========================================================================== */
+
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: -1px;
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+.category-badge.dual-badge {
+  gap: 2px;
+}
+
+.category-icon {
+  display: inline-block;
+  vertical-align: middle;
+  stroke: currentColor;
+}
+
+/* Baseline alignment inside headings */
+h1 .category-badge,
+h2 .category-badge,
+h3 .category-badge,
+.photos-title .category-badge {
+  vertical-align: -2px;
+  margin-right: 0.35rem;
+}
+
+/* Inline spacing in prose and lists */
+p .category-badge,
+li .category-badge {
+  margin-right: 0.25rem;
+}
+
 

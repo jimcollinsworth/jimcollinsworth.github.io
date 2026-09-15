@@ -6,6 +6,15 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 49: Intra-Page Provenance Attribution, Pure Markdown Shortcuts & Rule Codification (Completed - Release v0.7.12)**
+  - Granular Intra-Page Attribution: added `[Mine]` provenance badges to lead intros and section headings across `about-this-site.md`, `apps.md`, `about.md`, `links.md`, `ai.md`, and `contact.md`.
+  - Photos & Ideas Template Badges: added `[Mine]` badge to `.photos-title` in `photos.html` and `.page-intro` in `ideas.html`.
+  - AI Haiku Summary Heading: updated heading to `[AI] Site History Haiku` in `about-this-site.html` and `tools/generate_site_summary.py`.
+  - Pure Markdown Shortcuts: upgraded `_decorate_provenance_badges` in `pelicanconf.py` to convert `[Mine]`, `[AI]`, `[Me]`, `[Ours]`, `[Theirs]`, `[AI+Mine]`, and `[Mine+AI]` into accessible SVG badges.
+  - CSS Baseline Alignment: added styling for `.category-badge` and `.category-icon` in `h1`–`h3` headings and inline paragraphs in `theme/static/css/style.css`.
+  - Rule Codification & Docs: added Section 20 to `AGENTS.md` and `.agents/agent_rules.md`, and updated `README.md`.
+  - Automated Testing: added `test_intra_page_provenance_and_markdown_shortcuts` in `tests/test_pelican_e2e.py` (59/59 tests passing).
+
 - [x] **Milestone 48: Margin Alignment, Edge-to-Edge Photo Bleed, Apps Table Removal, AI Props & About Site Restructuring (Completed - Release v0.7.11)**
   - Scoped Photo Bleed: removed `.photo-gallery-page` from negative margins, keeping `.photos-header` aligned with container and scoping edge-to-edge bleed strictly to `.photo-stream`.
   - Apps Hub Cleanup: removed obsolete `Static Data & Deployment Architecture` table from `content/pages/apps.md`.

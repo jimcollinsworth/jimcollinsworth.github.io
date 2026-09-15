@@ -110,6 +110,11 @@ else:
 # Recent releases data with exact timestamps
 RECENT_RELEASES = [
     {
+        "version": "v0.7.12",
+        "timestamp": "Sept 15 2026, 11:45 AM CDT",
+        "summary": "Intra-page provenance attribution, pure markdown shortcuts for Mine/AI, & rule codification",
+    },
+    {
         "version": "v0.7.11",
         "timestamp": "Sept 15 2026, 11:08 AM CDT",
         "summary": "Margin alignment across viewports, edge-to-edge photo bleed, static data table removal from apps & table scrollbars",
@@ -254,14 +259,22 @@ class ObsidianMarkdownReader(MarkdownReader):
 
     def _decorate_provenance_badges(self, html: str) -> str:
         category_svgs = {
-            'Me': '<span class="category-badge" title="Category: Me" aria-label="Category: Me"><svg class="category-icon icon-me" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>',
-            'Mine': '<span class="category-badge" title="Category: Mine" aria-label="Category: Mine"><svg class="category-icon icon-mine" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span>',
-            'AI': '<span class="category-badge" title="Category: AI" aria-label="Category: AI"><svg class="category-icon icon-ai" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>',
-            'Ours': '<span class="category-badge" title="Category: Ours" aria-label="Category: Ours"><svg class="category-icon icon-ours" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-3-3.87"></path><path d="M7 21v-2a4 4 0 0 1 3-3.87"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>',
-            'Theirs': '<span class="category-badge" title="Category: Theirs" aria-label="Category: Theirs"><svg class="category-icon icon-theirs" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path></svg></span>',
+            'Me': '<span class="category-badge" title="Provenance: Me" aria-label="Provenance: Me"><svg class="category-icon icon-me" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>',
+            'Mine': '<span class="category-badge" title="Provenance: Mine" aria-label="Provenance: Mine"><svg class="category-icon icon-mine" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span>',
+            'AI': '<span class="category-badge" title="Provenance: AI" aria-label="Provenance: AI"><svg class="category-icon icon-ai" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>',
+            'Ours': '<span class="category-badge" title="Provenance: Ours" aria-label="Provenance: Ours"><svg class="category-icon icon-ours" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-3-3.87"></path><path d="M7 21v-2a4 4 0 0 1 3-3.87"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>',
+            'Theirs': '<span class="category-badge" title="Provenance: Theirs" aria-label="Provenance: Theirs"><svg class="category-icon icon-theirs" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path></svg></span>',
         }
+        dual_ai_mine = '<span class="category-badge dual-badge" title="Provenance: AI & Mine" aria-label="Provenance: AI and Mine"><svg class="category-icon icon-ai" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg><svg class="category-icon icon-mine" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: 2px;"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span>'
+
+        # Dual provenance shortcuts
+        html = html.replace('[AI+Mine]', dual_ai_mine).replace('[Mine+AI]', dual_ai_mine)
+
+        # Single provenance shortcuts: [Mine], [AI], [Me], [Ours], [Theirs]
         for cat_name, badge_html in category_svgs.items():
+            html = html.replace(f'[{cat_name}]', badge_html)
             html = html.replace(f'<li><strong>{cat_name}</strong>:', f'<li>{badge_html} <strong>{cat_name}</strong>:')
+
         return html
 
     def read(self, source_path: str) -> tuple[str, dict[str, Any]]:

@@ -18,7 +18,7 @@ author: "Jim Collinsworth"
   </div>
 </header>
 
-Steering prompts and technical corrections for `jimcollinsworth.github.io`, chronologically extracted from `JOURNAL.md` via `tools/sync_dev_prompts.py`. It contains **116 prompts** from Jim across 35 milestones, alongside concise summaries of actions taken.
+[Mine+AI] Steering prompts and technical corrections for `jimcollinsworth.github.io`, chronologically extracted from `JOURNAL.md` via `tools/sync_dev_prompts.py`. It contains **126 prompts** from Jim across 38 milestones, alongside concise summaries of actions taken.
 
 <div class="milestone-header">
   <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.5.8" target="_blank" rel="noopener">Tagline Lanes Link, Footer Lane Navigator, AI Promoted Lane, Links Rename & Homepage Bio (v0.5.8)</a></h2>
@@ -934,6 +934,85 @@ Steering prompts and technical corrections for `jimcollinsworth.github.io`, chro
       <ul class="response-actions">
         <li>Authoring Documentation Updated: Updated <code>README.md</code> metadata mapping table to define <code>date</code> as Occurrence Date and <code>modified</code> as Post/Update Date.</li>
         <li>Zero UX / Template Overhead: Existing Pelican sorting by <code>date</code> naturally displays posts according to real-life event chronology without requiring custom plugins or template modifications.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="milestone-header">
+  <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.7.10" target="_blank" rel="noopener">Chat Bubbles, AI Summary Generator, Mobile Header Streamlining & Timestamp Precision (Release v0.7.10)</a></h2>
+  <time datetime="2026-09-15" class="milestone-date">Sept 15 2026, 9:40 AM CDT</time>
+</div>
+
+<div class="chat-thread">
+  <div class="chat-bubble chat-user">
+    <div class="chat-meta"><span class="category-badge" title="Provenance: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> <strong class="chat-name">Jim</strong></div>
+    <div class="chat-body">
+      <p>on about site page: show time on the date for releases, it's important there</p>
+      <p>instead of the horizontal color between jim and ai chat, lets go with a chat bubble approach, make it obvious this was conversation albeit paraphrased. so we have a chat between jim/mine and ai.</p>
+      <p>we need a summary of the site history, how about a haiku, generate it from the journal.md, one line per commit at most, maybe keep the entire haiku to a fixed length, like 8 stanza's. create a build utility for this. just call it a summary (written by ai of course)</p>
+      <p>still to crowded on phone portrait. lets just simply header overall for phone entirely - only jim collinsworth (smaller font too) and the menu burger/active item display. portrait-one current item, landscape 5 items, and all the items/custom pages appear in a nice concise list on footer.</p>
+      <p>move the theme picker, text size, and contrast controls from the header to the footer.</p>
+      <p>make sure the featured post on index has the same font family, weight, and size as the other posts.</p>
+    </div>
+  </div>
+  <div class="chat-bubble chat-ai">
+    <div class="chat-meta"><span class="category-badge" title="Provenance: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <strong class="chat-name">AI Assistant (LLM-Gemini3.8)</strong></div>
+    <div class="chat-body">
+      <ul class="response-actions">
+        <li>Conversational Chat Bubbles (<code>tools/sync_dev_prompts.py</code>, <code>style.css</code>): Updated prompt synchronization script to parse git logs with exact dates/times and wrap turns into <code>.chat-thread</code>.</li>
+        <li>AI Summary Build Utility (<code>tools/generate_site_summary.py</code>, <code>content/data/site-summary.json</code>): Built Python utility to extract milestones from <code>JOURNAL.md</code> and generate an 8-stanza haiku summary.</li>
+        <li>Mobile Header & Footer Overhaul (<code>theme/templates/base.html</code>, <code>style.css</code>): Relocated <code>.site-controls</code> to <code>.site-footer</code>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="milestone-header">
+  <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.7.11" target="_blank" rel="noopener">Margin Alignment, Edge-to-Edge Photo Bleed, Apps Table Removal, AI Props & About Site Restructuring (Release v0.7.11)</a></h2>
+  <time datetime="2026-09-15" class="milestone-date">Sept 15 2026, 11:12 AM CDT</time>
+</div>
+
+<div class="chat-thread">
+  <div class="chat-bubble chat-user">
+    <div class="chat-meta"><span class="category-badge" title="Provenance: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> <strong class="chat-name">Jim</strong></div>
+    <div class="chat-body">
+      <p>The left and right margins are kind of messed up. The photos should have no margin, but everything else should have an aligned margin. On the second page, that static site information is incorrect, remove it entirely. It also is displayed in a table that is wider than the screen. Acceptable in some cases, but we need to have a left-right scroll bar when that occurs.</p>
+      <p>Love the haiku. Let's make that the second thing on the about site page. Remove anti-gravity programming section and workflow and licensing. Dramatically reduce the text content and be much more concise on the entire page. And add to the very first paragraph that AI is being used to develop this website under my guidance, but definitely give the AI props for what it's doing.</p>
+    </div>
+  </div>
+  <div class="chat-bubble chat-ai">
+    <div class="chat-meta"><span class="category-badge" title="Provenance: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <strong class="chat-name">AI Assistant (LLM-Gemini3.8)</strong></div>
+    <div class="chat-body">
+      <ul class="response-actions">
+        <li>Scoped Photo Bleed & Container Alignment (<code>style.css</code>, <code>photos.html</code>): Scoped negative margins exclusively to <code>.photo-stream</code> on mobile and tablet viewports.</li>
+        <li>Apps Hub Cleanup (<code>content/pages/apps.md</code>): Removed obsolete static data architecture section and table from <code>apps.md</code>.</li>
+        <li>Responsive Table Scrolling (<code>pelicanconf.py</code>, <code>style.css</code>): Implemented <code>_wrap_tables</code> in <code>ObsidianMarkdownReader</code> to wrap <code>&lt;table&gt;</code> tags in <code>&lt;div class="table-container"&gt;</code>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="milestone-header">
+  <h2 class="milestone-title"><a href="https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.7.12" target="_blank" rel="noopener">Intra-Page Provenance Attribution, Pure Markdown Shortcuts & Rule Codification (Release v0.7.12)</a></h2>
+  <time datetime="2026-09-15" class="milestone-date">Sept 15 2026</time>
+</div>
+
+<div class="chat-thread">
+  <div class="chat-bubble chat-user">
+    <div class="chat-meta"><span class="category-badge" title="Provenance: Mine"><svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span> <strong class="chat-name">Jim</strong></div>
+    <div class="chat-body">
+      <p>nice! want better attribution within a page for example we can say that most page summaries are written by me, i'll take that responsibility so the summary or page intro, whatever is first should be marked with a mine symbol, my thoughts and text, my photos.... lets make this a hard rule, try to enforce/remind whenever possible.</p>
+      <p>but then the following content is either mine or ai or someone else so add the icon there also . so for the site page, insted of 'summary (written by ai) it's simply : ai icon - site history haiku'</p>
+    </div>
+  </div>
+  <div class="chat-bubble chat-ai">
+    <div class="chat-meta"><span class="category-badge" title="Provenance: AI"><svg class="category-icon icon-ai" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span> <strong class="chat-name">AI Assistant (LLM-Gemini3.8)</strong></div>
+    <div class="chat-body">
+      <ul class="response-actions">
+        <li>Pure Markdown Shortcut Processing (<code>pelicanconf.py</code>): Enhanced <code>_decorate_provenance_badges</code> in <code>ObsidianMarkdownReader</code> to parse and convert <code>[Mine]</code>, <code>[AI]</code>, <code>[Me]</code>, <code>[Ours]</code>, <code>[Theirs]</code>, <code>[AI+Mine]</code>, and <code>[Mine+AI]</code> into accessible SVG badges with tooltips across headings, paragraphs, and list items.</li>
+        <li>Intra-Page Badges on Content Pages (<code>content/pages/</code>): Added <code>[Mine]</code> provenance badges to lead intros and section headings across <code>about-this-site.md</code>, <code>apps.md</code>, <code>about.md</code>, <code>links.md</code>, <code>ai.md</code>, and <code>contact.md</code>.</li>
+        <li>Template Badges (<code>theme/templates/</code>): Added <code>[Mine]</code> badge to <code>.photos-title</code> in <code>photos.html</code> and <code>.page-intro</code> in <code>ideas.html</code>.</li>
       </ul>
     </div>
   </div>
