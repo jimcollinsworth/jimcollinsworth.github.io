@@ -104,13 +104,14 @@ Whenever technical changes, troubleshooting resolutions, layout updates, or user
 
 ---
 
-## 7. Command Line Standards & Reproducibility
+## 7. Command Line Standards & Command Prompt (`cmd.exe`) Enforcer (Strict)
 
-> [!IMPORTANT]
-> - Always use clean, standard command-line invocations (e.g., `uv run pytest -v`, `uv run pelican content -s pelicanconf.py -o output -d`, `taskkill`, `rmdir`) that Jim can easily inspect, copy, and run manually in Windows Command Prompt (`cmd.exe`) or terminal.
-> - Avoid requiring PowerShell when standard Command Prompt commands work cleanly.
-> - Avoid opaque subshell wrappers, nested execution scripts, or obscure one-liners when standard commands exist.
-> - If an operation cannot be run via standard, easily reproducible CLI syntax, stop and clarify with Jim before proceeding.
+> [!CAUTION]
+> **Strict Command Prompt (`cmd.exe`) Execution Requirement**:
+> - **Zero PowerShell Dependencies**: The agent must **NEVER** use PowerShell as a runner or assume PowerShell syntax (`&&` token errors, PowerShell cmdlets, `$env:`, etc.). Jim uses Windows Command Prompt (`cmd.exe`) exclusively.
+> - **Explicit `cmd /c` Runner Invocations**: Whenever executing terminal commands via `run_command`, the agent MUST invoke `cmd /c "<command>"` (e.g., `cmd /c "uv run pytest -v"`, `cmd /c "git add ."`), ensuring every single command executes directly inside `cmd.exe` and is 100% reproducible in Jim's Command Prompt terminal.
+> - **Standard CMD Syntax Only**: Use standard Command Prompt syntax (`dir`, `copy`, `del`, `rmdir /s /q`, `set VAR=val`). Never write PowerShell-specific syntax or obscure one-liners.
+> - If an operation cannot be run cleanly in standard `cmd.exe`, stop and clarify with Jim before proceeding.
 
 ---
 
