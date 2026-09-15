@@ -65,7 +65,7 @@
         "Spam-Safe, Zero-JS Interaction: Desire a reader feedback and commenting channel without violating the site's strict Zero-JS policy, while avoiding GitHub issue tracker spam defacement and ensuring Jim retains visibility into all submissions (\"garbage and good stuff\").",
         "Mandatory AI Attribution: Need a strict policy to transparently credit AI models whenever they contribute to content or code artifacts.",
         "Multi-Lane & Type Parsing in <code>pelicanconf.py</code>: - Updated <code>ObsidianMarkdownReader</code> to parse YAML <code>lanes</code>, <code>type</code>, and <code>previous_types</code>.",
-        "Template & CSS Updates: - <code>theme/templates/article.html</code>, <code>archives.html</code>, <code>category.html</code>, <code>index.html</code>: Rendered <code>[TYPE]</code>, <code>(evolved from ...)</code>, and multiple lane links enclosed in <code>&lt;span class=\"post-lanes\"&gt;</code> to preserve clean typography without whitespace anomalies before commas.",
+        "Template & CSS Updates: - <code>theme/templates/article.html</code>, <code>archives.html</code>, <code>category.html</code>, <code>index.html</code>: Rendered <code>[TYPE]</code>, <code>(evolved from &hellip;)</code>, and multiple lane links enclosed in <code>&lt;span class=\"post-lanes\"&gt;</code> to preserve clean typography without whitespace anomalies before commas.",
         "Category Cleanup: - Purged <code>lanes/ideas.html</code> and <code>lanes/projects.html</code>.",
         "Zero-JS Feedback System Design: - Filed detailed architecture tracking ticket [GitHub Issue #9](https://github.com/jimcollinsworth/jimcollinsworth.github.io/issues/9).",
         "Rule 14 Codified: - Added Rule 14 (Mandatory AI & LLM Author Attribution with <code>LLM-&lt;model-id&gt;</code>) in <code>.agents/agent_rules.md</code>.",
@@ -79,8 +79,8 @@
       "rel_link": "https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.6.1",
       "prompts": [
         "changing terminology a bit, too much emphasis currently on lanes. Really? All it should be is a possibility. Tagline, and then lanes are simply just pages like I have a page on tai. Chi and a page on music in those pages. We'll link too one or many posts based on some filtering criteria",
-        "remove most references to lanes, lanes are simply custom pages, we will have a tai chi page, with my tai chi posts, links and summary, and a science page... then we just need keywordsi think. where do the pelecan concepts fit again",
-        "what pelecan features utilize categories? how else could we use caregories? o mine, ours, theirs....futeur, present, past....private, public, draft",
+        "remove most references to lanes, lanes are simply custom pages, we will have a tai chi page, with my tai chi posts, links and summary, and a science page&hellip; then we just need keywordsi think. where do the pelecan concepts fit again",
+        "what pelecan features utilize categories? how else could we use caregories? o mine, ours, theirs&hellip;.futeur, present, past&hellip;.private, public, draft",
         "me like about, biodata, mine, ai generated, ours, theirs, lets go with those categories. ill also build custom pages for tai chi, music, big projects"
       ],
       "actions": [
@@ -88,7 +88,7 @@
         "Pelican Native Category Misalignment: - Pelican’s core engine is architected around a single, mutually exclusive Category per article. Using Pelican categories for multi-topic assignment required custom generator mutation hooks.",
         "Tagline & Navigation Flow: - Header tagline *\"Out of My Lane\"* previously linked to <code>/lanes.html</code>, emphasizing the lane taxonomy. It should instead point to the full chronological post stream (<code>/posts.html</code>).",
         "Pelican Configuration (<code>pelicanconf.py</code>): - Configured <code>CATEGORY_URL = 'category/{slug}.html'</code> and <code>CATEGORY_SAVE_AS = 'category/{slug}.html'</code>.",
-        "Content Metadata Migration (<code>content/posts/</code>): - Converted all posts from <code>lanes:</code> to <code>category: \"Mine\"</code> (or <code>\"Ours\"</code>) with topical <code>tags: [...]</code>:",
+        "Content Metadata Migration (<code>content/posts/</code>): - Converted all posts from <code>lanes:</code> to <code>category: \"Mine\"</code> (or <code>\"Ours\"</code>) with topical <code>tags: [&hellip;]</code>:",
         "Template & Styling Alignment: - <code>theme/templates/base.html</code>: Pointed tagline *\"Out of My Lane\"* to <code>/posts.html</code>. Replaced <code>.footer-lanes</code> with subtle <code>.footer-categories</code> (<code>Streams: Mine • Ours</code>).",
         "Purged Retired Files: - Deleted <code>lanes/</code> directory and <code>lanes.html</code>. Generated category streams in <code>category/mine.html</code> and <code>category/ours.html</code>.",
         "Governance & Documentation: - Updated Section 5 of <code>AGENTS.md</code> and <code>.agents/agent_rules.md</code> to define Provenance Categories and Custom Topic Pages.",
@@ -104,7 +104,7 @@
         "we also have me as a category, this is stuff about me maybe written about me by me, maybe my fit bit data, or bookmarks",
         "why are previews not available in the walkthrough comma check our screenshoting ability. make dure btowser testds sre running and checking screens.",
         "Certain pages will always appear in the menu like about, blog, any page or custom page can be made to appear in the menu by some sort of configuration setting whatever pelican supporsts.",
-        "i like the new categories, but let's keep it on the downlow In our website. just mention in the about page, and that's it. no nav of lists. maybr try an icon next to posts, what would coukd tge icons be. But we will keep content categorized this way, me, mine, ours... Moving forward, it will figure out more uses of it in the future",
+        "i like the new categories, but let's keep it on the downlow In our website. just mention in the about page, and that's it. no nav of lists. maybr try an icon next to posts, what would coukd tge icons be. But we will keep content categorized this way, me, mine, ours&hellip; Moving forward, it will figure out more uses of it in the future",
         "We can simply call the category aI. Not ai generated.",
         "what is our icon library, theme? must bemsomembetter icons althoughmi like the svgs, find outmofficialmpelicanmthememicons ormgive me a few,to pick from.",
         "feather quill, use robot head instaed of sparkle"
@@ -130,7 +130,7 @@
         "in photomalbumms the photosmproperly span the window, might even be able to remove left right padding for photos. but thempost on modern wing the photosmare full sized,,muchnwidermthan screen. inmgeneral they should fit to screen width"
       ],
       "actions": [
-        "Unconstrained Post Images: - In posts like <code>art-institute-chicago-modern-wing.md</code>, full-resolution architectural photography (<code>sky-lakefront.jpg</code> at 2,108px wide) was rendered inside <code>&lt;figure&gt;&lt;img ...&gt;&lt;/figure&gt;</code> without any max-width constraints.",
+        "Unconstrained Post Images: - In posts like <code>art-institute-chicago-modern-wing.md</code>, full-resolution architectural photography (<code>sky-lakefront.jpg</code> at 2,108px wide) was rendered inside <code>&lt;figure&gt;&lt;img &hellip;&gt;&lt;/figure&gt;</code> without any max-width constraints.",
         "Photo Album Padding: - In photo albums (<code>photos.html</code>), photos scaled correctly within the container, but had default container/body left and right padding (1rem on phone, 1.75rem on tablet, 2rem on desktop). Jim suggested removing left/right padding for photo streams to allow photos to span the window edge-to-edge.",
         "Fluid Media Reset: - Added <code>img, picture, video, canvas { max-width: 100%; height: auto; }</code> directly following the <code>body</code> declaration in <code>assets/css/style.css</code>.",
         "Base Figure & Caption Styling: - Defined base styles for <code>figure</code> (<code>margin: 2.25rem 0; max-width: 100%;</code>), <code>figure img</code> (<code>width: 100%; max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-subtle); display: block;</code>), and <code>figcaption</code> (<code>font-family: var(--font-sans); font-size: 0.88rem; color: var(--text-muted); line-height: 1.45;</code>).",
@@ -158,7 +158,7 @@
         "Single-Line Header on Phone Landscape: - Configured <code>@media (orientation: landscape) and (max-height: 500px)</code> with <code>header.site-header { display: flex; flex-direction: row; justify-content: space-between; align-items: center; }</code>.",
         "Compact 2-Row Grid on Phone Portrait: - Used <code>display: contents</code> on <code>.site-nav-row</code> to place title and controls on row 1, with navigation links cleanly spanning row 2.",
         "Streamlined Dates: - Updated Pelican Jinja2 templates (<code>article.html</code>, <code>archives.html</code>, <code>category.html</code>, <code>index.html</code>) to format dates as <code>{{ article.date.strftime('%b %y') }}</code>.",
-        "Evolution Lineage Removal: - Removed <code>(evolved from ...)</code> from <code>article.html</code> and verified absence in all lists.",
+        "Evolution Lineage Removal: - Removed <code>(evolved from &hellip;)</code> from <code>article.html</code> and verified absence in all lists.",
         "Dense Mobile Post Listings: - Applied <code>-webkit-line-clamp: 2</code> to <code>.post-desc</code>, <code>.book-notes</code>, and <code>.post-teaser</code> on mobile (< 640px).",
         "Automated Testing & Governance: - Added <code>test_mobile_header_compact_and_landscape_single_line</code> and <code>test_streamlined_date_formats</code> to <code>test_playwright_responsive.py</code>."
       ]
@@ -343,10 +343,10 @@
       "prompts": [
         "here are 3 widths potrait view, in one an extra line occurs, the menu should have switched to a single item.",
         "also the menu highlight in expanded line mode should probably be visually similar to the menu hightight in single item single line mode.",
-        "for the blog list make the titles font smaller, it's highlighted already thats good. remove the text me, mine... just show the icons. I want the icon first then title, then type then date. ideally type and date are right justified. everything in same type face. remove brackets from type and no dots",
+        "for the blog list make the titles font smaller, it's highlighted already thats good. remove the text me, mine&hellip; just show the icons. I want the icon first then title, then type then date. ideally type and date are right justified. everything in same type face. remove brackets from type and no dots",
         "for 'unknown author' must be ai providence",
         "remove the 'all posts' 'all photos' and put small links next to the associated header. \\\"recent photos (->all)\\",
-        "add icons to me, mine, ai....",
+        "add icons to me, mine, ai&hellip;.",
         "and i see adjectives that are not supported, check these, check your rules to avoid unsupported in context terms.",
         "so close but replace ->all with just the word (ALL), underlined link. although a nice icon would be preferable if obvious.",
         "on featured post, don't need read full post since post title does that"
@@ -500,11 +500,11 @@
         "Photo Exploration: Photo figures in the gallery, homepage spotlight, and article posts lacked full-screen viewing links.",
         "Apps Page & Post Titles (<code>content/pages/apps.md</code>): - Linked all card titles directly to their respective posts (<code>posts/photo-viewer-drive-manifest-explorer.html</code>, <code>posts/keyword-explorer-taxonomy.html</code>, <code>posts/pipeline-tools-workbench.html</code>).",
         "Removed Obsolete Embedded Page: - Executed <code>git rm content/pages/pipeline-tools.md</code> and removed references from <code>theme/templates/base.html</code> and <code>pipeline-tools-workbench.md</code>.",
-        "Removed Footer Copyright: - Removed the <code>&lt;div&gt;Content &copy; Jim Collinsworth...&lt;/div&gt;</code> line from <code>theme/templates/base.html</code>.",
+        "Removed Footer Copyright: - Removed the <code>&lt;div&gt;Content &copy; Jim Collinsworth&hellip;&lt;/div&gt;</code> line from <code>theme/templates/base.html</code>.",
         "Unbolded Post Types & Tighter Section Spacing (<code>theme/static/css/style.css</code>): - Changed <code>.post-header-right .post-type</code>, <code>.book-header-right .book-author</code>, and <code>.post-type</code> to <code>font-weight: 400</code>.",
         "Streamlined Post Header (<code>theme/templates/article.html</code> & <code>category.html</code>): - Structured <code>&lt;header class=\"post-header-full\"&gt;</code> with <code>.post-header-row</code>: left column includes inline <code>&lt;a class=\"post-back-arrow\"&gt;←&lt;/a&gt;</code>, provenance category badge, and <code>&lt;h1 class=\"post-title\"&gt;</code>; right column displays unbolded uppercase post type and date.",
-        "Framed App Screenshots & Top Launch Button (<code>content/posts/*.md</code>): - Added primary accent button <code>&lt;a href=\"...\" class=\"app-launch-btn\"&gt;Launch Full-Screen App &rarr;&lt;/a&gt;</code> right below the lead paragraph across all app posts.",
-        "Full-Screen Photo Viewing Across Site: - Wrapped images in <code>&lt;a href=\"...\" class=\"photo-link\" title=\"Click to view full screen\"&gt;</code> across <code>content/pages/photos.md</code>, <code>theme/templates/index.html</code> (spotlight), <code>content/posts/art-institute-chicago-modern-wing.md</code>, and all app post screenshots with <code>cursor: zoom-in</code>.",
+        "Framed App Screenshots & Top Launch Button (<code>content/posts/*.md</code>): - Added primary accent button <code>&lt;a href=\"&hellip;\" class=\"app-launch-btn\"&gt;Launch Full-Screen App &rarr;&lt;/a&gt;</code> right below the lead paragraph across all app posts.",
+        "Full-Screen Photo Viewing Across Site: - Wrapped images in <code>&lt;a href=\"&hellip;\" class=\"photo-link\" title=\"Click to view full screen\"&gt;</code> across <code>content/pages/photos.md</code>, <code>theme/templates/index.html</code> (spotlight), <code>content/posts/art-institute-chicago-modern-wing.md</code>, and all app post screenshots with <code>cursor: zoom-in</code>.",
         "Automated Testing, Verification & Versioning: - Rebuilt Pelican static output; verified all 51 automated tests pass (<code>uv run pytest -v</code>)."
       ]
     },
@@ -656,7 +656,7 @@
       ],
       "actions": [
         "Homepage Visual Balance: - The Photo Spotlight section was positioned at the bottom of the secondary sidebar column beneath the 3-item Recent Stream.",
-        "Template Restructuring: - Relocated <code>&lt;section&gt; &lt;h2&gt;Photo Spotlight...</code> from <code>.sidebar-column</code> into <code>.main-column</code> directly beneath <code>Featured Post</code> and preceding <code>Recent Links</code>.",
+        "Template Restructuring: - Relocated <code>&lt;section&gt; &lt;h2&gt;Photo Spotlight&hellip;</code> from <code>.sidebar-column</code> into <code>.main-column</code> directly beneath <code>Featured Post</code> and preceding <code>Recent Links</code>.",
         "Automated Testing & Build Verification: - Compiled static site via Pelican (<code>0.13s</code>).",
         "DevOps & Timeline Synchronization: - Synchronized dev prompt timeline (<code>content/pages/prompt-history.md</code>) to 105 steering prompts across 31 milestones."
       ]
@@ -689,11 +689,11 @@
         "remove the raw html wrappers and really all raw html from all markdown content files, insert appropriate front matter with our pelican and site metadata standards add the automatic link resolution, don't change anything on the page directories/folder structure"
       ],
       "actions": [
-        "Broken Markdown Link Parsing: - In <code>content/pages/about-this-site.md</code>, the introductory paragraph was wrapped inside a raw HTML block (<code>&lt;div class=\"page-intro\"&gt;&lt;p&gt;...&lt;/p&gt;&lt;/div&gt;</code>). Python-Markdown disables Markdown link parsing inside raw HTML tags, leaving <code>[Development Prompts](prompt-history.md)</code> unlinked as literal text.",
+        "Broken Markdown Link Parsing: - In <code>content/pages/about-this-site.md</code>, the introductory paragraph was wrapped inside a raw HTML block (<code>&lt;div class=\"page-intro\"&gt;&lt;p&gt;&hellip;&lt;/p&gt;&lt;/div&gt;</code>). Python-Markdown disables Markdown link parsing inside raw HTML tags, leaving <code>[Development Prompts](prompt-history.md)</code> unlinked as literal text.",
         "HTML Noise in Obsidian Vault: - Multiple content pages and posts contained raw HTML elements (<code>&lt;div class=\"page-intro\"&gt;</code>, <code>&lt;figure&gt;</code>, <code>&lt;figcaption&gt;</code>, inline SVG icons, raw dashboard grids) that compromised readability and editing in Obsidian.",
         "Missing Intra-Site Link Translation: - Stock Pelican requires explicit <code>{filename}</code> directives to resolve relative <code>.md</code> files into <code>.html</code> output URLs. Authors writing standard Markdown links (<code>[label](file.md)</code>) or Obsidian wikilinks (<code>[[target]]</code>) received broken or unresolved links.",
         "Automated Intra-Site Link Resolution (<code>pelicanconf.py</code>): - Extended <code>ObsidianMarkdownReader</code> with <code>_build_file_map()</code> and <code>_resolve_links()</code>. Automatically translates <code>[label](target.md)</code> and <code>[[target|label]]</code> into <code>{filename}</code> directives so Pelican calculates exact relative HTML URLs.",
-        "Automated Figure Wrapping (<code>pelicanconf.py</code>): - Added <code>_wrap_figures()</code> to automatically transform Markdown images (<code>![alt](src)</code>) into <code>&lt;figure&gt;&lt;a class=\"photo-link\"&gt;&lt;img ...&gt;&lt;/a&gt;&lt;figcaption&gt;alt&lt;/figcaption&gt;&lt;/figure&gt;</code>.",
+        "Automated Figure Wrapping (<code>pelicanconf.py</code>): - Added <code>_wrap_figures()</code> to automatically transform Markdown images (<code>![alt](src)</code>) into <code>&lt;figure&gt;&lt;a class=\"photo-link\"&gt;&lt;img &hellip;&gt;&lt;/a&gt;&lt;figcaption&gt;alt&lt;/figcaption&gt;&lt;/figure&gt;</code>.",
         "Dedicated Jinja2 Blueprints (<code>theme/templates/</code>): - Created <code>theme/templates/about-this-site.html</code> (renders Markdown content + appends structured DevOps & Infrastructure Dashboard).",
         "CSS Lead-Paragraph Styling (<code>theme/static/css/style.css</code>): - Added <code>.page-body > p:first-of-type, .post-content > p:first-of-type</code> to lead intro styles across mobile, landscape, and desktop viewports, eliminating the need for <code>&lt;div class=\"page-intro\"&gt;</code>.",
         "Pure Markdown Content Migration (<code>content/</code>): - Removed all raw HTML wrappers, card divs, and SVG icons from <code>content/pages/</code> and <code>content/posts/</code>.",
@@ -789,7 +789,7 @@
       "formatted_date": "Sept 15 2026",
       "rel_link": "https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/v0.7.12",
       "prompts": [
-        "nice! want better attribution within a page for example we can say that most page summaries are written by me, i'll take that responsibility so the summary or page intro, whatever is first should be marked with a mine symbol, my thoughts and text, my photos.... lets make this a hard rule, try to enforce/remind whenever possible.",
+        "nice! want better attribution within a page for example we can say that most page summaries are written by me, i'll take that responsibility so the summary or page intro, whatever is first should be marked with a mine symbol, my thoughts and text, my photos&hellip;. lets make this a hard rule, try to enforce/remind whenever possible.",
         "but then the following content is either mine or ai or someone else so add the icon there also . so for the site page, insted of 'summary (written by ai) it's simply : ai icon - site history haiku'"
       ],
       "actions": [

@@ -164,12 +164,14 @@ def generate_prompt_history_data(milestones: list[dict], total_prompts: int) -> 
         for p in m["prompts"]:
             sanitized_p = re.sub(r"<(/?[a-zA-Z0-9]+[^>]*)>", r"&lt;\1&gt;", p.strip())
             sanitized_p = re.sub(r"`([^`]+)`", r"<code>\1</code>", sanitized_p)
+            sanitized_p = sanitized_p.replace("...", "&hellip;")
             sanitized_prompts.append(sanitized_p)
 
         sanitized_actions = []
         for a in m["actions"]:
             sanitized_a = re.sub(r"<(/?[a-zA-Z0-9]+[^>]*)>", r"&lt;\1&gt;", a)
             sanitized_a = re.sub(r"`([^`]+)`", r"<code>\1</code>", sanitized_a)
+            sanitized_a = sanitized_a.replace("...", "&hellip;")
             sanitized_actions.append(sanitized_a)
 
         processed_milestones.append({

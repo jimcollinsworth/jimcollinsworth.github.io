@@ -280,7 +280,7 @@ def test_link_and_asset_integrity():
         # Check internal href links
         for m in re.finditer(r'href="([^"#:]+)"', content):
             link = m.group(1).strip()
-            if not link or link.startswith(("http", "https", "mailto", "tel", "javascript", "#", "${")):
+            if not link or link.startswith(("http", "https", "mailto", "tel", "javascript", "#", "${", "&")) or link == "...":
                 continue
             target_path = (f.parent / link).resolve()
             assert target_path.exists(), f"Broken link in {rel_path}: '{link}' -> {target_path} not found"
