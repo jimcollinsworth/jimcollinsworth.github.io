@@ -107,6 +107,16 @@ if _SUMMARY_FILE.exists():
 else:
     SITE_SUMMARY = None
 
+# Development prompts data (extracted from JOURNAL.md)
+_DEV_PROMPTS_FILE = Path(__file__).parent / 'content' / 'data' / 'dev-prompts.json'
+if _DEV_PROMPTS_FILE.exists():
+    try:
+        DEV_PROMPTS = json.loads(_DEV_PROMPTS_FILE.read_text(encoding='utf-8'))
+    except Exception:
+        DEV_PROMPTS = None
+else:
+    DEV_PROMPTS = None
+
 # Recent releases data with exact timestamps
 RECENT_RELEASES = [
     {
