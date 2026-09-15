@@ -117,6 +117,46 @@ def format_date(d_str: str) -> str:
         return d_str
 
 
+def get_release_timestamps() -> dict[str, str]:
+    """Extract release timestamps from git log."""
+    try:
+        import subprocess
+        out = subprocess.check_output(
+            ["git", "log", "--format=%ai|%s"],
+            cwd=REPO_ROOT,
+            text=True,
+            encoding="utf-8"
+        )
+        release_times = {}
+        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
+        for line in out.splitlines():
+            m = re.search(r"v\d+\.\d+(?:\.\d+)?", line)
+            if m:
+                tag = m.group(0)
+                if tag not in release_times:
+                    parts = line.split("|")
+                    if len(parts) >= 1:
+                        raw = parts[0].strip()
+                        try:
+                            dt_part, tz = raw.rsplit(" ", 1)
+                            date_part, time_part = dt_part.split(" ")
+                            y, mo, d = date_part.split("-")
+                            hh, mm, ss = time_part.split(":")
+                            hour = int(hh)
+                            minute = int(mm)
+                            ampm = "AM" if hour < 12 else "PM"
+                            display_hour = hour % 12
+                            if display_hour == 0:
+                                display_hour = 12
+                            formatted = f"{months[int(mo)-1]} {int(d)} {y}, {display_hour}:{minute:02d} {ampm} CDT"
+                            release_times[tag] = formatted
+                        except Exception:
+                            release_times[tag] = raw
+        return release_times
+    except Exception:
+        return {}
+
+
 def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int) -> str:
     """Generate clean prompt timeline honoring Jim's layout rules."""
     ICON_MINE = '<svg class="category-icon icon-mine" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>'
@@ -152,19 +192,23 @@ def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int)
     md.append(f"Steering prompts and technical corrections for `jimcollinsworth.github.io`, chronologically extracted from `JOURNAL.md` via `tools/sync_dev_prompts.py`. It contains **{total_prompts} prompts** from Jim across {len(milestones)} milestones, alongside concise summaries of actions taken.")
     md.append("")
 
+    release_timestamps = get_release_timestamps()
+
     for m in chronological_milestones:
         title = m['title']
         date_str = m['date']
         
         # Link to relevant GitHub release tag or releases overview
         ver_match = re.search(r"v\d+\.\d+(?:\.\d+)?", title)
-        if ver_match:
-            tag = ver_match.group(0)
+        tag = ver_match.group(0) if ver_match else ""
+        if tag:
             rel_link = f"https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases/tag/{tag}"
+            formatted_dt = release_timestamps.get(tag, format_date(date_str))
         else:
             rel_link = "https://github.com/jimcollinsworth/jimcollinsworth.github.io/releases"
+            formatted_dt = format_date(date_str)
 
-        date_html = f'<time datetime="{date_str}" class="milestone-date">{format_date(date_str)}</time>' if date_str else ''
+        date_html = f'<time datetime="{date_str}" class="milestone-date">{formatted_dt}</time>' if formatted_dt else ''
 
         md.append('<div class="milestone-header">')
         md.append(f'  <h2 class="milestone-title"><a href="{rel_link}" target="_blank" rel="noopener">{title}</a></h2>')
@@ -173,32 +217,36 @@ def generate_prompt_history_markdown(milestones: list[dict], total_prompts: int)
         md.append('</div>')
         md.append("")
 
-        # Jim's Prompts: mine icon with Jim label
-        md.append('<div class="prompt-entry">')
-        md.append(f'  <div class="prompt-speaker"><span class="category-badge" title="Provenance: Mine">{ICON_MINE}</span> <strong>Jim:</strong></div>')
-        md.append('  <div class="prompt-quotes">')
+        # Conversational Chat Thread: Jim (Mine) & AI Pair
+        md.append('<div class="chat-thread">')
+        
+        # Jim's Chat Bubble
+        md.append('  <div class="chat-bubble chat-user">')
+        md.append(f'    <div class="chat-meta"><span class="category-badge" title="Provenance: Mine">{ICON_MINE}</span> <strong class="chat-name">Jim</strong></div>')
+        md.append('    <div class="chat-body">')
         for p in m["prompts"]:
             sanitized_p = re.sub(r"<(/?[a-zA-Z0-9]+[^>]*)>", r"&lt;\1&gt;", p.strip())
             sanitized_p = re.sub(r"`([^`]+)`", r"<code>\1</code>", sanitized_p)
-            md.append(f'    <p>{sanitized_p}</p>')
+            md.append(f'      <p>{sanitized_p}</p>')
+        md.append('    </div>')
         md.append('  </div>')
-        md.append('</div>')
-        md.append("")
 
-        # LLM Response: AI icon with edge-to-edge greyed out block
+        # AI Assistant Chat Bubble
         if m["actions"]:
-            md.append('<div class="prompt-response-block">')
-            md.append('  <div class="prompt-response-inner">')
-            md.append(f'    <div class="response-speaker"><span class="category-badge" title="Provenance: AI">{ICON_AI}</span> <strong>Response:</strong></div>')
-            md.append('    <ul class="response-actions">')
+            md.append('  <div class="chat-bubble chat-ai">')
+            md.append(f'    <div class="chat-meta"><span class="category-badge" title="Provenance: AI">{ICON_AI}</span> <strong class="chat-name">AI Assistant (LLM-Gemini3.8)</strong></div>')
+            md.append('    <div class="chat-body">')
+            md.append('      <ul class="response-actions">')
             for a in m["actions"]:
                 sanitized_a = re.sub(r"<(/?[a-zA-Z0-9]+[^>]*)>", r"&lt;\1&gt;", a)
                 sanitized_a = re.sub(r"`([^`]+)`", r"<code>\1</code>", sanitized_a)
-                md.append(f'      <li>{sanitized_a}</li>')
-            md.append('    </ul>')
+                md.append(f'        <li>{sanitized_a}</li>')
+            md.append('      </ul>')
+            md.append('    </div>')
             md.append('  </div>')
-            md.append('</div>')
-            md.append("")
+
+        md.append('</div>')
+        md.append("")
 
     md.append('<div style="margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">')
     md.append('  <a href="about-this-site.html">&larr; Return to About This Site</a> &bull;')

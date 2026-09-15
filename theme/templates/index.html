@@ -33,9 +33,9 @@
         </div>
         <div class="post-desc">
           {% if featured.summary %}
-          <div class="post-teaser">
-            {{ featured.summary }}
-          </div>
+          <p class="post-teaser">
+            {{ featured.summary|striptags }}
+          </p>
           {% endif %}
         </div>
       </article>

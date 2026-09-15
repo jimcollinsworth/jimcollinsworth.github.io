@@ -5,6 +5,7 @@ for jimcollinsworth.github.io
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 from typing import Any
@@ -95,6 +96,55 @@ RELATIVE_URLS = True
 # Disable caching for clean, deterministic builds
 LOAD_CONTENT_CACHE = False
 DELETE_OUTPUT_DIR = True
+
+# Site summary data (AI haiku summary)
+_SUMMARY_FILE = Path(__file__).parent / 'content' / 'data' / 'site-summary.json'
+if _SUMMARY_FILE.exists():
+    try:
+        SITE_SUMMARY = json.loads(_SUMMARY_FILE.read_text(encoding='utf-8'))
+    except Exception:
+        SITE_SUMMARY = None
+else:
+    SITE_SUMMARY = None
+
+# Recent releases data with exact timestamps
+RECENT_RELEASES = [
+    {
+        "version": "v0.7.10",
+        "timestamp": "Sept 15 2026, 9:38 AM CDT",
+        "summary": "Chat bubbles for prompts, AI haiku summary generator, mobile header simplification & compact buttons",
+    },
+    {
+        "version": "v0.7.9.01",
+        "timestamp": "Sept 15 2026, 8:58 AM CDT",
+        "summary": "Date architecture simplification (date as occurrence) & pure markdown validation",
+    },
+    {
+        "version": "v0.7.9",
+        "timestamp": "Sept 14 2026, 4:50 PM CDT",
+        "summary": "Google Photos header badge, dedicated ideas directory, 2 new ideas",
+    },
+    {
+        "version": "v0.7.8",
+        "timestamp": "Sept 14 2026, 4:30 PM CDT",
+        "summary": "Pure Markdown migration, automatic intra-site link resolution & blueprints",
+    },
+    {
+        "version": "v0.7.7",
+        "timestamp": "Sept 14 2026, 3:33 PM CDT",
+        "summary": "Homepage photo spotlight & photo asset size management standards",
+    },
+    {
+        "version": "v0.7.6",
+        "timestamp": "Sept 14 2026, 2:59 PM CDT",
+        "summary": "Condensed ideas stream & feed isolation",
+    },
+    {
+        "version": "v0.7.5",
+        "timestamp": "Sept 14 2026, 12:10 PM CDT",
+        "summary": "Provenance stream relocation to About Site & bio update",
+    },
+]
 
 
 class ObsidianMarkdownReader(MarkdownReader):

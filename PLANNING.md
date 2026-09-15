@@ -6,6 +6,23 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 47: Chat Bubbles, AI Summary Generator, Mobile Header Streamlining & Timestamp Precision (Completed - Release v0.7.10)**
+  - Conversational Chat Bubbles: updated `tools/sync_dev_prompts.py` to wrap turns in `.chat-thread`, styling user prompts in `.chat-user` with warm accent border and AI actions in `.chat-ai` with `LLM-Gemini3.8` attribution.
+  - AI Summary Generator: created `tools/generate_site_summary.py` to compile an 8-stanza haiku summary from `JOURNAL.md` into `content/data/site-summary.json`, rendering on `about-this-site.html`.
+  - Mobile Header & Footer Controls: moved `.site-controls` to `.site-footer`, scaled phone title font, simplified portrait nav, and expanded `.footer-nav` across all pages.
+  - Modernized Dashboard Cards: styled `.btn-compact` buttons and added Recent Releases table with exact commit dates and times.
+  - Home Page Featured Post: normalized title font to `1.05rem` / `600` weight and teaser markup to `<p class="post-teaser">`.
+  - Testing & Version: passed 55/55 automated tests; bumped version to `v0.7.10`.
+
+- [x] **Milestone 46: Date Architecture Simplification: Date as Real-World Occurrence (Completed - Release v0.7.9.01)**
+  - Standardized on Pelican native `date` (real-world event occurrence) and `modified` (publication/update timestamp).
+  - Updated `README.md`, `templates/obsidian-post-template.md`, and authoring cheatsheets.
+
+- [x] **Milestone 45: Photos Header, Dedicated Ideas Directory & Pure Markdown Enforcement (Completed - Release v0.7.9)**
+  - Photos Page Header: added `.photos-header` flex row with study title and Google Photos badge with official SVG icon.
+  - Dedicated Ideas Directory: moved idea files to `content/ideas/` and routed to `output/ideas/{slug}.html`.
+  - Pure Markdown Guard: added `test_idea_pages_exist` and expanded `test_pure_markdown_content_sources` to 55 passing tests.
+
 - [x] **Milestone 44: Pure Markdown Content Migration, Automatic Link Resolution & Dedicated Blueprints (Completed - Release v0.7.8)**
   - Automated Link Resolution: upgraded `ObsidianMarkdownReader` in `pelicanconf.py` to automatically resolve Markdown `.md` links and Obsidian `[[wikilinks]]` to Pelican `{filename}` directives.
   - Automated Figure Wrapping: transformed Markdown images into semantic, responsive `<figure>` + `<figcaption>` elements with cross-directory path normalization.

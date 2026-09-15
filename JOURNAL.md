@@ -2,6 +2,56 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-15 — Chat Bubbles, AI Summary Generator, Mobile Header Streamlining & Timestamp Precision (Release v0.7.10)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"on about site page: show time on the date for releases, it's important there"*
+> - *"instead of the horizontal color between jim and ai chat, lets go with a chat bubble approach, make it obvious this was conversation albeit paraphrased. so we have a chat between jim/mine and ai."*
+> - *"we need a summary of the site history, how about a haiku, generate it from the journal.md, one line per commit at most, maybe keep the entire haiku to a fixed length, like 8 stanza's. create a build utility for this. just call it a summary (written by ai of course)"*
+> - *"still to crowded on phone portrait. lets just simply header overall for phone entirely - only jim collinsworth (smaller font too) and the menu burger/active item display. portrait-one current item, landscape 5 items, and all the items/custom pages appear in a nice concise list on footer."*
+> - *"move the theme picker, text size, and contrast controls from the header to the footer."*
+> - *"make sure the featured post on index has the same font family, weight, and size as the other posts."*
+
+### Problem & Diagnosis
+1. **Prompt History Conversation Presentation**:
+   - The Development Prompts page previously displayed prompts and responses as full-width alternating horizontal color bands, which obscured the conversational turn-taking nature of the collaboration.
+2. **Release Timestamps**:
+   - Release listings displayed only calendar dates (e.g. `Sept 14 2026`), omitting exact commit and release times needed for technical tracking.
+3. **Mobile Header Density & Footprint**:
+   - On mobile portrait viewports, the site header contained branding, tagline, navigation menu, and theme/contrast/font controls, creating visual crowding at the top of the screen.
+4. **Site History Synthesis**:
+   - The site lacked an automated, concise synopsis of project milestones generated from `JOURNAL.md`.
+5. **Homepage Featured Post Visual Weight**:
+   - The Featured Post title on `index.html` was sized at `1.15rem` with `font-weight: 700` and nested inside raw `<div>` tags, creating typographic discrepancy with the `1.05rem` / `600` weight of other homepage post titles.
+
+### Root Cause & Technical Analysis
+- Conversational chat bubbles (`.chat-bubble.chat-user`, `.chat-bubble.chat-ai`) with distinct left-accent borders, metadata headers, and subtle card backgrounds clarify multi-turn collaboration.
+- Parsing git commit metadata directly via `git log` allows automated injection of exact RFC2822/ISO timestamps into Pelican context.
+- Relocating `.site-controls` to the footer reduces mobile header height to a single compact line while expanding `.footer-nav` ensures complete site crawlability.
+- Normalizing `.post-item.featured` CSS rules and template markup to `<p class="post-teaser">` aligns all homepage entries to the identical type scale.
+
+### Solution & Standard Procedure
+1. **Conversational Chat Bubbles (`tools/sync_dev_prompts.py`, `style.css`)**:
+   - Updated prompt synchronization script to parse git logs with exact dates/times and wrap turns into `.chat-thread`.
+   - Styled `.chat-bubble.chat-user` with warm accent border and `.chat-bubble.chat-ai` with subtle card background and `LLM-Gemini3.8` attribution.
+   - Regenerated `content/pages/prompt-history.md` (35 milestones, 116 steering prompts).
+2. **AI Summary Build Utility (`tools/generate_site_summary.py`, `content/data/site-summary.json`)**:
+   - Built Python utility to extract milestones from `JOURNAL.md` and generate an 8-stanza haiku summary.
+   - Bound `SITE_SUMMARY` into `pelicanconf.py` and rendered `Summary (written by AI)` in `theme/templates/about-this-site.html`.
+3. **Mobile Header & Footer Overhaul (`theme/templates/base.html`, `style.css`)**:
+   - Relocated `.site-controls` to `.site-footer`.
+   - Scaled down mobile site title font and simplified phone portrait header to show only the active dropdown item.
+   - Expanded `.footer-nav` to provide direct navigation across all custom pages.
+4. **Dashboard Modernization & Release Timestamps (`theme/templates/about-this-site.html`, `pelicanconf.py`)**:
+   - Added `.btn-compact` button styling to `.dashboard-card` elements.
+   - Added Recent Releases table showing exact commit dates and times.
+5. **Home Page Featured Post Typography Normalization (`theme/templates/index.html`, `style.css`)**:
+   - Standardized `.post-item.featured` title to `1.05rem` / `font-weight: 600`.
+   - Normalized teaser markup to `<p class="post-teaser">`.
+6. **Testing & Verification**:
+   - Executed `uv run pytest -v` (55/55 tests passed).
+   - Captured multi-resolution visual evidence across 8 viewports.
+
 ## 2026-09-15 — Date Architecture Simplification: Date as Real-World Occurrence (Release v0.7.9.01)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:
