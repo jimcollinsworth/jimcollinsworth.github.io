@@ -42,7 +42,7 @@ DEFAULT_LANG = 'en'
 # Source directory layout
 ARTICLE_PATHS = ['posts', 'ideas']
 PAGE_PATHS = ['pages']
-STATIC_PATHS = ['images', 'extra', 'apps', 'data']
+STATIC_PATHS = ['images', 'attachments', 'extra', 'apps', 'data']
 
 # Copy root-level metadata files
 EXTRA_PATH_METADATA = {
@@ -241,12 +241,10 @@ class ObsidianMarkdownReader(MarkdownReader):
                 return full_tag
             alt = img_match.group(2).strip()
             src_match = re.search(r'src="([^"]+)"', full_tag)
-            if not src_match:
-                return full_tag
             src = src_match.group(1).strip()
-            if is_post and src.startswith('images/'):
+            if is_post and (src.startswith('images/') or src.startswith('attachments/')):
                 src = '../' + src
-            elif not is_post and src.startswith('../images/'):
+            elif not is_post and (src.startswith('../images/') or src.startswith('../attachments/')):
                 src = src[3:]
 
             return (
@@ -258,7 +256,7 @@ class ObsidianMarkdownReader(MarkdownReader):
                 f'</figure>'
             )
 
-        return re.sub(r'<p>\s*<img\s+[^>]*alt="[^"]+"[^>]*\s*/?>\s*</p>', fig_repl, html)
+        return re.sub(r'<p>\s*<img\s+[^>]*alt="[^"]+"[^>]*\s*/?>\s*(?:</p>|\n)', fig_repl, html, flags=re.DOTALL)
 
     def _wrap_tables(self, html: str) -> str:
         def table_repl(m: re.Match) -> str:
