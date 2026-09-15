@@ -118,11 +118,13 @@ pelican content -s publishconf.py -o output
 
 ---
 
-## 4. Strict Content Boundary Rules
+## 4. Strict Content Boundary & Source Markdown Rules
 
 > [!CAUTION]
 > **The agent must never author content posts for Jim.**
-> If asked to scaffold a new post, the agent must ONLY create front-matter metadata and standard `Lorem ipsum` placeholder text.
+> - **100% Human Content in `content/`**: Everything in `content/` is templated Markdown with metadata, photos, and media authored exclusively by Jim.
+> - **Zero AI-Generated Content or Source Badges in `content/`**: No file in `content/` contains AI-generated prose or source-level provenance shortcuts (`[Mine]`, `[AI]`). Everything originating in `content/` is intrinsically Jim's.
+> - **Scaffolding Only**: If asked to scaffold a new post, the agent must ONLY create clean YAML front-matter metadata and standard `Lorem ipsum` placeholder text.
 
 ### Scaffolding Template
 ```markdown

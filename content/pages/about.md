@@ -3,13 +3,13 @@ title: "About"
 slug: "about"
 ---
 
-[Mine] I'm newly retired this year after 50 years of working with software and clients. 20 years at Arthur Andersen, then as a guitarist, back to software and a couple startups, and finally finishing up with a data science job after the pandemic. Now I get to sit back (hopefully) and enjoy family, continue learning, exercise, the Chicago lakefront, AI, and ongoing change and innovation.
+I'm newly retired this year after 50 years of working with software and clients. 20 years at Arthur Andersen, then as a guitarist, back to software and a couple startups, and finally finishing up with a data science job after the pandemic. Now I get to sit back (hopefully) and enjoy family, continue learning, exercise, the Chicago lakefront, AI, and ongoing change and innovation.
 
-## [Mine] Curiosity & Mindset
+## Curiosity & Mindset
 
 *\"How does that work?\"* is the question that is always in my mind, and comes up for everything: software, hardware, electricity, biology, society, law, music, art, psychology... I'll be the first to admit something I don't know, but at the same time will be fleshing out the alternatives, questioning everything, devising an educated guess and following up as soon as I can to understand.
 
-## [Mine] \"Out of My Lane\"
+## \"Out of My Lane\"
 
 The name of this site reflects my habit of venturing into domains well outside my core training. Rather than siloing myself into a single specialty, I chronicle my active pursuits across multiple areas of curiosity:
 
@@ -21,7 +21,7 @@ The name of this site reflects my habit of venturing into domains well outside m
 
 ---
 
-## [Mine] Contact & Reader Feedback
+## Contact & Reader Feedback
 
 Interested in discussing a project, sharing notes, or providing critique?
 

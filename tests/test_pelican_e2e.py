@@ -405,7 +405,18 @@ def test_intra_page_provenance_and_markdown_shortcuts():
     assert 'dual-badge' in decorated
     assert '[Mine]' not in decorated
     assert '[AI]' not in decorated
-    assert '[AI+Mine]' not in decorated
+    assert '[Mine+AI]' not in decorated
+
+
+def test_content_directory_contains_zero_ai_or_provenance_shortcuts():
+    """Verify that all Markdown source files in content/ are 100% human-authored without [Mine] or [AI] tags."""
+    content_md_files = [f for f in CONTENT_DIR.rglob("*.md") if "data" not in f.parts]
+    for md_file in content_md_files:
+        text = md_file.read_text(encoding="utf-8")
+        assert "[Mine]" not in text, f"Found forbidden [Mine] tag in source Markdown {md_file.relative_to(REPO_ROOT)}"
+        assert "[AI]" not in text, f"Found forbidden [AI] tag in source Markdown {md_file.relative_to(REPO_ROOT)}"
+        assert "[Mine+AI]" not in text, f"Found forbidden [Mine+AI] tag in source Markdown {md_file.relative_to(REPO_ROOT)}"
+
 
 
 

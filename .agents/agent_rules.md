@@ -265,19 +265,15 @@ Every commit and meaningful change set must increment the project version:
 
 ---
 
-## 20. Intra-Page Provenance & Section-Level Attribution Standards (Strict)
+## 20. Build-Time Provenance & Template Attribution Standards (Strict)
 
 > [!IMPORTANT]
-> **Granular Intra-Page Provenance & Lead Intro Attribution**:
-> 1. **Lead Intros and Summaries Attributed to Jim (`[Mine]`)**:
->    - Page summaries, lead introduction paragraphs, and initial framing text across all site pages are authored by Jim ("my thoughts and text, my photos") unless explicitly specified otherwise.
->    - The lead summary or introduction paragraph (whatever appears first on a page) must be explicitly marked with the `[Mine]` provenance badge.
-> 2. **Section and Block-Level Attribution**:
->    - Distinct subsequent sections or content blocks within a page must carry their specific provenance badge (`[Mine]`, `[AI]`, `[Me]`, `[Ours]`, `[Theirs]`, or `[AI+Mine]`).
->    - For example, AI-generated components, haiku summaries, or synthesized logs must be prefaced with the `[AI]` badge (e.g. `[AI] Site History Haiku` or inline badge before AI-generated content).
-> 3. **Pure Markdown Shortcuts**:
->    - Authors and agents write clean, semantic Markdown shortcuts (`[Mine]`, `[AI]`, `[Me]`, `[Ours]`, `[Theirs]`, `[AI+Mine]`, `[Mine+AI]`) directly in Markdown source files.
->    - Pelican's `ObsidianMarkdownReader` automatically compiles these shortcuts into accessible SVG provenance icons.
+> **Build-Time Provenance & Template Attribution**:
+> 1. **Clean Source Notes in Obsidian (`content/`)**:
+>    - Source Markdown files in Obsidian remain 100% clean human-authored notes by Jim. Authors do not write `[Mine]` or `[AI]` badges into source `.md` files.
+> 2. **Template & Data-Driven Provenance**:
+>    - Provenance badges (`icon-mine`, `icon-ai`, `icon-me`) are rendered automatically at build time via Jinja2 theme templates (`theme/templates/`) or data-driven JSON datasets (`content/data/`).
+>    - Dynamic AI components (such as `Site History Haiku` or `Development Prompts`) are generated out-of-band and rendered via templates (`theme/templates/about-this-site.html`, `theme/templates/prompt-history.html`) with appropriate `icon-ai` or `icon-mine` badges.
 
 
 

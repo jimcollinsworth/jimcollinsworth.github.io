@@ -92,12 +92,18 @@ This renders semantic HTML blockquotes with appropriate CSS classes that match `
 
 ---
 
-## 3. Author-to-Publish Workflow
+## 3. Author-to-Publish Workflow & Content Rules
+
+> [!CAUTION]
+> **Zero AI-Generated Content in Obsidian Source Files (`content/`)**:
+> - All notes, essays, pages, metadata, photos, and media in `content/` are authored exclusively by Jim.
+> - Source Markdown files in Obsidian do NOT contain AI-generated text, AI drafts, or source-level `[Mine]` / `[AI]` attribution shortcuts. Everything in `content/` is intrinsically Jim's.
+> - Dynamic AI features (such as `dev-prompts.json` or `site-summary.json`) are processed out-of-band and rendered via Jinja2 templates (`theme/templates/`), never written into source Markdown files in `content/`.
 
 1. **Authoring (Jim in Obsidian)**:
-   - Jim creates or edits notes in `content/posts/`.
-   - Adds title, date, category (one of the 12 Lanes), and summary in the frontmatter.
-   - Attaches any images into `content/attachments/`.
+   - Jim creates or edits notes in `content/posts/` or `content/pages/`.
+   - Adds title, date, category (Stream), and optional summary in YAML frontmatter.
+   - Attaches images into `content/images/` or direct URLs to Google Photos.
 
 2. **Compilation**:
    - Run standard Pelican command:
