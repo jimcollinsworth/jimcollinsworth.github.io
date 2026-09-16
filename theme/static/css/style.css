@@ -261,6 +261,8 @@ img, picture, video, canvas {
   top: 0;
   z-index: 1;
   min-height: 220px;
+  max-height: 260px;
+  aspect-ratio: 16 / 7;
   width: 100%;
   background-size: cover;
   background-position: center 35%;
@@ -285,29 +287,42 @@ img, picture, video, canvas {
 
 .photos-hero-header .photos-title {
   color: #ffffff !important;
-  font-size: 1.65rem;
+  font-size: clamp(1.35rem, 2.5vw + 0.7rem, 2.1rem);
   font-weight: 700;
   margin: 0 0 0.4rem 0;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+  line-height: 1.25;
 }
 
 .photos-hero-header .photos-summary {
   color: rgba(255, 255, 255, 0.92) !important;
-  font-size: 0.98rem;
+  font-size: clamp(0.9rem, 1.2vw + 0.6rem, 1.05rem);
   margin: 0;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
 }
 
 .photos-hero-header .google-photos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   background: rgba(255, 255, 255, 0.92);
   color: #1f2022 !important;
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
 }
 
 .photos-hero-header .google-photos-badge:hover {
   background: #ffffff;
   color: #000000 !important;
+  transform: translateY(-1px);
 }
 
 .photos-page-body .photo-stream {
@@ -315,7 +330,7 @@ img, picture, video, canvas {
   z-index: 2;
   background-color: var(--bg);
   border-radius: 6px 6px 0 0;
-  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.18);
   padding-top: 1.5rem;
 }
 

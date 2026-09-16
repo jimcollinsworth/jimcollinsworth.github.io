@@ -6,6 +6,13 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 50: Scoped Pure CSS Sticky Hero Photo Cover & Responsive Visual Enhancements (Completed - Release v0.7.21)**
+  - Template Restoration: restored clean header layout across non-photo pages (`index.html`, `about.html`, `posts.html`, `links.html`, `apps.html`, `ai.html`).
+  - Scoped Photos Hero Cover: integrated sticky photo header strictly into `photos.html` with overlaid study title (`Chicago Lakefront & Sky`), summary subtitle, and Google Photos badge button.
+  - Advanced CSS & Accessibility: applied `position: sticky; top: 0; z-index: 1`, `clamp()` fluid typography, `aspect-ratio: 16 / 7` CLS prevention, `min-height: 44px` touch target compliance, and `box-shadow: 0 -8px 24px rgba(0,0,0,0.18)` shadow elevation.
+  - Landscape Phone Exclusion: hid hero photo header on small landscape smartphones (`@media (max-height: 500px) and (orientation: landscape)`).
+  - Test Suite & Version: expanded test suite to 60 passing tests (`pytest -v`), captured multi-resolution screenshots, and synchronized version to `v0.7.21`.
+
 - [x] **Milestone 49: Intra-Page Provenance Attribution, Pure Markdown Shortcuts & Rule Codification (Completed - Release v0.7.12)**
   - Granular Intra-Page Attribution: added `[Mine]` provenance badges to lead intros and section headings across `about-this-site.md`, `apps.md`, `about.md`, `links.md`, `ai.md`, and `contact.md`.
   - Photos & Ideas Template Badges: added `[Mine]` badge to `.photos-title` in `photos.html` and `.page-intro` in `ideas.html`.
