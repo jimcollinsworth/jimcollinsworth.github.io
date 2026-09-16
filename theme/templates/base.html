@@ -54,6 +54,31 @@
       </div>
     </header>
 
+    {% set hero_img = '' %}
+    {% if output_file == 'index.html' %}
+      {% set hero_img = 'hero-index.jpg' %}
+    {% elif (output_file == 'about.html') or (page and page.slug == 'about') %}
+      {% set hero_img = 'hero-about.jpg' %}
+    {% elif (output_file == 'posts.html') or (output_file == 'archives.html') %}
+      {% set hero_img = 'hero-posts.jpg' %}
+    {% elif (output_file == 'ai.html') or (page and page.slug == 'ai') %}
+      {% set hero_img = 'hero-ai.jpg' %}
+    {% elif (output_file == 'links.html') or (page and page.slug == 'links') %}
+      {% set hero_img = 'hero-links.jpg' %}
+    {% elif (output_file == 'photos.html') or (page and page.slug == 'photos') %}
+      {% set hero_img = 'hero-photos.jpg' %}
+    {% elif (output_file == 'apps.html') or (page and page.slug == 'apps') %}
+      {% set hero_img = 'hero-apps.jpg' %}
+    {% elif (output_file == 'about-this-site.html') or (page and page.slug == 'about-this-site') %}
+      {% set hero_img = 'hero-site.jpg' %}
+    {% endif %}
+
+    {% if hero_img %}
+    <div class="hero-photo-banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('{{ SITEURL }}/images/{{ hero_img }}');" aria-hidden="true">
+      <div class="hero-photo-caption">Lake Michigan Shoreline &bull; Chicago</div>
+    </div>
+    {% endif %}
+
     <main id="main-content" tabindex="-1">
       {% block content %}{% endblock %}
     </main>
