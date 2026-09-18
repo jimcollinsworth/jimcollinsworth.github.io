@@ -2,6 +2,23 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-18 — Multimodal Data Pipeline-Tool Homepage Featured Post Selection (Release v0.7.22)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"Change the featured post to the pipeline tool, No need to run all the tests, just minimal. No screenshots needed. Merge and push."*
+
+### Problem & Diagnosis
+- The homepage (`index.html`) previously defaulted to selecting the newest post as the featured post. Jim requested setting the **Multimodal Data Pipeline-Tool** (`pipeline-tools-workbench`) as the featured post.
+
+### Root Cause & Technical Analysis
+- Updated `content/posts/pipeline-tools-workbench.md` with `featured: true` frontmatter.
+- Enhanced `theme/templates/index.html` to query `selectattr('featured', 'defined')|selectattr('featured')` or fall back to matching `slug == 'pipeline-tools-workbench'`, while filtering out the featured post from the adjacent Recent Stream column to prevent duplication.
+
+### Solution & Standard Procedure
+1. **Frontmatter Metadata**: Added `featured: true` to `content/posts/pipeline-tools-workbench.md`.
+2. **Template Selection Logic**: Updated `theme/templates/index.html` to dynamically highlight the featured article and loop over non-featured posts in the Recent Stream section.
+3. **Build & Release**: Executed minimal Pelican static build and targeted pytest verification. Bumped version to `v0.7.22`.
+
 ## 2026-09-16 — Scoped Pure CSS Sticky Hero Photo Cover & Responsive Visual Enhancements (Release v0.7.21)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

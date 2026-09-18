@@ -6,6 +6,11 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 51: Multimodal Data Pipeline-Tool Homepage Featured Post Selection (Completed - Release v0.7.22)**
+  - Frontmatter Metadata: added `featured: true` to `content/posts/pipeline-tools-workbench.md`.
+  - Dynamic Homepage Selection: updated `theme/templates/index.html` to select the pipeline tool post as the featured post and filter recent stream items to prevent duplication.
+  - Release & Version: built static output, verified minimal test suite, and bumped version to `v0.7.22`.
+
 - [x] **Milestone 50: Scoped Pure CSS Sticky Hero Photo Cover & Responsive Visual Enhancements (Completed - Release v0.7.21)**
   - Template Restoration: restored clean header layout across non-photo pages (`index.html`, `about.html`, `posts.html`, `links.html`, `apps.html`, `ai.html`).
   - Scoped Photos Hero Cover: integrated sticky photo header strictly into `photos.html` with overlaid study title (`Chicago Lakefront & Sky`), summary subtitle, and Google Photos badge button.
