@@ -2,6 +2,54 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-18 — Multimodal Data Pipeline-Tool Homepage Featured Post Selection (Release v0.7.22)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"Change the featured post to the pipeline tool, No need to run all the tests, just minimal. No screenshots needed. Merge and push."*
+
+### Problem & Diagnosis
+- The homepage (`index.html`) previously defaulted to selecting the newest post as the featured post. Jim requested setting the **Multimodal Data Pipeline-Tool** (`pipeline-tools-workbench`) as the featured post.
+
+### Root Cause & Technical Analysis
+- Updated `content/posts/pipeline-tools-workbench.md` with `featured: true` frontmatter.
+- Enhanced `theme/templates/index.html` to query `selectattr('featured', 'defined')|selectattr('featured')` or fall back to matching `slug == 'pipeline-tools-workbench'`, while filtering out the featured post from the adjacent Recent Stream column to prevent duplication.
+
+### Solution & Standard Procedure
+1. **Frontmatter Metadata**: Added `featured: true` to `content/posts/pipeline-tools-workbench.md`.
+2. **Template Selection Logic**: Updated `theme/templates/index.html` to dynamically highlight the featured article and loop over non-featured posts in the Recent Stream section.
+3. **Build & Release**: Executed minimal Pelican static build and targeted pytest verification. Bumped version to `v0.7.22`.
+
+## 2026-09-16 — Scoped Pure CSS Sticky Hero Photo Cover & Responsive Visual Enhancements (Release v0.7.21)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"Questions can we add a header photo that gets covered up as user scrolls down, no js"*
+> - *"Yes, lakefront on all top level pages, but not phone landscape, too small already. Different lakefront photo on each page"*
+> - *"No that didnt work, image needs to be at top, with overlay text. Photongets covered asnpagenscrolls down. Also we shouldn't try on all pages, wasted work. Restore all pages to previous state, do the new top photo and scrolling only for the photos page."*
+> - *"Thismismwhat I wanted, slide overe hero cover on photos page consider any other techniques found in the skills that apply ."*
+
+### Problem & Diagnosis
+1. **Scope & Excess Visual Density**:
+   - Applying sticky hero photo headers across all top-level pages created unnecessary visual clutter on reading-heavy text pages (Home, About, Posts, Links, Apps, AI).
+2. **Scrolling Slide-Cover Motion**:
+   - The Photos page needed a top hero header that sticks smoothly behind the scrolling stream of photo cards without requiring client-side JavaScript (strictly preserving zero-JS architecture).
+3. **Viewport & Typography Adaptability**:
+   - Fixed header heights and text sizes risk layout shifts (CLS), illegible text on smaller viewports, or cramped layouts on landscape smartphones.
+
+### Root Cause & Technical Analysis
+- Utilizing CSS `position: sticky; top: 0; z-index: 1` on `.photos-hero-header` combined with `.photo-stream { position: relative; z-index: 2; background-color: var(--bg); }` achieves a 100% pure CSS slide-over cover effect without any JavaScript.
+- Fluid typography via CSS `clamp()` (`clamp(1.35rem, 2.5vw + 0.7rem, 2.1rem)`) ensures smooth font scaling across viewports without breakpoint jumps.
+- Restricting hero headers on small landscape screens using media query (`@media (max-height: 500px) and (orientation: landscape)`) prevents viewport overlap.
+
+### Solution & Standard Procedure
+1. **Template Restoration (`theme/templates/base.html`)**:
+   - Restored standard clean header layout for all top-level pages (`index.html`, `about.html`, `posts.html`, `links.html`, `apps.html`, `ai.html`).
+2. **Dedicated Photos Hero Header (`theme/templates/photos.html`)**:
+   - Scoped sticky hero cover exclusively to `photos.html` with overlaid study title (`Chicago Lakefront & Sky`), summary subtitle, and Google Photos badge button.
+3. **Pure CSS Slide-Over Cover (`theme/static/css/style.css`)**:
+   - Applied `position: sticky; top: 0; z-index: 1`, `clamp()` fluid text scaling, `aspect-ratio: 16 / 7` CLS prevention, `min-height: 44px` touch targets, and `box-shadow: 0 -8px 24px rgba(0,0,0,0.18)` layer elevation.
+4. **Automated Verification & Visual Inspection**:
+   - Passed all 60 automated tests (`pytest -v`). Captured multi-resolution responsive snapshots in `v0721/`.
+
 ## 2026-09-15 — Intra-Page Provenance Attribution, Pure Markdown Shortcuts & Rule Codification (Release v0.7.12)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

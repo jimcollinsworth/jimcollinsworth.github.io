@@ -255,6 +255,111 @@ img, picture, video, canvas {
   margin-right: auto;
 }
 
+/* Photos Page Hero Header & Slide-Over Cover Effect (Photos Page Only, Zero JS) */
+.photos-hero-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  min-height: 220px;
+  max-height: 260px;
+  aspect-ratio: 16 / 7;
+  width: 100%;
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem 1.75rem;
+  box-shadow: inset 0 -30px 40px rgba(0, 0, 0, 0.35);
+  transition: min-height 0.2s ease;
+}
+
+.photos-hero-overlay {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+.photos-hero-header .photos-title {
+  color: #ffffff !important;
+  font-size: clamp(1.35rem, 2.5vw + 0.7rem, 2.1rem);
+  font-weight: 700;
+  margin: 0 0 0.4rem 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+  line-height: 1.25;
+}
+
+.photos-hero-header .photos-summary {
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-size: clamp(0.9rem, 1.2vw + 0.6rem, 1.05rem);
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
+}
+
+.photos-hero-header .google-photos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1f2022 !important;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.photos-hero-header .google-photos-badge:hover {
+  background: #ffffff;
+  color: #000000 !important;
+  transform: translateY(-1px);
+}
+
+.photos-page-body .photo-stream {
+  position: relative;
+  z-index: 2;
+  background-color: var(--bg);
+  border-radius: 6px 6px 0 0;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.18);
+  padding-top: 1.5rem;
+}
+
+/* Phone Landscape Exclusion: Disable photos hero banner on compact landscape screens */
+@media (max-height: 500px) and (orientation: landscape) {
+  .photos-hero-header {
+    display: none !important;
+  }
+  .photos-page-body .photo-stream {
+    box-shadow: none !important;
+    padding-top: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .photos-hero-header {
+    min-height: 160px;
+    padding: 1rem 1.15rem;
+  }
+  .photos-hero-overlay {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .photos-hero-header .photos-title {
+    font-size: 1.35rem;
+  }
+}
+
 /* Supersize Desktop (> 1360px) */
 @media (min-width: 1360px) {
   :root {

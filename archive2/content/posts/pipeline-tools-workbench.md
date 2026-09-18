@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Multimodal Data Pipeline-Tool"
 slug: "pipeline-tools-workbench"
 date: "2026-09-13"
@@ -6,6 +6,7 @@ category: "AI"
 author: "Jim Collinsworth"
 authors: "Jim Collinsworth, LLM-Gemini3.8"
 type: "APP"
+featured: true
 tags:
   - software
   - ai

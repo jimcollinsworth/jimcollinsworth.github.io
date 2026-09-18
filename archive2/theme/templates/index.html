@@ -9,13 +9,20 @@
 </div>
 
 {% set standard_articles = articles|rejectattr('type', 'equalto', 'IDEA')|list %}
+{% set featured_matches = standard_articles|selectattr('featured', 'defined')|selectattr('featured')|list %}
+{% if featured_matches %}
+  {% set featured = featured_matches[0] %}
+{% else %}
+  {% set featured = (standard_articles|selectattr('slug', 'equalto', 'pipeline-tools-workbench')|list)[0] or standard_articles[0] %}
+{% endif %}
+{% set stream_articles = standard_articles|rejectattr('slug', 'equalto', featured.slug)|list %}
+
 <div class="desktop-two-col">
   <!-- Main Column: Featured Long-form & Photo Spotlight -->
   <div class="main-column">
     <section>
       <h2>Featured Post</h2>
-      {% if standard_articles %}
-      {% set featured = standard_articles[0] %}
+      {% if featured %}
       <article class="post-item featured">
         <div class="post-header-row">
           <div class="post-header-left">
@@ -95,9 +102,9 @@
   <div class="sidebar-column">
     <section>
       <h2>Recent Stream <span class="header-all-link">(<a href="{{ SITEURL }}/posts.html">ALL</a>)</span></h2>
-      {% if standard_articles and standard_articles|length > 1 %}
+      {% if stream_articles %}
       <ul class="post-list">
-        {% for article in standard_articles[1:4] %}
+        {% for article in stream_articles[:3] %}
         <li class="post-item">
           <div class="post-header-row">
             <div class="post-header-left">
