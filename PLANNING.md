@@ -6,6 +6,11 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 52: Chicago Lakefront Sky Study Homepage Featured Post Selection (Completed - Release v0.7.23)**
+  - Frontmatter Metadata: added `featured: true` to `content/posts/sample-photo-post.md` and removed from `pipeline-tools-workbench.md`.
+  - Dynamic Homepage Selection: updated `theme/templates/index.html` fallback slug to `sample-photo-post`.
+  - Release & Version: rebuilt static site, verified test suite, and bumped version to `v0.7.23`.
+
 - [x] **Milestone 51: Multimodal Data Pipeline-Tool Homepage Featured Post Selection (Completed - Release v0.7.22)**
   - Frontmatter Metadata: added `featured: true` to `content/posts/pipeline-tools-workbench.md`.
   - Dynamic Homepage Selection: updated `theme/templates/index.html` to select the pipeline tool post as the featured post and filter recent stream items to prevent duplication.

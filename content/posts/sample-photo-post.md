@@ -4,6 +4,7 @@ date: 2026-09-15
 category: Mine
 tags: [photos, chicago, lakefront, sample]
 slug: sample-photo-post
+featured: true
 summary: "Sample post demonstrating standard Obsidian photo referencing and figure embeds."
 author: Jim Collinsworth
 ---

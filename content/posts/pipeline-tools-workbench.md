@@ -6,7 +6,6 @@ category: "AI"
 author: "Jim Collinsworth"
 authors: "Jim Collinsworth, LLM-Gemini3.8"
 type: "APP"
-featured: true
 tags:
   - software
   - ai

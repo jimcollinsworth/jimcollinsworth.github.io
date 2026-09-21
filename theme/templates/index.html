@@ -13,7 +13,7 @@
 {% if featured_matches %}
   {% set featured = featured_matches[0] %}
 {% else %}
-  {% set featured = (standard_articles|selectattr('slug', 'equalto', 'pipeline-tools-workbench')|list)[0] or standard_articles[0] %}
+  {% set featured = (standard_articles|selectattr('slug', 'equalto', 'sample-photo-post')|list)[0] or standard_articles[0] %}
 {% endif %}
 {% set stream_articles = standard_articles|rejectattr('slug', 'equalto', featured.slug)|list %}
 

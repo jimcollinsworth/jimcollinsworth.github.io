@@ -2,6 +2,23 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-09-21 — Chicago Lakefront Sky Study Homepage Featured Post Selection (Release v0.7.23)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"change featured post to lakefront study"*
+
+### Problem & Diagnosis
+- The homepage (`index.html`) previously featured the Multimodal Data Pipeline-Tool. Jim requested updating the featured post to the **Chicago Lakefront Sky Study** (`sample-photo-post`).
+
+### Root Cause & Technical Analysis
+- Updated `content/posts/sample-photo-post.md` with `featured: true` frontmatter and removed `featured: true` from `content/posts/pipeline-tools-workbench.md`.
+- Enhanced `theme/templates/index.html` fallback query to `'sample-photo-post'`.
+
+### Solution & Standard Procedure
+1. **Frontmatter Metadata**: Added `featured: true` to `content/posts/sample-photo-post.md`.
+2. **Template Selection Logic**: Updated `theme/templates/index.html` fallback slug to `sample-photo-post`.
+3. **Build & Release**: Rebuilt Pelican static output, verified test suite, and bumped version to `v0.7.23`.
+
 ## 2026-09-18 — Multimodal Data Pipeline-Tool Homepage Featured Post Selection (Release v0.7.22)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:
