@@ -142,7 +142,44 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
 ---
 
-## 5. Verification Checklist
+## 5. Discovered Pelican Patterns, Tips & Tricks
+
+1. **Resilient Jinja2 Logic for Empty Article Lists**:
+   - Always guard article indexing in templates with `{% if standard_articles %}` to prevent `UndefinedError: list object has no element 0` on newly initialized sites or sites with 0 articles:
+     ```jinja2
+     {% set standard_articles = articles|rejectattr('type', 'equalto', 'IDEA')|list %}
+     {% set featured_matches = standard_articles|selectattr('featured', 'defined')|selectattr('featured')|list %}
+     {% if featured_matches %}
+       {% set featured = featured_matches[0] %}
+     {% elif standard_articles %}
+       {% set featured = standard_articles[0] %}
+     {% else %}
+       {% set featured = none %}
+     {% endif %}
+     {% set stream_articles = standard_articles|rejectattr('slug', 'equalto', featured.slug)|list if featured else [] %}
+     ```
+
+2. **Automated Intra-Site Link & Wikilink Resolution (`pelicanconf.py`)**:
+   - Inheriting from `pelican.readers.MarkdownReader` allows automatic translation of Obsidian `[[wikilinks]]` and relative `.md` links into Pelican `{filename}` references (`{filename}/pages/about.md` or `{filename}/posts/...`), preventing broken links on static output pages.
+
+3. **Pure CSS Zero-JS Sticky Slide-Cover**:
+   - Stack pinned background header (`position: sticky; top: 0; z-index: 1`) behind scrolling body container (`position: relative; z-index: 2; background-color: var(--bg); box-shadow: ...`). Use `@media (max-height: 500px) and (orientation: landscape)` to automatically hide the sticky header on small landscape smartphones.
+
+4. **Dynamic Image Src Resolution & HTML5 Figure Wrapping**:
+   - Standardize `![alt](attachments/photo.jpg)` into semantic `<figure><img ...><figcaption>alt</figcaption></figure>`. Automatically adjust `src` depth (`../attachments/photo.jpg` for nested post pages vs `attachments/photo.jpg` for top-level pages).
+
+5. **Responsive Mobile Table Scroll Containers**:
+   - AST post-processing of `<table>` elements into `<div class="table-container" style="overflow-x: auto;">` prevents narrow mobile viewports from breaking layout alignment.
+
+6. **Pure Markdown Provenance Shortcuts**:
+   - Translate inline shortcuts (`[Mine]`, `[AI]`, `[Me]`, `[Ours]`, `[Theirs]`, `[AI+Mine]`) into accessible inline SVG badges with tooltips and ARIA attributes at build time.
+
+7. **Theme Reusability & Modular Pathing**:
+   - Configure modular theme paths via `THEME = 'themes/lakefront'` (or `THEME = 'theme'`) for instant deployment across multiple sites.
+
+---
+
+## 6. Verification Checklist
 
 After running a build:
 1. **Zero-JS Check**: Verify no `<script>` tags were introduced into content pages.
