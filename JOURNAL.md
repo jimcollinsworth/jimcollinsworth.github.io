@@ -2,6 +2,25 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-10-05 — Pelican Site Manager Skill Documentation & Refinements (Release v0.7.23.01)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"can we try a test push, and status update, what to work on next, /pelican-site-manager /pelican-obsidian-bridge"*
+> - *"merge the branch with main and push, it's just a doc/skill update. update version id just a tiny amount and build, push and publish"*
+
+### Problem & Diagnosis
+- The `pelican-site-manager` skill needed persistent documentation updates capturing discovered patterns (category internals, URLWrapper setters, and scaffolding templates).
+- Jim requested merging the documentation branch into `main`, incrementing the version by a minor increment, building static output, and publishing to GitHub Pages.
+
+### Root Cause & Technical Analysis
+- Documented discovered Pelican patterns and scaffolding conventions directly in `.agents/skills/pelican-site-manager/SKILL.md`.
+- Incremented site version to `v0.7.23.01` across `pyproject.toml` and `theme/templates/about-this-site.html`.
+
+### Solution & Standard Procedure
+1. **Skill Documentation**: Updated `.agents/skills/pelican-site-manager/SKILL.md` with explicit placeholder conventions and discovered Pelican architecture patterns.
+2. **Version Synchronization**: Bumped version to `0.7.23.01` in `pyproject.toml` and dashboard templates.
+3. **Build & Release**: Rebuilt Pelican static site output, verified unit test suite, merged into `main`, and published to GitHub Pages.
+
 ## 2026-09-21 — Chicago Lakefront Sky Study Homepage Featured Post Selection (Release v0.7.23)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:

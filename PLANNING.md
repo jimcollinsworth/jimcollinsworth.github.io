@@ -6,6 +6,11 @@
 
 ## Active Status & Milestones
 
+- [x] **Milestone 53: Pelican Site Manager Skill Documentation & Refinements (Completed - Release v0.7.23.01)**
+  - Skill Documentation: updated `.agents/skills/pelican-site-manager/SKILL.md` with explicit placeholder conventions, URLWrapper setters, and category pruning patterns.
+  - Version & Synchronization: updated `pyproject.toml` and `theme/templates/about-this-site.html` to `v0.7.23.01`.
+  - Build & Release: rebuilt static site output, verified test suite, merged branch to `main`, and published to GitHub Pages.
+
 - [x] **Milestone 52: Chicago Lakefront Sky Study Homepage Featured Post Selection (Completed - Release v0.7.23)**
   - Frontmatter Metadata: added `featured: true` to `content/posts/sample-photo-post.md` and removed from `pipeline-tools-workbench.md`.
   - Dynamic Homepage Selection: updated `theme/templates/index.html` fallback slug to `sample-photo-post`.
