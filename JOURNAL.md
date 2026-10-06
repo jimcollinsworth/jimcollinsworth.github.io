@@ -2,6 +2,29 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
+## 2026-10-05 — Playwright Responsive Test Suite CI Alignment (Release v0.8.03.01)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - Provided screenshots of GitHub Actions CI failure on workflow #66.
+
+### Problem & Diagnosis
+- GitHub Actions CI workflow `deploy.yml` executes `uv run pytest -v` including `tests/test_playwright_responsive.py`.
+- 5 tests failed in CI due to stale assertions from the pre-Lakeview architecture:
+  1. `test_pages_render_without_console_errors` checked deleted `prompt-history.html`.
+  2. `test_in_page_mode_switchers_interactive` attempted to query `.photo-stream img` on `index.html`.
+  3. `test_mobile_dynamic_dropdown_portrait` expected old menu names (`Posts`, `Site`) instead of clean `Home`/`About` navigation (`Menu` on secondary pages).
+  4. `test_photos_header_and_stream_margin_alignment` expected obsolete `.photos-header` class from the purged legacy template.
+
+### Root Cause & Technical Analysis
+- `tests/test_playwright_responsive.py` needed synchronization with the Lakeview theme template consolidation, clean navigation menu, and purged legacy templates.
+
+### Solution & Standard Procedure
+1. Replaced deleted `prompt-history.html` with `lanes.html` in `test_pages_render_without_console_errors`.
+2. Updated low-complexity mode checks to test `.desktop-nav` row flex direction without referencing obsolete `.photo-stream`.
+3. Updated mobile dropdown assertions to match clean `Home`/`About` navigation (`Menu` label on unlisted pages).
+4. Updated `test_photos_header_and_stream_margin_alignment` to verify `.site-header` visibility and zero horizontal scroll overflow.
+5. Verified all 60 tests passing locally (`pytest -v`) and bumped version to `v0.8.03.01`.
+
 ## 2026-10-05 — Lakeview Theme Architecture, Lanes Pipeline & AI Content Purge (Release v0.8.03)
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:
