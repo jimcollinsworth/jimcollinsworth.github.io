@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "category_icon.html" import article_provenance %}
+
+{% block title %}Ideas &mdash; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <div class="post-header-row" style="margin-bottom: 1.5rem;">
+    <div class="post-header-left">
+      <a href="{{ SITEURL }}/index.html" class="post-back-arrow" title="Home" aria-label="Home">&larr;</a>
+      <h1 class="page-title" style="margin: 0; font-size: 1.6rem;">Ideas</h1>
+    </div>
+  </div>
+</header>
+
+{% if page and page.content %}
+<div class="page-intro">
+  {{ page.content }}
+</div>
+{% endif %}
+
+<div class="ideas-container">
+  <ul class="ideas-list">
+    {% for article in articles if article.type == 'IDEA' %}
+    <li class="idea-item">
+      <span class="idea-icon">{{ article_provenance(article) }}</span>
+      <a href="{{ SITEURL }}/{{ article.url }}" class="idea-title-link">{{ article.title }}</a>
+      {% if article.category %}
+      <a href="{{ SITEURL }}/lanes/{{ article.category.slug }}.html" class="post-lane-pill">{{ article.category }}</a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

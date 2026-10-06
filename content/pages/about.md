@@ -1,6 +1,8 @@
 ---
-title: "About"
-slug: "about"
+title: About
+slug: about
+status: published
+template: page
 ---
 
 I'm newly retired this year after 50 years of working with software and clients. 20 years at Arthur Andersen, then as a guitarist, back to software and a couple startups, and finally finishing up with a data science job after the pandemic. Now I get to sit back (hopefully) and enjoy family, continue learning, exercise, the Chicago lakefront, AI, and ongoing change and innovation.

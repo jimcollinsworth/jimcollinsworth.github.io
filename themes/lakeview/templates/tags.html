@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Tags &mdash; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <h1 class="page-title" style="margin-bottom: 1.5rem;">Tags</h1>
+</header>
+
+<div class="tags-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
+  {% for t, t_articles in tags %}
+  <article class="tag-card" style="border: 1px solid var(--border); background-color: var(--bg-card); padding: 1rem; border-radius: 6px;">
+    <h2 style="font-size: 1.1rem; margin-top: 0; margin-bottom: 0.35rem;">
+      <a href="{{ SITEURL }}/{{ t.url }}">{{ t.title or t }}</a>
+    </h2>
+    <div style="font-size: 0.82rem; color: var(--text-muted);">
+      {{ t_articles|length }} post{% if t_articles|length != 1 %}s{% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}

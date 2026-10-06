@@ -1,24 +1,28 @@
-﻿---
-title: "Photo Viewer & Drive Manifest Explorer"
-slug: "photo-viewer-drive-manifest-explorer"
-date: "2026-09-11"
-category: "AI"
-author: "Jim Collinsworth"
-authors: "Jim Collinsworth, LLM-Gemini3.8"
-type: "APP"
-tags:
-  - photography
-  - software
-  - media
-  - sony-a7iv
-summary: "A client-side photo viewer that parses tabular markdown and JSON manifests from content/data/photos.json, featuring keyboard navigation, camera telemetry, and Google Drive RAW links."
 ---
+title: Photo Viewer & Drive Manifest Explorer
+slug: photo-viewer-drive-manifest-explorer
+date: '2026-09-11'
+category: software
+author: Jim Collinsworth
+authors: Jim Collinsworth, LLM-Gemini3.8
+type: APP
+tags:
+- mine
+- photo-viewer
+- photography
+- apps
+summary: A client-side photo viewer that parses tabular markdown and JSON manifests
+  from content/data/photos.json, featuring keyboard navigation, camera telemetry,
+  and Google Drive RAW links.
+status: published
+---
+
 
 The **Photo Viewer & Drive Manifest Explorer** is a responsive client-side application designed to browse photo collections from central data manifests. It pairs lightweight previews with full camera telemetry and direct resolution to original RAW camera files hosted in Google Drive.
 
 [Launch Full-Screen App &rarr;](../apps/photo-viewer/index.html){: .app-launch-btn }
 
-![Photo Viewer & Drive Manifest Explorer with filmstrip navigation and camera metadata inspector.](../images/photo-viewer-app.png)
+![Photo Viewer & Drive Manifest Explorer with filmstrip navigation and camera metadata inspector.](../media/images/photo-viewer-app.png)
 
 ## Design & Architecture
 

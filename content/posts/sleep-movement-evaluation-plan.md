@@ -1,17 +1,20 @@
 ---
-title: "Sleep Health & Movement Evaluation Plan"
-date: "2026-09-07"
-category: "Mine"
+title: Sleep Health & Movement Evaluation Plan
+date: '2026-09-07'
+category: health
 tags:
-  - health
-  - tai-chi
-  - sleep
-type: "SPEC"
+- me
+- tai-chi
+- sleep
+- biodata
+type: SPEC
 previous_types:
-  - IDEA
-  - LOG
-slug: "sleep-movement-evaluation-plan"
-summary: "Addressing sleep movement issues, limb twitching, and non-pharmaceutical clinical assessment pathways."
+- IDEA
+- LOG
+slug: sleep-movement-evaluation-plan
+summary: Addressing sleep movement issues, limb twitching, and non-pharmaceutical
+  clinical assessment pathways.
+status: published
 ---
 
 Addressing sleep movement issues (periodic limb twitching, vocalization during sleep) and their impact on partner Sheryl. Avoiding pharmaceutical dependence; prioritizing lifestyle, nutrition, physical alignment, and integrative approaches.

@@ -1,15 +1,18 @@
 ---
-title: "Cordoba Stage Nylon Electric Guitar"
-date: "2026-09-05"
-category: "Mine"
+title: Cordoba Stage Nylon Electric Guitar
+date: '2026-09-05'
+category: music
 tags:
-  - music
-  - guitar
-type: "WIP"
+- mine
+- guitar
+- nylon-string
+- gear
+type: WIP
 previous_types:
-  - IDEA
-slug: "cordoba-stage-guitar"
-summary: "Thin-line acoustic-electric nylon string guitar in Edge Burst finish."
+- IDEA
+slug: cordoba-stage-guitar
+summary: Thin-line acoustic-electric nylon string guitar in Edge Burst finish.
+status: published
 ---
 
 Thin-line acoustic-electric nylon string guitar in Edge Burst finish.

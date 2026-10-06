@@ -1,11 +1,10 @@
 """
 pelicanconf.py — Pelican Static Site Generator Configuration
-for jimcollinsworth.github.io
+for jimcollinsworth.github.io (Lakeview Theme & Lanes Pipeline)
 """
 
 from __future__ import annotations
 
-import json
 import re
 from pathlib import Path
 from typing import Any
@@ -20,18 +19,10 @@ SITENAME = 'Jim Collinsworth'
 SITESUBTITLE = 'Out of My Lane'
 SITEURL = ''
 
-# Navigation Menu Configuration
-# Permanent core items (Home, About, Posts) + configurable custom pages.
-# Any custom page can also set `menu: true` in frontmatter to appear automatically.
+# Navigation Menu Configuration — strictly Home and About
 MENUITEMS = (
     ('Home', '/index.html', 'index.html'),
     ('About', '/about.html', 'about'),
-    ('Posts', '/posts.html', 'posts.html'),
-    ('AI', '/ai.html', 'ai'),
-    ('Links', '/links.html', 'links'),
-    ('Photos', '/photos.html', 'photos'),
-    ('Apps', '/apps.html', 'apps'),
-    ('Site', '/about-this-site.html', 'about-this-site'),
 )
 
 PATH = 'content'
@@ -42,7 +33,12 @@ DEFAULT_LANG = 'en'
 # Source directory layout
 ARTICLE_PATHS = ['posts', 'ideas']
 PAGE_PATHS = ['pages']
-STATIC_PATHS = ['images', 'attachments', 'extra', 'apps', 'data']
+STATIC_PATHS = ['media', 'extra', 'apps', 'data']
+
+# Default all articles and pages to draft status
+DEFAULT_METADATA = {
+    'status': 'draft',
+}
 
 # Copy root-level metadata files
 EXTRA_PATH_METADATA = {
@@ -58,27 +54,35 @@ ARTICLE_URL = 'posts/{slug}.html'
 ARTICLE_SAVE_AS = 'posts/{slug}.html'
 PAGE_URL = '{slug}.html'
 PAGE_SAVE_AS = '{slug}.html'
-CATEGORY_URL = 'category/{slug}.html'
-CATEGORY_SAVE_AS = 'category/{slug}.html'
+
+# Categories mapped to Lanes
+CATEGORY_URL = 'lanes/{slug}.html'
+CATEGORY_SAVE_AS = 'lanes/{slug}.html'
+CATEGORIES_URL = 'lanes.html'
+CATEGORIES_SAVE_AS = 'lanes.html'
+
+# Tags
+TAG_URL = 'tags/{slug}.html'
+TAG_SAVE_AS = 'tags/{slug}.html'
+TAGS_URL = 'tags.html'
+TAGS_SAVE_AS = 'tags.html'
+
 ARCHIVES_SAVE_AS = 'posts.html'
 INDEX_SAVE_AS = 'index.html'
-CATEGORIES_SAVE_AS = ''
 
-# Disable author and tag pages
-TAGS_SAVE_AS = ''
-TAG_SAVE_AS = ''
+# Disable authors
 AUTHOR_SAVE_AS = ''
 AUTHORS_SAVE_AS = ''
 
-# Disable feeds (pure static site)
+# Feeds disabled for development
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Custom theme
-THEME = 'theme'
+# Custom Lakeview Theme
+THEME = 'themes/lakeview'
 
 # Markdown extensions
 MARKDOWN = {
@@ -96,75 +100,6 @@ RELATIVE_URLS = True
 # Disable caching for clean, deterministic builds
 LOAD_CONTENT_CACHE = False
 DELETE_OUTPUT_DIR = True
-
-# Site summary data (AI haiku summary)
-_SUMMARY_FILE = Path(__file__).parent / 'content' / 'data' / 'site-summary.json'
-if _SUMMARY_FILE.exists():
-    try:
-        SITE_SUMMARY = json.loads(_SUMMARY_FILE.read_text(encoding='utf-8'))
-    except Exception:
-        SITE_SUMMARY = None
-else:
-    SITE_SUMMARY = None
-
-# Development prompts data (extracted from JOURNAL.md)
-_DEV_PROMPTS_FILE = Path(__file__).parent / 'content' / 'data' / 'dev-prompts.json'
-if _DEV_PROMPTS_FILE.exists():
-    try:
-        DEV_PROMPTS = json.loads(_DEV_PROMPTS_FILE.read_text(encoding='utf-8'))
-    except Exception:
-        DEV_PROMPTS = None
-else:
-    DEV_PROMPTS = None
-
-# Recent releases data with exact timestamps
-RECENT_RELEASES = [
-    {
-        "version": "v0.7.12",
-        "timestamp": "Sept 15 2026, 11:45 AM CDT",
-        "summary": "Intra-page provenance attribution, pure markdown shortcuts for Mine/AI, & rule codification",
-    },
-    {
-        "version": "v0.7.11",
-        "timestamp": "Sept 15 2026, 11:08 AM CDT",
-        "summary": "Margin alignment across viewports, edge-to-edge photo bleed, static data table removal from apps & table scrollbars",
-    },
-    {
-        "version": "v0.7.10",
-        "timestamp": "Sept 15 2026, 9:38 AM CDT",
-        "summary": "Chat bubbles for prompts, AI haiku summary generator, mobile header simplification & compact buttons",
-    },
-    {
-        "version": "v0.7.9.01",
-        "timestamp": "Sept 15 2026, 8:58 AM CDT",
-        "summary": "Date architecture simplification (date as occurrence) & pure markdown validation",
-    },
-    {
-        "version": "v0.7.9",
-        "timestamp": "Sept 14 2026, 4:50 PM CDT",
-        "summary": "Google Photos header badge, dedicated ideas directory, 2 new ideas",
-    },
-    {
-        "version": "v0.7.8",
-        "timestamp": "Sept 14 2026, 4:30 PM CDT",
-        "summary": "Pure Markdown migration, automatic intra-site link resolution & blueprints",
-    },
-    {
-        "version": "v0.7.7",
-        "timestamp": "Sept 14 2026, 3:33 PM CDT",
-        "summary": "Homepage photo spotlight & photo asset size management standards",
-    },
-    {
-        "version": "v0.7.6",
-        "timestamp": "Sept 14 2026, 2:59 PM CDT",
-        "summary": "Condensed ideas stream & feed isolation",
-    },
-    {
-        "version": "v0.7.5",
-        "timestamp": "Sept 14 2026, 12:10 PM CDT",
-        "summary": "Provenance stream relocation to About Site & bio update",
-    },
-]
 
 
 class ObsidianMarkdownReader(MarkdownReader):
@@ -203,6 +138,8 @@ class ObsidianMarkdownReader(MarkdownReader):
             clean_target = target.removesuffix('.md').removesuffix('.markdown')
             if clean_target == 'posts':
                 return f'[{label}]({link_prefix}posts.html)'
+            if clean_target in ('lanes', 'categories'):
+                return f'[{label}]({link_prefix}lanes.html)'
             resolved = file_map.get(target) or file_map.get(clean_target) or file_map.get(f'{clean_target}.md')
             if resolved:
                 return f'[{label}]({{filename}}/{resolved})'
@@ -220,6 +157,9 @@ class ObsidianMarkdownReader(MarkdownReader):
             if clean in ('posts.md', 'posts.markdown', 'posts'):
                 frag = target[len(clean):]
                 return f'[{label}]({link_prefix}posts.html{frag})'
+            if clean in ('lanes.md', 'lanes', 'categories.md', 'categories'):
+                frag = target[len(clean):]
+                return f'[{label}]({link_prefix}lanes.html{frag})'
             if clean.endswith(('.md', '.markdown')):
                 clean_name = Path(clean).name
                 clean_stem = Path(clean).stem
@@ -242,10 +182,10 @@ class ObsidianMarkdownReader(MarkdownReader):
             alt = img_match.group(2).strip()
             src_match = re.search(r'src="([^"]+)"', full_tag)
             src = src_match.group(1).strip()
-            if is_post and (src.startswith('images/') or src.startswith('attachments/')):
+            if is_post and (src.startswith('media/') or src.startswith('images/') or src.startswith('attachments/')):
                 src = '../' + src
-            elif not is_post and (src.startswith('../images/') or src.startswith('../attachments/')):
-                src = src[3:]
+            elif not is_post and src.startswith('../'):
+                src = src.lstrip('../')
 
             return (
                 f'<figure>\n'
@@ -265,58 +205,30 @@ class ObsidianMarkdownReader(MarkdownReader):
 
         return re.sub(r'<table\b[^>]*>.*?</table>', table_repl, html, flags=re.DOTALL)
 
-    def _decorate_provenance_badges(self, html: str) -> str:
-        category_svgs = {
-            'Me': '<span class="category-badge" title="Provenance: Me" aria-label="Provenance: Me"><svg class="category-icon icon-me" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>',
-            'Mine': '<span class="category-badge" title="Provenance: Mine" aria-label="Provenance: Mine"><svg class="category-icon icon-mine" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span>',
-            'AI': '<span class="category-badge" title="Provenance: AI" aria-label="Provenance: AI"><svg class="category-icon icon-ai" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span>',
-            'Ours': '<span class="category-badge" title="Provenance: Ours" aria-label="Provenance: Ours"><svg class="category-icon icon-ours" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-3-3.87"></path><path d="M7 21v-2a4 4 0 0 1 3-3.87"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>',
-            'Theirs': '<span class="category-badge" title="Provenance: Theirs" aria-label="Provenance: Theirs"><svg class="category-icon icon-theirs" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 2-2 3-3 4"></path></svg></span>',
-        }
-        dual_ai_mine = '<span class="category-badge dual-badge" title="Provenance: AI & Mine" aria-label="Provenance: AI and Mine"><svg class="category-icon icon-ai" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg><svg class="category-icon icon-mine" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: 2px;"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg></span>'
-
-        # Dual provenance shortcuts
-        html = html.replace('[AI+Mine]', dual_ai_mine).replace('[Mine+AI]', dual_ai_mine)
-
-        # Single provenance shortcuts: [Mine], [AI], [Me], [Ours], [Theirs]
-        for cat_name, badge_html in category_svgs.items():
-            html = html.replace(f'[{cat_name}]', badge_html)
-            html = html.replace(f'<li><strong>{cat_name}</strong>:', f'<li>{badge_html} <strong>{cat_name}</strong>:')
-
-        return html
-
     def read(self, source_path: str) -> tuple[str, dict[str, Any]]:
         self._source_path = source_path
         self._md = Markdown(**self.settings['MARKDOWN'])
         extra_meta: dict[str, Any] = {}
 
         with pelican_open(source_path) as text:
-            m = re.match(r'^---\s*\n(.*?)\n---\s*\n(.*)$', text, re.DOTALL)
+            # Strip UTF-8 BOM if present
+            if text.startswith('\ufeff'):
+                text = text[1:]
+
+            m = re.match(r'^---\s*\r?\n(.*?)\r?\n---\s*\r?\n(.*)$', text, re.DOTALL)
             if m:
                 raw_meta, body = m.groups()
                 parsed = yaml.safe_load(raw_meta) or {}
 
-                # Category: Provenance (Me, Mine, AI, Ours, Theirs)
-                cat = parsed.get('category') or parsed.get('lanes')
-                if isinstance(cat, list) and cat:
-                    raw_cat = str(cat[0]).strip()
-                elif isinstance(cat, str) and cat:
-                    raw_cat = str(cat.split(',')[0]).strip()
-                else:
-                    raw_cat = 'Mine'
-
-                # Normalize 'AI Generated' -> 'AI', support Me, Mine, Ours, Theirs
-                raw_lower = raw_cat.lower()
-                if raw_lower in ['ai generated', 'ai-generated', 'ai']:
-                    parsed['category'] = 'AI'
-                elif raw_lower == 'me':
-                    parsed['category'] = 'Me'
-                elif raw_lower == 'ours':
-                    parsed['category'] = 'Ours'
-                elif raw_lower == 'theirs':
-                    parsed['category'] = 'Theirs'
-                else:
-                    parsed['category'] = 'Mine'
+                # Normalize category/lanes in parsed dict for Pelican metadata parser
+                if 'category' in parsed and parsed['category']:
+                    parsed['category'] = str(parsed['category']).strip()
+                elif 'lanes' in parsed and parsed['lanes']:
+                    raw_lane = parsed['lanes']
+                    if isinstance(raw_lane, list):
+                        parsed['category'] = str(raw_lane[0]).strip()
+                    else:
+                        parsed['category'] = str(raw_lane).split(',')[0].strip()
 
                 # Menu configuration support for pages
                 if 'menu' in parsed:
@@ -334,13 +246,9 @@ class ObsidianMarkdownReader(MarkdownReader):
                     parsed['type'] = str(parsed['type']).strip().upper()
                     extra_meta['type'] = parsed['type']
 
-                # Type evolution: optional list of previous types
-                if 'previous_types' in parsed and parsed['previous_types']:
-                    raw_prev = parsed['previous_types']
-                    if isinstance(raw_prev, list):
-                        extra_meta['previous_types'] = [str(x).strip().upper() for x in raw_prev if str(x).strip()]
-                    elif isinstance(raw_prev, str):
-                        extra_meta['previous_types'] = [x.strip().upper() for x in raw_prev.split(',') if x.strip()]
+                # Featured status
+                if 'featured' in parsed:
+                    extra_meta['featured'] = bool(parsed['featured'])
 
                 # Automatic link resolution for Obsidian Markdown links
                 resolved_body = self._resolve_links(body)
@@ -358,24 +266,15 @@ class ObsidianMarkdownReader(MarkdownReader):
             content = self._md.convert(text)
             content = self._wrap_figures(content)
             content = self._wrap_tables(content)
-            content = self._decorate_provenance_badges(content)
 
         if hasattr(self._md, 'Meta'):
             metadata = self._parse_metadata(self._md.Meta)
         else:
             metadata = {}
 
-        # Assign post type, type evolution lineage, and menu settings
-        if 'type' in extra_meta:
-            metadata['type'] = extra_meta['type']
-        if 'previous_types' in extra_meta:
-            metadata['previous_types'] = extra_meta['previous_types']
-        if 'menu' in extra_meta:
-            metadata['menu'] = extra_meta['menu']
-        if 'menu_order' in extra_meta:
-            metadata['menu_order'] = extra_meta['menu_order']
-        if 'menu_title' in extra_meta:
-            metadata['menu_title'] = extra_meta['menu_title']
+        # Transfer extra parsed metadata
+        for k, v in extra_meta.items():
+            metadata[k] = v
 
         # Route ideas to output/ideas/{slug}.html
         if 'ideas' in Path(source_path).parts:
@@ -389,9 +288,85 @@ class ObsidianMarkdownReader(MarkdownReader):
         return content, metadata
 
 
+def merge_lane_and_tag_metadata(generator: Any) -> None:
+    """
+    Pelican signal handler to enrich Category (Lane) and Tag objects with
+    authored Markdown prose, titles, summaries, and icons from content/lanes/
+    or content/categories/ and content/tags/.
+    Also prunes ghost categories so only authored lanes are emitted.
+    """
+    content_dir = Path(generator.settings.get('PATH', 'content')).resolve()
+    lanes_dirs = [content_dir / 'lanes', content_dir / 'categories']
+    tags_dir = content_dir / 'tags'
+    md_parser = Markdown(**generator.settings.get('MARKDOWN', {}))
+
+    # 1. Enrich Categories / Lanes
+    authored_lanes: dict[str, dict[str, Any]] = {}
+    for l_dir in lanes_dirs:
+        if l_dir.exists():
+            for p in l_dir.glob('*.md'):
+                slug = p.stem.lower()
+                text = p.read_text(encoding='utf-8-sig')
+                m = re.match(r'^---\s*\r?\n(.*?)\r?\n---\s*\r?\n(.*)$', text, re.DOTALL)
+                if m:
+                    meta = yaml.safe_load(m.group(1)) or {}
+                    body = m.group(2).strip()
+                    intro_html = md_parser.convert(body) if body else ''
+                    authored_lanes[slug] = {
+                        'title': meta.get('title', slug.capitalize()),
+                        'icon': meta.get('icon', ''),
+                        'summary': meta.get('summary', ''),
+                        'image': meta.get('image', ''),
+                        'intro_html': intro_html,
+                    }
+
+    # Filter categories in generator: keep only those with authored markdown files
+    retained_categories: list[Any] = []
+    for cat, articles in generator.categories:
+        slug = cat.slug.lower()
+        if slug in authored_lanes:
+            lane_data = authored_lanes[slug]
+            cat.name = lane_data['title']
+            cat.slug = slug  # Re-assert slug after name assignment
+            cat.title = lane_data['title']
+            cat.icon = lane_data['icon']
+            cat.summary = lane_data['summary']
+            cat.image = lane_data['image']
+            cat.intro_html = lane_data['intro_html']
+            for art in articles:
+                art.category = cat
+            retained_categories.append((cat, articles))
+        else:
+            # Orphaned category lacking a definition file: clear category pointer on articles
+            for art in articles:
+                art.category = None
+
+    generator.categories = retained_categories
+
+    # 2. Enrich Tags
+    if tags_dir.exists():
+        for p in tags_dir.glob('*.md'):
+            slug = p.stem.lower()
+            text = p.read_text(encoding='utf-8-sig')
+            m = re.match(r'^---\s*\r?\n(.*?)\r?\n---\s*\r?\n(.*)$', text, re.DOTALL)
+            if m:
+                meta = yaml.safe_load(m.group(1)) or {}
+                body = m.group(2).strip()
+                intro_html = md_parser.convert(body) if body else ''
+            if hasattr(generator, 'tags'):
+                tags_iter = generator.tags.items() if isinstance(generator.tags, dict) else generator.tags
+                for item in tags_iter:
+                    tag = item[0] if isinstance(item, tuple) else item
+                    if tag.slug.lower() == slug:
+                        tag.title = meta.get('title', slug.capitalize())
+                        tag.summary = meta.get('summary', '')
+                        tag.intro_html = intro_html
+
+
 def add_obsidian_reader(readers_instance: Any) -> None:
     readers_instance.reader_classes['md'] = ObsidianMarkdownReader
     readers_instance.reader_classes['markdown'] = ObsidianMarkdownReader
 
 
 signals.readers_init.connect(add_obsidian_reader)
+signals.article_generator_finalized.connect(merge_lane_and_tag_metadata)

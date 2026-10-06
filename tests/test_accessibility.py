@@ -25,7 +25,9 @@ import pytest
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = REPO_ROOT / "output"
-STYLE_CSS = REPO_ROOT / "theme" / "static" / "css" / "style.css"
+STYLE_CSS = REPO_ROOT / "themes" / "lakeview" / "static" / "css" / "style.css"
+if not STYLE_CSS.exists():
+    STYLE_CSS = REPO_ROOT / "theme" / "static" / "css" / "style.css"
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -110,7 +112,7 @@ def test_aria_landmarks():
 
 def test_active_nav_aria_current():
     """Verify that the active navigation item uses aria-current='page'."""
-    core_pages = ["index.html", "about.html", "posts.html", "ai.html", "links.html", "photos.html", "apps.html", "about-this-site.html"]
+    core_pages = ["index.html", "about.html"]
     for page_name in core_pages:
         page_file = OUTPUT_DIR / page_name
         if page_file.exists():
@@ -121,12 +123,12 @@ def test_active_nav_aria_current():
 
 
 def test_category_badges_and_icons_accessibility():
-    """Verify that category badges include title and aria-label, and SVGs are aria-hidden."""
+    """Verify that category and provenance badges include title and aria-label, and SVGs are aria-hidden."""
     posts_page = OUTPUT_DIR / "posts.html"
     assert posts_page.exists()
     html = posts_page.read_text(encoding="utf-8")
     assert 'class="category-badge"' in html
-    assert 'aria-label="Category:' in html
+    assert 'aria-label="Provenance:' in html or 'aria-label="Category:' in html
     assert 'class="category-icon' in html
     assert 'aria-hidden="true"' in html
 

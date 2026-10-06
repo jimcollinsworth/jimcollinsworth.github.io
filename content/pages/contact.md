@@ -1,6 +1,8 @@
 ---
-title: "Contact"
-slug: "contact"
+title: Contact
+slug: contact
+status: published
+template: page
 ---
 
 **Contact &amp; Correspondence** &mdash; Reach out with thoughts, collaborations, or questions regarding any of the explorations across *Out of My Lane*.

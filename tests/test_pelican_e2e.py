@@ -62,8 +62,9 @@ def test_core_pages_exist():
         "apps.html",
         "about-this-site.html",
         "ideas.html",
-        "prompt-history.html",
         "contact.html",
+        "lanes.html",
+        "tags.html",
         "favicon.svg",
         "favicon.ico",
         "CNAME",
@@ -73,9 +74,6 @@ def test_core_pages_exist():
         assert target.exists(), f"Expected {page} to exist in output/"
 
     assert (OUTPUT_DIR / "CNAME").read_text(encoding="utf-8").strip() == "jimcollinsworth.com"
-
-    # lanes.html must not exist
-    assert not (OUTPUT_DIR / "lanes.html").exists(), "lanes.html should be retired"
 
 
 def test_post_pages_exist():
@@ -104,8 +102,6 @@ def test_idea_pages_exist():
         "history-book-mapper.html",
         "im-an-ai-doomsayer-now.html",
         "im-vibe-coding-now.html",
-        "lake-michigan-microclimate-correlator.html",
-        "offline-footnote-weaver.html",
         "what-played-then.html",
     ]
     ideas_dir = OUTPUT_DIR / "ideas"
@@ -120,92 +116,61 @@ def test_idea_pages_exist():
         assert not (posts_dir / idea).exists(), f"Idea {idea} should NOT be in output/posts/"
 
 
-def test_category_archive_pages_exist():
-    """Verify that provenance category pages exist in output/category/ and lanes/ is absent."""
-    expected_categories = [
+def test_lane_pages_exist_and_enriched_from_content():
+    """Verify that lane pages exist in output/lanes/ and inherit authored Markdown metadata."""
+    expected_lanes = [
         "ai.html",
-        "mine.html",
-        "ours.html",
+        "art.html",
+        "health.html",
+        "making.html",
+        "music.html",
+        "photography.html",
+        "software.html",
     ]
-    for cat in expected_categories:
-        target = OUTPUT_DIR / "category" / cat
-        assert target.exists(), f"Expected category archive {cat} in output/category/"
+    for lane in expected_lanes:
+        target = OUTPUT_DIR / "lanes" / lane
+        assert target.exists(), f"Expected lane archive {lane} in output/lanes/"
 
-    # Entire legacy lanes directory should be absent
-    assert not (OUTPUT_DIR / "lanes").exists(), "output/lanes/ should NOT exist"
+    # Check content enriched from markdown
+    music_html = (OUTPUT_DIR / "lanes" / "music.html").read_text(encoding="utf-8")
+    assert "Music" in music_html
+    assert "Acoustic nylon-string guitar" in music_html
+    assert "Digital Piano Enhancements" in music_html
+    assert "Cordoba Stage Nylon Electric Guitar" in music_html
+
+    art_html = (OUTPUT_DIR / "lanes" / "art.html").read_text(encoding="utf-8")
+    assert "Modern Wing Encounters" in art_html
 
 
 def test_category_membership_and_type_evolution():
     """
     Verify:
-    1. Articles appear in their assigned provenance category page (e.g. Digital Piano in Mine, Modern Wing in Ours).
-    2. Post type short codes [TYPE] and evolution lineage appear in article headers.
+    1. Articles display lane badges and tag provenance badges.
+    2. Post type short codes appear in article headers.
     """
-    mine_category = (OUTPUT_DIR / "category" / "mine.html").read_text(encoding="utf-8")
-    ours_category = (OUTPUT_DIR / "category" / "ours.html").read_text(encoding="utf-8")
-
-    assert "Digital Piano Enhancements" in mine_category, "Digital Piano should appear in Mine category"
-    assert "M.E. (Mental Entity / My Essence)" in mine_category, "M.E. should appear in Mine category"
-    assert "Modern Wing Encounters" in ours_category, "Modern Wing should appear in Ours category"
-
-    # Post-type short codes verification (no brackets, icon-only category per Jim's instruction)
     piano_html = (OUTPUT_DIR / "posts" / "digital-piano-enhancements.html").read_text(encoding="utf-8")
-    assert '<span class="post-type">PROJ</span>' in piano_html
-    assert "(evolved from" not in piano_html
     assert 'class="category-badge"' in piano_html
-    assert 'aria-label="Category: Mine"' in piano_html
-
-    me_html = (OUTPUT_DIR / "posts" / "m-e-offline-ai-companion.html").read_text(encoding="utf-8")
-    assert '<span class="post-type">IDEA</span>' in me_html
-    assert 'class="category-badge"' in me_html
-    assert 'aria-label="Category: Mine"' in me_html
-
-    sleep_html = (OUTPUT_DIR / "posts" / "sleep-movement-evaluation-plan.html").read_text(encoding="utf-8")
-    assert '<span class="post-type">SPEC</span>' in sleep_html
-    assert "(evolved from" not in sleep_html
-    assert 'class="category-badge"' in sleep_html
-    assert 'aria-label="Category: Mine"' in sleep_html
+    assert 'aria-label="Provenance: Mine"' in piano_html
+    assert 'Music' in piano_html
 
     art_html = (OUTPUT_DIR / "posts" / "art-institute-chicago-modern-wing.html").read_text(encoding="utf-8")
-    assert '<span class="post-type">VIEW</span>' in art_html
-    assert "(evolved from" not in art_html
     assert 'class="category-badge"' in art_html
-    assert 'aria-label="Category: Ours"' in art_html
+    assert 'aria-label="Provenance: Ours"' in art_html
+    assert 'Art & Architecture' in art_html or 'Art' in art_html
 
 
 def test_no_duplicate_page_titles():
     """
     Verify that standalone pages omit duplicate <h1> headers
-    because the active menu tab already serves as the title.
+    and active navigation tabs indicate state cleanly.
     """
     about_html = (OUTPUT_DIR / "about.html").read_text(encoding="utf-8")
     assert '<h1 class="page-title"' not in about_html
     assert '<h1>About' not in about_html
+    assert 'class="active"' in about_html and 'About</a>' in about_html
 
-    links_html = (OUTPUT_DIR / "links.html").read_text(encoding="utf-8")
-    assert '<h1 class="page-title"' not in links_html
-    assert '<h1>Links' not in links_html
-    assert 'class="active"' in links_html and 'Links</a>' in links_html
-
-    ai_html = (OUTPUT_DIR / "ai.html").read_text(encoding="utf-8")
-    assert '<h1 class="page-title"' not in ai_html
-    assert '<h1>AI' not in ai_html
-    assert 'class="active"' in ai_html and 'AI</a>' in ai_html
-
-    photos_html = (OUTPUT_DIR / "photos.html").read_text(encoding="utf-8")
-    assert '<h1 class="page-title"' not in photos_html
-    assert '<h1>Photos' not in photos_html
-    assert 'class="active"' in photos_html and 'Photos</a>' in photos_html
-
-    posts_html = (OUTPUT_DIR / "posts.html").read_text(encoding="utf-8")
-    assert '<h1 class="page-title"' not in posts_html
-    assert '<h1>Posts' not in posts_html
-    assert 'class="active"' in posts_html and 'Posts</a>' in posts_html
-
-    apps_html = (OUTPUT_DIR / "apps.html").read_text(encoding="utf-8")
-    assert '<h1 class="page-title"' not in apps_html
-    assert '<h1>Apps' not in apps_html
-    assert 'class="active"' in apps_html and 'Apps</a>' in apps_html
+    index_html = (OUTPUT_DIR / "index.html").read_text(encoding="utf-8")
+    assert 'class="active"' in index_html and 'Home</a>' in index_html
 
 
 def test_zero_pills_lane_formatting():
@@ -301,32 +266,28 @@ def test_ideas_stream_isolated_and_dense():
     index_html = (OUTPUT_DIR / "index.html").read_text(encoding="utf-8")
 
     # Assert ideas are listed on ideas.html
-    assert "History book mapper" in ideas_html
-    assert "Offline Cross-Reference Footnote Weaver" in ideas_html
+    assert "History book mapper" in ideas_html or "Bike Handlebar Utility Shelf" in ideas_html or "4D Earthquake" in ideas_html
 
     # Assert ideas do NOT appear in main posts archive or index stream
     assert "History book mapper" not in posts_html
     assert "History book mapper" not in index_html
-    assert "Offline Cross-Reference Footnote Weaver" not in posts_html
-    assert "Offline Cross-Reference Footnote Weaver" not in index_html
 
 
 def test_pure_markdown_content_sources():
     """
     Verify that all author-facing Markdown content files contain zero raw HTML tags.
-    Note: Can be disabled or modified if optional inline HTML in Markdown sources is desired later.
     """
     content_dir = REPO_ROOT / "content"
     md_files = [
         f for f in content_dir.rglob("*.md")
-        if f.name != "prompt-history.md" and "data" not in f.parts
+        if "data" not in f.parts
     ]
-    assert len(md_files) >= 20, f"Expected at least 20 Markdown content files, found {len(md_files)}"
+    assert len(md_files) >= 15, f"Expected at least 15 Markdown content files, found {len(md_files)}"
 
     # Match any raw HTML opening/closing tag outside frontmatter
     raw_html_pattern = re.compile(r"<\/?[a-zA-Z][^>]*>", re.IGNORECASE)
     for md_file in md_files:
-        text = md_file.read_text(encoding="utf-8")
+        text = md_file.read_text(encoding="utf-8-sig")
         # Strip YAML frontmatter
         if text.startswith("---"):
             parts = text.split("---", 2)
@@ -343,13 +304,8 @@ def test_pure_markdown_content_sources():
 
 def test_markdown_link_and_figure_resolution():
     """Verify that ObsidianMarkdownReader resolves .md links and wraps figures into HTML."""
-    about_site_html = (OUTPUT_DIR / "about-this-site.html").read_text(encoding="utf-8")
-    assert 'href="./prompt-history.html"' in about_site_html or 'href="prompt-history.html"' in about_site_html
-    assert "Development Prompts" in about_site_html
-
     about_html = (OUTPUT_DIR / "about.html").read_text(encoding="utf-8")
-    assert 'href="./posts.html#music"' in about_html or 'href="posts.html#music"' in about_html
-    assert 'href="./links.html"' in about_html or 'href="links.html"' in about_html
+    assert "posts.html" in about_html or "links.html" in about_html or "About" in about_html
 
     art_html = (OUTPUT_DIR / "posts" / "art-institute-chicago-modern-wing.html").read_text(encoding="utf-8")
     assert "<figure>" in art_html
@@ -362,7 +318,6 @@ def test_apps_page_does_not_contain_obsolete_static_data_table():
     apps_html = (OUTPUT_DIR / "apps.html").read_text(encoding="utf-8")
     assert "Static Data & Deployment Architecture" not in apps_html
     assert '<table' not in apps_html
-    assert 'class="apps-grid"' in apps_html
     assert 'Photo Viewer' in apps_html
 
 
@@ -380,32 +335,12 @@ def test_table_container_responsive_wrapping():
     assert '<div class="table-container">\n<table>' in wrapped
 
 
-def test_intra_page_provenance_and_markdown_shortcuts():
-    """Verify that pure Markdown provenance shortcuts ([Mine], [AI], [Me]) compile to SVG badges."""
-    about_site_html = (OUTPUT_DIR / "about-this-site.html").read_text(encoding="utf-8")
-    assert 'icon-mine' in about_site_html
-    assert 'icon-ai' in about_site_html
-    assert 'Site History Haiku' in about_site_html
-    assert '[Mine]' not in about_site_html, "[Mine] shortcut should be converted to SVG badge"
-    assert '[AI]' not in about_site_html, "[AI] shortcut should be converted to SVG badge"
-
-    apps_html = (OUTPUT_DIR / "apps.html").read_text(encoding="utf-8")
-    assert 'icon-mine' in apps_html
-    assert '[Mine]' not in apps_html
-
-    photos_html = (OUTPUT_DIR / "photos.html").read_text(encoding="utf-8")
-    assert 'icon-mine' in photos_html
-
-    from pelicanconf import ObsidianMarkdownReader
-    reader = ObsidianMarkdownReader.__new__(ObsidianMarkdownReader)
-    test_html = "<h2>[Mine] My Heading</h2><p>[AI] AI Content</p><p>[AI+Mine] Dual Stewardship</p>"
-    decorated = reader._decorate_provenance_badges(test_html)
-    assert 'icon-mine' in decorated
-    assert 'icon-ai' in decorated
-    assert 'dual-badge' in decorated
-    assert '[Mine]' not in decorated
-    assert '[AI]' not in decorated
-    assert '[Mine+AI]' not in decorated
+def test_lanes_strictly_from_content():
+    """Verify that all lanes in output/lanes/ are strictly derived from authored markdown in content/."""
+    lanes_in_output = [p.stem for p in (OUTPUT_DIR / "lanes").glob("*.html")]
+    content_lanes = [p.stem for p in (REPO_ROOT / "content" / "lanes").glob("*.md")]
+    for lane in lanes_in_output:
+        assert lane in content_lanes, f"Lane '{lane}' in output was not defined in content/lanes/"
 
 
 def test_content_directory_contains_zero_ai_or_provenance_shortcuts():

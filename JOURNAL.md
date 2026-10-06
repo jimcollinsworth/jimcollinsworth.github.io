@@ -2,7 +2,40 @@
 
 > Chronological log of architectural decisions, site milestones, and design changes. Maintained under the 3-document agent rule.
 
-## 2026-10-05 — Pelican Site Manager Skill Documentation & Refinements (Release v0.7.23.01)
+## 2026-10-05 — Lakeview Theme Architecture, Lanes Pipeline & AI Content Purge (Release v0.8.03)
+
+> [!NOTE] Jim's Prompts, Instructions & Steering:
+> - *"we will be doing a big update here so create a branch cleanup-pass, to get rid of all ai generated content and replace with placeholders in template, remove entirely in all /content input files (except apps), refactor our css/code into a pelican theme, named lakeview. switch providence to simply be another tag, dedicate categories to lanes like ai and taichi. Allow category_taichi.html page to get content (icon, metadata, summary, body, attached images..) from /content/categories/taichi.md, same with tags"*
+> - *"just to confirm, we are not making any changes to outofmylane project, just to this current jimcollinsworth.github,io. keep content, better separation"*
+
+### Problem & Diagnosis
+- Site content contained remnants of AI-generated synthetic articles and auto-generated data files (`content/data/site-summary.json`, `content/data/dev-prompts.json`, `content/pages/prompt-history.md`).
+- Categories were overloaded as provenance badges (`Me`, `Mine`, `AI`, `Ours`, `Theirs`), preventing their use as topical Lanes (`taichi`, `music`, `making`, `software`, `art`, `photography`, `health`, `ai`).
+- Category and tag archive pages were unstyled and lacked integration with human-authored Markdown prose and intros.
+- CSS and templates were located in loose directories rather than a modular, standalone Pelican theme directory (`themes/lakeview/`).
+
+### Root Cause & Technical Analysis
+- Pelican default architecture generates category and tag pages strictly from article frontmatter groupings, without attaching Markdown prose, custom titles, summaries, or icons.
+- Authorship provenance belongs conceptually as a flexible tag (`tags: [mine, ...]`), freeing Pelican's primary category taxonomy for core thematic Lanes (`lanes/{slug}.html`).
+- Consolidating CSS, assets, and templates under `themes/lakeview/` provides clear separation of site theme infrastructure from authored content.
+
+### Solution & Standard Procedure
+1. **Branch & Version**: Created working branch `cleanup-pass` and bumped project version to `0.8.03` in `pyproject.toml`.
+2. **AI Content Purge**: Removed all AI synthetic drafts (`content/data/site-summary.json`, `content/data/dev-prompts.json`, `content/pages/prompt-history.md`, AI idea drafts). Retained 100% human-authored essays and notes by Jim.
+3. **Lanes & Tags Architecture**:
+   - Re-architected Pelican categories as thematic Lanes (`lanes/{slug}.html`, `lanes.html`).
+   - Moved provenance (`mine`, `me`, `ai`, `ours`, `theirs`) to standard tags.
+   - Implemented `merge_lane_and_tag_metadata` signal hook in `pelicanconf.py` to enrich `Category` and `Tag` objects with frontmatter and body from `content/lanes/<lane>.md` and `content/tags/<tag>.md`.
+   - Pruned ghost categories so only authored lanes are emitted.
+4. **Lakeview Theme Consolidation**:
+   - Built standalone theme in `themes/lakeview/` with modular templates: `base.html`, `index.html`, `article.html`, `page.html`, `category.html`, `categories.html`, `tag.html`, `tags.html`, `category_icon.html`, `ideas.html`, `idea.html`, `link.html`, `photo.html`, `chat.html`, `archives.html`, `404.html`.
+   - Rebuilt header and footer to match the minimalist reference benchmark: author name and tagline, horizontal nav (`Home`, `About`), 1px rule, and clean footer with accessibility toggles.
+5. **Testing & Verification**:
+   - Updated test suites in `tests/test_accessibility.py` and `tests/test_pelican_e2e.py` for lane URL structure, provenance tag badges, and clean menu states.
+   - All 29 unit and accessibility tests passing.
+   - Captured visual evidence screenshots (`index_preview.png`, `lane_preview.png`).
+
+
 
 > [!NOTE] Jim's Prompts, Instructions & Steering:
 > - *"can we try a test push, and status update, what to work on next, /pelican-site-manager /pelican-obsidian-bridge"*

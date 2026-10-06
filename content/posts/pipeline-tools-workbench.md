@@ -1,25 +1,28 @@
 ---
-title: "Multimodal Data Pipeline-Tool"
-slug: "pipeline-tools-workbench"
-date: "2026-09-13"
-category: "AI"
-author: "Jim Collinsworth"
-authors: "Jim Collinsworth, LLM-Gemini3.8"
-type: "APP"
+title: Multimodal Data Pipeline-Tool
+slug: pipeline-tools-workbench
+date: '2026-09-13'
+category: software
+author: Jim Collinsworth
+authors: Jim Collinsworth, LLM-Gemini3.8
+type: APP
 tags:
-  - software
-  - ai
-  - data
-  - pipelines
-  - pixeltable
-summary: "An interactive multimodal data pipeline and transformation workbench deployed to Hugging Face Spaces, featuring declarative ingestion with Pixeltable, schema inspection, and data export."
+- ai
+- mine
+- data
+- pipelines
+- apps
+summary: An interactive multimodal data pipeline and transformation workbench deployed
+  to Hugging Face Spaces, featuring declarative ingestion with Pixeltable, schema
+  inspection, and data export.
+status: published
 ---
 
 **Pipeline Tools** is an interactive multimodal data pipeline and transformation workbench hosted on Hugging Face Spaces. It provides utilities to scan multi-asset directories, connect to cloud stores, manage declarative tables via Pixeltable, execute quality validation models, and export structured datasets.
 
 [Launch Full-Screen App &rarr;](../apps/pipeline-tools/index.html){: .app-launch-btn }
 
-![Pipeline Tools v1.3 Multimodal Workbench running on Hugging Face Spaces.](../images/pipeline-tools-app.png)
+![Pipeline Tools v1.3 Multimodal Workbench running on Hugging Face Spaces.](../media/images/pipeline-tools-app.png)
 
 ## Workbench Capabilities
 

@@ -1,24 +1,27 @@
-﻿---
-title: "Content Taxonomy & Keyword Explorer"
-slug: "keyword-explorer-taxonomy"
-date: "2026-09-12"
-category: "AI"
-author: "Jim Collinsworth"
-authors: "Jim Collinsworth, LLM-Gemini3.8"
-type: "APP"
-tags:
-  - software
-  - taxonomy
-  - search
-  - metadata
-summary: "A client-side visual discovery widget that cross-filters site content across domains, thought evolution stages, authorship origins, and multi-label keyword tags."
 ---
+title: Content Taxonomy & Keyword Explorer
+slug: keyword-explorer-taxonomy
+date: '2026-09-12'
+category: software
+author: Jim Collinsworth
+authors: Jim Collinsworth, LLM-Gemini3.8
+type: APP
+tags:
+- mine
+- taxonomy
+- python
+- apps
+summary: A client-side visual discovery widget that cross-filters site content across
+  domains, thought evolution stages, authorship origins, and multi-label keyword tags.
+status: published
+---
+
 
 The **Content Taxonomy & Keyword Explorer** provides faceted discovery across the essays, projects, and notes on `jimcollinsworth.github.io`. It allows filtering across multiple dimensions simultaneously with real-time text matching.
 
 [Launch Full-Screen App &rarr;](../apps/keyword-search/index.html){: .app-launch-btn }
 
-![Content Taxonomy & Keyword Explorer with real-time faceted filters and multi-label tags.](../images/keyword-explorer-app.png)
+![Content Taxonomy & Keyword Explorer with real-time faceted filters and multi-label tags.](../media/images/keyword-explorer-app.png)
 
 ## Faceted Discovery Dimensions
 

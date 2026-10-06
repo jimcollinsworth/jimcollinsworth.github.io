@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found &mdash; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<article class="page-body" style="text-align: center; padding: 4rem 1rem;">
+  <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">404</h1>
+  <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 2rem;">The page you are looking for does not exist or has moved.</p>
+  <a href="{{ SITEURL }}/index.html" class="app-launch-btn">&larr; Return to Home</a>
+</article>
+{% endblock %}

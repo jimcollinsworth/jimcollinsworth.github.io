@@ -41,13 +41,16 @@ jimcollinsworth.github.io/
 ├── content/                      # Source Markdown (Obsidian Vault drop folder)
 │   ├── posts/                    # Long-form posts (Health, Projects, Software, Ideas, Music, Art)
 │   ├── pages/                    # Standalone pages (about, ai, links, photos, apps, about-this-site, contact)
+│   ├── lanes/                    # Topic lane metadata definitions (taichi, music, making, etc.)
+│   ├── tags/                     # Tag and provenance metadata definitions (mine, me, ai, etc.)
+│   ├── media/                    # Media assets (images, audio, video)
 │   ├── apps/                     # Standalone interactive mini-apps (photo-viewer, keyword-search)
 │   ├── data/                     # Tabular & info static datasets (JSON, CSV, markdown manifests)
-│   ├── images/                   # Manually curated photos referenced by posts
 │   └── extra/                    # Favicons and verification tokens
-├── theme/                        # Custom Pelican Jinja2 theme
-│   ├── templates/                # base.html, index.html, article.html, page.html, etc.
-│   └── static/css/style.css      # Central stylesheet (zero pills, dark/light mode)
+├── themes/
+│   └── lakeview/                 # Custom Pelican Jinja2 Lakeview theme
+│       ├── templates/            # base.html, index.html, article.html, category.html, etc.
+│       └── static/css/style.css  # Central stylesheet (zero pills, dark/light mode)
 ├── archive/                      # Historical Nikola archives, original full-resolution photos, drafts
 ├── docs/
 │   └── cheatsheets/              # Architecture & Content Authoring Cheat Sheets (PDF & Markdown)

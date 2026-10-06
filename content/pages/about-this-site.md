@@ -1,10 +1,11 @@
 ---
-title: "About This Site"
-slug: "about-this-site"
-template: "about-this-site"
+title: About This Site
+slug: about-this-site
+template: page
+status: published
 ---
 
-**About This Site** outlines the technical architecture and infrastructure behind `jimcollinsworth.github.io`. This website is built through pair programming with artificial intelligence under my direct architectural guidance &mdash; with the AI assistant managing static site generation, Jinja2 theme templates, responsive CSS layouts, and comprehensive test automation. The site serves pure HTML and CSS with zero client-side JavaScript on reading pages. All steering prompts, technical decisions, and course corrections are logged on [Development Prompts](prompt-history.md).
+**About This Site** outlines the technical architecture and infrastructure behind `jimcollinsworth.github.io`. This website is built through pair programming with artificial intelligence under my direct architectural guidance &mdash; with the AI assistant managing static site generation, Jinja2 theme templates, responsive CSS layouts, and comprehensive test automation. The site serves pure HTML and CSS with zero client-side JavaScript on reading pages. All steering prompts, technical decisions, and course corrections are logged in the project repository governance logs.
 
 ## Content Streams & Provenance
 

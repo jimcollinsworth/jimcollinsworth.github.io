@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "category_icon.html" import article_provenance %}
+
+{% block title %}{{ article.title or page.title }} &mdash; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<article class="post link-post">
+  <header class="post-header-full">
+    <div class="post-header-row">
+      <div class="post-header-left">
+        <a href="{{ SITEURL }}/posts.html" class="post-back-arrow" title="All Posts" aria-label="All Posts">&larr;</a>
+        {% if article %}{{ article_provenance(article) }}{% endif %}
+        <h1 class="post-title">{{ (article or page).title }}</h1>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-content">
+    {{ (article or page).content }}
+  </div>
+</article>
+{% endblock %}

@@ -1,13 +1,16 @@
 ---
-title: "M.E. (Mental Entity / My Essence)"
-date: "2026-09-06"
-category: "Mine"
+title: M.E. (Mental Entity / My Essence)
+date: '2026-09-06'
+category: ai
 tags:
-  - ai
-  - software
-type: "IDEA"
-slug: "m-e-offline-ai-companion"
-summary: "Local, offline AI companion carried on your person with adaptive memory architecture."
+- mine
+- companion
+- offline-ai
+- python
+type: IDEA
+slug: m-e-offline-ai-companion
+summary: Local, offline AI companion carried on your person with adaptive memory architecture.
+status: published
 ---
 
 A local, offline AI companion carried on your person (button, eyeglasses, lapel clip). Observes and listens from the user's perspective over years, learning nuances and historical context.

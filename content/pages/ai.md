@@ -1,6 +1,8 @@
 ---
-title: "AI"
-slug: "ai"
+title: AI
+slug: ai
+status: published
+template: page
 ---
 
 Artificial intelligence is one of my central exploration domains. My focus is on local, offline AI models, personal cognitive companions, agentic workflows, and software systems.

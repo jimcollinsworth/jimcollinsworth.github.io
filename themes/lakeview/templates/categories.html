@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Lanes &mdash; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <h1 class="page-title" style="margin-bottom: 1.5rem;">Lanes</h1>
+</header>
+
+<div class="lanes-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem;">
+  {% for cat, cat_articles in categories %}
+  <article class="lane-card" style="border: 1px solid var(--border); background-color: var(--bg-card); padding: 1.25rem; border-radius: 6px;">
+    <h2 style="font-size: 1.2rem; margin-top: 0; margin-bottom: 0.4rem;">
+      <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat.title or cat }}</a>
+    </h2>
+    {% if cat.summary %}
+    <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.8rem; line-height: 1.5;">
+      {{ cat.summary }}
+    </p>
+    {% endif %}
+    <div style="font-size: 0.82rem; color: var(--text-muted);">
+      {{ cat_articles|length }} post{% if cat_articles|length != 1 %}s{% endif %} &bull; <a href="{{ SITEURL }}/{{ cat.url }}">Browse lane &rarr;</a>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}

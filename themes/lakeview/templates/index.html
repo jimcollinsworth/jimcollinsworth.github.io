@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% from "category_icon.html" import category_icon, article_provenance %}
+
+{% block content %}
+{% set standard_articles = articles|rejectattr('type', 'equalto', 'IDEA')|list %}
+{% set featured_matches = standard_articles|selectattr('featured', 'defined')|selectattr('featured')|list %}
+{% if featured_matches %}
+  {% set featured_list = featured_matches[:3] %}
+{% elif standard_articles %}
+  {% set featured_list = [standard_articles[0]] %}
+{% else %}
+  {% set featured_list = [] %}
+{% endif %}
+
+{% set featured_slugs = featured_list|map(attribute='slug')|list %}
+{% set stream_articles = standard_articles|rejectattr('slug', 'in', featured_slugs)|list %}
+
+{% if featured_list %}
+<section class="featured-showcase">
+  <h2>Featured</h2>
+  <div class="featured-grid">
+    {% for post in featured_list %}
+    <article class="post-item featured">
+      <div class="post-header-row">
+        <div class="post-header-left">
+          {{ article_provenance(post) }}
+          <h3 class="post-title"><a href="{{ SITEURL }}/{{ post.url }}">{{ post.title }}</a></h3>
+        </div>
+        <div class="post-header-right">
+          {% if post.category %}
+          <a href="{{ SITEURL }}/lanes/{{ post.category.slug }}.html" class="post-lane-pill">{{ post.category }}</a>
+          {% endif %}
+          <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date.strftime('%b %y') }}</time>
+        </div>
+      </div>
+      {% if post.summary %}
+      <div class="post-desc">
+        <p class="post-teaser">{{ post.summary|striptags }}</p>
+      </div>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="recent-stream-section">
+  <div class="section-header-row" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem;">
+    <h2>Recent Writing</h2>
+    <span class="header-all-link">(<a href="{{ SITEURL }}/posts.html">ALL</a>)</span>
+  </div>
+
+  {% if stream_articles %}
+  <div class="stream-grid">
+    {% for article in stream_articles %}
+    <article class="post-item">
+      <div class="post-header-row">
+        <div class="post-header-left">
+          {{ article_provenance(article) }}
+          <h3 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+        </div>
+        <div class="post-header-right">
+          {% if article.category %}
+          <a href="{{ SITEURL }}/lanes/{{ article.category.slug }}.html" class="post-lane-pill">{{ article.category }}</a>
+          {% endif %}
+          <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.date.strftime('%b %y') }}</time>
+        </div>
+      </div>
+      {% if article.summary %}
+      <div class="post-desc">
+        <p class="post-teaser">{{ article.summary|striptags }}</p>
+      </div>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+  {% elif not featured_list %}
+  <p class="empty-state">[No posts published yet.]</p>
+  {% endif %}
+</section>
+{% endblock %}
